@@ -1,0 +1,54 @@
+import '../type_handler.dart';
+
+enum KnownTypeType {
+  /// those that can be handled by a simple `as` cast
+  primitive,
+
+  /// require special serde
+  complex,
+
+  /// cqrs-related interfaces
+  cqrs,
+
+  /// attributes
+  attribute
+}
+
+KnownTypeType knownTypeType(KnownType knownType) {
+  switch (knownType) {
+    case KnownType.Object_:
+    case KnownType.Guid:
+    case KnownType.String:
+    case KnownType.Boolean:
+    case KnownType.UInt8:
+    case KnownType.Int8:
+    case KnownType.Int16:
+    case KnownType.UInt16:
+    case KnownType.Int32:
+    case KnownType.UInt32:
+    case KnownType.Int64:
+    case KnownType.UInt64:
+    case KnownType.Float:
+    case KnownType.Double:
+    case KnownType.Decimal:
+      return KnownTypeType.primitive;
+    case KnownType.Uri:
+    case KnownType.Date:
+    case KnownType.Time:
+    case KnownType.DateTime:
+    case KnownType.DateTimeOffset:
+    case KnownType.Array:
+    case KnownType.Map:
+      return KnownTypeType.complex;
+    case KnownType.Query:
+    case KnownType.Command:
+      return KnownTypeType.cqrs;
+    case KnownType.AuthorizeWhenAttribute:
+    case KnownType.AuthorizeWhenHasAnyOfAttribute:
+    case KnownType.QueryCacheAttribute:
+    case KnownType.Attribute:
+      return KnownTypeType.attribute;
+  }
+
+  throw UnimplementedError('There was no mapping for the type $knownType');
+}
