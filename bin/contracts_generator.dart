@@ -72,7 +72,7 @@ Future<void> main(List<String> arguments) async {
 
   final generator = ContractsGenerator(
     ContractsGeneratorConfig(
-      project: File(project),
+      script: GeneratorScript.project([project]),
       name: name,
       includeNamespaceRegex: includeRegex != null ? RegExp(includeRegex) : null,
       output: Directory(output),
