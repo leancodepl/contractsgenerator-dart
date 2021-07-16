@@ -3,12 +3,12 @@ import 'package:meta/meta.dart';
 import 'package:recase/recase.dart';
 
 import '../generator_database.dart';
-import '../proto/types.pb.dart';
+import '../proto/contracts.pb.dart';
 import '../types/type_creator.dart';
 import '../values/value_creator.dart';
 import 'utils/to_dartdoc.dart';
 
-export '../proto/types.pb.dart';
+export '../proto/contracts.pb.dart';
 
 abstract class StatementHandler {
   const StatementHandler(this.typeCreator, this.valueCreator, this.db);

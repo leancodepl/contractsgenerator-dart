@@ -1,6 +1,6 @@
-import '../../proto/types.pb.dart';
+import '../../proto/contracts.pb.dart';
 
-export '../../proto/types.pb.dart';
+export '../../proto/contracts.pb.dart';
 
 abstract class ResultFactoryHandler {
   const ResultFactoryHandler();

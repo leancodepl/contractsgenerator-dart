@@ -1,7 +1,7 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:recase/recase.dart';
 
-import '../proto/types.pb.dart';
+import '../proto/contracts.pb.dart';
 
 // TODO: split into handlers?
 class ErrorCreator {

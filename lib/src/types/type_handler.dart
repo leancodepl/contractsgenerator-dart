@@ -1,7 +1,7 @@
-import '../proto/types.pb.dart';
+import '../proto/contracts.pb.dart';
 import 'utils/nullable_suffix.dart';
 
-export '../proto/types.pb.dart';
+export '../proto/contracts.pb.dart';
 
 abstract class TypeHandler {
   const TypeHandler();
