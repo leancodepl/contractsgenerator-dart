@@ -43,10 +43,10 @@ void main() {
       test(generatorScript.args.join(' '), () async {
         await ContractsGenerator(
           ContractsGeneratorConfig(
-            script: generatorScript,
+            input: generatorScript,
             output: Directory(outDir),
             extra: '// :)',
-            includeNamespaceRegex: RegExp('.*'),
+            include: RegExp('.*'),
           ),
         ).writeAll();
 

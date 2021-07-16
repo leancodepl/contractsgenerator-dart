@@ -21,6 +21,7 @@ dependencies:
   path: ^1.8.0
   protobuf: ^2.0.0
   recase: ^4.0.0
+  yaml: ^3.1.0
 
 dev_dependencies:
   cqrs: ^6.0.0

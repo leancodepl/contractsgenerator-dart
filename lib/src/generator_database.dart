@@ -13,7 +13,7 @@ class GeneratorDatabase {
   static Future<GeneratorDatabase> fromConfig(
     ContractsGeneratorConfig config,
   ) async {
-    final buffer = await config.script.run();
+    final buffer = await config.input.run();
 
     return GeneratorDatabase._(
       config,
@@ -32,7 +32,7 @@ class GeneratorDatabase {
 
   /// Checks against the config whether a fully qualified item should be included
   bool shouldInclude(String namespacedName) {
-    return namespacedName.contains(config.includeNamespaceRegex);
+    return namespacedName.contains(config.include);
   }
 
   /// Finds a statement by the fully qualified name

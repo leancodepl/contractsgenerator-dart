@@ -26,25 +26,19 @@ First run will take longer due to the need to download external dependencies.
 ### CLI
 
 ```
-$ dart pub run contracts_generator --help
-
+$ dart run contracts_generator --help
 Command line utility for generating dart CQRS contracts
 
-OPTIONS:
-    -h, --help                   Show this help
-    -n, --name                   Name of the output dart file
-                                 (defaults to "contracts")
-    -p, --project (mandatory)    .csproj file for the contracts project
-    -i, --include-regex          Regex to filter-in namespaced statements
-    -o, --output                 Output directory
-                                 (defaults to "lib/data")
-    -e, --extra                  Text to be added in generated contracts file between imports and statements
+Usage: dart run contracts_generator <command> [arguments]
 
-EXAMPLES:
-    exe -p ../backend/src/Core/ProjectName.Core.Contracts/ProjectName.Core.Contracts.csproj -i "ProjectName\.Core\.Contracts\.(Mobile|Shared)"
+Global options:
+-h, --help    Print this usage information.
+
+Available commands:
+  init   Initialize a config file
+
+Run "dart run contracts_generator help <command>" for more information about a command.
 ```
-
-Configuration is done through CLI flags.
 
 ### Library
 
@@ -56,11 +50,11 @@ import 'package:contracts_generator/contracts_generator.dart';
 Future<void> main(List<String> arguments) async {
   final generator = ContractsGenerator(
     ContractsGeneratorConfig(
-      pbFile: File('example.pb'),
+      input: GeneratorScript.path('ExampleContracts'),
       name: 'cool_name',
       output: Directory('lib'),
       extra: '// :)',
-      includeNamespaceRegex: RegExp(r'\w+(\.\w+)*'),
+      include: RegExp(r'\w+(\.\w+)*'),
     ),
   );
 
@@ -68,9 +62,6 @@ Future<void> main(List<String> arguments) async {
 }
 ```
 
-Configuration is done through the `ContractsGeneratorConfig` object.
-
 ## Todo
 
 - Attributes. Currently completely ignored
-- Config file instead of CLI flags

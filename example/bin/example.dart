@@ -5,11 +5,11 @@ import 'package:contracts_generator/contracts_generator.dart';
 Future<void> main(List<String> arguments) async {
   final generator = ContractsGenerator(
     ContractsGeneratorConfig(
-      script: GeneratorScript.path('ExampleContracts'),
+      input: GeneratorScript.path('ExampleContracts'),
       name: 'cool_name',
       output: Directory('lib'),
       extra: '// :)',
-      includeNamespaceRegex: RegExp(r'\w+(\.\w+)*'),
+      include: RegExp(r'\w+(\.\w+)*'),
     ),
   );
 
