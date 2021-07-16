@@ -1,19 +1,16 @@
 import 'dart:io';
 
+import 'generator_script.dart';
+
 class ContractsGeneratorConfig {
   ContractsGeneratorConfig({
-    this.pbFile,
-    this.project,
+    required this.script,
     this.name = 'contracts',
     this.extra = '',
     RegExp? includeNamespaceRegex,
     Directory? output,
   })  : includeNamespaceRegex = includeNamespaceRegex ?? RegExp(''),
-        output = output ?? Directory.current,
-        assert(
-          (pbFile != null) ^ (project != null),
-          'Specify exactly one of `pbFile`, `project`',
-        );
+        output = output ?? Directory.current;
 
   /// Name of the output dart file
   final String name;
@@ -24,11 +21,8 @@ class ContractsGeneratorConfig {
   /// Output directory
   final Directory output;
 
-  /// Generated `.pb` file with a structure defined by the `types.proto` schema
-  final File? pbFile;
-
-  /// C#'s `.csproj` contracts project file
-  final File? project;
+  /// Method of consuming contracts code
+  final GeneratorScript script;
 
   /// Regex to filter-in namespaced statements
   final RegExp includeNamespaceRegex;

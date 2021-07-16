@@ -5,7 +5,9 @@ import 'package:contracts_generator/contracts_generator.dart';
 Future<void> main(List<String> arguments) async {
   final generator = ContractsGenerator(
     ContractsGeneratorConfig(
-      pbFile: File('example.pb'),
+      script: GeneratorScript.project([
+        '../contractsgenerator/examples/project/aggregated/Combined/Combined.csproj',
+      ]),
       name: 'cool_name',
       output: Directory('lib'),
       extra: '// :)',

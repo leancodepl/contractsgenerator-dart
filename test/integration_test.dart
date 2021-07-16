@@ -5,6 +5,7 @@ import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
 void main() {
+  const inDir = 'contractsgenerator/examples';
   const outDir = 'test/out';
   final mainPath = p.join(outDir, 'main.dart');
 
@@ -14,16 +15,34 @@ void main() {
   });
 
   group('final contract compilation', () {
-    final testFiles = Directory('test/pb').listSync().whereType<File>();
+    final generatorScripts = [
+      GeneratorScript.project([p.join(inDir, 'project/single/single.csproj')]),
+      GeneratorScript.project([
+        p.join(inDir, 'project/aggregated/Combined/Combined.csproj'),
+      ]),
+      GeneratorScript.project([
+        p.join(inDir, 'project/aggregated/A/A.csproj'),
+        p.join(inDir, 'project/aggregated/B/B.csproj'),
+      ]),
+      GeneratorScript.path(p.join(inDir, 'simple/')),
+      GeneratorScript.file(p.join(inDir, 'properties/composite_types.cs')),
+      GeneratorScript.file(p.join(inDir, 'properties/known_types.cs')),
+      GeneratorScript.file(
+        p.join(inDir, 'supported_use_cases/exclusions.cs'),
+      ),
+      GeneratorScript.file(
+        p.join(inDir, 'supported_use_cases/same_names.cs'),
+      ),
+      GeneratorScript.file(
+        p.join(inDir, 'supported_use_cases/shared_error_codes.cs'),
+      ),
+    ];
 
-    for (final testFile in testFiles) {
-      test(testFile, () async {
-        final basename = p.basenameWithoutExtension(testFile.path);
-
+    for (final generatorScript in generatorScripts) {
+      test(generatorScript.args.join(' '), () async {
         await ContractsGenerator(
           ContractsGeneratorConfig(
-            pbFile: testFile,
-            name: basename,
+            script: generatorScript,
             output: Directory(outDir),
             extra: '// :)',
             includeNamespaceRegex: RegExp('.*'),
@@ -31,7 +50,7 @@ void main() {
         ).writeAll();
 
         await File(mainPath).writeAsString('''
-        import '$basename.dart';
+        import 'contracts.dart';
 
         void main() {
           print(Time(0, 0, 0));

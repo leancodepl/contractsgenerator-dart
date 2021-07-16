@@ -1,7 +1,6 @@
 import 'dart:collection';
 
 import 'contracts_generator_config.dart';
-import 'generator_script.dart';
 import 'types/type_handler.dart';
 import 'types/utils/known_type_kind.dart';
 
@@ -14,12 +13,7 @@ class GeneratorDatabase {
   static Future<GeneratorDatabase> fromConfig(
     ContractsGeneratorConfig config,
   ) async {
-    List<int> buffer;
-    if (config.pbFile != null) {
-      buffer = await config.pbFile!.readAsBytes();
-    } else {
-      buffer = (await GeneratorScript.project(project: config.project!.path))!;
-    }
+    final buffer = await config.script.run();
 
     return GeneratorDatabase._(
       config,

@@ -1,7 +1,21 @@
 import 'dart:io';
 
-/// Interface to the C# generator
+/// Interface to the C# protobuf generator
 class GeneratorScript {
+  /// Generate for a list of projects. Passed paths need to point to a .csproj file.
+  GeneratorScript.project(List<String> projects)
+      : args = ['project', '-p', projects.join(';')];
+
+  /// Generate for a single C# file
+  GeneratorScript.file(String file) : args = ['file', '-i', file];
+
+  /// Generate for a all files in the globbed path
+  GeneratorScript.path(String path) : args = ['path', '-p', path];
+
+  final List<String> args;
+
+  static const version = '1.0.3';
+
   // Dart has no reliable way of opening relative files, so the contents are embedded in the source
   static const _script = r'''
 #!/bin/sh
@@ -48,26 +62,20 @@ fi
 exec dotnet --roll-forward Major "${dest}/${name}.dll" "${@}"
 ''';
 
-  static Future<ProcessResult> _run(List<String> args) {
-    return Process.run(
+  Future<List<int>> run() async {
+    final result = await Process.run(
       'sh',
-      ['-c', _script, '--', ...args],
+      ['-c', _script, '--', ...args, '-o-'],
       stdoutEncoding: null,
+      stderrEncoding: null,
+      environment: const {'SERVER_VERSION': version},
     );
-  }
 
-  /// If `output == null` a list of bytes of the output is returned
-  static Future<List<int>?> project({
-    required String project,
-    String? output,
-  }) async {
-    final result = await _run([
-      'project',
-      '-p',
-      project,
-      '-o${output ?? '-'}',
-    ]);
+    if (result.exitCode != 0) {
+      stderr.add(result.stderr as List<int>);
+      exit(1);
+    }
 
-    if (output == null) return result.stdout as List<int>;
+    return result.stdout as List<int>;
   }
 }
