@@ -9,6 +9,16 @@ class ErrorCreator {
 
   static const _errorClassSuffix = 'ErrorCodes';
 
+  Spec create(List<ErrorCode> errorCodes, String context) {
+    return Class(
+      (b) => b
+        ..name = '$context$_errorClassSuffix'
+        ..fields.addAll(
+          errorCodes.map((code) => _createFields(code, '')).expand((e) => e),
+        ),
+    );
+  }
+
   List<Field> _createFields(ErrorCode errorCode, String context) {
     if (errorCode.hasSingle()) {
       return [
@@ -28,15 +38,5 @@ class ErrorCreator {
     }
 
     throw UnimplementedError('ErrorCode $errorCode has no handler');
-  }
-
-  Spec create(List<ErrorCode> errorCodes, String context) {
-    return Class(
-      (b) => b
-        ..name = '$context$_errorClassSuffix'
-        ..fields.addAll(
-          errorCodes.map((code) => _createFields(code, '')).expand((e) => e),
-        ),
-    );
   }
 }

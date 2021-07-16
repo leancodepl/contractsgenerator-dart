@@ -11,24 +11,26 @@ class ResultFactoryCreator {
 
   static const paramName = 'decodedJson';
 
-  Method create(TypeRef typeRef) => Method(
-        (b) => b
-          ..returns = typeCreator.create(typeRef)
-          ..name = 'resultFactory'
-          ..lambda = true
-          ..requiredParameters.add(
-            Parameter(
-              (b) => b
-                ..name = paramName
-                ..type = refer('dynamic'),
-            ),
-          )
-          ..body = Code(
-            ResultFactoryHandler.buildFrom(
-              typeRef,
-              handlers,
-              paramName,
-            ),
+  Method create(TypeRef typeRef) {
+    return Method(
+      (b) => b
+        ..returns = typeCreator.create(typeRef)
+        ..name = 'resultFactory'
+        ..lambda = true
+        ..requiredParameters.add(
+          Parameter(
+            (b) => b
+              ..name = paramName
+              ..type = refer('dynamic'),
           ),
-      );
+        )
+        ..body = Code(
+          ResultFactoryHandler.buildFrom(
+            typeRef,
+            handlers,
+            paramName,
+          ),
+        ),
+    );
+  }
 }

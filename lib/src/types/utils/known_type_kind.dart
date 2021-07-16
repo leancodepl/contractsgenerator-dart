@@ -1,6 +1,6 @@
 import '../type_handler.dart';
 
-enum KnownTypeType {
+enum KnownTypeKind {
   /// those that can be handled by a simple `as` cast
   primitive,
 
@@ -14,7 +14,7 @@ enum KnownTypeType {
   attribute
 }
 
-KnownTypeType knownTypeType(KnownType knownType) {
+KnownTypeKind knownTypeKind(KnownType knownType) {
   switch (knownType) {
     case KnownType.Object_:
     case KnownType.Guid:
@@ -31,7 +31,7 @@ KnownTypeType knownTypeType(KnownType knownType) {
     case KnownType.Float:
     case KnownType.Double:
     case KnownType.Decimal:
-      return KnownTypeType.primitive;
+      return KnownTypeKind.primitive;
     case KnownType.Uri:
     case KnownType.Date:
     case KnownType.Time:
@@ -39,15 +39,15 @@ KnownTypeType knownTypeType(KnownType knownType) {
     case KnownType.DateTimeOffset:
     case KnownType.Array:
     case KnownType.Map:
-      return KnownTypeType.complex;
+      return KnownTypeKind.complex;
     case KnownType.Query:
     case KnownType.Command:
-      return KnownTypeType.cqrs;
+      return KnownTypeKind.cqrs;
     case KnownType.AuthorizeWhenAttribute:
     case KnownType.AuthorizeWhenHasAnyOfAttribute:
     case KnownType.QueryCacheAttribute:
     case KnownType.Attribute:
-      return KnownTypeType.attribute;
+      return KnownTypeKind.attribute;
   }
 
   throw UnimplementedError('There was no mapping for the type $knownType');

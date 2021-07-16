@@ -14,15 +14,16 @@ class QueryHandler extends StatementHandler {
     TypeCreator typeCreator,
     ValueCreator valueCreator,
     GeneratorDatabase db,
-  ) : super(typeCreator, valueCreator, db);
+  )   : resultFactoryCreator = ResultFactoryCreator(
+          [
+            InternalResultFactoryHandler(db),
+            const KnownResultFactoryHandler(),
+          ],
+          typeCreator,
+        ),
+        super(typeCreator, valueCreator, db);
 
-  late final resultFactoryCreator = ResultFactoryCreator(
-    [
-      InternalResultFactoryHandler(db),
-      const KnownResultFactoryHandler(),
-    ],
-    typeCreator,
-  );
+  final ResultFactoryCreator resultFactoryCreator;
 
   @override
   Spec build(Statement statement) {

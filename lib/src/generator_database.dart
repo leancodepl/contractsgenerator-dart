@@ -1,14 +1,15 @@
 import 'dart:collection';
 
-import 'package:collection/collection.dart';
-
 import 'contracts_generator_config.dart';
 import 'generator_script.dart';
 import 'types/type_handler.dart';
-import 'types/utils/known_type_type.dart';
+import 'types/utils/known_type_kind.dart';
 
 class GeneratorDatabase {
-  GeneratorDatabase._(this.config, this._export);
+  GeneratorDatabase._(this.config, this._export)
+      : _statements = LinkedHashMap.fromEntries(
+          _export.statements.map((e) => MapEntry(e.name, e)),
+        );
 
   static Future<GeneratorDatabase> fromConfig(
     ContractsGeneratorConfig config,
@@ -27,9 +28,11 @@ class GeneratorDatabase {
   }
 
   final ContractsGeneratorConfig config;
+  // ignore: unused_field, might be useful later
   final Export _export;
+  final LinkedHashMap<String, Statement> _statements;
 
-  List<Statement> get statements => _export.statements;
+  Iterable<Statement> get statements => _statements.values;
 
   static const namespaceSeparator = '.';
 
@@ -38,10 +41,8 @@ class GeneratorDatabase {
     return namespacedName.contains(config.includeNamespaceRegex);
   }
 
-  // TODO: restructure statements for faster searching
   /// Finds a statement by the fully qualified name
-  Statement? find(String namespacedName) =>
-      statements.firstWhereOrNull((e) => e.name == namespacedName);
+  Statement? find(String namespacedName) => _statements[namespacedName];
 
   final _resolveCache = HashMap<String, String>();
   late final _names = statements
@@ -97,7 +98,7 @@ class GeneratorDatabase {
   /// Deep check for whether this type is/extends a CQRS type
   bool isCqrs(TypeRef typeRef) {
     if (typeRef.hasKnown() &&
-        knownTypeType(typeRef.known.type) == KnownTypeType.cqrs) {
+        knownTypeKind(typeRef.known.type) == KnownTypeKind.cqrs) {
       return true;
     } else if (typeRef.hasGeneric()) {
       return false;

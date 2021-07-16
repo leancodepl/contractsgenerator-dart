@@ -24,7 +24,7 @@ import 'types/internal_type_handler.dart';
 import 'types/known_type_handler.dart';
 import 'types/type_creator.dart';
 import 'types/type_handler.dart';
-import 'types/utils/known_type_type.dart';
+import 'types/utils/known_type_kind.dart';
 import 'values/value_creator.dart';
 
 class ContractsGenerator {
@@ -41,8 +41,8 @@ class ContractsGenerator {
     return statement.hasDto() &&
         statement.extends_3.isNotEmpty &&
         statement.extends_3.first.hasKnown() &&
-        knownTypeType(statement.extends_3.first.known.type) ==
-            KnownTypeType.attribute;
+        knownTypeKind(statement.extends_3.first.known.type) ==
+            KnownTypeKind.attribute;
   }
 
   /// generates `code_builder` structures that can still be modified

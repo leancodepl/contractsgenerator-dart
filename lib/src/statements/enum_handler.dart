@@ -16,23 +16,9 @@ class EnumHandler extends StatementHandler {
 
   @override
   Spec build(Statement statement) {
-    // TODO: enum generator
-    // TODO: cant inherit static fields in dart
-    // TODO: should it be a class or an enum?
-    // TODO: TypeRef extends
-    // TODO: GenericParameter genericParameters
-    // TODO: AttributeRef attributes
-    // TODO: PropertyRef properties
-    // TODO: ConstantRef constants
-
-    if (statement.extends_3.isNotEmpty) {
-      throw UnimplementedError(
-        'No support for enums that extend other classes',
-      );
-    }
-
     final name = db.resolveName(statement.name);
 
+    // TODO: attributes
     return Enum(
       (b) => b
         ..name = name
