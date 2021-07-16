@@ -73,3 +73,4 @@ Configuration is done through the `ContractsGeneratorConfig` object.
 ## Todo
 
 - Attributes. Currently completely ignored
+- Config file instead of CLI flags
