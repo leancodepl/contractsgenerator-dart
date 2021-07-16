@@ -3,10 +3,108 @@ part of 'cool_name.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Command _$CommandFromJson(Map<String, dynamic> json) => Command();
+Auth _$AuthFromJson(Map<String, dynamic> json) => Auth();
 
-Map<String, dynamic> _$CommandToJson(Command instance) => <String, dynamic>{};
+Map<String, dynamic> _$AuthToJson(Auth instance) => <String, dynamic>{};
 
-Query _$QueryFromJson(Map<String, dynamic> json) => Query();
+KnownClaims _$KnownClaimsFromJson(Map<String, dynamic> json) => KnownClaims();
 
-Map<String, dynamic> _$QueryToJson(Query instance) => <String, dynamic>{};
+Map<String, dynamic> _$KnownClaimsToJson(KnownClaims instance) =>
+    <String, dynamic>{};
+
+Roles _$RolesFromJson(Map<String, dynamic> json) => Roles();
+
+Map<String, dynamic> _$RolesToJson(Roles instance) => <String, dynamic>{};
+
+PaginatedResult<TResult> _$PaginatedResultFromJson<TResult>(
+  Map<String, dynamic> json,
+  TResult Function(Object? json) fromJsonTResult,
+) =>
+    PaginatedResult<TResult>(
+      items: (json['Items'] as List<dynamic>).map(fromJsonTResult).toList(),
+      totalCount: json['TotalCount'] as int,
+    );
+
+Map<String, dynamic> _$PaginatedResultToJson<TResult>(
+  PaginatedResult<TResult> instance,
+  Object? Function(TResult value) toJsonTResult,
+) =>
+    <String, dynamic>{
+      'Items': instance.items.map(toJsonTResult).toList(),
+      'TotalCount': instance.totalCount,
+    };
+
+ISomethingRelated _$ISomethingRelatedFromJson(Map<String, dynamic> json) =>
+    ISomethingRelated(
+      somethingId: json['SomethingId'] as String,
+    );
+
+Map<String, dynamic> _$ISomethingRelatedToJson(ISomethingRelated instance) =>
+    <String, dynamic>{
+      'SomethingId': instance.somethingId,
+    };
+
+WhenHasSomethingAccess _$WhenHasSomethingAccessFromJson(
+        Map<String, dynamic> json) =>
+    WhenHasSomethingAccess();
+
+Map<String, dynamic> _$WhenHasSomethingAccessToJson(
+        WhenHasSomethingAccess instance) =>
+    <String, dynamic>{};
+
+AllUsers _$AllUsersFromJson(Map<String, dynamic> json) => AllUsers(
+      pageNumber: json['PageNumber'] as int,
+      pageSize: json['PageSize'] as int,
+    );
+
+Map<String, dynamic> _$AllUsersToJson(AllUsers instance) => <String, dynamic>{
+      'PageNumber': instance.pageNumber,
+      'PageSize': instance.pageSize,
+    };
+
+EditUser _$EditUserFromJson(Map<String, dynamic> json) => EditUser(
+      userId: json['UserId'] as String,
+      somethingId: json['SomethingId'] as String,
+      list: (json['List'] as List<dynamic>).map((e) => e as int).toList(),
+      array: (json['Array'] as List<dynamic>).map((e) => e as int).toList(),
+      dictionary: (json['Dictionary'] as Map<String, dynamic>).map(
+        (k, e) => MapEntry(
+            int.parse(k), EditUser.fromJson(e as Map<String, dynamic>)),
+      ),
+      userInfo: UserInfoDTO.fromJson(json['UserInfo'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$EditUserToJson(EditUser instance) => <String, dynamic>{
+      'UserId': instance.userId,
+      'SomethingId': instance.somethingId,
+      'List': instance.list,
+      'Array': instance.array,
+      'Dictionary':
+          instance.dictionary.map((k, e) => MapEntry(k.toString(), e)),
+      'UserInfo': instance.userInfo,
+    };
+
+UserById _$UserByIdFromJson(Map<String, dynamic> json) => UserById();
+
+Map<String, dynamic> _$UserByIdToJson(UserById instance) => <String, dynamic>{};
+
+UserInfoDTO _$UserInfoDTOFromJson(Map<String, dynamic> json) => UserInfoDTO(
+      firstname: json['Firstname'] as String,
+      surname: json['Surname'] as String,
+      username: json['Username'] as String,
+      emailAddress: json['EmailAddress'] as String,
+    );
+
+Map<String, dynamic> _$UserInfoDTOToJson(UserInfoDTO instance) =>
+    <String, dynamic>{
+      'Firstname': instance.firstname,
+      'Surname': instance.surname,
+      'Username': instance.username,
+      'EmailAddress': instance.emailAddress,
+    };
+
+UserSomething _$UserSomethingFromJson(Map<String, dynamic> json) =>
+    UserSomething();
+
+Map<String, dynamic> _$UserSomethingToJson(UserSomething instance) =>
+    <String, dynamic>{};
