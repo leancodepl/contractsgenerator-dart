@@ -23,4 +23,7 @@ jobs:
           echo $PUB_CREDENTIALS > ~/.pub-cache/credentials.json
 
       - name: Publish to pub.dev
-        run: dart pub publish -f
+        run: |
+          # .pubignore does not work for some reason
+          rm -rf contractsgenerator
+          dart pub publish -f

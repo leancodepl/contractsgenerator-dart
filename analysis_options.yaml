@@ -3,6 +3,7 @@ include: package:lint/analysis_options.yaml
 analyzer:
   exclude:
     - lib/src/proto/*
+    - lib/**.g.dart
   strong-mode:
     implicit-dynamic: false
 

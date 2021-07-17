@@ -30,5 +30,8 @@ jobs:
         run: dart test
 
       - name: Dry run pub publish
-        # We don't want it to fail the CI, it's just to see how would `pub publish` behave.
-        run: dart pub publish --dry-run || true
+        run: |
+          # .pubignore does not work for some reason
+          rm -rf contractsgenerator
+          # We don't want it to fail the CI, it's just to see how would `pub publish` behave.
+          dart pub publish --dry-run || true
