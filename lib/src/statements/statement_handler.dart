@@ -103,7 +103,11 @@ abstract class StatementHandler {
           ),
         )
         ..types.addAll(statement.genericParameters.map((t) => refer(t.name)))
-        ..annotations.add(const CodeExpression(Code('JsonSerializable()')))
+        ..annotations.add(
+          const CodeExpression(
+            Code('JsonSerializable(fieldRename: FieldRename.pascal)'),
+          ),
+        )
         ..docs.addAll(toDartdoc(statement.comment))
         ..implements.addAll(
           statement.extends_3

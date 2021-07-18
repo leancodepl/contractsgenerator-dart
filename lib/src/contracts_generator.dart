@@ -109,10 +109,7 @@ class ContractsGenerator {
     final packageGraph = await PackageGraph.forThisPackage();
     final js = jsonSerializable(
       const BuilderOptions(
-        <String, dynamic>{
-          'generic_argument_factories': true,
-          'field_rename': 'pascal',
-        },
+        <String, dynamic>{'generic_argument_factories': true},
       ),
     );
     final f = AssetId(packageGraph.root.name, contractsPath);
@@ -136,8 +133,11 @@ class ContractsGenerator {
       packageGraph.root.name,
       jsonSerializablePathOld,
     )];
-    await File(jsonSerializablePath).writeAsString(
-      "part of '${config.name}.dart';\n${utf8.decode(generated ?? [])}",
-    );
+    await File(jsonSerializablePath).writeAsString('''
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of '${config.name}.dart';
+
+${utf8.decode(generated ?? [])}''');
   }
 }
