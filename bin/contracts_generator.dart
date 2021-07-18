@@ -6,12 +6,12 @@ import 'package:contracts_generator/src/contracts_generator.dart';
 import 'package:contracts_generator/src/contracts_generator_config.dart';
 import 'package:path/path.dart' as p;
 
-const configFileName = 'contracts-generator.yaml';
+const configFileName = 'contracts_generator.yaml';
 
 Future<void> main(List<String> arguments) async {
   final initCommand = InitCommand();
   final runner = CommandRunner<void>(
-    'dart run contracts_generator',
+    'contracts_generator',
     'Command line utility for generating dart CQRS contracts',
   )..addCommand(initCommand);
 
