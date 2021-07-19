@@ -1,5 +1,20 @@
-# Path to contracts' .csproj project file (required)
-input: ../contractsgenerator/examples/project/aggregated/Combined/Combined.csproj
+# Possible input methods, specify exactly one (required)
+input:
+  # Array of paths pointing to .csproj contracts project files
+  # project:
+  #   - ../contractsgenerator/examples/project/aggregated/Combined/Combined.csproj
+  # Path to a single source file
+  # file: ExampleContracts/Auth.cs
+  # Multiple files selected by glob patterns
+  path:
+    # List of glob paths specifying which files should be included (required)
+    include:
+      - "**.cs"
+    # List of glob paths specifying which files should be excluded
+    exclude:
+      - Users/AllUsers.cs
+    # The base directory used for globbing
+    directory: ExampleContracts
 # Name of the output dart file
 name: contracts
 # Regex to filter-in namespaced statements
