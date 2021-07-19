@@ -16,7 +16,7 @@ class DtoHandler extends StatementHandler {
   Spec build(Statement statement) {
     return createBase(statement).rebuild((b) {
       // make it abstract if it extends a cqrs type
-      b.abstract = statement.extends_3.any(db.isCqrs);
+      b.abstract = statement.dto.typeDescriptor.extends_1.any(db.isCqrs);
 
       if (b.abstract) {
         b

@@ -34,7 +34,7 @@ class Time with EquatableMixin {
   String toJson() => '$hour:$minute:$second';
 }
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class Auth with EquatableMixin {
   Auth();
 
@@ -45,7 +45,7 @@ class Auth with EquatableMixin {
   Map<String, dynamic> toJson() => _$AuthToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class KnownClaims with EquatableMixin {
   KnownClaims();
 
@@ -61,7 +61,7 @@ class KnownClaims with EquatableMixin {
   Map<String, dynamic> toJson() => _$KnownClaimsToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class Roles with EquatableMixin {
   Roles();
 
@@ -95,7 +95,7 @@ abstract class PaginatedQuery<TResult>
 }
 
 /// This one is in XML.
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class PaginatedResult<TResult> with EquatableMixin {
   PaginatedResult({
     /// And this is a property comment.
@@ -118,7 +118,7 @@ class PaginatedResult<TResult> with EquatableMixin {
       _$PaginatedResultToJson(this, toJsonTResult);
 }
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class ISomethingRelated with EquatableMixin {
   ISomethingRelated({
     required this.somethingId,
@@ -134,7 +134,7 @@ class ISomethingRelated with EquatableMixin {
   Map<String, dynamic> toJson() => _$ISomethingRelatedToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class WhenHasSomethingAccess with EquatableMixin {
   WhenHasSomethingAccess();
 
@@ -146,7 +146,7 @@ class WhenHasSomethingAccess with EquatableMixin {
   Map<String, dynamic> toJson() => _$WhenHasSomethingAccessToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class AllUsers with EquatableMixin implements PaginatedQuery<UserInfoDTO> {
   AllUsers({
     required this.pageNumber,
@@ -170,7 +170,7 @@ class AllUsers with EquatableMixin implements PaginatedQuery<UserInfoDTO> {
       'LeanCode.ContractsGeneratorV2.ExampleContracts.Users.AllUsers';
 }
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class EditUser
     with EquatableMixin
     implements IRemoteCommand, ISomethingRelated {
@@ -229,7 +229,7 @@ class EditUserErrorCodes {
   static const userInfoEmailIsTaken = 1010;
 }
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class UserById with EquatableMixin implements IRemoteQuery<UserInfoDTO?> {
   UserById();
 
@@ -246,7 +246,7 @@ class UserById with EquatableMixin implements IRemoteQuery<UserInfoDTO?> {
       'LeanCode.ContractsGeneratorV2.ExampleContracts.Users.UserById';
 }
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class UserInfoDTO with EquatableMixin {
   UserInfoDTO({
     required this.firstname,
@@ -271,7 +271,7 @@ class UserInfoDTO with EquatableMixin {
   Map<String, dynamic> toJson() => _$UserInfoDTOToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class UserSomething with EquatableMixin implements IRemoteQuery<int?> {
   UserSomething();
 

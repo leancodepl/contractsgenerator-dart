@@ -23,6 +23,7 @@ class KnownTypeHandler extends TypeHandler {
     KnownType.Decimal: 'double',
     KnownType.Date: 'DateTime',
     KnownType.Time: timeClassName,
+    KnownType.TimeSpan: 'Duration',
     KnownType.DateTime: 'DateTime',
     KnownType.DateTimeOffset: 'DateTime',
     KnownType.Array: 'List',

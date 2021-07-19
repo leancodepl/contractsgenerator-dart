@@ -1912,6 +1912,91 @@ class ErrorCode extends $pb.GeneratedMessage {
   ErrorCode_Group ensureGroup() => $_ensure(1);
 }
 
+class TypeDescriptor extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'TypeDescriptor',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..pc<TypeRef>(
+        1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'extends', $pb.PbFieldType.PM,
+        subBuilder: TypeRef.create)
+    ..pc<GenericParameter>(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'genericParameters',
+        $pb.PbFieldType.PM,
+        protoName: 'genericParameters',
+        subBuilder: GenericParameter.create)
+    ..pc<PropertyRef>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'properties', $pb.PbFieldType.PM, subBuilder: PropertyRef.create)
+    ..pc<ConstantRef>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'constants', $pb.PbFieldType.PM, subBuilder: ConstantRef.create)
+    ..hasRequiredFields = false;
+
+  TypeDescriptor._() : super();
+  factory TypeDescriptor({
+    $core.Iterable<TypeRef>? extends_1,
+    $core.Iterable<GenericParameter>? genericParameters,
+    $core.Iterable<PropertyRef>? properties,
+    $core.Iterable<ConstantRef>? constants,
+  }) {
+    final _result = create();
+    if (extends_1 != null) {
+      _result.extends_1.addAll(extends_1);
+    }
+    if (genericParameters != null) {
+      _result.genericParameters.addAll(genericParameters);
+    }
+    if (properties != null) {
+      _result.properties.addAll(properties);
+    }
+    if (constants != null) {
+      _result.constants.addAll(constants);
+    }
+    return _result;
+  }
+  factory TypeDescriptor.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory TypeDescriptor.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  TypeDescriptor clone() => TypeDescriptor()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  TypeDescriptor copyWith(void Function(TypeDescriptor) updates) =>
+      super.copyWith((message) => updates(message as TypeDescriptor))
+          as TypeDescriptor; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static TypeDescriptor create() => TypeDescriptor._();
+  TypeDescriptor createEmptyInstance() => create();
+  static $pb.PbList<TypeDescriptor> createRepeated() =>
+      $pb.PbList<TypeDescriptor>();
+  @$core.pragma('dart2js:noInline')
+  static TypeDescriptor getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<TypeDescriptor>(create);
+  static TypeDescriptor? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<TypeRef> get extends_1 => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.List<GenericParameter> get genericParameters => $_getList(1);
+
+  @$pb.TagNumber(3)
+  $core.List<PropertyRef> get properties => $_getList(2);
+
+  @$pb.TagNumber(4)
+  $core.List<ConstantRef> get constants => $_getList(3);
+}
+
 class Statement_DTO extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       const $core.bool.fromEnvironment('protobuf.omit_message_names')
@@ -1922,10 +2007,25 @@ class Statement_DTO extends $pb.GeneratedMessage {
               ? ''
               : 'leancode.contracts'),
       createEmptyInstance: create)
+    ..aOM<TypeDescriptor>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'typeDescriptor',
+        protoName: 'typeDescriptor',
+        subBuilder: TypeDescriptor.create)
     ..hasRequiredFields = false;
 
   Statement_DTO._() : super();
-  factory Statement_DTO() => create();
+  factory Statement_DTO({
+    TypeDescriptor? typeDescriptor,
+  }) {
+    final _result = create();
+    if (typeDescriptor != null) {
+      _result.typeDescriptor = typeDescriptor;
+    }
+    return _result;
+  }
   factory Statement_DTO.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
@@ -1952,6 +2052,20 @@ class Statement_DTO extends $pb.GeneratedMessage {
   static Statement_DTO getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<Statement_DTO>(create);
   static Statement_DTO? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  TypeDescriptor get typeDescriptor => $_getN(0);
+  @$pb.TagNumber(1)
+  set typeDescriptor(TypeDescriptor v) {
+    setField(1, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasTypeDescriptor() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTypeDescriptor() => clearField(1);
+  @$pb.TagNumber(1)
+  TypeDescriptor ensureTypeDescriptor() => $_ensure(0);
 }
 
 class Statement_Enum extends $pb.GeneratedMessage {
@@ -2024,20 +2138,27 @@ class Statement_Query extends $pb.GeneratedMessage {
               ? ''
               : 'leancode.contracts'),
       createEmptyInstance: create)
-    ..aOM<TypeRef>(
+    ..aOM<TypeDescriptor>(
         1,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'returnType',
-        protoName: 'returnType',
-        subBuilder: TypeRef.create)
+            : 'typeDescriptor',
+        protoName: 'typeDescriptor',
+        subBuilder: TypeDescriptor.create)
+    ..aOM<TypeRef>(
+        2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'returnType',
+        protoName: 'returnType', subBuilder: TypeRef.create)
     ..hasRequiredFields = false;
 
   Statement_Query._() : super();
   factory Statement_Query({
+    TypeDescriptor? typeDescriptor,
     TypeRef? returnType,
   }) {
     final _result = create();
+    if (typeDescriptor != null) {
+      _result.typeDescriptor = typeDescriptor;
+    }
     if (returnType != null) {
       _result.returnType = returnType;
     }
@@ -2071,18 +2192,32 @@ class Statement_Query extends $pb.GeneratedMessage {
   static Statement_Query? _defaultInstance;
 
   @$pb.TagNumber(1)
-  TypeRef get returnType => $_getN(0);
+  TypeDescriptor get typeDescriptor => $_getN(0);
   @$pb.TagNumber(1)
-  set returnType(TypeRef v) {
+  set typeDescriptor(TypeDescriptor v) {
     setField(1, v);
   }
 
   @$pb.TagNumber(1)
-  $core.bool hasReturnType() => $_has(0);
+  $core.bool hasTypeDescriptor() => $_has(0);
   @$pb.TagNumber(1)
-  void clearReturnType() => clearField(1);
+  void clearTypeDescriptor() => clearField(1);
   @$pb.TagNumber(1)
-  TypeRef ensureReturnType() => $_ensure(0);
+  TypeDescriptor ensureTypeDescriptor() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  TypeRef get returnType => $_getN(1);
+  @$pb.TagNumber(2)
+  set returnType(TypeRef v) {
+    setField(2, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasReturnType() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearReturnType() => clearField(2);
+  @$pb.TagNumber(2)
+  TypeRef ensureReturnType() => $_ensure(1);
 }
 
 class Statement_Command extends $pb.GeneratedMessage {
@@ -2095,8 +2230,11 @@ class Statement_Command extends $pb.GeneratedMessage {
               ? ''
               : 'leancode.contracts'),
       createEmptyInstance: create)
+    ..aOM<TypeDescriptor>(
+        1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'typeDescriptor',
+        protoName: 'typeDescriptor', subBuilder: TypeDescriptor.create)
     ..pc<ErrorCode>(
-        1,
+        2,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'errorCodes',
@@ -2107,9 +2245,13 @@ class Statement_Command extends $pb.GeneratedMessage {
 
   Statement_Command._() : super();
   factory Statement_Command({
+    TypeDescriptor? typeDescriptor,
     $core.Iterable<ErrorCode>? errorCodes,
   }) {
     final _result = create();
+    if (typeDescriptor != null) {
+      _result.typeDescriptor = typeDescriptor;
+    }
     if (errorCodes != null) {
       _result.errorCodes.addAll(errorCodes);
     }
@@ -2143,7 +2285,21 @@ class Statement_Command extends $pb.GeneratedMessage {
   static Statement_Command? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.List<ErrorCode> get errorCodes => $_getList(0);
+  TypeDescriptor get typeDescriptor => $_getN(0);
+  @$pb.TagNumber(1)
+  set typeDescriptor(TypeDescriptor v) {
+    setField(1, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasTypeDescriptor() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTypeDescriptor() => clearField(1);
+  @$pb.TagNumber(1)
+  TypeDescriptor ensureTypeDescriptor() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $core.List<ErrorCode> get errorCodes => $_getList(1);
 }
 
 enum Statement_Content { dto, enum_11, query, command, notSet }
@@ -2174,19 +2330,15 @@ class Statement extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'comment')
-    ..pc<TypeRef>(
-        3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'extends', $pb.PbFieldType.PM,
-        subBuilder: TypeRef.create)
-    ..pc<GenericParameter>(
-        4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'genericParameters', $pb.PbFieldType.PM,
-        protoName: 'genericParameters', subBuilder: GenericParameter.create)
     ..pc<AttributeRef>(
-        5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'attributes', $pb.PbFieldType.PM,
+        3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'attributes', $pb.PbFieldType.PM,
         subBuilder: AttributeRef.create)
-    ..pc<PropertyRef>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'properties', $pb.PbFieldType.PM, subBuilder: PropertyRef.create)
-    ..pc<ConstantRef>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'constants', $pb.PbFieldType.PM, subBuilder: ConstantRef.create)
-    ..aOM<Statement_DTO>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'dto', subBuilder: Statement_DTO.create)
-    ..aOM<Statement_Enum>(11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'enum', subBuilder: Statement_Enum.create)
+    ..aOM<Statement_DTO>(
+        10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'dto',
+        subBuilder: Statement_DTO.create)
+    ..aOM<Statement_Enum>(
+        11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'enum',
+        subBuilder: Statement_Enum.create)
     ..aOM<Statement_Query>(12, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'query', subBuilder: Statement_Query.create)
     ..aOM<Statement_Command>(13, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'command', subBuilder: Statement_Command.create)
     ..hasRequiredFields = false;
@@ -2195,11 +2347,7 @@ class Statement extends $pb.GeneratedMessage {
   factory Statement({
     $core.String? name,
     $core.String? comment,
-    $core.Iterable<TypeRef>? extends_3,
-    $core.Iterable<GenericParameter>? genericParameters,
     $core.Iterable<AttributeRef>? attributes,
-    $core.Iterable<PropertyRef>? properties,
-    $core.Iterable<ConstantRef>? constants,
     Statement_DTO? dto,
     Statement_Enum? enum_11,
     Statement_Query? query,
@@ -2212,20 +2360,8 @@ class Statement extends $pb.GeneratedMessage {
     if (comment != null) {
       _result.comment = comment;
     }
-    if (extends_3 != null) {
-      _result.extends_3.addAll(extends_3);
-    }
-    if (genericParameters != null) {
-      _result.genericParameters.addAll(genericParameters);
-    }
     if (attributes != null) {
       _result.attributes.addAll(attributes);
-    }
-    if (properties != null) {
-      _result.properties.addAll(properties);
-    }
-    if (constants != null) {
-      _result.constants.addAll(constants);
     }
     if (dto != null) {
       _result.dto = dto;
@@ -2295,75 +2431,63 @@ class Statement extends $pb.GeneratedMessage {
   void clearComment() => clearField(2);
 
   @$pb.TagNumber(3)
-  $core.List<TypeRef> get extends_3 => $_getList(2);
-
-  @$pb.TagNumber(4)
-  $core.List<GenericParameter> get genericParameters => $_getList(3);
-
-  @$pb.TagNumber(5)
-  $core.List<AttributeRef> get attributes => $_getList(4);
-
-  @$pb.TagNumber(6)
-  $core.List<PropertyRef> get properties => $_getList(5);
-
-  @$pb.TagNumber(7)
-  $core.List<ConstantRef> get constants => $_getList(6);
+  $core.List<AttributeRef> get attributes => $_getList(2);
 
   @$pb.TagNumber(10)
-  Statement_DTO get dto => $_getN(7);
+  Statement_DTO get dto => $_getN(3);
   @$pb.TagNumber(10)
   set dto(Statement_DTO v) {
     setField(10, v);
   }
 
   @$pb.TagNumber(10)
-  $core.bool hasDto() => $_has(7);
+  $core.bool hasDto() => $_has(3);
   @$pb.TagNumber(10)
   void clearDto() => clearField(10);
   @$pb.TagNumber(10)
-  Statement_DTO ensureDto() => $_ensure(7);
+  Statement_DTO ensureDto() => $_ensure(3);
 
   @$pb.TagNumber(11)
-  Statement_Enum get enum_11 => $_getN(8);
+  Statement_Enum get enum_11 => $_getN(4);
   @$pb.TagNumber(11)
   set enum_11(Statement_Enum v) {
     setField(11, v);
   }
 
   @$pb.TagNumber(11)
-  $core.bool hasEnum_11() => $_has(8);
+  $core.bool hasEnum_11() => $_has(4);
   @$pb.TagNumber(11)
   void clearEnum_11() => clearField(11);
   @$pb.TagNumber(11)
-  Statement_Enum ensureEnum_11() => $_ensure(8);
+  Statement_Enum ensureEnum_11() => $_ensure(4);
 
   @$pb.TagNumber(12)
-  Statement_Query get query => $_getN(9);
+  Statement_Query get query => $_getN(5);
   @$pb.TagNumber(12)
   set query(Statement_Query v) {
     setField(12, v);
   }
 
   @$pb.TagNumber(12)
-  $core.bool hasQuery() => $_has(9);
+  $core.bool hasQuery() => $_has(5);
   @$pb.TagNumber(12)
   void clearQuery() => clearField(12);
   @$pb.TagNumber(12)
-  Statement_Query ensureQuery() => $_ensure(9);
+  Statement_Query ensureQuery() => $_ensure(5);
 
   @$pb.TagNumber(13)
-  Statement_Command get command => $_getN(10);
+  Statement_Command get command => $_getN(6);
   @$pb.TagNumber(13)
   set command(Statement_Command v) {
     setField(13, v);
   }
 
   @$pb.TagNumber(13)
-  $core.bool hasCommand() => $_has(10);
+  $core.bool hasCommand() => $_has(6);
   @$pb.TagNumber(13)
   void clearCommand() => clearField(13);
   @$pb.TagNumber(13)
-  Statement_Command ensureCommand() => $_ensure(10);
+  Statement_Command ensureCommand() => $_ensure(6);
 }
 
 class Export extends $pb.GeneratedMessage {

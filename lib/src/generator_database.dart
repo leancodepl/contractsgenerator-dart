@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'contracts_generator_config.dart';
+import 'statements/utils/type_descriptor_of.dart';
 import 'types/type_handler.dart';
 import 'types/utils/known_type_kind.dart';
 
@@ -104,7 +105,7 @@ class GeneratorDatabase {
 
     final statement = find(name)!;
 
-    if (statement.extends_3.any(isCqrs)) {
+    if (typeDescriptorOf(statement)?.extends_1.any(isCqrs) ?? false) {
       _isCqrsCache.add(name);
     }
 

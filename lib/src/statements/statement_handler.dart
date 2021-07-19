@@ -7,6 +7,7 @@ import '../proto/contracts.pb.dart';
 import '../types/type_creator.dart';
 import '../values/value_creator.dart';
 import 'utils/to_dartdoc.dart';
+import 'utils/type_descriptor_of.dart';
 
 export '../proto/contracts.pb.dart';
 
@@ -23,19 +24,24 @@ abstract class StatementHandler {
 
   @protected
   Class createBase(Statement statement) {
+    assert(
+      typeDescriptorOf(statement) != null,
+      'createBase should be used with statements that have a typeDescriptor',
+    );
     assert(canHandle(statement));
 
     final name = db.resolveName(statement.name);
+    final typeDescriptor = typeDescriptorOf(statement)!;
 
-    final parameters = statement.properties.map(_createParameter).toList();
+    final parameters = typeDescriptor.properties.map(_createParameter).toList();
     if (parameters.isNotEmpty) {
       parameters[parameters.length - 1] = _createParameter(
-        statement.properties.last,
+        typeDescriptor.properties.last,
         addTrailingComma: true,
       );
     }
 
-    final genericFactories = statement.genericParameters
+    final genericFactories = typeDescriptor.genericParameters
         .map((e) => _GenericFactory(e.name))
         .toList();
 
@@ -44,13 +50,13 @@ abstract class StatementHandler {
       b
         ..name = name
         ..fields.addAll([
-          ...statement.constants.map(_createConstants),
-          ...statement.properties.map(_createField),
+          ...typeDescriptor.constants.map(_createConstants),
+          ...typeDescriptor.properties.map(_createField),
           // workaround to generate a getter
           Field(
             (b) => b
               ..name =
-                  'get props => [${statement.properties.map((e) => ReCase(e.name).camelCase).join(',')}]'
+                  'get props => [${typeDescriptor.properties.map((e) => ReCase(e.name).camelCase).join(',')}]'
               ..type = refer(''),
           ),
         ])
@@ -102,7 +108,8 @@ abstract class StatementHandler {
               ]),
           ),
         )
-        ..types.addAll(statement.genericParameters.map((t) => refer(t.name)))
+        ..types
+            .addAll(typeDescriptor.genericParameters.map((t) => refer(t.name)))
         ..annotations.add(
           const CodeExpression(
             Code('JsonSerializable(fieldRename: FieldRename.pascal)'),
@@ -110,7 +117,7 @@ abstract class StatementHandler {
         )
         ..docs.addAll(toDartdoc(statement.comment))
         ..implements.addAll(
-          statement.extends_3
+          typeDescriptor.extends_1
               // exclude extends that won't be included anyways
               .where(
                 (e) => !e.hasInternal() || db.shouldInclude(e.internal.name),

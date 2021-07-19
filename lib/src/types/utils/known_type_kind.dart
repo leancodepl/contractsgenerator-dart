@@ -35,6 +35,7 @@ KnownTypeKind knownTypeKind(KnownType knownType) {
     case KnownType.Uri:
     case KnownType.Date:
     case KnownType.Time:
+    case KnownType.TimeSpan:
     case KnownType.DateTime:
     case KnownType.DateTimeOffset:
     case KnownType.Array:

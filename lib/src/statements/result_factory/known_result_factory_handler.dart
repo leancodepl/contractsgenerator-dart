@@ -51,6 +51,10 @@ class KnownResultFactoryHandler extends ResultFactoryHandler {
       case KnownType.Time:
         return '${ifNullablePrefix(typeRef, paramName)}$timeClassName.fromJson($paramName)';
 
+      case KnownType.TimeSpan:
+        // TODO: losing precision of a single magnitude (1us vs 100ns), fixing it would require making a custom type
+        return "${ifNullablePrefix(typeRef, paramName)}Duration(microseconds: (($paramName as Map<String, dynamic>)['Ticks'] as int) ~/ 10)";
+
       case KnownType.Array:
         return '($paramName as Iterable<dynamic>$q)$q '
             '.map((dynamic e) => ${ResultFactoryHandler.buildFrom(known.arguments.first, handlers, 'e')}).toList()';

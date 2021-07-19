@@ -39,9 +39,10 @@ class ContractsGenerator {
     // a statement is an attribute if it extends an attribute
     // TODO: this should be a deep check, the extend might be higher in the tree
     return statement.hasDto() &&
-        statement.extends_3.isNotEmpty &&
-        statement.extends_3.first.hasKnown() &&
-        knownTypeKind(statement.extends_3.first.known.type) ==
+        statement.dto.typeDescriptor.extends_1.isNotEmpty &&
+        statement.dto.typeDescriptor.extends_1.first.hasKnown() &&
+        knownTypeKind(
+                statement.dto.typeDescriptor.extends_1.first.known.type) ==
             KnownTypeKind.attribute;
   }
 
