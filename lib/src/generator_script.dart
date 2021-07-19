@@ -20,11 +20,11 @@ class GeneratorScript {
           'path',
           '-i',
           ...include,
-          if (exclude != null) ...[
+          if (exclude != null && exclude.isNotEmpty) ...[
             '-e',
             ...exclude,
           ],
-          if (directory != null) ...[
+          if (directory != null && directory.isNotEmpty) ...[
             '-d',
             directory,
           ],
