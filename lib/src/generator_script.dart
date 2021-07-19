@@ -6,17 +6,33 @@ part 'generator_script.g.dart';
 class GeneratorScript {
   /// Generate for a list of projects. Passed paths need to point to a .csproj file.
   GeneratorScript.project(List<String> projects)
-      : args = ['project', '-p', projects.join(';')];
+      : args = ['project', '-p', ...projects];
 
   /// Generate for a single C# file
   GeneratorScript.file(String file) : args = ['file', '-i', file];
 
   /// Generate for a all files in the globbed path
-  GeneratorScript.path(String path) : args = ['path', '-p', path];
+  GeneratorScript.path(
+    List<String> include, {
+    List<String>? exclude,
+    String? directory,
+  }) : args = [
+          'path',
+          '-i',
+          ...include,
+          if (exclude != null) ...[
+            '-e',
+            ...exclude,
+          ],
+          if (directory != null) ...[
+            '-d',
+            directory,
+          ],
+        ];
 
   final List<String> args;
 
-  static const version = '1.0.3';
+  static const version = '0.1.0-alpha2';
 
   static const String _script = _$script;
 

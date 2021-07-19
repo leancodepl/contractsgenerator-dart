@@ -32,7 +32,7 @@ class Time with EquatableMixin {
   String toJson() => '$hour:$minute:$second';
 }
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class Command with EquatableMixin implements IRemoteCommand {
   Command();
 
@@ -47,7 +47,7 @@ class Command with EquatableMixin implements IRemoteCommand {
 
 class CommandErrorCodes {}
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class Query with EquatableMixin implements IRemoteQuery<int> {
   Query();
 

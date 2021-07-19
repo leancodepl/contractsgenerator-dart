@@ -110,6 +110,11 @@ class KnownType extends $pb.ProtobufEnum {
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'DateTimeOffset');
+  static const KnownType TimeSpan = KnownType._(
+      204,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'TimeSpan');
   static const KnownType Array = KnownType._(
       300,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
@@ -172,6 +177,7 @@ class KnownType extends $pb.ProtobufEnum {
     Time,
     DateTime,
     DateTimeOffset,
+    TimeSpan,
     Array,
     Map,
     Query,

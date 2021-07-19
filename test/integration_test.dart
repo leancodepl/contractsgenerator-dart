@@ -1,3 +1,4 @@
+@Timeout(Duration(minutes: 30))
 import 'dart:io';
 
 import 'package:contracts_generator/contracts_generator.dart';
@@ -24,8 +25,8 @@ void main() {
         p.join(inDir, 'project/aggregated/A/A.csproj'),
         p.join(inDir, 'project/aggregated/B/B.csproj'),
       ]),
-      GeneratorScript.path(p.join(inDir, 'simple/')),
-      GeneratorScript.path('example/ExampleContracts'),
+      GeneratorScript.path([p.join(inDir, 'simple/**')]),
+      GeneratorScript.path(['example/ExampleContracts/**']),
       GeneratorScript.file(p.join(inDir, 'properties/composite_types.cs')),
       GeneratorScript.file(p.join(inDir, 'properties/known_types.cs')),
       GeneratorScript.file(

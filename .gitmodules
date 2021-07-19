@@ -1,4 +1,3 @@
 [submodule "contractsgenerator"]
 	path = contractsgenerator
 	url = https://github.com/leancodepl/contractsgenerator
-	branch = ec7971df2df63d8b27045d27910ee834529666eb

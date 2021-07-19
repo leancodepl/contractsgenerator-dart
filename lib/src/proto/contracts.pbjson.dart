@@ -33,6 +33,7 @@ const KnownType$json = const {
     const {'1': 'Time', '2': 201},
     const {'1': 'DateTime', '2': 202},
     const {'1': 'DateTimeOffset', '2': 203},
+    const {'1': 'TimeSpan', '2': 204},
     const {'1': 'Array', '2': 300},
     const {'1': 'Map', '2': 301},
     const {'1': 'Query', '2': 1000},
@@ -46,7 +47,7 @@ const KnownType$json = const {
 
 /// Descriptor for `KnownType`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List knownTypeDescriptor = $convert.base64Decode(
-    'CglLbm93blR5cGUSCgoGT2JqZWN0EAASCgoGU3RyaW5nEAESCAoER3VpZBADEgcKA1VyaRAEEgsKB0Jvb2xlYW4QBRIJCgVVSW50OBBkEggKBEludDgQZRIJCgVJbnQxNhBmEgoKBlVJbnQxNhBnEgkKBUludDMyEGgSCgoGVUludDMyEGkSCQoFSW50NjQQahIKCgZVSW50NjQQaxIKCgVGbG9hdBCWARILCgZEb3VibGUQlwESDAoHRGVjaW1hbBCYARIJCgREYXRlEMgBEgkKBFRpbWUQyQESDQoIRGF0ZVRpbWUQygESEwoORGF0ZVRpbWVPZmZzZXQQywESCgoFQXJyYXkQrAISCAoDTWFwEK0CEgoKBVF1ZXJ5EOgHEgwKB0NvbW1hbmQQ6QcSGwoWQXV0aG9yaXplV2hlbkF0dHJpYnV0ZRDqBxIjCh5BdXRob3JpemVXaGVuSGFzQW55T2ZBdHRyaWJ1dGUQ6wcSGAoTUXVlcnlDYWNoZUF0dHJpYnV0ZRDsBxIOCglBdHRyaWJ1dGUQ7Qc=');
+    'CglLbm93blR5cGUSCgoGT2JqZWN0EAASCgoGU3RyaW5nEAESCAoER3VpZBADEgcKA1VyaRAEEgsKB0Jvb2xlYW4QBRIJCgVVSW50OBBkEggKBEludDgQZRIJCgVJbnQxNhBmEgoKBlVJbnQxNhBnEgkKBUludDMyEGgSCgoGVUludDMyEGkSCQoFSW50NjQQahIKCgZVSW50NjQQaxIKCgVGbG9hdBCWARILCgZEb3VibGUQlwESDAoHRGVjaW1hbBCYARIJCgREYXRlEMgBEgkKBFRpbWUQyQESDQoIRGF0ZVRpbWUQygESEwoORGF0ZVRpbWVPZmZzZXQQywESDQoIVGltZVNwYW4QzAESCgoFQXJyYXkQrAISCAoDTWFwEK0CEgoKBVF1ZXJ5EOgHEgwKB0NvbW1hbmQQ6QcSGwoWQXV0aG9yaXplV2hlbkF0dHJpYnV0ZRDqBxIjCh5BdXRob3JpemVXaGVuSGFzQW55T2ZBdHRyaWJ1dGUQ6wcSGAoTUXVlcnlDYWNoZUF0dHJpYnV0ZRDsBxIOCglBdHRyaWJ1dGUQ7Qc=');
 @$core.Deprecated('Use valueRefDescriptor instead')
 const ValueRef$json = const {
   '1': 'ValueRef',
@@ -451,15 +452,13 @@ const ErrorCode_Group$json = const {
 /// Descriptor for `ErrorCode`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List errorCodeDescriptor = $convert.base64Decode(
     'CglFcnJvckNvZGUSPgoGc2luZ2xlGAEgASgLMiQubGVhbmNvZGUuY29udHJhY3RzLkVycm9yQ29kZS5TaW5nbGVIAFIGc2luZ2xlEjsKBWdyb3VwGAIgASgLMiMubGVhbmNvZGUuY29udHJhY3RzLkVycm9yQ29kZS5Hcm91cEgAUgVncm91cBowCgZTaW5nbGUSEgoEbmFtZRgBIAEoCVIEbmFtZRISCgRjb2RlGAIgASgFUgRjb2RlGnQKBUdyb3VwEhIKBG5hbWUYASABKAlSBG5hbWUSGAoHZ3JvdXBJZBgCIAEoCVIHZ3JvdXBJZBI9Cgppbm5lckNvZGVzGAMgAygLMh0ubGVhbmNvZGUuY29udHJhY3RzLkVycm9yQ29kZVIKaW5uZXJDb2Rlc0IGCgRjb2Rl');
-@$core.Deprecated('Use statementDescriptor instead')
-const Statement$json = const {
-  '1': 'Statement',
+@$core.Deprecated('Use typeDescriptorDescriptor instead')
+const TypeDescriptor$json = const {
+  '1': 'TypeDescriptor',
   '2': const [
-    const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
-    const {'1': 'comment', '3': 2, '4': 1, '5': 9, '10': 'comment'},
     const {
       '1': 'extends',
-      '3': 3,
+      '3': 1,
       '4': 3,
       '5': 11,
       '6': '.leancode.contracts.TypeRef',
@@ -467,23 +466,15 @@ const Statement$json = const {
     },
     const {
       '1': 'genericParameters',
-      '3': 4,
+      '3': 2,
       '4': 3,
       '5': 11,
       '6': '.leancode.contracts.GenericParameter',
       '10': 'genericParameters'
     },
     const {
-      '1': 'attributes',
-      '3': 5,
-      '4': 3,
-      '5': 11,
-      '6': '.leancode.contracts.AttributeRef',
-      '10': 'attributes'
-    },
-    const {
       '1': 'properties',
-      '3': 6,
+      '3': 3,
       '4': 3,
       '5': 11,
       '6': '.leancode.contracts.PropertyRef',
@@ -491,11 +482,31 @@ const Statement$json = const {
     },
     const {
       '1': 'constants',
-      '3': 7,
+      '3': 4,
       '4': 3,
       '5': 11,
       '6': '.leancode.contracts.ConstantRef',
       '10': 'constants'
+    },
+  ],
+};
+
+/// Descriptor for `TypeDescriptor`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List typeDescriptorDescriptor = $convert.base64Decode(
+    'Cg5UeXBlRGVzY3JpcHRvchI1CgdleHRlbmRzGAEgAygLMhsubGVhbmNvZGUuY29udHJhY3RzLlR5cGVSZWZSB2V4dGVuZHMSUgoRZ2VuZXJpY1BhcmFtZXRlcnMYAiADKAsyJC5sZWFuY29kZS5jb250cmFjdHMuR2VuZXJpY1BhcmFtZXRlclIRZ2VuZXJpY1BhcmFtZXRlcnMSPwoKcHJvcGVydGllcxgDIAMoCzIfLmxlYW5jb2RlLmNvbnRyYWN0cy5Qcm9wZXJ0eVJlZlIKcHJvcGVydGllcxI9Cgljb25zdGFudHMYBCADKAsyHy5sZWFuY29kZS5jb250cmFjdHMuQ29uc3RhbnRSZWZSCWNvbnN0YW50cw==');
+@$core.Deprecated('Use statementDescriptor instead')
+const Statement$json = const {
+  '1': 'Statement',
+  '2': const [
+    const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+    const {'1': 'comment', '3': 2, '4': 1, '5': 9, '10': 'comment'},
+    const {
+      '1': 'attributes',
+      '3': 3,
+      '4': 3,
+      '5': 11,
+      '6': '.leancode.contracts.AttributeRef',
+      '10': 'attributes'
     },
     const {
       '1': 'dto',
@@ -548,6 +559,16 @@ const Statement$json = const {
 @$core.Deprecated('Use statementDescriptor instead')
 const Statement_DTO$json = const {
   '1': 'DTO',
+  '2': const [
+    const {
+      '1': 'typeDescriptor',
+      '3': 1,
+      '4': 1,
+      '5': 11,
+      '6': '.leancode.contracts.TypeDescriptor',
+      '10': 'typeDescriptor'
+    },
+  ],
 };
 
 @$core.Deprecated('Use statementDescriptor instead')
@@ -570,8 +591,16 @@ const Statement_Query$json = const {
   '1': 'Query',
   '2': const [
     const {
-      '1': 'returnType',
+      '1': 'typeDescriptor',
       '3': 1,
+      '4': 1,
+      '5': 11,
+      '6': '.leancode.contracts.TypeDescriptor',
+      '10': 'typeDescriptor'
+    },
+    const {
+      '1': 'returnType',
+      '3': 2,
       '4': 1,
       '5': 11,
       '6': '.leancode.contracts.TypeRef',
@@ -585,8 +614,16 @@ const Statement_Command$json = const {
   '1': 'Command',
   '2': const [
     const {
-      '1': 'errorCodes',
+      '1': 'typeDescriptor',
       '3': 1,
+      '4': 1,
+      '5': 11,
+      '6': '.leancode.contracts.TypeDescriptor',
+      '10': 'typeDescriptor'
+    },
+    const {
+      '1': 'errorCodes',
+      '3': 2,
       '4': 3,
       '5': 11,
       '6': '.leancode.contracts.ErrorCode',
@@ -597,7 +634,7 @@ const Statement_Command$json = const {
 
 /// Descriptor for `Statement`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List statementDescriptor = $convert.base64Decode(
-    'CglTdGF0ZW1lbnQSEgoEbmFtZRgBIAEoCVIEbmFtZRIYCgdjb21tZW50GAIgASgJUgdjb21tZW50EjUKB2V4dGVuZHMYAyADKAsyGy5sZWFuY29kZS5jb250cmFjdHMuVHlwZVJlZlIHZXh0ZW5kcxJSChFnZW5lcmljUGFyYW1ldGVycxgEIAMoCzIkLmxlYW5jb2RlLmNvbnRyYWN0cy5HZW5lcmljUGFyYW1ldGVyUhFnZW5lcmljUGFyYW1ldGVycxJACgphdHRyaWJ1dGVzGAUgAygLMiAubGVhbmNvZGUuY29udHJhY3RzLkF0dHJpYnV0ZVJlZlIKYXR0cmlidXRlcxI/Cgpwcm9wZXJ0aWVzGAYgAygLMh8ubGVhbmNvZGUuY29udHJhY3RzLlByb3BlcnR5UmVmUgpwcm9wZXJ0aWVzEj0KCWNvbnN0YW50cxgHIAMoCzIfLmxlYW5jb2RlLmNvbnRyYWN0cy5Db25zdGFudFJlZlIJY29uc3RhbnRzEjUKA2R0bxgKIAEoCzIhLmxlYW5jb2RlLmNvbnRyYWN0cy5TdGF0ZW1lbnQuRFRPSABSA2R0bxI4CgRlbnVtGAsgASgLMiIubGVhbmNvZGUuY29udHJhY3RzLlN0YXRlbWVudC5FbnVtSABSBGVudW0SOwoFcXVlcnkYDCABKAsyIy5sZWFuY29kZS5jb250cmFjdHMuU3RhdGVtZW50LlF1ZXJ5SABSBXF1ZXJ5EkEKB2NvbW1hbmQYDSABKAsyJS5sZWFuY29kZS5jb250cmFjdHMuU3RhdGVtZW50LkNvbW1hbmRIAFIHY29tbWFuZBoFCgNEVE8aPwoERW51bRI3CgdtZW1iZXJzGAEgAygLMh0ubGVhbmNvZGUuY29udHJhY3RzLkVudW1WYWx1ZVIHbWVtYmVycxpECgVRdWVyeRI7CgpyZXR1cm5UeXBlGAEgASgLMhsubGVhbmNvZGUuY29udHJhY3RzLlR5cGVSZWZSCnJldHVyblR5cGUaSAoHQ29tbWFuZBI9CgplcnJvckNvZGVzGAEgAygLMh0ubGVhbmNvZGUuY29udHJhY3RzLkVycm9yQ29kZVIKZXJyb3JDb2Rlc0IJCgdjb250ZW50');
+    'CglTdGF0ZW1lbnQSEgoEbmFtZRgBIAEoCVIEbmFtZRIYCgdjb21tZW50GAIgASgJUgdjb21tZW50EkAKCmF0dHJpYnV0ZXMYAyADKAsyIC5sZWFuY29kZS5jb250cmFjdHMuQXR0cmlidXRlUmVmUgphdHRyaWJ1dGVzEjUKA2R0bxgKIAEoCzIhLmxlYW5jb2RlLmNvbnRyYWN0cy5TdGF0ZW1lbnQuRFRPSABSA2R0bxI4CgRlbnVtGAsgASgLMiIubGVhbmNvZGUuY29udHJhY3RzLlN0YXRlbWVudC5FbnVtSABSBGVudW0SOwoFcXVlcnkYDCABKAsyIy5sZWFuY29kZS5jb250cmFjdHMuU3RhdGVtZW50LlF1ZXJ5SABSBXF1ZXJ5EkEKB2NvbW1hbmQYDSABKAsyJS5sZWFuY29kZS5jb250cmFjdHMuU3RhdGVtZW50LkNvbW1hbmRIAFIHY29tbWFuZBpRCgNEVE8SSgoOdHlwZURlc2NyaXB0b3IYASABKAsyIi5sZWFuY29kZS5jb250cmFjdHMuVHlwZURlc2NyaXB0b3JSDnR5cGVEZXNjcmlwdG9yGj8KBEVudW0SNwoHbWVtYmVycxgBIAMoCzIdLmxlYW5jb2RlLmNvbnRyYWN0cy5FbnVtVmFsdWVSB21lbWJlcnMakAEKBVF1ZXJ5EkoKDnR5cGVEZXNjcmlwdG9yGAEgASgLMiIubGVhbmNvZGUuY29udHJhY3RzLlR5cGVEZXNjcmlwdG9yUg50eXBlRGVzY3JpcHRvchI7CgpyZXR1cm5UeXBlGAIgASgLMhsubGVhbmNvZGUuY29udHJhY3RzLlR5cGVSZWZSCnJldHVyblR5cGUalAEKB0NvbW1hbmQSSgoOdHlwZURlc2NyaXB0b3IYASABKAsyIi5sZWFuY29kZS5jb250cmFjdHMuVHlwZURlc2NyaXB0b3JSDnR5cGVEZXNjcmlwdG9yEj0KCmVycm9yQ29kZXMYAiADKAsyHS5sZWFuY29kZS5jb250cmFjdHMuRXJyb3JDb2RlUgplcnJvckNvZGVzQgkKB2NvbnRlbnQ=');
 @$core.Deprecated('Use exportDescriptor instead')
 const Export$json = const {
   '1': 'Export',
