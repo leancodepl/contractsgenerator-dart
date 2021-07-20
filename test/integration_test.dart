@@ -27,17 +27,17 @@ void main() {
       ]),
       GeneratorScript.path([p.join(inDir, 'simple/**')]),
       GeneratorScript.path(['example/ExampleContracts/**']),
-      GeneratorScript.file(p.join(inDir, 'properties/composite_types.cs')),
-      GeneratorScript.file(p.join(inDir, 'properties/known_types.cs')),
-      GeneratorScript.file(
+      GeneratorScript.path([p.join(inDir, 'properties/composite_types.cs')]),
+      GeneratorScript.path([p.join(inDir, 'properties/known_types.cs')]),
+      GeneratorScript.path([
         p.join(inDir, 'supported_use_cases/exclusions.cs'),
-      ),
-      GeneratorScript.file(
+      ]),
+      GeneratorScript.path([
         p.join(inDir, 'supported_use_cases/same_names.cs'),
-      ),
-      GeneratorScript.file(
+      ]),
+      GeneratorScript.path([
         p.join(inDir, 'supported_use_cases/shared_error_codes.cs'),
-      ),
+      ]),
     ];
 
     for (final generatorScript in generatorScripts) {

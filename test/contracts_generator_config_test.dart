@@ -6,7 +6,7 @@ import 'package:yaml/yaml.dart';
 
 void main() {
   group('contracts yaml config parsing', () {
-    const whateverInput = 'input: {file: ""}';
+    const whateverInput = 'input: {project: [""]}';
     const nonStringYamlValues = ['{}', '', 'true', '[]', '123'];
 
     group('defaults', () {
@@ -51,9 +51,7 @@ void main() {
           () => ContractsGeneratorConfig.fromYaml('{}'),
           throwsA(isA<ArgumentError>()),
         );
-      });
 
-      test('has at least one known method', () {
         expect(
           () => ContractsGeneratorConfig.fromYaml(
             '''
@@ -65,38 +63,30 @@ void main() {
         );
 
         expect(
-          () => ContractsGeneratorConfig.fromYaml(whateverInput),
-          returnsNormally,
+          () => ContractsGeneratorConfig.fromYaml('input:'),
+          throwsA(isA<ArgumentError>()),
         );
       });
 
-      test('has exactly one known method', () {
-        const combinations = [
-          '{file: {}, path: {}}',
-          '{file: {}, project: {}}',
-          '{project: {}, path: {}}',
-          '{file: {}, path: {}, project: {}}',
-        ];
-
-        for (final input in combinations) {
-          expect(
-            () => ContractsGeneratorConfig.fromYaml('input: $input'),
-            throwsA(isA<ArgumentError>()),
-          );
-        }
-      });
-
-      test('correctly parses file method', () {
+      test('cannot use multiple methods', () {
         expect(
-          () => ContractsGeneratorConfig.fromYaml('input: {file: ""}'),
-          returnsNormally,
+          () => ContractsGeneratorConfig.fromYaml(
+            '''
+            input:
+              path:
+                include: [""]
+              project: [""]
+            ''',
+          ),
+          throwsA(isA<ArgumentError>()),
         );
       });
 
       test('correctly parses path method', () {
         expect(
           () => ContractsGeneratorConfig.fromYaml(
-              'input: {path: {include: [foo], exclude: [foo], directory: foo}}'),
+            'input: {path: {include: [foo], exclude: [foo], directory: foo}}',
+          ),
           returnsNormally,
         );
       });
