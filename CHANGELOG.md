@@ -1,6 +1,6 @@
 # Unreleased
 
-- **BREAKING**: Add support for `project`, `file`, and `path` input methods in config file
+- **BREAKING**: Add support for `project` and `path` input methods in config file
 
 # 0.1.0
 

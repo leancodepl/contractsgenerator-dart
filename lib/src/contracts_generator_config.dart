@@ -29,18 +29,17 @@ class ContractsGeneratorConfig {
       );
     } else {
       const projectKey = 'project';
-      const fileKey = 'file';
       const pathKey = 'path';
 
       final input = config['input'] as Map;
       final inputMethods = <String, dynamic>{
-        for (final method in const [projectKey, fileKey, pathKey])
+        for (final method in const [projectKey, pathKey])
           if (input.containsKey(method)) method: input[method],
       };
 
       if (inputMethods.length != 1) {
         throw ArgumentError(
-          '`input` has to have exactly one of "$projectKey", "$fileKey", "$pathKey"',
+          '`input` has to have exactly one of "$projectKey", "$pathKey"',
         );
       }
 
@@ -50,9 +49,6 @@ class ContractsGeneratorConfig {
           script = GeneratorScript.project(
             (inputMethod.value as List).cast<String>(),
           );
-          break;
-        case fileKey:
-          script = GeneratorScript.file(inputMethod.value as String);
           break;
         case pathKey:
           final values = inputMethod.value as Map;
@@ -114,8 +110,6 @@ input:
   # project:
   #   - path1.csproj
   #   - path2.csproj
-  # # Path to a single source file
-  # file: file.cs
   # # Multiple files selected by glob patterns
   # path: 
   #   # List of glob paths specifying which files should be included (required)
