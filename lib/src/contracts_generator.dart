@@ -76,6 +76,8 @@ class ContractsGenerator {
     return Library(
       (l) => l
         ..body.addAll([
+          Code(config.directives),
+          Code("part '${config.name}.g.dart';"),
           Code('\n\n${config.extra}\n\n'),
           // hack to run code in the top level
           const Code('final _ = EquatableConfig.stringify = true;'),
@@ -86,7 +88,6 @@ class ContractsGenerator {
           Directive.import('package:cqrs/contracts.dart'),
           Directive.import('package:json_annotation/json_annotation.dart'),
           Directive.import('package:equatable/equatable.dart'),
-          Directive.part('${config.name}.g.dart'),
         ]),
     );
   }

@@ -11,6 +11,7 @@ class ContractsGeneratorConfig {
     this.name = 'contracts',
     RegExp? include,
     Directory? output,
+    this.directives = '',
     this.extra = '',
   })  : include = include ?? RegExp(''),
         output = output ?? Directory.current;
@@ -65,6 +66,7 @@ class ContractsGeneratorConfig {
     final dynamic include = config['include'];
     final dynamic output = config['output'];
     final dynamic extra = config['extra'];
+    final dynamic directives = config['directives'];
 
     if (name is! String) {
       throw ArgumentError('`name` field has to be a string');
@@ -78,12 +80,16 @@ class ContractsGeneratorConfig {
     if (extra is! String) {
       throw ArgumentError('`extra` field has to be a string');
     }
+    if (directives is! String) {
+      throw ArgumentError('`directives` field has to be a string');
+    }
 
     return ContractsGeneratorConfig(
       input: script,
       name: name,
       include: RegExp(include),
       output: Directory(output),
+      directives: directives,
       extra: extra,
     );
   }
@@ -100,7 +106,10 @@ class ContractsGeneratorConfig {
   /// Output directory
   final Directory output;
 
-  /// Text to be added in generated contracts file between imports and statements
+  /// Directives (`export`, `import`, `part` etc.) to be added to the generated contracts file
+  final String directives;
+
+  /// Code to be added to the generated contracts file after all directives
   final String extra;
 
   static const defaultYamlConfig = '''
@@ -126,7 +135,9 @@ name: contracts
 include: .*
 # Output directory
 output: lib/data
-# Text to be added in generated contracts file between imports and statements
+# Directives (`export`, `import`, `part` etc.) to be added to the generated contracts file
+directives: ""
+# Code to be added to the generated contracts file after all directives
 extra: ""
 ''';
 }

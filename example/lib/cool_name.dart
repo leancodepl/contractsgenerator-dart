@@ -1,6 +1,7 @@
 import 'package:cqrs/contracts.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:equatable/equatable.dart';
+export 'my_extensions.dart';
 part 'cool_name.g.dart';
 
 // :)
