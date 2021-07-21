@@ -95,7 +95,8 @@ abstract class PaginatedQuery<TResult>
 }
 
 /// This one is in XML.
-@JsonSerializable(fieldRename: FieldRename.pascal)
+@JsonSerializable(
+    fieldRename: FieldRename.pascal, genericArgumentFactories: true)
 class PaginatedResult<TResult> with EquatableMixin {
   PaginatedResult({
     required this.items,

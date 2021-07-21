@@ -82,10 +82,12 @@ abstract class StatementHandler {
                       ..type = genericFactory.fromJsonType,
                   ),
               ])
-              ..body = Code('_\$${name}FromJson(${[
-                'json',
-                ...genericFactories.map((e) => e.fromJsonName),
-              ].join(',')})'),
+              ..body = Code(
+                '_\$${name}FromJson(${[
+                  'json',
+                  ...genericFactories.map((e) => e.fromJsonName),
+                ].join(',')})',
+              ),
           ),
         ])
         ..methods.add(
@@ -94,10 +96,12 @@ abstract class StatementHandler {
               ..name = 'toJson'
               ..lambda = true
               ..returns = refer('Map<String, dynamic>')
-              ..body = Code('_\$${name}ToJson(${[
-                'this',
-                ...genericFactories.map((e) => e.toJsonName),
-              ].join(',')})')
+              ..body = Code(
+                '_\$${name}ToJson(${[
+                  'this',
+                  ...genericFactories.map((e) => e.toJsonName),
+                ].join(',')})',
+              )
               ..requiredParameters.addAll([
                 for (final genericFactory in genericFactories)
                   Parameter(
@@ -108,11 +112,14 @@ abstract class StatementHandler {
               ]),
           ),
         )
-        ..types
-            .addAll(typeDescriptor.genericParameters.map((t) => refer(t.name)))
+        ..types.addAll(
+          typeDescriptor.genericParameters.map((t) => refer(t.name)),
+        )
         ..annotations.add(
-          const CodeExpression(
-            Code('JsonSerializable(fieldRename: FieldRename.pascal)'),
+          CodeExpression(
+            Code(
+              'JsonSerializable(fieldRename: FieldRename.pascal${genericFactories.isEmpty ? '' : ', genericArgumentFactories: true'})',
+            ),
           ),
         )
         ..docs.addAll(toDartdoc(statement.comment))

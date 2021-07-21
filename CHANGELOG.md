@@ -2,6 +2,7 @@
 
 - Fix incorrect field renaming
 - Stopped generating redundant dart doc from constructor parameters
+- Annotate generic classes with `genericArgumentFactories: true`
 
 # 0.1.0
 

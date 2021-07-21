@@ -108,11 +108,7 @@ class ContractsGenerator {
     );
 
     final packageGraph = await PackageGraph.forThisPackage();
-    final js = jsonSerializable(
-      const BuilderOptions(
-        <String, dynamic>{'generic_argument_factories': true},
-      ),
-    );
+    final js = jsonSerializable(BuilderOptions.empty);
     final f = AssetId(packageGraph.root.name, contractsPath);
 
     final env = IOEnvironment(packageGraph);
