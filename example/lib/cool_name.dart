@@ -98,7 +98,6 @@ abstract class PaginatedQuery<TResult>
 @JsonSerializable(fieldRename: FieldRename.pascal)
 class PaginatedResult<TResult> with EquatableMixin {
   PaginatedResult({
-    /// And this is a property comment.
     required this.items,
     required this.totalCount,
   });
