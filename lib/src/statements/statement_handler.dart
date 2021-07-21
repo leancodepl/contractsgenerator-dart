@@ -141,8 +141,7 @@ abstract class StatementHandler {
         ..name = ReCase(prop.name).camelCase + (addTrailingComma ? ',' : '')
         ..required = !(type.symbol?.endsWith('?') ?? false)
         ..named = true
-        ..toThis = true
-        ..docs.addAll(toDartdoc(prop.comment)),
+        ..toThis = true,
     );
   }
 
