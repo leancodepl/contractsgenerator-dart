@@ -1,3 +1,7 @@
+# Unreleased
+
+- Fix incorrect field renaming
+
 # 0.1.0
 
 - Initial release
