@@ -50,7 +50,7 @@ abstract class StatementHandler {
       b
         ..name = name
         ..fields.addAll([
-          ...typeDescriptor.constants.map(_createConstants),
+          ...typeDescriptor.constants.map(_createConstant),
           ...typeDescriptor.properties.map(_createField),
           // workaround to generate a getter
           Field(
@@ -148,18 +148,23 @@ abstract class StatementHandler {
 
   Field _createField(PropertyRef prop) {
     final type = typeCreator.create(prop.type);
+    final isPascalCase = ReCase(prop.name).pascalCase == prop.name;
 
     // TODO: attributes
     return Field(
       (b) => b
         ..type = type
+        ..annotations.addAll([
+          if (!isPascalCase)
+            CodeExpression(Code('JsonKey(name: ${literalString(prop.name)})')),
+        ])
         ..name = ReCase(prop.name).camelCase
         ..modifier = FieldModifier.final$
         ..docs.addAll(toDartdoc(prop.comment)),
     );
   }
 
-  Field _createConstants(ConstantRef prop) {
+  Field _createConstant(ConstantRef prop) {
     return valueCreator.create(prop.value).rebuild(
           (b) => b
             ..name = ReCase(prop.name).camelCase
