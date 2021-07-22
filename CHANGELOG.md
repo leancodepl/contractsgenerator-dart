@@ -1,4 +1,4 @@
-# Unreleased
+# 0.2.0
 
 - **BREAKING**: Add support for `project` and `path` input methods in config file
 - Add directives config option
