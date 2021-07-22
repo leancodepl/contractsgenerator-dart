@@ -16,50 +16,10 @@ class ContractsGeneratorConfig {
         output = output ?? Directory.current;
 
   factory ContractsGeneratorConfig.fromYaml(String yaml) {
-    final defaultConfig = loadYaml(defaultYamlConfig) as Map;
-    final override = loadYaml(yaml) as Map;
-
-    final config = mergeMaps<dynamic, dynamic>(defaultConfig, override);
-
-    late GeneratorScript script;
-
-    if (config['input'] == null) {
-      throw ArgumentError.notNull(
-        '`input` is a required field and cannot be null',
-      );
-    } else {
-      const projectKey = 'project';
-      const pathKey = 'path';
-
-      final input = config['input'] as Map;
-      final inputMethods = <String, dynamic>{
-        for (final method in const [projectKey, pathKey])
-          if (input.containsKey(method)) method: input[method],
-      };
-
-      if (inputMethods.length != 1) {
-        throw ArgumentError(
-          '`input` has to have exactly one of "$projectKey", "$pathKey"',
-        );
-      }
-
-      final inputMethod = inputMethods.entries.first;
-      switch (inputMethod.key) {
-        case projectKey:
-          script = GeneratorScript.project(
-            (inputMethod.value as List).cast<String>(),
-          );
-          break;
-        case pathKey:
-          final values = inputMethod.value as Map;
-          script = GeneratorScript.path(
-            (values['include'] as List).cast<String>(),
-            exclude: (values['exclude'] as List).cast<String>(),
-            directory: values['directory'] as String,
-          );
-          break;
-      }
-    }
+    final config = mergeMaps<dynamic, dynamic>(
+      loadYaml(defaultYamlConfig) as Map,
+      loadYaml(yaml) as Map,
+    );
 
     final dynamic name = config['name'];
     final dynamic include = config['include'];
@@ -80,7 +40,7 @@ class ContractsGeneratorConfig {
     }
 
     return ContractsGeneratorConfig(
-      input: script,
+      input: _configure(config),
       name: name,
       include: RegExp(include),
       output: Directory(output),
@@ -129,4 +89,43 @@ output: lib/data
 # Text to be added in generated contracts file between imports and statements
 extra: ""
 ''';
+
+  static GeneratorScript? _configureProject(dynamic config) {
+    if (config['project'] == null) return null;
+
+    return GeneratorScript.project(
+      (config['project'] as List).cast<String>(),
+    );
+  }
+
+  static GeneratorScript? _configurePath(dynamic config) {
+    if (config['path'] == null) return null;
+
+    final values = config['path'] as Map;
+    return GeneratorScript.path(
+      (values['include'] as List).cast<String>(),
+      exclude: (values['exclude'] as List?)?.cast<String>(),
+      directory: values['directory'] as String?,
+    );
+  }
+
+  static GeneratorScript _configure(dynamic config) {
+    final dynamic input = config['input'];
+    if (input == null) {
+      throw ArgumentError.notNull(
+        '`input` is a required field and cannot be null',
+      );
+    }
+
+    final proj = _configureProject(input);
+    final path = _configurePath(input);
+
+    if (!((proj != null) ^ (path != null))) {
+      throw ArgumentError(
+        '`input` has to have exactly one of "project", "path"',
+      );
+    }
+
+    return (proj ?? path)!;
+  }
 }
