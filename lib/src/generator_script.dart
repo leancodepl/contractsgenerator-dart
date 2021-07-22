@@ -8,10 +8,7 @@ class GeneratorScript {
   GeneratorScript.project(List<String> projects)
       : args = ['project', '-p', ...projects];
 
-  /// Generate for a single C# file
-  GeneratorScript.file(String file) : args = ['file', '-i', file];
-
-  /// Generate for a all files in the globbed path
+  /// Generate for a all files in the globbed paths
   GeneratorScript.path(
     List<String> include, {
     List<String>? exclude,
@@ -20,11 +17,11 @@ class GeneratorScript {
           'path',
           '-i',
           ...include,
-          if (exclude != null) ...[
+          if (exclude != null && exclude.isNotEmpty) ...[
             '-e',
             ...exclude,
           ],
-          if (directory != null) ...[
+          if (directory != null && directory.isNotEmpty) ...[
             '-d',
             directory,
           ],

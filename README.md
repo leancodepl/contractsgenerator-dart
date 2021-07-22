@@ -3,7 +3,7 @@
 [![](https://img.shields.io/pub/v/contracts_generator.svg?logo=dart)](https://pub.dev/packages/contracts_generator)
 [![](https://github.com/leancodepl/contractsgenerator-dart/workflows/ci/badge.svg)](https://github.com/leancodepl/contractsgenerator-dart/actions)
 
-Dart contracts client generator for a CQRS API. Generated code is based on the format described in <https://github.com/leancodepl/contractsgenerator>. If you are using Flutter replace all `$ dart [ARGS ...]` commands with `$ flutter [ARGS ...]`.
+Dart contracts client generator for a CQRS API. Generated code is based on the format described in <https://github.com/leancodepl/contractsgenerator>.
 
 ## Installation
 
@@ -29,7 +29,7 @@ First run will take longer due to the need to download external dependencies.
 $ dart run contracts_generator --help
 Command line utility for generating dart CQRS contracts
 
-Usage: dart run contracts_generator <command> [arguments]
+Usage: contracts_generator <command> [arguments]
 
 Global options:
 -h, --help    Print this usage information.
@@ -37,7 +37,7 @@ Global options:
 Available commands:
   init   Initialize a config file
 
-Run "dart run contracts_generator help <command>" for more information about a command.
+Run "contracts_generator help <command>" for more information about a command.
 ```
 
 ### Library
@@ -50,7 +50,7 @@ import 'package:contracts_generator/contracts_generator.dart';
 Future<void> main(List<String> arguments) async {
   final generator = ContractsGenerator(
     ContractsGeneratorConfig(
-      input: GeneratorScript.path('ExampleContracts'),
+      input: GeneratorScript.path(['ExampleContracts/**']),
       name: 'cool_name',
       output: Directory('lib'),
       extra: '// :)',
