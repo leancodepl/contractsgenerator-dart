@@ -160,6 +160,22 @@ void main() {
       });
     });
 
+    group('directives field', () {
+      test('is a string', () {
+        for (final value in nonStringYamlValues) {
+          expect(
+            () => ContractsGeneratorConfig.fromYaml(
+              '''
+              $whateverInput
+              directives: $value
+              ''',
+            ),
+            throwsA(isA<ArgumentError>()),
+          );
+        }
+      });
+    });
+
     group('extra field', () {
       test('is a string', () {
         for (final value in nonStringYamlValues) {

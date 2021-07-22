@@ -8,6 +8,7 @@ Future<void> main(List<String> arguments) async {
       input: GeneratorScript.path(['ExampleContracts/**']),
       name: 'cool_name',
       output: Directory('lib'),
+      directives: "export 'my_extensions.dart';",
       extra: '// :)',
       include: RegExp(r'\w+(\.\w+)*'),
     ),

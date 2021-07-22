@@ -19,5 +19,7 @@ name: contracts
 include: .*
 # Output directory
 output: lib/data
-# Text to be added in generated contracts file between imports and statements
+# Directives (`export`, `import`, `part` etc.) to be added to the generated contracts file
+directives: ""
+# Code to be added to the generated contracts file after all directives
 extra: ""
