@@ -27,7 +27,7 @@ class ContractsGeneratorConfig {
     final dynamic output = config['output'];
     final dynamic directives = config['directives'];
     final dynamic extra = config['extra'];
-    
+
     if (name is! String) {
       throw ArgumentError('`name` field has to be a string');
     }
