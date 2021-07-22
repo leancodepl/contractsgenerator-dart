@@ -1,4 +1,4 @@
-# Unreleased
+# 0.2.0
 
 - **BREAKING**: Add support for `project`, `file`, and `path` input methods in config file
 - Fix incorrect field renaming
