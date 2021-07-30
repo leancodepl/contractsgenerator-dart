@@ -1,3 +1,7 @@
+# 0.2.0+1
+
+- Republish missing commits
+
 # 0.2.0
 
 - **BREAKING**: Add support for `project` and `path` input methods in config file
