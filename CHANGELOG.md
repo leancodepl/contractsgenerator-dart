@@ -1,3 +1,7 @@
+# 0.2.0+2
+
+- Bump `LeanCode.ContractsGenerator` to `v0.1.0-alpha3`
+
 # 0.2.0+1
 
 - Republish missing commits
