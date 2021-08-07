@@ -29,7 +29,7 @@ class GeneratorScript {
 
   final List<String> args;
 
-  static const version = '0.1.0-alpha2';
+  static const version = '0.1.0-alpha3';
 
   static const String _script = _$script;
 

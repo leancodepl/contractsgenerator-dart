@@ -5,6 +5,10 @@
 
 Dart contracts client generator for a CQRS API. Generated code is based on the format described in <https://github.com/leancodepl/contractsgenerator>.
 
+## Prerequisites
+
+You will need to have .NET 5 installed on your system and have `dotnet` available in your PATH.
+
 ## Installation
 
 ```sh
@@ -24,6 +28,8 @@ dart pub add json_annotation
 First run will take longer due to the need to download external dependencies.
 
 ### CLI
+
+First initialize a config file filled with defaults with `dart run contracts_generator init`, then generate client contracts code with `dart run contracts_generator`.
 
 ```
 $ dart run contracts_generator --help
