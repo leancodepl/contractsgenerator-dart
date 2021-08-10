@@ -1,12 +1,16 @@
 import 'dart:collection';
 
+import 'package:meta/meta.dart';
+
 import 'contracts_generator_config.dart';
+import 'contracts_generator_exception.dart';
 import 'statements/utils/type_descriptor_of.dart';
 import 'types/type_handler.dart';
 import 'types/utils/known_type_kind.dart';
 
 class GeneratorDatabase {
-  GeneratorDatabase._(this.config, this._export)
+  @visibleForTesting
+  GeneratorDatabase(this.config, this._export)
       : _statements = LinkedHashMap.fromEntries(
           _export.statements.map((e) => MapEntry(e.name, e)),
         );
@@ -16,7 +20,7 @@ class GeneratorDatabase {
   ) async {
     final buffer = await config.input.run();
 
-    return GeneratorDatabase._(
+    return GeneratorDatabase(
       config,
       Export.fromBuffer(buffer),
     );
@@ -48,6 +52,11 @@ class GeneratorDatabase {
   String resolveName(String namespacedName) {
     if (_resolveCache.containsKey(namespacedName)) {
       return _resolveCache[namespacedName]!;
+    } else if (!_names.any((e) => e.key == namespacedName)) {
+      throw ContractsGeneratorException(
+        'Tried to use a statement that is not included in the `include` config field: $namespacedName\n'
+        'Consider adding ${RegExp.escape(namespacedName)} to `include` or moving this statement to an included namespace.',
+      );
     }
 
     final top = namespacedName.split(namespaceSeparator).last;
