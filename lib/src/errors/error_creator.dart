@@ -1,7 +1,7 @@
 import 'package:code_builder/code_builder.dart';
-import 'package:recase/recase.dart';
 
 import '../proto/contracts.pb.dart';
+import '../utils/rename_field.dart';
 
 // TODO: split into handlers?
 class ErrorCreator {
@@ -24,7 +24,7 @@ class ErrorCreator {
       return [
         Field(
           (b) => b
-            ..name = ReCase(context + errorCode.single.name).camelCase
+            ..name = renameField(context + errorCode.single.name)
             ..static = true
             ..modifier = FieldModifier.constant
             ..assignment = Code(errorCode.single.code.toString()),

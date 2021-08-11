@@ -1,8 +1,8 @@
 import 'package:code_builder/code_builder.dart';
-import 'package:recase/recase.dart';
 
 import '../generator_database.dart';
 import '../types/type_creator.dart';
+import '../utils/rename_field.dart';
 import '../values/value_creator.dart';
 import 'statement_handler.dart' hide EnumValue;
 import 'utils/to_dartdoc.dart';
@@ -27,7 +27,7 @@ class EnumHandler extends StatementHandler {
           statement.enum_11.members.map(
             (e) => EnumValue(
               (b) => b
-                ..name = ReCase(e.name).camelCase
+                ..name = renameField(e.name)
                 ..docs.addAll(toDartdoc(e.comment))
                 ..annotations.add(
                   CodeExpression(Code('JsonValue(${e.value})')),
