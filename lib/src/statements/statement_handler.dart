@@ -1,6 +1,5 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:meta/meta.dart';
-import 'package:recase/recase.dart';
 
 import '../generator_database.dart';
 import '../proto/contracts.pb.dart';
@@ -156,15 +155,14 @@ abstract class StatementHandler {
   Field _createField(PropertyRef prop) {
     final type = typeCreator.create(prop.type);
     final renamed = renameField(prop.name);
-    // TODO: ReCase('new_').pascalCase == 'New', so it is a false negative
-    final isPascalCase = ReCase(renamed).pascalCase == prop.name;
+    final needsExplicitRename = pascalCase(renamed) != prop.name;
 
     // TODO: attributes
     return Field(
       (b) => b
         ..type = type
         ..annotations.addAll([
-          if (!isPascalCase)
+          if (needsExplicitRename)
             CodeExpression(Code('JsonKey(name: ${literalString(prop.name)})')),
         ])
         ..name = renamed
