@@ -2,6 +2,7 @@
 
 - Rename identifiers that would cause syntax errors
 - Improve error reporting
+- Sort statements alphabetically (ascending)
 
 # 0.2.0+2
 
