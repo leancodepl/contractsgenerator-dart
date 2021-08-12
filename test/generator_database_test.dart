@@ -9,13 +9,17 @@ void main() {
   GeneratorDatabase makeDb({
     RegExp? include,
     Set<String> statements = const {},
+    List<Statement>? rawStatements,
   }) =>
       GeneratorDatabase(
         ContractsGeneratorConfig(
           input: GeneratorScript.project([]),
           include: include,
         ),
-        Export(statements: statements.map((e) => Statement(name: e))),
+        Export(
+          statements:
+              rawStatements ?? statements.map((e) => Statement(name: e)),
+        ),
       );
 
   group('generator database', () {
@@ -89,8 +93,59 @@ void main() {
     });
 
     group('isCqrs', () {
+      TypeRef typeRefOf(String name) =>
+          TypeRef(internal: TypeRef_Internal(name: name));
+
       test('classifies correctly', () {
-        // TODO
+        final cqrsType = TypeRef(known: TypeRef_Known(type: KnownType.Command));
+        final extending = Statement(
+          name: 'extending',
+          dto: Statement_DTO(
+            typeDescriptor: TypeDescriptor(extends_1: [cqrsType]),
+          ),
+        );
+        final secondIndirection = Statement(
+          name: 'secondIndirection',
+          dto: Statement_DTO(
+            typeDescriptor: TypeDescriptor(extends_1: [typeRefOf('extending')]),
+          ),
+        );
+        final thirdIndirection = Statement(
+          name: 'thirdIndirection',
+          dto: Statement_DTO(
+            typeDescriptor: TypeDescriptor(
+              extends_1: [typeRefOf('secondIndirection')],
+            ),
+          ),
+        );
+
+        final differentKnownTypeKind = TypeRef(
+          known: TypeRef_Known(type: KnownType.DateTime),
+        );
+        final genericType = TypeRef(
+          generic: TypeRef_Generic(name: 'T'),
+        );
+        final nonCqrsStatement = Statement(
+          name: 'nonCqrsStatement',
+          dto: Statement_DTO(),
+        );
+
+        final db = makeDb(
+          rawStatements: [
+            extending,
+            secondIndirection,
+            thirdIndirection,
+            nonCqrsStatement,
+          ],
+        );
+
+        expect(db.isCqrs(cqrsType), true);
+        expect(db.isCqrs(typeRefOf('extending')), true);
+        expect(db.isCqrs(typeRefOf('secondIndirection')), true);
+        expect(db.isCqrs(typeRefOf('thirdIndirection')), true);
+        expect(db.isCqrs(differentKnownTypeKind), false);
+        expect(db.isCqrs(genericType), false);
+        expect(db.isCqrs(typeRefOf('nonCqrsStatement')), false);
       });
     });
   });

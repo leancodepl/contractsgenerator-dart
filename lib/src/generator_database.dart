@@ -101,9 +101,8 @@ class GeneratorDatabase {
 
   /// Deep check for whether this type is/extends a CQRS type
   bool isCqrs(TypeRef typeRef) {
-    if (typeRef.hasKnown() &&
-        knownTypeKind(typeRef.known.type) == KnownTypeKind.cqrs) {
-      return true;
+    if (typeRef.hasKnown()) {
+      return knownTypeKind(typeRef.known.type) == KnownTypeKind.cqrs;
     } else if (typeRef.hasGeneric()) {
       return false;
     }
