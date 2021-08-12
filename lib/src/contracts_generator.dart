@@ -67,8 +67,11 @@ class ContractsGenerator {
     final body = [
       for (final statement in db.statements)
         if (db.shouldInclude(statement.name) && !_isAttribute(statement))
-          statementCreator.create(statement)
-    ];
+          MapEntry(
+            db.resolveName(statement.name),
+            statementCreator.create(statement),
+          )
+    ]..sort((a, b) => a.key.compareTo(b.key));
 
     // TODO: knownGroups?
     // TODO: projectName?
@@ -82,7 +85,7 @@ class ContractsGenerator {
           // hack to run code in the top level
           const Code('final _ = EquatableConfig.stringify = true;'),
           timeClass,
-          ...body,
+          ...body.map((e) => e.value),
         ])
         ..directives.addAll([
           Directive.import('package:cqrs/contracts.dart'),
