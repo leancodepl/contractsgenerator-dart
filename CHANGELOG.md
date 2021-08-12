@@ -1,6 +1,7 @@
 # Unreleased
 
 - Rename identifiers that would cause syntax errors
+- Improve error reporting
 
 # 0.2.0+2
 
