@@ -1,3 +1,7 @@
+# Unreleased
+
+- Rename identifiers that would cause syntax errors
+
 # 0.2.0+2
 
 - Bump `LeanCode.ContractsGenerator` to `v0.1.0-alpha3`

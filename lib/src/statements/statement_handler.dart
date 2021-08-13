@@ -1,10 +1,10 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:meta/meta.dart';
-import 'package:recase/recase.dart';
 
 import '../generator_database.dart';
 import '../proto/contracts.pb.dart';
 import '../types/type_creator.dart';
+import '../utils/rename_field.dart';
 import '../values/value_creator.dart';
 import 'utils/to_dartdoc.dart';
 import 'utils/type_descriptor_of.dart';
@@ -56,7 +56,7 @@ abstract class StatementHandler {
           Field(
             (b) => b
               ..name =
-                  'get props => [${typeDescriptor.properties.map((e) => ReCase(e.name).camelCase).join(',')}]'
+                  'get props => [${typeDescriptor.properties.map((e) => renameField(e.name)).join(',')}]'
               ..type = refer(''),
           ),
         ])
@@ -145,7 +145,7 @@ abstract class StatementHandler {
     return Parameter(
       (b) => b
         // hack to add a trailing comma in parameters
-        ..name = ReCase(prop.name).camelCase + (addTrailingComma ? ',' : '')
+        ..name = renameField(prop.name) + (addTrailingComma ? ',' : '')
         ..required = !(type.symbol?.endsWith('?') ?? false)
         ..named = true
         ..toThis = true,
@@ -154,17 +154,18 @@ abstract class StatementHandler {
 
   Field _createField(PropertyRef prop) {
     final type = typeCreator.create(prop.type);
-    final isPascalCase = ReCase(prop.name).pascalCase == prop.name;
+    final renamed = renameField(prop.name);
+    final needsExplicitRename = pascalCase(renamed) != prop.name;
 
     // TODO: attributes
     return Field(
       (b) => b
         ..type = type
         ..annotations.addAll([
-          if (!isPascalCase)
+          if (needsExplicitRename)
             CodeExpression(Code('JsonKey(name: ${literalString(prop.name)})')),
         ])
-        ..name = ReCase(prop.name).camelCase
+        ..name = renamed
         ..modifier = FieldModifier.final$
         ..docs.addAll(toDartdoc(prop.comment)),
     );
@@ -173,7 +174,7 @@ abstract class StatementHandler {
   Field _createConstant(ConstantRef prop) {
     return valueCreator.create(prop.value).rebuild(
           (b) => b
-            ..name = ReCase(prop.name).camelCase
+            ..name = renameField(prop.name)
             ..modifier = FieldModifier.constant
             ..static = true
             ..docs.addAll(toDartdoc(prop.comment)),

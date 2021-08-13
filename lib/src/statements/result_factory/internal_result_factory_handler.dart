@@ -1,6 +1,5 @@
-import 'package:recase/recase.dart';
-
 import '../../generator_database.dart';
+import '../../utils/rename_field.dart';
 import 'result_factory_handler.dart';
 import 'utils/if_nullable_prefix.dart';
 
@@ -25,7 +24,7 @@ class InternalResultFactoryHandler extends ResultFactoryHandler {
       return [
         'const {',
         for (final member in statement.enum_11.members)
-          '${member.value}: $name.${ReCase(member.name).camelCase},',
+          '${member.value}: $name.${renameField(member.name)},',
         '}[$paramName as int]',
         if (!typeRef.nullable) '!'
       ].join();
