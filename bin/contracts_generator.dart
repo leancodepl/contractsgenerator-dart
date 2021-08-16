@@ -2,8 +2,7 @@ import 'dart:io';
 
 import 'package:args/command_runner.dart';
 import 'package:collection/collection.dart';
-import 'package:contracts_generator/src/contracts_generator.dart';
-import 'package:contracts_generator/src/contracts_generator_config.dart';
+import 'package:contracts_generator/contracts_generator.dart';
 import 'package:path/path.dart' as p;
 
 const configFileName = 'contracts_generator.yaml';
@@ -15,27 +14,34 @@ Future<void> main(List<String> arguments) async {
     'Command line utility for generating dart CQRS contracts',
   )..addCommand(initCommand);
 
-  if (arguments.isEmpty) {
-    final configFile = File(configFileName);
-    if (!await configFile.exists()) {
-      stderr.writeln(
-        'No $configFileName config file found in the current directory. Did you run `${runner.executableName} ${initCommand.name}`?',
+  try {
+    if (arguments.isEmpty) {
+      final configFile = File(configFileName);
+      if (!await configFile.exists()) {
+        fatalError(
+          'No $configFileName config file found in the current directory. Did you run `${runner.executableName} ${initCommand.name}`?',
+        );
+      }
+
+      final generator = ContractsGenerator(
+        ContractsGeneratorConfig.fromYaml(await configFile.readAsString()),
       );
-      exit(1);
+
+      await generator.writeAll();
+      exit(0);
     }
 
-    final generator = ContractsGenerator(
-      ContractsGeneratorConfig.fromYaml(await configFile.readAsString()),
-    );
-
-    await generator.writeAll();
-    exit(0);
-  }
-
-  await runner.run(arguments).catchError((dynamic err) {
+    await runner.run(arguments);
+  } on ContractsGeneratorException catch (err) {
+    fatalError(err.message);
+  } catch (err, st) {
     stderr.writeln(err);
-    exit(1);
-  });
+    stderr.writeln(st);
+    fatalError(
+      'An unknown error occurred, this is most likely a bug. '
+      'Please consider reporting it with the above error.',
+    );
+  }
 }
 
 class InitCommand extends Command<void> {
@@ -65,4 +71,10 @@ class InitCommand extends Command<void> {
 
     exit(0);
   }
+}
+
+Never fatalError(String message) {
+  stderr.writeln('\x1B[31m$message\x1B[0m');
+
+  exit(1);
 }

@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'contracts_generator_exception.dart';
+
 part 'generator_script.g.dart';
 
 /// Interface to the C# protobuf generator
@@ -43,8 +45,10 @@ class GeneratorScript {
     );
 
     if (result.exitCode != 0) {
-      stderr.add(result.stderr as List<int>);
-      exit(1);
+      throw ContractsGeneratorException(
+        // TODO: change stdout to stderr once https://github.com/leancodepl/contractsgenerator/issues/27 is released
+        'Generator script failed with: ${String.fromCharCodes(result.stdout as List<int>)}',
+      );
     }
 
     return result.stdout as List<int>;
