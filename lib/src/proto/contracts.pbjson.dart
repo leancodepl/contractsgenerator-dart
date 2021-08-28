@@ -29,25 +29,28 @@ const KnownType$json = const {
     const {'1': 'Float', '2': 150},
     const {'1': 'Double', '2': 151},
     const {'1': 'Decimal', '2': 152},
-    const {'1': 'Date', '2': 200},
-    const {'1': 'Time', '2': 201},
+    const {'1': 'DateOnly', '2': 200},
+    const {'1': 'TimeOnly', '2': 201},
     const {'1': 'DateTime', '2': 202},
     const {'1': 'DateTimeOffset', '2': 203},
     const {'1': 'TimeSpan', '2': 204},
+    const {'1': 'Date', '2': 205},
+    const {'1': 'Time', '2': 206},
     const {'1': 'Array', '2': 300},
     const {'1': 'Map', '2': 301},
     const {'1': 'Query', '2': 1000},
     const {'1': 'Command', '2': 1001},
-    const {'1': 'AuthorizeWhenAttribute', '2': 1002},
-    const {'1': 'AuthorizeWhenHasAnyOfAttribute', '2': 1003},
-    const {'1': 'QueryCacheAttribute', '2': 1004},
-    const {'1': 'Attribute', '2': 1005},
+    const {'1': 'CommandResult', '2': 1002},
+    const {'1': 'Attribute', '2': 1100},
+    const {'1': 'AuthorizeWhenAttribute', '2': 1101},
+    const {'1': 'AuthorizeWhenHasAnyOfAttribute', '2': 1102},
+    const {'1': 'QueryCacheAttribute', '2': 1103},
   ],
 };
 
 /// Descriptor for `KnownType`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List knownTypeDescriptor = $convert.base64Decode(
-    'CglLbm93blR5cGUSCgoGT2JqZWN0EAASCgoGU3RyaW5nEAESCAoER3VpZBADEgcKA1VyaRAEEgsKB0Jvb2xlYW4QBRIJCgVVSW50OBBkEggKBEludDgQZRIJCgVJbnQxNhBmEgoKBlVJbnQxNhBnEgkKBUludDMyEGgSCgoGVUludDMyEGkSCQoFSW50NjQQahIKCgZVSW50NjQQaxIKCgVGbG9hdBCWARILCgZEb3VibGUQlwESDAoHRGVjaW1hbBCYARIJCgREYXRlEMgBEgkKBFRpbWUQyQESDQoIRGF0ZVRpbWUQygESEwoORGF0ZVRpbWVPZmZzZXQQywESDQoIVGltZVNwYW4QzAESCgoFQXJyYXkQrAISCAoDTWFwEK0CEgoKBVF1ZXJ5EOgHEgwKB0NvbW1hbmQQ6QcSGwoWQXV0aG9yaXplV2hlbkF0dHJpYnV0ZRDqBxIjCh5BdXRob3JpemVXaGVuSGFzQW55T2ZBdHRyaWJ1dGUQ6wcSGAoTUXVlcnlDYWNoZUF0dHJpYnV0ZRDsBxIOCglBdHRyaWJ1dGUQ7Qc=');
+    'CglLbm93blR5cGUSCgoGT2JqZWN0EAASCgoGU3RyaW5nEAESCAoER3VpZBADEgcKA1VyaRAEEgsKB0Jvb2xlYW4QBRIJCgVVSW50OBBkEggKBEludDgQZRIJCgVJbnQxNhBmEgoKBlVJbnQxNhBnEgkKBUludDMyEGgSCgoGVUludDMyEGkSCQoFSW50NjQQahIKCgZVSW50NjQQaxIKCgVGbG9hdBCWARILCgZEb3VibGUQlwESDAoHRGVjaW1hbBCYARINCghEYXRlT25seRDIARINCghUaW1lT25seRDJARINCghEYXRlVGltZRDKARITCg5EYXRlVGltZU9mZnNldBDLARINCghUaW1lU3BhbhDMARIJCgREYXRlEM0BEgkKBFRpbWUQzgESCgoFQXJyYXkQrAISCAoDTWFwEK0CEgoKBVF1ZXJ5EOgHEgwKB0NvbW1hbmQQ6QcSEgoNQ29tbWFuZFJlc3VsdBDqBxIOCglBdHRyaWJ1dGUQzAgSGwoWQXV0aG9yaXplV2hlbkF0dHJpYnV0ZRDNCBIjCh5BdXRob3JpemVXaGVuSGFzQW55T2ZBdHRyaWJ1dGUQzggSGAoTUXVlcnlDYWNoZUF0dHJpYnV0ZRDPCA==');
 @$core.Deprecated('Use valueRefDescriptor instead')
 const ValueRef$json = const {
   '1': 'ValueRef',
