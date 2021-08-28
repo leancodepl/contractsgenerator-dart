@@ -1,4 +1,4 @@
-# Unreleased
+# 0.2.1
 
 - Rename identifiers that would cause syntax errors
 - Improve error reporting
