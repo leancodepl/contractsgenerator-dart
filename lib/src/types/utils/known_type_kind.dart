@@ -35,6 +35,8 @@ KnownTypeKind knownTypeKind(KnownType knownType) {
     case KnownType.Uri:
     case KnownType.Date:
     case KnownType.Time:
+    case KnownType.DateOnly:
+    case KnownType.TimeOnly:
     case KnownType.TimeSpan:
     case KnownType.DateTime:
     case KnownType.DateTimeOffset:
@@ -43,11 +45,12 @@ KnownTypeKind knownTypeKind(KnownType knownType) {
       return KnownTypeKind.complex;
     case KnownType.Query:
     case KnownType.Command:
+    case KnownType.CommandResult:
       return KnownTypeKind.cqrs;
+    case KnownType.Attribute:
     case KnownType.AuthorizeWhenAttribute:
     case KnownType.AuthorizeWhenHasAnyOfAttribute:
     case KnownType.QueryCacheAttribute:
-    case KnownType.Attribute:
       return KnownTypeKind.attribute;
   }
 

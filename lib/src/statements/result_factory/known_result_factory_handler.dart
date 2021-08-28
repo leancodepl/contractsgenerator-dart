@@ -52,6 +52,7 @@ class KnownResultFactoryHandler extends ResultFactoryHandler {
         return '${ifNullablePrefix(typeRef, paramName)}$timeClassName.fromJson($paramName)';
 
       case KnownType.TimeSpan:
+        // TODO: serialization of this time will change in dotnet v6
         // TODO: losing precision of a single magnitude (1us vs 100ns), fixing it would require making a custom type
         return "${ifNullablePrefix(typeRef, paramName)}Duration(microseconds: (($paramName as Map<String, dynamic>)['Ticks'] as int) ~/ 10)";
 
@@ -64,6 +65,11 @@ class KnownResultFactoryHandler extends ResultFactoryHandler {
             '${ResultFactoryHandler.buildFrom(known.arguments[0], handlers, 'k')}, '
             '${ResultFactoryHandler.buildFrom(known.arguments[1], handlers, 'v')}),)';
 
+      case KnownType.CommandResult:
+        return '${ifNullablePrefix(typeRef, paramName)}CommandResult.fromJson($paramName)';
+
+      case KnownType.TimeOnly:
+      case KnownType.DateOnly:
       case KnownType.Query:
       case KnownType.Command:
       case KnownType.AuthorizeWhenAttribute:
