@@ -1,5 +1,6 @@
 import 'package:code_builder/code_builder.dart';
 
+import '../attributes/attribute_creator.dart';
 import '../generator_database.dart';
 import '../types/type_creator.dart';
 import '../values/value_creator.dart';
@@ -13,6 +14,7 @@ class QueryHandler extends StatementHandler {
   QueryHandler(
     TypeCreator typeCreator,
     ValueCreator valueCreator,
+    AttributeCreator attributeCreator,
     GeneratorDatabase db,
   )   : resultFactoryCreator = ResultFactoryCreator(
           [
@@ -21,7 +23,7 @@ class QueryHandler extends StatementHandler {
           ],
           typeCreator,
         ),
-        super(typeCreator, valueCreator, db);
+        super(typeCreator, valueCreator, attributeCreator, db);
 
   final ResultFactoryCreator resultFactoryCreator;
 

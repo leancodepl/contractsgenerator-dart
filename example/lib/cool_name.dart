@@ -135,6 +135,8 @@ class ISomethingRelated with EquatableMixin {
   Map<String, dynamic> toJson() => _$ISomethingRelatedToJson(this);
 }
 
+/// System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('?', 'SA1302', Justification: 'Convention for authorizers.')
+/// System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('?', 'IDE1006', Justification: 'Convention for authorizers.')
 @JsonSerializable(fieldRename: FieldRename.pascal)
 class WhenHasSomethingAccess with EquatableMixin {
   WhenHasSomethingAccess();
@@ -147,6 +149,7 @@ class WhenHasSomethingAccess with EquatableMixin {
   Map<String, dynamic> toJson() => _$WhenHasSomethingAccessToJson(this);
 }
 
+/// LeanCode.CQRS.Security.AuthorizeWhenHasAnyOfAttribute('admin')
 @JsonSerializable(fieldRename: FieldRename.pascal)
 class AllUsers with EquatableMixin implements PaginatedQuery<UserInfoDTO> {
   AllUsers({
@@ -171,6 +174,8 @@ class AllUsers with EquatableMixin implements PaginatedQuery<UserInfoDTO> {
       'LeanCode.ContractsGeneratorV2.ExampleContracts.Users.AllUsers';
 }
 
+/// LeanCode.CQRS.Security.AuthorizeWhenHasAnyOfAttribute('admin')
+/// LeanCode.ContractsGeneratorV2.ExampleContracts.Security.AuthorizeWhenHasSomethingAccessAttribute()
 @JsonSerializable(fieldRename: FieldRename.pascal)
 class EditUser
     with EquatableMixin
@@ -230,6 +235,7 @@ class EditUserErrorCodes {
   static const userInfoEmailIsTaken = 1010;
 }
 
+/// LeanCode.CQRS.Security.AuthorizeWhenHasAnyOfAttribute('admin')
 @JsonSerializable(fieldRename: FieldRename.pascal)
 class UserById with EquatableMixin implements IRemoteQuery<UserInfoDTO?> {
   UserById();
@@ -247,6 +253,7 @@ class UserById with EquatableMixin implements IRemoteQuery<UserInfoDTO?> {
       'LeanCode.ContractsGeneratorV2.ExampleContracts.Users.UserById';
 }
 
+@Deprecated('Use something else instead')
 @JsonSerializable(fieldRename: FieldRename.pascal)
 class UserInfoDTO with EquatableMixin {
   UserInfoDTO({
@@ -261,6 +268,7 @@ class UserInfoDTO with EquatableMixin {
 
   final String firstname;
 
+  @deprecated
   final String surname;
 
   final String username;
@@ -272,6 +280,7 @@ class UserInfoDTO with EquatableMixin {
   Map<String, dynamic> toJson() => _$UserInfoDTOToJson(this);
 }
 
+/// LeanCode.CQRS.Security.AuthorizeWhenHasAnyOfAttribute('admin')
 @JsonSerializable(fieldRename: FieldRename.pascal)
 class UserSomething with EquatableMixin implements IRemoteQuery<int?> {
   UserSomething();

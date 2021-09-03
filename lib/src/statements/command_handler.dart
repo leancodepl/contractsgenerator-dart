@@ -1,5 +1,6 @@
 import 'package:code_builder/code_builder.dart';
 
+import '../attributes/attribute_creator.dart';
 import '../errors/error_creator.dart';
 import '../generator_database.dart';
 import '../types/type_creator.dart';
@@ -11,9 +12,10 @@ class CommandHandler extends StatementHandler {
   const CommandHandler(
     TypeCreator typeCreator,
     ValueCreator valueCreator,
+    AttributeCreator attributeCreator,
     GeneratorDatabase db,
     this.errorCreator,
-  ) : super(typeCreator, valueCreator, db);
+  ) : super(typeCreator, valueCreator, attributeCreator, db);
 
   final ErrorCreator errorCreator;
 

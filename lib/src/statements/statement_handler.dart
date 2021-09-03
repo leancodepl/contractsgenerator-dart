@@ -1,6 +1,7 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:meta/meta.dart';
 
+import '../attributes/attribute_creator.dart';
 import '../generator_database.dart';
 import '../proto/contracts.pb.dart';
 import '../types/type_creator.dart';
@@ -12,10 +13,16 @@ import 'utils/type_descriptor_of.dart';
 export '../proto/contracts.pb.dart';
 
 abstract class StatementHandler {
-  const StatementHandler(this.typeCreator, this.valueCreator, this.db);
+  const StatementHandler(
+    this.typeCreator,
+    this.valueCreator,
+    this.attributeCreator,
+    this.db,
+  );
 
   final TypeCreator typeCreator;
   final ValueCreator valueCreator;
+  final AttributeCreator attributeCreator;
   final GeneratorDatabase db;
 
   Spec build(Statement statement);
@@ -122,7 +129,10 @@ abstract class StatementHandler {
             ),
           ),
         )
-        ..docs.addAll(toDartdoc(statement.comment))
+        ..docs.addAll([
+          ...toDartdoc(statement.comment),
+          ...statement.attributes.map(attributeCreator.create),
+        ])
         ..implements.addAll(
           typeDescriptor.extends_1
               // exclude extends that won't be included anyways
@@ -141,7 +151,6 @@ abstract class StatementHandler {
   }) {
     final type = typeCreator.create(prop.type);
 
-    // TODO: attributes
     return Parameter(
       (b) => b
         // hack to add a trailing comma in parameters
@@ -167,7 +176,10 @@ abstract class StatementHandler {
         ])
         ..name = renamed
         ..modifier = FieldModifier.final$
-        ..docs.addAll(toDartdoc(prop.comment)),
+        ..docs.addAll([
+          ...toDartdoc(prop.comment),
+          ...prop.attributes.map(attributeCreator.create),
+        ]),
     );
   }
 

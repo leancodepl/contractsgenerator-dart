@@ -1,5 +1,6 @@
 import 'package:code_builder/code_builder.dart';
 
+import '../attributes/attribute_creator.dart';
 import '../generator_database.dart';
 import '../types/type_creator.dart';
 import '../values/value_creator.dart';
@@ -9,8 +10,9 @@ class DtoHandler extends StatementHandler {
   const DtoHandler(
     TypeCreator typeCreator,
     ValueCreator valueCreator,
+    AttributeCreator attributeCreator,
     GeneratorDatabase db,
-  ) : super(typeCreator, valueCreator, db);
+  ) : super(typeCreator, valueCreator, attributeCreator, db);
 
   @override
   Spec build(Statement statement) {

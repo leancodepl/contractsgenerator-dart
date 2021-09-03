@@ -10,6 +10,7 @@ import 'package:dart_style/dart_style.dart';
 import 'package:json_serializable/builder.dart';
 import 'package:path/path.dart' as p;
 
+import 'attributes/attribute_creator.dart';
 import 'contracts_generator_config.dart';
 import 'errors/error_creator.dart';
 import 'generator_database.dart';
@@ -57,11 +58,18 @@ class ContractsGenerator {
     ]);
     const valueCreator = ValueCreator();
     const errorCreator = ErrorCreator();
+    const attributeCreator = AttributeCreator(valueCreator);
     final statementCreator = StatementCreator([
-      DtoHandler(typeCreator, valueCreator, db),
-      QueryHandler(typeCreator, valueCreator, db),
-      CommandHandler(typeCreator, valueCreator, db, errorCreator),
-      EnumHandler(typeCreator, valueCreator, db),
+      DtoHandler(typeCreator, valueCreator, attributeCreator, db),
+      QueryHandler(typeCreator, valueCreator, attributeCreator, db),
+      CommandHandler(
+        typeCreator,
+        valueCreator,
+        attributeCreator,
+        db,
+        errorCreator,
+      ),
+      EnumHandler(typeCreator, valueCreator, attributeCreator, db),
     ]);
 
     final body = [
