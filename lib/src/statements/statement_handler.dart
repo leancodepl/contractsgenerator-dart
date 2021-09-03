@@ -52,7 +52,6 @@ abstract class StatementHandler {
         .map((e) => _GenericFactory(e.name))
         .toList();
 
-    // TODO: attributes
     return Class((b) {
       b
         ..name = name
@@ -166,7 +165,6 @@ abstract class StatementHandler {
     final renamed = renameField(prop.name);
     final needsExplicitRename = pascalCase(renamed) != prop.name;
 
-    // TODO: attributes
     return Field(
       (b) => b
         ..type = type

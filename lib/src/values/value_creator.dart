@@ -2,7 +2,6 @@ import 'package:code_builder/code_builder.dart';
 
 import '../proto/contracts.pb.dart';
 
-// TODO: split into handlers?
 class ValueCreator {
   const ValueCreator();
 

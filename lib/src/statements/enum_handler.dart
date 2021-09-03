@@ -20,7 +20,6 @@ class EnumHandler extends StatementHandler {
   Spec build(Statement statement) {
     final name = db.resolveName(statement.name);
 
-    // TODO: attributes
     return Enum(
       (b) => b
         ..name = name
