@@ -4,7 +4,7 @@ import '../proto/contracts.pb.dart';
 import '../values/value_creator.dart';
 
 /// Translates attributes to a dartdoc comment,
-/// or to a `package:meta` annotation if an appropriate mapping exists
+/// or to a dart annotation if an appropriate mapping exists
 class AttributeCreator {
   const AttributeCreator(this.valueCreator);
 
