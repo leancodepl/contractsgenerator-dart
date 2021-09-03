@@ -123,7 +123,7 @@ class GeneratorDatabase {
       _isKindCache[kind]!.add(name);
     }
 
-    return _isKindCache[kind]!.add(name);
+    return _isKindCache[kind]!.contains(name);
   }
 
   /// Deep check for whether this type is/extends a CQRS type
