@@ -24,7 +24,7 @@ class ValueCreator {
       value = "'${valueRef.string.value}'";
     } else if (valueRef.hasBool_5()) {
       type = 'bool';
-      value = valueRef.bool_5.toString();
+      value = valueRef.bool_5.value.toString();
     } else {
       throw UnimplementedError('Missing handler of value $valueRef');
     }
