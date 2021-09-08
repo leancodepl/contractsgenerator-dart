@@ -125,11 +125,13 @@ class ContractsGenerator {
       packageGraph.root.name,
       jsonSerializablePathOld,
     )];
-    await File(jsonSerializablePath).writeAsString('''
+    await File(jsonSerializablePath).writeAsString(
+      '''
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 part of '${config.name}.dart';
 
-${utf8.decode(generated ?? [])}''');
+${utf8.decode(generated ?? [])}''',
+    );
   }
 }

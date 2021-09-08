@@ -51,18 +51,22 @@ final timeClass = Class(
                 ..type = refer('String'),
             ),
           )
-          ..body = const Code("""
+          ..body = const Code(
+            """
             final chunks = json.split(':');
             return $timeClassName(int.parse(chunks[0]), int.parse(chunks[1]), int.parse(chunks[2]),);
-            """),
+            """,
+          ),
       )
     ])
-    ..methods.add(Method(
-      (b) => b
-        ..name = 'toJson'
-        ..lambda = true
-        ..returns = refer('String')
-        ..body = literalString(r'$hour:$minute:$second').code,
-    ))
+    ..methods.add(
+      Method(
+        (b) => b
+          ..name = 'toJson'
+          ..lambda = true
+          ..returns = refer('String')
+          ..body = literalString(r'$hour:$minute:$second').code,
+      ),
+    )
     ..docs.add('/// [TimeOfDay] but with seconds precision'),
 );

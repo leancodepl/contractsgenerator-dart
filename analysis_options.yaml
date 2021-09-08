@@ -19,3 +19,4 @@ linter:
     use_key_in_widget_constructors: true
     avoid_classes_with_only_static_members: false
     prefer_relative_imports: true
+    require_trailing_commas: true

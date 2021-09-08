@@ -17,8 +17,10 @@ Future<void> main(List<String> args) async {
 
   await runGitCommands(version);
 
-  print('Before pushing review the changes with `git show`. '
-      'Once reviewed and pushed, push the new tag with `git push --tags`');
+  print(
+    'Before pushing review the changes with `git show`. '
+    'Once reviewed and pushed, push the new tag with `git push --tags`',
+  );
 }
 
 Future<void> assertNoStagedGit() async {

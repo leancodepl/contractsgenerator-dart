@@ -51,13 +51,15 @@ void main() {
           ),
         ).writeAll();
 
-        await File(mainPath).writeAsString('''
+        await File(mainPath).writeAsString(
+          '''
         import 'contracts.dart';
 
         void main() {
           print(Time(0, 0, 0));
         }
-        ''');
+        ''',
+        );
 
         final result = await Process.run('dart', ['run', mainPath]);
 
