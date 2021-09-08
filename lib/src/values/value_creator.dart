@@ -2,7 +2,6 @@ import 'package:code_builder/code_builder.dart';
 
 import '../proto/contracts.pb.dart';
 
-// TODO: split into handlers?
 class ValueCreator {
   const ValueCreator();
 
@@ -24,7 +23,7 @@ class ValueCreator {
       value = "'${valueRef.string.value}'";
     } else if (valueRef.hasBool_5()) {
       type = 'bool';
-      value = valueRef.bool_5.toString();
+      value = valueRef.bool_5.value.toString();
     } else {
       throw UnimplementedError('Missing handler of value $valueRef');
     }

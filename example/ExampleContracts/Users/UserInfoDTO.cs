@@ -1,8 +1,11 @@
 namespace LeanCode.ContractsGeneratorV2.ExampleContracts.Users
 {
+    [System.Obsolete("Use something else instead")]
     public class UserInfoDTO
     {
         public string Firstname { get; set; }
+        
+        [System.Obsolete]
         public string Surname { get; set; }
         public string Username { get; set; }
         public string EmailAddress { get; set; }

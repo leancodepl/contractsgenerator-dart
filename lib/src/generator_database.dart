@@ -97,26 +97,45 @@ class GeneratorDatabase {
     return _resolveCache[namespacedName]!;
   }
 
-  final _isCqrsCache = HashSet<String>();
+  final _isKindCache = {
+    KnownTypeKind.cqrs: HashSet<String>(),
+    KnownTypeKind.attribute: HashSet<String>(),
+  };
 
-  /// Deep check for whether this type is/extends a CQRS type
-  bool isCqrs(TypeRef typeRef) {
+  /// Deep check for whether this type is/extends a CQRS/Attribute type
+  bool _isKind(TypeRef typeRef, KnownTypeKind kind) {
+    assert(kind == KnownTypeKind.cqrs || kind == KnownTypeKind.attribute);
+
     if (typeRef.hasKnown()) {
-      return knownTypeKind(typeRef.known.type) == KnownTypeKind.cqrs;
+      return knownTypeKind(typeRef.known.type) == kind;
     } else if (typeRef.hasGeneric()) {
       return false;
     }
 
     final name = typeRef.ensureInternal().name;
 
-    if (_isCqrsCache.contains(name)) return true;
+    if (_isKindCache[kind]!.contains(name)) return true;
 
     final statement = find(name)!;
 
-    if (typeDescriptorOf(statement)?.extends_1.any(isCqrs) ?? false) {
-      _isCqrsCache.add(name);
+    if (typeDescriptorOf(statement)?.extends_1.any((e) => _isKind(e, kind)) ??
+        false) {
+      _isKindCache[kind]!.add(name);
     }
 
-    return _isCqrsCache.contains(name);
+    return _isKindCache[kind]!.contains(name);
+  }
+
+  /// Deep check for whether this type is/extends a CQRS type
+  bool isCqrs(TypeRef typeRef) {
+    return _isKind(typeRef, KnownTypeKind.cqrs);
+  }
+
+  /// Deep check for whether this statement is/extends an Attribute type
+  bool isAttribute(Statement statement) {
+    return statement.hasDto() &&
+        statement.dto.typeDescriptor.extends_1.any(
+          (e) => _isKind(e, KnownTypeKind.attribute),
+        );
   }
 }

@@ -10,6 +10,7 @@ import 'package:dart_style/dart_style.dart';
 import 'package:json_serializable/builder.dart';
 import 'package:path/path.dart' as p;
 
+import 'attributes/attribute_creator.dart';
 import 'contracts_generator_config.dart';
 import 'errors/error_creator.dart';
 import 'generator_database.dart';
@@ -23,8 +24,6 @@ import 'types/generic_type_handler.dart';
 import 'types/internal_type_handler.dart';
 import 'types/known_type_handler.dart';
 import 'types/type_creator.dart';
-import 'types/type_handler.dart';
-import 'types/utils/known_type_kind.dart';
 import 'values/value_creator.dart';
 
 class ContractsGenerator {
@@ -33,18 +32,6 @@ class ContractsGenerator {
   final ContractsGeneratorConfig config;
 
   static final emitter = DartEmitter();
-
-  // TODO: for now attributes won't be generated
-  bool _isAttribute(Statement statement) {
-    // a statement is an attribute if it extends an attribute
-    // TODO: this should be a deep check, the extend might be higher in the tree
-    return statement.hasDto() &&
-        statement.dto.typeDescriptor.extends_1.isNotEmpty &&
-        statement.dto.typeDescriptor.extends_1.first.hasKnown() &&
-        knownTypeKind(
-                statement.dto.typeDescriptor.extends_1.first.known.type) ==
-            KnownTypeKind.attribute;
-  }
 
   /// generates `code_builder` structures that can still be modified
   Future<Library> generate() async {
@@ -57,16 +44,23 @@ class ContractsGenerator {
     ]);
     const valueCreator = ValueCreator();
     const errorCreator = ErrorCreator();
+    const attributeCreator = AttributeCreator(valueCreator);
     final statementCreator = StatementCreator([
-      DtoHandler(typeCreator, valueCreator, db),
-      QueryHandler(typeCreator, valueCreator, db),
-      CommandHandler(typeCreator, valueCreator, db, errorCreator),
-      EnumHandler(typeCreator, valueCreator, db),
+      DtoHandler(typeCreator, valueCreator, attributeCreator, db),
+      QueryHandler(typeCreator, valueCreator, attributeCreator, db),
+      CommandHandler(
+        typeCreator,
+        valueCreator,
+        attributeCreator,
+        db,
+        errorCreator,
+      ),
+      EnumHandler(typeCreator, valueCreator, attributeCreator, db),
     ]);
 
     final body = [
       for (final statement in db.statements)
-        if (db.shouldInclude(statement.name) && !_isAttribute(statement))
+        if (db.shouldInclude(statement.name) && !db.isAttribute(statement))
           statementCreator.create(statement)
     ];
 

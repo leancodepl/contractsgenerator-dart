@@ -67,7 +67,3 @@ Future<void> main(List<String> arguments) async {
   await generator.writeAll();
 }
 ```
-
-## Todo
-
-- Attributes. Currently completely ignored

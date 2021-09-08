@@ -1,3 +1,7 @@
+# Unreleased
+
+- Attributes are now generated as dartdoc unless there exists a known mapping to an existing dart annotation. For now `@[Dd]eprecated` is the only known mapping
+
 # 0.2.1
 
 - Rename identifiers that would cause syntax errors
