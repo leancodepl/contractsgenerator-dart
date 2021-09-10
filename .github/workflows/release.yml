@@ -24,6 +24,4 @@ jobs:
 
       - name: Publish to pub.dev
         run: |
-          # .pubignore does not work for some reason
-          rm -rf contractsgenerator
           dart pub publish -f

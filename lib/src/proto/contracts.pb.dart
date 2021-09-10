@@ -340,7 +340,10 @@ class ValueRef extends $pb.GeneratedMessage {
     5: ValueRef_Value.bool_5,
     0: ValueRef_Value.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ValueRef',
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'ValueRef',
       package: const $pb.PackageName(
           const $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
@@ -348,19 +351,36 @@ class ValueRef extends $pb.GeneratedMessage {
       createEmptyInstance: create)
     ..oo(0, [1, 2, 3, 4, 5])
     ..aOM<ValueRef_Null>(
-        1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'null',
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'null',
         subBuilder: ValueRef_Null.create)
     ..aOM<ValueRef_Number>(
-        2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'number',
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'number',
         subBuilder: ValueRef_Number.create)
     ..aOM<ValueRef_FloatingPointNumber>(
-        3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'floatingPoint',
+        3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'floatingPoint',
         protoName: 'floatingPoint',
         subBuilder: ValueRef_FloatingPointNumber.create)
     ..aOM<ValueRef_String>(
-        4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'string',
+        4,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'string',
         subBuilder: ValueRef_String.create)
-    ..aOM<ValueRef_Boolean>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'bool', subBuilder: ValueRef_Boolean.create)
+    ..aOM<ValueRef_Boolean>(
+        5,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'bool',
+        subBuilder: ValueRef_Boolean.create)
     ..hasRequiredFields = false;
 
   ValueRef._() : super();
@@ -648,13 +668,19 @@ class TypeRef_Known extends $pb.GeneratedMessage {
               : 'leancode.contracts'),
       createEmptyInstance: create)
     ..e<KnownType>(
-        1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'type', $pb.PbFieldType.OE,
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'type',
+        $pb.PbFieldType.OE,
         defaultOrMaker: KnownType.Object_,
         valueOf: KnownType.valueOf,
         enumValues: KnownType.values)
     ..pc<TypeRef>(
         2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'arguments',
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'arguments',
         $pb.PbFieldType.PM,
         subBuilder: TypeRef.create)
     ..hasRequiredFields = false;
@@ -725,29 +751,40 @@ class TypeRef extends $pb.GeneratedMessage {
     4: TypeRef_Type.known,
     0: TypeRef_Type.notSet
   };
-  static final $pb.BuilderInfo _i =
-      $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TypeRef',
-          package: const $pb.PackageName(
-              const $core.bool.fromEnvironment('protobuf.omit_message_names')
-                  ? ''
-                  : 'leancode.contracts'),
-          createEmptyInstance: create)
-        ..oo(0, [2, 3, 4])
-        ..aOB(
-            1,
-            const $core.bool.fromEnvironment('protobuf.omit_field_names')
-                ? ''
-                : 'nullable')
-        ..aOM<TypeRef_Generic>(
-            2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'generic',
-            subBuilder: TypeRef_Generic.create)
-        ..aOM<TypeRef_Internal>(
-            3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'internal',
-            subBuilder: TypeRef_Internal.create)
-        ..aOM<TypeRef_Known>(
-            4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'known',
-            subBuilder: TypeRef_Known.create)
-        ..hasRequiredFields = false;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'TypeRef',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..oo(0, [2, 3, 4])
+    ..aOB(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'nullable')
+    ..aOM<TypeRef_Generic>(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'generic',
+        subBuilder: TypeRef_Generic.create)
+    ..aOM<TypeRef_Internal>(
+        3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'internal',
+        subBuilder: TypeRef_Internal.create)
+    ..aOM<TypeRef_Known>(
+        4,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'known',
+        subBuilder: TypeRef_Known.create)
+    ..hasRequiredFields = false;
 
   TypeRef._() : super();
   factory TypeRef({
@@ -1137,7 +1174,10 @@ class AttributeArgument extends $pb.GeneratedMessage {
             : 'positional',
         subBuilder: AttributeArgument_Positional.create)
     ..aOM<AttributeArgument_Named>(
-        2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'named',
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'named',
         subBuilder: AttributeArgument_Named.create)
     ..hasRequiredFields = false;
 
@@ -1226,7 +1266,10 @@ class AttributeRef extends $pb.GeneratedMessage {
               : 'leancode.contracts'),
       createEmptyInstance: create)
     ..aOS(
-        1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'attributeName',
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'attributeName',
         protoName: 'attributeName')
     ..pc<AttributeArgument>(
         2,
@@ -1304,7 +1347,11 @@ class PropertyRef extends $pb.GeneratedMessage {
               ? ''
               : 'leancode.contracts'),
       createEmptyInstance: create)
-    ..aOM<TypeRef>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'type',
+    ..aOM<TypeRef>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'type',
         subBuilder: TypeRef.create)
     ..aOS(
         2,
@@ -1312,9 +1359,17 @@ class PropertyRef extends $pb.GeneratedMessage {
             ? ''
             : 'name')
     ..pc<AttributeRef>(
-        3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'attributes', $pb.PbFieldType.PM,
+        3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'attributes',
+        $pb.PbFieldType.PM,
         subBuilder: AttributeRef.create)
-    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'comment')
+    ..aOS(
+        4,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'comment')
     ..hasRequiredFields = false;
 
   PropertyRef._() : super();
@@ -1423,7 +1478,10 @@ class ConstantRef extends $pb.GeneratedMessage {
             ? ''
             : 'name')
     ..aOM<ValueRef>(
-        2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'value',
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'value',
         subBuilder: ValueRef.create)
     ..aOS(
         3,
@@ -1728,11 +1786,16 @@ class ErrorCode_Group extends $pb.GeneratedMessage {
             ? ''
             : 'name')
     ..aOS(
-        2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'groupId',
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'groupId',
         protoName: 'groupId')
     ..pc<ErrorCode>(
         3,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'innerCodes',
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'innerCodes',
         $pb.PbFieldType.PM,
         protoName: 'innerCodes',
         subBuilder: ErrorCode.create)
@@ -1836,7 +1899,10 @@ class ErrorCode extends $pb.GeneratedMessage {
             : 'single',
         subBuilder: ErrorCode_Single.create)
     ..aOM<ErrorCode_Group>(
-        2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'group',
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'group',
         subBuilder: ErrorCode_Group.create)
     ..hasRequiredFields = false;
 
@@ -1923,16 +1989,34 @@ class TypeDescriptor extends $pb.GeneratedMessage {
               : 'leancode.contracts'),
       createEmptyInstance: create)
     ..pc<TypeRef>(
-        1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'extends', $pb.PbFieldType.PM,
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'extends',
+        $pb.PbFieldType.PM,
         subBuilder: TypeRef.create)
     ..pc<GenericParameter>(
         2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'genericParameters',
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'genericParameters',
         $pb.PbFieldType.PM,
         protoName: 'genericParameters',
         subBuilder: GenericParameter.create)
-    ..pc<PropertyRef>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'properties', $pb.PbFieldType.PM, subBuilder: PropertyRef.create)
-    ..pc<ConstantRef>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'constants', $pb.PbFieldType.PM, subBuilder: ConstantRef.create)
+    ..pc<PropertyRef>(
+        3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'properties',
+        $pb.PbFieldType.PM,
+        subBuilder: PropertyRef.create)
+    ..pc<ConstantRef>(
+        4,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'constants',
+        $pb.PbFieldType.PM,
+        subBuilder: ConstantRef.create)
     ..hasRequiredFields = false;
 
   TypeDescriptor._() : super();
@@ -2146,8 +2230,12 @@ class Statement_Query extends $pb.GeneratedMessage {
         protoName: 'typeDescriptor',
         subBuilder: TypeDescriptor.create)
     ..aOM<TypeRef>(
-        2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'returnType',
-        protoName: 'returnType', subBuilder: TypeRef.create)
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'returnType',
+        protoName: 'returnType',
+        subBuilder: TypeRef.create)
     ..hasRequiredFields = false;
 
   Statement_Query._() : super();
@@ -2231,8 +2319,12 @@ class Statement_Command extends $pb.GeneratedMessage {
               : 'leancode.contracts'),
       createEmptyInstance: create)
     ..aOM<TypeDescriptor>(
-        1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'typeDescriptor',
-        protoName: 'typeDescriptor', subBuilder: TypeDescriptor.create)
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'typeDescriptor',
+        protoName: 'typeDescriptor',
+        subBuilder: TypeDescriptor.create)
     ..pc<ErrorCode>(
         2,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -2313,7 +2405,10 @@ class Statement extends $pb.GeneratedMessage {
     13: Statement_Content.command,
     0: Statement_Content.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Statement',
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'Statement',
       package: const $pb.PackageName(
           const $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
@@ -2331,16 +2426,36 @@ class Statement extends $pb.GeneratedMessage {
             ? ''
             : 'comment')
     ..pc<AttributeRef>(
-        3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'attributes', $pb.PbFieldType.PM,
+        3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'attributes',
+        $pb.PbFieldType.PM,
         subBuilder: AttributeRef.create)
     ..aOM<Statement_DTO>(
-        10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'dto',
+        10,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'dto',
         subBuilder: Statement_DTO.create)
     ..aOM<Statement_Enum>(
-        11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'enum',
+        11,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'enum',
         subBuilder: Statement_Enum.create)
-    ..aOM<Statement_Query>(12, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'query', subBuilder: Statement_Query.create)
-    ..aOM<Statement_Command>(13, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'command', subBuilder: Statement_Command.create)
+    ..aOM<Statement_Query>(
+        12,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'query',
+        subBuilder: Statement_Query.create)
+    ..aOM<Statement_Command>(
+        13,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'command',
+        subBuilder: Statement_Command.create)
     ..hasRequiredFields = false;
 
   Statement._() : super();
@@ -2500,14 +2615,27 @@ class Export extends $pb.GeneratedMessage {
               ? ''
               : 'leancode.contracts'),
       createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'projectName',
+    ..aOS(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'projectName',
         protoName: 'projectName')
     ..pc<Statement>(
-        2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'statements', $pb.PbFieldType.PM,
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'statements',
+        $pb.PbFieldType.PM,
         subBuilder: Statement.create)
     ..pc<ErrorCode_Group>(
-        3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'knownErrorGroups', $pb.PbFieldType.PM,
-        protoName: 'knownErrorGroups', subBuilder: ErrorCode_Group.create)
+        3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'knownErrorGroups',
+        $pb.PbFieldType.PM,
+        protoName: 'knownErrorGroups',
+        subBuilder: ErrorCode_Group.create)
     ..hasRequiredFields = false;
 
   Export._() : super();
