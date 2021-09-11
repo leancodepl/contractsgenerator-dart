@@ -31,7 +31,7 @@ class KnownResultFactoryHandler extends ResultFactoryHandler {
       case KnownType.UInt32:
       case KnownType.Int64:
       case KnownType.UInt64:
-        final outType = KnownTypeHandler.knownTypeToDartType[known.type];
+        final outType = KnownTypeHandler.toDartType(known.type);
 
         return '$paramName as $outType$q';
 
