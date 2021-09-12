@@ -8,6 +8,42 @@ part 'cool_name.g.dart';
 
 final _ = EquatableConfig.stringify = true;
 
+class DurationJsonConverter extends JsonConverter<Duration, String> {
+  const DurationJsonConverter();
+
+  Duration fromJson(String json) {
+    final parser = RegExp(r'^-?((\d+)\.)?(\d\d):(\d\d):(\d\d)(\.(\d+))?$');
+    final m = parser.firstMatch(json)!;
+    return Duration(
+          days: int.parse(m[2] ?? '0'),
+          hours: int.parse(m[3]!),
+          minutes: int.parse(m[4]!),
+          seconds: int.parse(m[5]!),
+          microseconds: int.parse(m[7] ?? '0') ~/ 10,
+        ) *
+        (json.startsWith('-') ? -1 : 1);
+  }
+
+  String toJson(Duration value) {
+    if (value.isNegative) return '-${toJson(-value)}';
+
+    return '${value.inDays}.'
+        '${value.inHours % Duration.hoursPerDay}:'
+        '${value.inMinutes % Duration.minutesPerHour}:'
+        '${value.inSeconds % Duration.secondsPerMinute}.'
+        '${(value.inMicroseconds % Duration.microsecondsPerSecond).toString().padLeft(6, '0')}';
+  }
+}
+
+class NullableDurationJsonConverter extends JsonConverter<Duration?, String?> {
+  const NullableDurationJsonConverter();
+
+  Duration? fromJson(String? json) =>
+      json == null ? null : const DurationJsonConverter().fromJson(json);
+  String? toJson(Duration? value) =>
+      value == null ? null : const DurationJsonConverter().toJson(value);
+}
+
 /// [TimeOfDay] but with seconds precision
 class Time with EquatableMixin {
   const Time(this.hour, this.minute, this.second)

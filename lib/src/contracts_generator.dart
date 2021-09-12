@@ -14,6 +14,7 @@ import 'attributes/attribute_creator.dart';
 import 'contracts_generator_config.dart';
 import 'errors/error_creator.dart';
 import 'generator_database.dart';
+import 'json_converters/json_converters.dart';
 import 'statements/command_handler.dart';
 import 'statements/dto_handler.dart';
 import 'statements/enum_handler.dart';
@@ -37,6 +38,7 @@ class ContractsGenerator {
   Future<Library> generate() async {
     final db = await GeneratorDatabase.fromConfig(config);
 
+    final jsonConverters = JsonConverters();
     final typeCreator = TypeCreator([
       const KnownTypeHandler(),
       const GenericTypeHandler(),
@@ -46,16 +48,35 @@ class ContractsGenerator {
     const errorCreator = ErrorCreator();
     const attributeCreator = AttributeCreator(valueCreator);
     final statementCreator = StatementCreator([
-      DtoHandler(typeCreator, valueCreator, attributeCreator, db),
-      QueryHandler(typeCreator, valueCreator, attributeCreator, db),
+      DtoHandler(
+        typeCreator,
+        valueCreator,
+        attributeCreator,
+        jsonConverters,
+        db,
+      ),
+      QueryHandler(
+        typeCreator,
+        valueCreator,
+        attributeCreator,
+        jsonConverters,
+        db,
+      ),
       CommandHandler(
         typeCreator,
         valueCreator,
         attributeCreator,
+        jsonConverters,
         db,
         errorCreator,
       ),
-      EnumHandler(typeCreator, valueCreator, attributeCreator, db),
+      EnumHandler(
+        typeCreator,
+        valueCreator,
+        attributeCreator,
+        jsonConverters,
+        db,
+      ),
     ]);
 
     final body = [
@@ -75,6 +96,7 @@ class ContractsGenerator {
           Code('\n\n${config.extra}\n\n'),
           // hack to run code in the top level
           const Code('final _ = EquatableConfig.stringify = true;'),
+          ...jsonConverters.converters,
           timeClass,
           ...body,
         ])
