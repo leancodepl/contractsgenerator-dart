@@ -37,7 +37,9 @@ Future<void> assertNoStagedGit() async {
 
 class Version {
   const Version(this.major, this.minor, this.patch);
-  final int major, minor, patch;
+  final int major;
+  final int minor;
+  final int patch;
 
   @override
   String toString() => '$major.$minor.$patch';
