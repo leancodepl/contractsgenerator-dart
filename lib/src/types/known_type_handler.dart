@@ -26,7 +26,6 @@ class KnownTypeHandler extends TypeHandler {
       case KnownType.Object_:
         return 'Object';
       case KnownType.String:
-        return 'String';
       case KnownType.Guid:
         return 'String';
       case KnownType.Uri:
@@ -34,36 +33,26 @@ class KnownTypeHandler extends TypeHandler {
       case KnownType.Boolean:
         return 'bool';
       case KnownType.UInt8:
-        return 'int';
       case KnownType.Int8:
-        return 'int';
       case KnownType.Int16:
-        return 'int';
       case KnownType.UInt16:
-        return 'int';
       case KnownType.Int32:
-        return 'int';
       case KnownType.UInt32:
-        return 'int';
       case KnownType.Int64:
-        return 'int';
       case KnownType.UInt64:
         return 'int';
       case KnownType.Float:
-        return 'double';
       case KnownType.Double:
-        return 'double';
       case KnownType.Decimal:
         return 'double';
-      case KnownType.Date:
-        return 'DateTime';
       case KnownType.Time:
         return timeClassName;
       case KnownType.TimeSpan:
         return 'Duration';
+      case KnownType.Date:
       case KnownType.DateTime:
-        return 'DateTime';
       case KnownType.DateTimeOffset:
+      case KnownType.DateOnly:
         return 'DateTime';
       case KnownType.Array:
         return 'List';
@@ -75,7 +64,6 @@ class KnownTypeHandler extends TypeHandler {
         return 'IRemoteCommand';
       case KnownType.CommandResult:
         return 'CommandResult';
-      case KnownType.DateOnly:
       case KnownType.TimeOnly:
       case KnownType.AuthorizeWhenAttribute:
       case KnownType.AuthorizeWhenHasAnyOfAttribute:

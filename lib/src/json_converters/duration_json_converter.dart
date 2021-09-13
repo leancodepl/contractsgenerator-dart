@@ -32,8 +32,7 @@ Class _create({required bool nullable}) {
                 nullable
                     ? 'json == null ? null : const DurationJsonConverter().fromJson(json)'
                     : r'''
-                final parser = RegExp(r'^-?((\d+)\.)?(\d\d):(\d\d):(\d\d)(\.(\d+))?$');
-                final m = parser.firstMatch(json)!;
+                final m = RegExp(r'^-?((\d+)\.)?(\d\d):(\d\d):(\d\d)(\.(\d+))?$').firstMatch(json)!;
                 return Duration(
                   days: int.parse(m[2] ?? '0'),
                   hours: int.parse(m[3]!),

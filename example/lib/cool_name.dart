@@ -12,8 +12,8 @@ class DurationJsonConverter extends JsonConverter<Duration, String> {
   const DurationJsonConverter();
 
   Duration fromJson(String json) {
-    final parser = RegExp(r'^-?((\d+)\.)?(\d\d):(\d\d):(\d\d)(\.(\d+))?$');
-    final m = parser.firstMatch(json)!;
+    final m = RegExp(r'^-?((\d+)\.)?(\d\d):(\d\d):(\d\d)(\.(\d+))?$')
+        .firstMatch(json)!;
     return Duration(
           days: int.parse(m[2] ?? '0'),
           hours: int.parse(m[3]!),
