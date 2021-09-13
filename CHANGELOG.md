@@ -1,3 +1,7 @@
+# Unreleased
+
+- Relax `json_serializable` version requirement (now both `4.x.x` and `5.x.x` is accepted)
+
 # 0.2.2
 
 - Attributes are now generated as dartdoc unless there exists a known mapping to an existing dart annotation. For now `@[Dd]eprecated` is the only known mapping
