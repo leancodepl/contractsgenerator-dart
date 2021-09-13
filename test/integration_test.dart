@@ -2,6 +2,7 @@
 import 'dart:io';
 
 import 'package:contracts_generator/contracts_generator.dart';
+import 'package:contracts_generator/src/time_class.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
@@ -56,7 +57,7 @@ void main() {
         import 'contracts.dart';
 
         void main() {
-          print(Time(0, 0, 0));
+          print($timeClassName(Duration.zero));
         }
         ''',
         );

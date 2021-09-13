@@ -1,3 +1,4 @@
+import 'package:cqrs/cqrs.dart';
 import 'package:cqrs/contracts.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:equatable/equatable.dart';
@@ -44,31 +45,28 @@ class NullableDurationJsonConverter extends JsonConverter<Duration?, String?> {
       value == null ? null : const DurationJsonConverter().toJson(value);
 }
 
-/// [TimeOfDay] but with seconds precision
-class Time with EquatableMixin {
-  const Time(this.hour, this.minute, this.second)
-      : assert(hour >= 0 && hour <= 23),
-        assert(minute >= 0 && minute <= 59),
-        assert(second >= 0 && second <= 59);
+/// [TimeOfDay] but with microseconds precision
+class TimeOnly with EquatableMixin {
+  TimeOnly(this._source)
+      : assert(_source < const Duration(days: 1) && !_source.isNegative);
 
-  factory Time.fromJson(String json) {
-    final chunks = json.split(':');
-    return Time(
-      int.parse(chunks[0]),
-      int.parse(chunks[1]),
-      int.parse(chunks[2]),
-    );
-  }
+  TimeOnly.fromJson(String json)
+      : this(const DurationJsonConverter().fromJson(json));
 
-  final int hour;
+  final Duration _source;
 
-  final int minute;
+  int get hour => _source.inHours % Duration.hoursPerDay;
 
-  final int second;
+  int get minute => _source.inMinutes % Duration.minutesPerHour;
 
-  get props => [hour, minute, second];
+  int get second => _source.inSeconds % Duration.secondsPerMinute;
 
-  String toJson() => '$hour:$minute:$second';
+  int get microsecond =>
+      _source.inMicroseconds % Duration.microsecondsPerSecond;
+
+  get props => [_source];
+
+  String toJson() => const DurationJsonConverter().toJson(_source);
 }
 
 @JsonSerializable(fieldRename: FieldRename.pascal)

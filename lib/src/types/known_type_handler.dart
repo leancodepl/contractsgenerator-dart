@@ -45,6 +45,7 @@ class KnownTypeHandler extends TypeHandler {
       case KnownType.Double:
       case KnownType.Decimal:
         return 'double';
+      case KnownType.TimeOnly:
       case KnownType.Time:
         return timeClassName;
       case KnownType.TimeSpan:
@@ -64,7 +65,6 @@ class KnownTypeHandler extends TypeHandler {
         return 'IRemoteCommand';
       case KnownType.CommandResult:
         return 'CommandResult';
-      case KnownType.TimeOnly:
       case KnownType.AuthorizeWhenAttribute:
       case KnownType.AuthorizeWhenHasAnyOfAttribute:
       case KnownType.QueryCacheAttribute:
