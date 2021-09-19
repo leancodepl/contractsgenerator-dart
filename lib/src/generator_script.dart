@@ -35,7 +35,7 @@ class GeneratorScript {
   final List<String> args;
   final String? overrideGeneratorVersion;
 
-  static const supportedVersion = '0.1.0-alpha7';
+  static const supportedVersion = '0.1.0-alpha10';
 
   static const String _script = _$script;
 

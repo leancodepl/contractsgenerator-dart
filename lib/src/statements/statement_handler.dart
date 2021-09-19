@@ -43,11 +43,12 @@ abstract class StatementHandler {
 
     final name = db.resolveName(statement.name);
     final typeDescriptor = typeDescriptorOf(statement)!;
+    final properties = db.allPropertiesOf(statement);
 
-    final parameters = typeDescriptor.properties.map(_createParameter).toList();
+    final parameters = properties.map(_createParameter).toList();
     if (parameters.isNotEmpty) {
       parameters[parameters.length - 1] = _createParameter(
-        typeDescriptor.properties.last,
+        properties.last,
         addTrailingComma: true,
       );
     }
@@ -56,7 +57,7 @@ abstract class StatementHandler {
         .map((e) => _GenericFactory(e.name))
         .toList();
 
-    final neededConverters = typeDescriptor.properties
+    final neededConverters = properties
         .map((p) => jsonConverters.getConverter(p.type))
         .whereType<Class>()
         .toSet();
@@ -66,12 +67,12 @@ abstract class StatementHandler {
         ..name = name
         ..fields.addAll([
           ...typeDescriptor.constants.map(_createConstant),
-          ...typeDescriptor.properties.map(_createField),
+          ...properties.map(_createField),
           // workaround to generate a getter
           Field(
             (b) => b
               ..name =
-                  'get props => [${typeDescriptor.properties.map((e) => renameField(e.name)).join(',')}]'
+                  'get props => [${properties.map((e) => renameField(e.name)).join(',')}]'
               ..type = refer(''),
           ),
         ])

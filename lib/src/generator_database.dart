@@ -1,5 +1,6 @@
 import 'dart:collection';
 
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 
 import 'contracts_generator_config.dart';
@@ -137,5 +138,34 @@ class GeneratorDatabase {
         statement.dto.typeDescriptor.extends_1.any(
           (e) => _isKind(e, KnownTypeKind.attribute),
         );
+  }
+
+  final _allPropsCache = HashMap<String, List<PropertyRef>>();
+
+  /// Follows the inheritance tree to retrieve all properties of the given statement
+  List<PropertyRef> allPropertiesOf(Statement statement) {
+    if (_allPropsCache.containsKey(statement.name)) {
+      return _allPropsCache[statement.name]!;
+    }
+
+    final typeDescriptor = typeDescriptorOf(statement);
+
+    if (typeDescriptor == null) {
+      return _allPropsCache[statement.name] = [];
+    }
+
+    final parents = typeDescriptor.extends_1
+        .where((typeRef) => typeRef.hasInternal())
+        .map((typeRef) => find(typeRef.ensureInternal().name))
+        .whereNotNull();
+
+    final properties = [
+      ...typeDescriptor.properties,
+      ...parents.expand(allPropertiesOf),
+    ];
+
+    // TODO: resolve all generics
+
+    return _allPropsCache[statement.name] = properties;
   }
 }

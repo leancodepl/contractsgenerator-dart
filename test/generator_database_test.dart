@@ -5,23 +5,25 @@ import 'package:contracts_generator/src/generator_script.dart';
 import 'package:contracts_generator/src/proto/contracts.pb.dart';
 import 'package:test/test.dart';
 
-void main() {
-  GeneratorDatabase makeDb({
-    RegExp? include,
-    Set<String> statements = const {},
-    List<Statement>? rawStatements,
-  }) =>
-      GeneratorDatabase(
-        ContractsGeneratorConfig(
-          input: GeneratorScript.project([]),
-          include: include,
-        ),
-        Export(
-          statements:
-              rawStatements ?? statements.map((e) => Statement(name: e)),
-        ),
-      );
+GeneratorDatabase makeDb({
+  RegExp? include,
+  Set<String> statements = const {},
+  List<Statement>? rawStatements,
+}) =>
+    GeneratorDatabase(
+      ContractsGeneratorConfig(
+        input: GeneratorScript.project([]),
+        include: include,
+      ),
+      Export(
+        statements: rawStatements ?? statements.map((e) => Statement(name: e)),
+      ),
+    );
 
+TypeRef typeRefOf(String name) =>
+    TypeRef(internal: TypeRef_Internal(name: name));
+
+void main() {
   group('generator database', () {
     group('shouldInclude', () {
       test('classifies correctly', () {
@@ -93,9 +95,6 @@ void main() {
     });
 
     group('isCqrs', () {
-      TypeRef typeRefOf(String name) =>
-          TypeRef(internal: TypeRef_Internal(name: name));
-
       test('classifies correctly', () {
         final cqrsType = TypeRef(known: TypeRef_Known(type: KnownType.Command));
         final extending = Statement(
@@ -146,6 +145,135 @@ void main() {
         expect(db.isCqrs(differentKnownTypeKind), false);
         expect(db.isCqrs(genericType), false);
         expect(db.isCqrs(typeRefOf('nonCqrsStatement')), false);
+      });
+    });
+
+    group('allPropertiesOf', () {
+      test('gets one level deep', () {
+        final type = TypeRef(known: TypeRef_Known(type: KnownType.Command));
+        final properties = [
+          PropertyRef(name: 'prop1', type: type),
+          PropertyRef(name: 'prop2', type: type),
+        ];
+        final simple = Statement(
+          name: 'simple',
+          dto: Statement_DTO(
+            typeDescriptor: TypeDescriptor(properties: properties),
+          ),
+        );
+
+        final db = makeDb(
+          rawStatements: [simple],
+        );
+
+        expect(db.allPropertiesOf(simple), properties);
+      });
+
+      test('gets from linear inheritance', () {
+        final type = TypeRef(known: TypeRef_Known(type: KnownType.Command));
+        final properties1 = [
+          PropertyRef(name: 'prop1', type: type),
+          PropertyRef(name: 'prop2', type: type),
+        ];
+        final simple1 = Statement(
+          name: 'simple1',
+          dto: Statement_DTO(
+            typeDescriptor: TypeDescriptor(
+              properties: properties1,
+              extends_1: [typeRefOf('simple2')],
+            ),
+          ),
+        );
+        final properties2 = [
+          PropertyRef(name: 'prop3', type: type),
+          PropertyRef(name: 'prop4', type: type),
+        ];
+        final simple2 = Statement(
+          name: 'simple2',
+          dto: Statement_DTO(
+            typeDescriptor: TypeDescriptor(
+              properties: properties2,
+              extends_1: [typeRefOf('simple3')],
+            ),
+          ),
+        );
+        final properties3 = [
+          PropertyRef(name: 'prop5', type: type),
+          PropertyRef(name: 'prop6', type: type),
+        ];
+        final simple3 = Statement(
+          name: 'simple3',
+          dto: Statement_DTO(
+            typeDescriptor: TypeDescriptor(properties: properties3),
+          ),
+        );
+
+        final db = makeDb(
+          rawStatements: [
+            simple1,
+            simple2,
+            simple3,
+          ],
+        );
+
+        expect(
+          db.allPropertiesOf(simple1),
+          properties1 + properties2 + properties3,
+        );
+        expect(db.allPropertiesOf(simple2), properties2 + properties3);
+        expect(db.allPropertiesOf(simple3), properties3);
+      });
+
+      test('gets from multi inheritance', () {
+        final type = TypeRef(known: TypeRef_Known(type: KnownType.Command));
+        final properties1 = [
+          PropertyRef(name: 'prop1', type: type),
+          PropertyRef(name: 'prop2', type: type),
+        ];
+        final simple1 = Statement(
+          name: 'simple1',
+          dto: Statement_DTO(
+            typeDescriptor: TypeDescriptor(
+              properties: properties1,
+              extends_1: [typeRefOf('simple2'), typeRefOf('simple3')],
+            ),
+          ),
+        );
+        final properties2 = [
+          PropertyRef(name: 'prop3', type: type),
+          PropertyRef(name: 'prop4', type: type),
+        ];
+        final simple2 = Statement(
+          name: 'simple2',
+          dto: Statement_DTO(
+            typeDescriptor: TypeDescriptor(properties: properties2),
+          ),
+        );
+        final properties3 = [
+          PropertyRef(name: 'prop5', type: type),
+          PropertyRef(name: 'prop6', type: type),
+        ];
+        final simple3 = Statement(
+          name: 'simple3',
+          dto: Statement_DTO(
+            typeDescriptor: TypeDescriptor(properties: properties3),
+          ),
+        );
+
+        final db = makeDb(
+          rawStatements: [
+            simple1,
+            simple2,
+            simple3,
+          ],
+        );
+
+        expect(
+          db.allPropertiesOf(simple1),
+          properties1 + properties2 + properties3,
+        );
+        expect(db.allPropertiesOf(simple2), properties2);
+        expect(db.allPropertiesOf(simple3), properties3);
       });
     });
   });
