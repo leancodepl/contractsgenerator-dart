@@ -38,9 +38,8 @@ class KnownResultFactoryHandler extends ResultFactoryHandler {
 
         return '$paramName as $outType$q';
 
-      case KnownType.Float:
-      case KnownType.Double:
-      case KnownType.Decimal:
+      case KnownType.Float32:
+      case KnownType.Float64:
         return '($paramName as num$q)$q.toDouble()';
 
       case KnownType.Uri:

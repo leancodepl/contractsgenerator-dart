@@ -75,21 +75,16 @@ class KnownType extends $pb.ProtobufEnum {
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'UInt64');
-  static const KnownType Float = KnownType._(
+  static const KnownType Float32 = KnownType._(
       150,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
-          : 'Float');
-  static const KnownType Double = KnownType._(
+          : 'Float32');
+  static const KnownType Float64 = KnownType._(
       151,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
-          : 'Double');
-  static const KnownType Decimal = KnownType._(
-      152,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'Decimal');
+          : 'Float64');
   static const KnownType DateOnly = KnownType._(
       200,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
@@ -185,9 +180,8 @@ class KnownType extends $pb.ProtobufEnum {
     UInt32,
     Int64,
     UInt64,
-    Float,
-    Double,
-    Decimal,
+    Float32,
+    Float64,
     DateOnly,
     TimeOnly,
     DateTime,

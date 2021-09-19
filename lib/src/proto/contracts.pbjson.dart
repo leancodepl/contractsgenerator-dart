@@ -26,9 +26,8 @@ const KnownType$json = const {
     const {'1': 'UInt32', '2': 105},
     const {'1': 'Int64', '2': 106},
     const {'1': 'UInt64', '2': 107},
-    const {'1': 'Float', '2': 150},
-    const {'1': 'Double', '2': 151},
-    const {'1': 'Decimal', '2': 152},
+    const {'1': 'Float32', '2': 150},
+    const {'1': 'Float64', '2': 151},
     const {'1': 'DateOnly', '2': 200},
     const {'1': 'TimeOnly', '2': 201},
     const {'1': 'DateTime', '2': 202},
@@ -50,7 +49,7 @@ const KnownType$json = const {
 
 /// Descriptor for `KnownType`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List knownTypeDescriptor = $convert.base64Decode(
-    'CglLbm93blR5cGUSCgoGT2JqZWN0EAASCgoGU3RyaW5nEAESCAoER3VpZBADEgcKA1VyaRAEEgsKB0Jvb2xlYW4QBRIJCgVVSW50OBBkEggKBEludDgQZRIJCgVJbnQxNhBmEgoKBlVJbnQxNhBnEgkKBUludDMyEGgSCgoGVUludDMyEGkSCQoFSW50NjQQahIKCgZVSW50NjQQaxIKCgVGbG9hdBCWARILCgZEb3VibGUQlwESDAoHRGVjaW1hbBCYARINCghEYXRlT25seRDIARINCghUaW1lT25seRDJARINCghEYXRlVGltZRDKARITCg5EYXRlVGltZU9mZnNldBDLARINCghUaW1lU3BhbhDMARIJCgREYXRlEM0BEgkKBFRpbWUQzgESCgoFQXJyYXkQrAISCAoDTWFwEK0CEgoKBVF1ZXJ5EOgHEgwKB0NvbW1hbmQQ6QcSEgoNQ29tbWFuZFJlc3VsdBDqBxIOCglBdHRyaWJ1dGUQzAgSGwoWQXV0aG9yaXplV2hlbkF0dHJpYnV0ZRDNCBIjCh5BdXRob3JpemVXaGVuSGFzQW55T2ZBdHRyaWJ1dGUQzggSGAoTUXVlcnlDYWNoZUF0dHJpYnV0ZRDPCA==');
+    'CglLbm93blR5cGUSCgoGT2JqZWN0EAASCgoGU3RyaW5nEAESCAoER3VpZBADEgcKA1VyaRAEEgsKB0Jvb2xlYW4QBRIJCgVVSW50OBBkEggKBEludDgQZRIJCgVJbnQxNhBmEgoKBlVJbnQxNhBnEgkKBUludDMyEGgSCgoGVUludDMyEGkSCQoFSW50NjQQahIKCgZVSW50NjQQaxIMCgdGbG9hdDMyEJYBEgwKB0Zsb2F0NjQQlwESDQoIRGF0ZU9ubHkQyAESDQoIVGltZU9ubHkQyQESDQoIRGF0ZVRpbWUQygESEwoORGF0ZVRpbWVPZmZzZXQQywESDQoIVGltZVNwYW4QzAESCQoERGF0ZRDNARIJCgRUaW1lEM4BEgoKBUFycmF5EKwCEggKA01hcBCtAhIKCgVRdWVyeRDoBxIMCgdDb21tYW5kEOkHEhIKDUNvbW1hbmRSZXN1bHQQ6gcSDgoJQXR0cmlidXRlEMwIEhsKFkF1dGhvcml6ZVdoZW5BdHRyaWJ1dGUQzQgSIwoeQXV0aG9yaXplV2hlbkhhc0FueU9mQXR0cmlidXRlEM4IEhgKE1F1ZXJ5Q2FjaGVBdHRyaWJ1dGUQzwg=');
 @$core.Deprecated('Use valueRefDescriptor instead')
 const ValueRef$json = const {
   '1': 'ValueRef',
