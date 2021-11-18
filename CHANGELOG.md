@@ -1,4 +1,4 @@
-# Unreleased
+# 0.2.4
 
 - Relax `json_serializable` version requirement (now `4.x.x`, `5.x.x`, and `6.x.x` are accepted)
 
