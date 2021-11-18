@@ -1,5 +1,6 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:meta/meta.dart';
+import 'package:source_helper/source_helper.dart';
 
 import '../attributes/attribute_creator.dart';
 import '../generator_database.dart';
@@ -163,7 +164,8 @@ abstract class StatementHandler {
   Field _createField(PropertyRef prop) {
     final type = typeCreator.create(prop.type);
     final renamed = renameField(prop.name);
-    final needsExplicitRename = pascalCase(renamed) != prop.name;
+
+    final needsExplicitRename = renamed.pascal != prop.name;
 
     return Field(
       (b) => b
