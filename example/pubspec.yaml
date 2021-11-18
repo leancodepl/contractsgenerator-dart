@@ -9,6 +9,6 @@ environment:
 dependencies:
   cqrs: ^6.0.0
   equatable: ^2.0.3
-  json_annotation: ^4.0.1
+  json_annotation: ^4.3.0
   contracts_generator:
     path: ..
