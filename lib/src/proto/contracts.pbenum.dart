@@ -90,16 +90,16 @@ class KnownType extends $pb.ProtobufEnum {
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'Decimal');
-  static const KnownType Date = KnownType._(
+  static const KnownType DateOnly = KnownType._(
       200,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
-          : 'Date');
-  static const KnownType Time = KnownType._(
+          : 'DateOnly');
+  static const KnownType TimeOnly = KnownType._(
       201,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
-          : 'Time');
+          : 'TimeOnly');
   static const KnownType DateTime = KnownType._(
       202,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
@@ -115,6 +115,16 @@ class KnownType extends $pb.ProtobufEnum {
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'TimeSpan');
+  static const KnownType Date = KnownType._(
+      205,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'Date');
+  static const KnownType Time = KnownType._(
+      206,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'Time');
   static const KnownType Array = KnownType._(
       300,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
@@ -135,26 +145,31 @@ class KnownType extends $pb.ProtobufEnum {
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'Command');
-  static const KnownType AuthorizeWhenAttribute = KnownType._(
+  static const KnownType CommandResult = KnownType._(
       1002,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'CommandResult');
+  static const KnownType Attribute = KnownType._(
+      1100,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'Attribute');
+  static const KnownType AuthorizeWhenAttribute = KnownType._(
+      1101,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'AuthorizeWhenAttribute');
   static const KnownType AuthorizeWhenHasAnyOfAttribute = KnownType._(
-      1003,
+      1102,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'AuthorizeWhenHasAnyOfAttribute');
   static const KnownType QueryCacheAttribute = KnownType._(
-      1004,
+      1103,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'QueryCacheAttribute');
-  static const KnownType Attribute = KnownType._(
-      1005,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'Attribute');
 
   static const $core.List<KnownType> values = <KnownType>[
     Object_,
@@ -173,19 +188,22 @@ class KnownType extends $pb.ProtobufEnum {
     Float,
     Double,
     Decimal,
-    Date,
-    Time,
+    DateOnly,
+    TimeOnly,
     DateTime,
     DateTimeOffset,
     TimeSpan,
+    Date,
+    Time,
     Array,
     Map,
     Query,
     Command,
+    CommandResult,
+    Attribute,
     AuthorizeWhenAttribute,
     AuthorizeWhenHasAnyOfAttribute,
     QueryCacheAttribute,
-    Attribute,
   ];
 
   static final $core.Map<$core.int, KnownType> _byValue =

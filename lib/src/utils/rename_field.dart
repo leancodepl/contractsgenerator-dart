@@ -1,7 +1,5 @@
 import 'package:recase/recase.dart';
 
-export 'package:json_serializable/src/utils.dart' show pascalCase;
-
 const _reservedKeywords = {
   'new',
   'default',

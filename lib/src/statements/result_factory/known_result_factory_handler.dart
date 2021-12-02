@@ -1,3 +1,4 @@
+import '../../json_converters/json_converters.dart';
 import '../../time_class.dart';
 import '../../types/known_type_handler.dart';
 import '../../types/utils/nullable_suffix.dart';
@@ -5,7 +6,9 @@ import 'result_factory_handler.dart';
 import 'utils/if_nullable_prefix.dart';
 
 class KnownResultFactoryHandler extends ResultFactoryHandler {
-  const KnownResultFactoryHandler();
+  const KnownResultFactoryHandler(this.jsonConverters);
+
+  final JsonConverters jsonConverters;
 
   @override
   String build(
@@ -31,7 +34,7 @@ class KnownResultFactoryHandler extends ResultFactoryHandler {
       case KnownType.UInt32:
       case KnownType.Int64:
       case KnownType.UInt64:
-        final outType = KnownTypeHandler.knownTypeToDartType[known.type];
+        final outType = KnownTypeHandler.toDartType(known.type);
 
         return '$paramName as $outType$q';
 
@@ -46,14 +49,15 @@ class KnownResultFactoryHandler extends ResultFactoryHandler {
       case KnownType.Date:
       case KnownType.DateTime:
       case KnownType.DateTimeOffset:
+      case KnownType.DateOnly:
         return '${ifNullablePrefix(typeRef, paramName)}DateTime.parse($paramName)';
 
+      case KnownType.TimeOnly:
       case KnownType.Time:
         return '${ifNullablePrefix(typeRef, paramName)}$timeClassName.fromJson($paramName)';
 
       case KnownType.TimeSpan:
-        // TODO: losing precision of a single magnitude (1us vs 100ns), fixing it would require making a custom type
-        return "${ifNullablePrefix(typeRef, paramName)}Duration(microseconds: (($paramName as Map<String, dynamic>)['Ticks'] as int) ~/ 10)";
+        return 'const ${jsonConverters.getConverter(typeRef)!.name}().fromJson($paramName as String$q)';
 
       case KnownType.Array:
         return '($paramName as Iterable<dynamic>$q)$q '
@@ -63,6 +67,9 @@ class KnownResultFactoryHandler extends ResultFactoryHandler {
         return '($paramName as Map$q)$q.map((dynamic k, dynamic v) => MapEntry( '
             '${ResultFactoryHandler.buildFrom(known.arguments[0], handlers, 'k')}, '
             '${ResultFactoryHandler.buildFrom(known.arguments[1], handlers, 'v')}),)';
+
+      case KnownType.CommandResult:
+        return '${ifNullablePrefix(typeRef, paramName)}CommandResult.fromJson($paramName)';
 
       case KnownType.Query:
       case KnownType.Command:
