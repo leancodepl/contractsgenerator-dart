@@ -52,8 +52,7 @@ class GeneratorScript {
 
     if (result.exitCode != 0) {
       throw ContractsGeneratorException(
-        // TODO: change stdout to stderr once https://github.com/leancodepl/contractsgenerator/issues/27 is released
-        'Generator script failed with: ${String.fromCharCodes(result.stdout as List<int>)}',
+        'Generator script failed with: ${String.fromCharCodes(result.stderr as List<int>)}',
       );
     }
 
