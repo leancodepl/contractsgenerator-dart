@@ -1,4 +1,4 @@
-# Unreleased
+# 0.3.0
 
 - **Breaking**: require .NET 6
 - Add support for `CommandResult`
