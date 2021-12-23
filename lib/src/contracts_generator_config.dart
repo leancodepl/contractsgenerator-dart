@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_dynamic_calls
+
 import 'dart:io';
 
 import 'package:collection/collection.dart';
@@ -108,7 +110,9 @@ extra: ""
   }
 
   static GeneratorScript? _configureProject(dynamic config) {
-    if (config['project'] == null) return null;
+    if (config['project'] == null) {
+      return null;
+    }
 
     return GeneratorScript.project(
       (config['project'] as List).cast<String>(),
@@ -117,7 +121,9 @@ extra: ""
   }
 
   static GeneratorScript? _configurePath(dynamic config) {
-    if (config['path'] == null) return null;
+    if (config['path'] == null) {
+      return null;
+    }
 
     final values = config['path'] as Map;
     return GeneratorScript.path(

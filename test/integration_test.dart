@@ -13,7 +13,9 @@ void main() {
 
   tearDown(() {
     final dir = Directory(outDir);
-    if (dir.existsSync()) dir.deleteSync(recursive: true);
+    if (dir.existsSync()) {
+      dir.deleteSync(recursive: true);
+    }
   });
 
   group('final contract compilation', () {

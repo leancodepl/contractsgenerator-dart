@@ -40,6 +40,8 @@ const _reservedKeywords = {
 /// Also renames potential keywords to avoid syntax errors.
 String renameField(String original) {
   final camelCase = ReCase(original).camelCase;
-  if (_reservedKeywords.contains(camelCase)) return '${camelCase}_';
+  if (_reservedKeywords.contains(camelCase)) {
+    return '${camelCase}_';
+  }
   return camelCase;
 }

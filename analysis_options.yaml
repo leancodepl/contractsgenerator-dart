@@ -1,21 +1,6 @@
-include: package:lint/analysis_options.yaml
+include: package:leancode_lint/analysis_options.yaml
 
 analyzer:
   exclude:
     - lib/src/proto/*
     - lib/**.g.dart
-  strong-mode:
-    implicit-dynamic: false
-
-linter:
-  rules:
-    sort_constructors_first: true
-    prefer_single_quotes: true
-    unnecessary_lambdas: true
-    literal_only_boolean_expressions: true
-    omit_local_variable_types: true
-    prefer_int_literals: true
-    unawaited_futures: true
-    use_key_in_widget_constructors: true
-    avoid_classes_with_only_static_members: false
-    prefer_relative_imports: true

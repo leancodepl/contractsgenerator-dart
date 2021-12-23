@@ -9,7 +9,9 @@ class JsonConverters {
   final converters = [durationJsonConverter, nullableDurationJsonConverter];
 
   Class? getConverter(TypeRef typeRef) {
-    if (!typeRef.hasKnown()) return null;
+    if (!typeRef.hasKnown()) {
+      return null;
+    }
 
     final knownType = typeRef.ensureKnown().type;
 
