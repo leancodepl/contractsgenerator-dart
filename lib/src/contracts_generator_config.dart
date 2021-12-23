@@ -80,7 +80,7 @@ input:
   #   - path1.csproj
   #   - path2.csproj
   # # Multiple files selected by glob patterns
-  # path: 
+  # path:
   #   # List of glob paths specifying which files should be included (required)
   #   include:
   #     - glob/**.cs
@@ -89,6 +89,8 @@ input:
   #     - glob/not_you.cs
   #   # The base directory used for globbing
   #   directory: .
+  # # Overrides the default backend generator version. Can lead to unexpected outputs.
+  # override_generator_version: "${GeneratorScript.supportedVersion}"
 # Name of the output dart file
 name: contracts
 # Regex to filter-in namespaced statements
@@ -101,11 +103,16 @@ directives: ""
 extra: ""
 ''';
 
+  static String? _getOverridenGeneratorVersion(dynamic config) {
+    return config['override_generator_version'] as String?;
+  }
+
   static GeneratorScript? _configureProject(dynamic config) {
     if (config['project'] == null) return null;
 
     return GeneratorScript.project(
       (config['project'] as List).cast<String>(),
+      overrideGeneratorVersion: _getOverridenGeneratorVersion(config),
     );
   }
 
@@ -117,6 +124,7 @@ extra: ""
       (values['include'] as List).cast<String>(),
       exclude: (values['exclude'] as List?)?.cast<String>(),
       directory: values['directory'] as String?,
+      overrideGeneratorVersion: _getOverridenGeneratorVersion(config),
     );
   }
 
