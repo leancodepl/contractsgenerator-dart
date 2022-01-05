@@ -143,7 +143,7 @@ class GeneratorDatabase {
 
   final _allPropsCache = HashMap<String, List<PropertyRef>>();
 
-  /// Follows the inheritance tree to retrieve all properties of the given statement.
+  /// Follows the extension tree to retrieve all properties of the given statement.
   /// Performs monomorphization.
   List<PropertyRef> allPropertiesOf(Statement statement) {
     if (_allPropsCache.containsKey(statement.name)) {
