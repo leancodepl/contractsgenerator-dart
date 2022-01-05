@@ -1,6 +1,8 @@
 import 'dart:collection';
 
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
+import 'package:protobuf/protobuf.dart';
 
 import 'contracts_generator_config.dart';
 import 'contracts_generator_exception.dart';
@@ -137,5 +139,120 @@ class GeneratorDatabase {
         statement.dto.typeDescriptor.extends_1.any(
           (e) => _isKind(e, KnownTypeKind.attribute),
         );
+  }
+
+  final _allPropsCache = HashMap<String, List<PropertyRef>>();
+
+  /// Follows the extension tree to retrieve all properties of the given statement.
+  /// Performs monomorphization.
+  List<PropertyRef> allPropertiesOf(Statement statement) {
+    if (_allPropsCache.containsKey(statement.name)) {
+      return _allPropsCache[statement.name]!;
+    }
+
+    final resolvedGenerics = typeDescriptorOf(statement)
+            ?.genericParameters
+            .fold<Map<String, TypeRef>>(
+          {},
+          (acc, curr) => {
+            ...acc,
+            // initially, generics should resolve to a generic
+            curr.name: TypeRef(
+              generic: TypeRef_Generic(name: curr.name),
+              nullable: false,
+            ),
+          },
+        ) ??
+        {};
+
+    return _allPropsCache[statement.name] =
+        _allPropertiesOfAux(statement, resolvedGenerics);
+  }
+
+  TypeRef _resolveType(TypeRef type, Map<String, TypeRef> generics) {
+    if (type.hasGeneric()) {
+      final arg = generics[type.generic.name];
+      if (arg == null) return type;
+
+      return arg
+        ..freeze()
+        ..rebuild((arg) {
+          arg.nullable = type.nullable || arg.nullable;
+        });
+    } else if (type.hasInternal()) {
+      return TypeRef(
+        nullable: type.nullable,
+        internal: TypeRef_Internal(
+          name: type.internal.name,
+          arguments: type.internal.arguments
+              .map((type) => _resolveType(type, generics)),
+        ),
+      );
+    } else if (type.hasKnown()) {
+      return TypeRef(
+        nullable: type.nullable,
+        known: TypeRef_Known(
+          type: type.known.type,
+          arguments:
+              type.known.arguments.map((type) => _resolveType(type, generics)),
+        ),
+      );
+    } else {
+      throw StateError('Unhandled TypeRef type');
+    }
+  }
+
+  /// Given a statement and a map of resolving generics (for example {'T': List<int>})
+  /// returns all properties of the statement with resolved generics
+  List<PropertyRef> _allPropertiesOfAux(
+    Statement statement,
+    Map<String, TypeRef> resolvedGenerics,
+  ) {
+    final typeDescriptor = typeDescriptorOf(statement);
+
+    if (typeDescriptor == null) {
+      return [];
+    }
+
+    final properties = typeDescriptor.extends_1
+        .where((typeRef) => typeRef.hasInternal())
+        .expand((typeRef) {
+          final internal = typeRef.ensureInternal();
+          final statement = find(internal.name);
+          if (statement == null) return <PropertyRef>[];
+
+          final resolvedGenerics = typeDescriptorOf(statement)
+                  ?.genericParameters
+                  .foldIndexed<Map<String, TypeRef>>(
+                {},
+                (i, acc, curr) => {
+                  ...acc,
+                  // get the concrete type from child's generic argument list
+                  curr.name: internal.arguments[i],
+                },
+              ) ??
+              {};
+
+          return _allPropertiesOfAux(statement, resolvedGenerics);
+        })
+        .followedBy(typeDescriptor.properties)
+        // remove duplicate properties which come from implementing an interface
+        .groupFoldBy(
+          (property) => property.name,
+          (_, property) => property,
+        )
+        .values
+        // resolve generics to concrete types
+        .map(
+          (property) => PropertyRef(
+            name: property.name,
+            attributes: property.attributes,
+            comment: property.comment,
+            type: _resolveType(property.type, resolvedGenerics),
+          ),
+        )
+        .toList();
+
+    return properties;
   }
 }

@@ -1,3 +1,10 @@
+# Unreleased
+
+- Drop support for `json_serializable: ^4.0.0`
+- Allow overriding generator version with `input.override_generator_version`
+- Support `LeanCode.ContractsGenerator` `v0.1.0-alpha10`
+  - Drop support for `System.decimal`
+
 # 0.3.0
 
 - **Breaking**: require .NET 6

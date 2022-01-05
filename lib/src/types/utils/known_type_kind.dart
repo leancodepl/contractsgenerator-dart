@@ -28,9 +28,8 @@ KnownTypeKind knownTypeKind(KnownType knownType) {
     case KnownType.UInt32:
     case KnownType.Int64:
     case KnownType.UInt64:
-    case KnownType.Float:
-    case KnownType.Double:
-    case KnownType.Decimal:
+    case KnownType.Float32:
+    case KnownType.Float64:
       return KnownTypeKind.primitive;
     case KnownType.Uri:
     case KnownType.Date:

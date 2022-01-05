@@ -35,7 +35,7 @@ class GeneratorScript {
   final List<String> args;
   final String? overrideGeneratorVersion;
 
-  static const supportedVersion = '0.1.0-alpha7';
+  static const supportedVersion = '0.1.0-alpha10';
 
   static const String _script = _$script;
 
@@ -52,8 +52,7 @@ class GeneratorScript {
 
     if (result.exitCode != 0) {
       throw ContractsGeneratorException(
-        // TODO: change stdout to stderr once https://github.com/leancodepl/contractsgenerator/issues/27 is released
-        'Generator script failed with: ${String.fromCharCodes(result.stdout as List<int>)}',
+        'Generator script failed with: ${String.fromCharCodes(result.stderr as List<int>)}',
       );
     }
 

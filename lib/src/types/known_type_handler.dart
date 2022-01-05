@@ -41,9 +41,8 @@ class KnownTypeHandler extends TypeHandler {
       case KnownType.Int64:
       case KnownType.UInt64:
         return 'int';
-      case KnownType.Float:
-      case KnownType.Double:
-      case KnownType.Decimal:
+      case KnownType.Float32:
+      case KnownType.Float64:
         return 'double';
       case KnownType.TimeOnly:
       case KnownType.Time:
