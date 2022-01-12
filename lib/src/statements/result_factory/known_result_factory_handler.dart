@@ -59,7 +59,7 @@ class KnownResultFactoryHandler extends ResultFactoryHandler {
         return 'const ${jsonConverters.getConverter(typeRef)!.name}().fromJson($paramName as String$q)';
 
       case KnownType.Array:
-        return '($paramName as Iterable<dynamic>$q)$q '
+        return '($paramName as Iterable<dynamic>$q)$q'
             '.map((dynamic e) => ${ResultFactoryHandler.buildFrom(known.arguments.first, handlers, 'e')}).toList()';
 
       case KnownType.Map:
