@@ -1,4 +1,4 @@
-# Unreleased
+# 0.4.0
 
 - **Breaking**: Drop support for `json_serializable: ^4.0.0`
 - Allow overriding generator version with `input.override_generator_version`

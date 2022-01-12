@@ -1,7 +1,7 @@
 name: contracts_generator
 repository: https://github.com/leancodepl/contractsgenerator-dart
 description: Dart contracts client generator for a CQRS API.
-version: 0.3.0
+version: 0.4.0
 
 environment:
   sdk: ">=2.14.0 <3.0.0"
