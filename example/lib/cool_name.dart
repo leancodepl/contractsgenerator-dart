@@ -148,9 +148,6 @@ class PaginatedResult<TResult> with EquatableMixin {
   final int totalCount;
 
   get props => [items, totalCount];
-
-  Map<String, dynamic> toJson(Object? Function(TResult) toJsonTResult) =>
-      _$PaginatedResultToJson(this, toJsonTResult);
 }
 
 @JsonSerializable(fieldRename: FieldRename.pascal)
@@ -215,8 +212,8 @@ class EditUser
     with EquatableMixin
     implements IRemoteCommand, ISomethingRelated {
   EditUser({
-    required this.userId,
     required this.somethingId,
+    required this.userId,
     required this.list,
     required this.array,
     required this.dictionary,
@@ -226,9 +223,9 @@ class EditUser
   factory EditUser.fromJson(Map<String, dynamic> json) =>
       _$EditUserFromJson(json);
 
-  final String userId;
-
   final String somethingId;
+
+  final String userId;
 
   final List<int> list;
 
@@ -238,7 +235,7 @@ class EditUser
 
   final UserInfoDTO userInfo;
 
-  get props => [userId, somethingId, list, array, dictionary, userInfo];
+  get props => [somethingId, userId, list, array, dictionary, userInfo];
 
   Map<String, dynamic> toJson() => _$EditUserToJson(this);
   String getFullName() =>

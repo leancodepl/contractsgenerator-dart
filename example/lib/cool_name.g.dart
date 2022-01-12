@@ -66,8 +66,8 @@ Map<String, dynamic> _$AllUsersToJson(AllUsers instance) => <String, dynamic>{
     };
 
 EditUser _$EditUserFromJson(Map<String, dynamic> json) => EditUser(
-      userId: json['UserId'] as String,
       somethingId: json['SomethingId'] as String,
+      userId: json['UserId'] as String,
       list: (json['List'] as List<dynamic>).map((e) => e as int).toList(),
       array: (json['Array'] as List<dynamic>).map((e) => e as int).toList(),
       dictionary: (json['Dictionary'] as Map<String, dynamic>).map(
@@ -78,8 +78,8 @@ EditUser _$EditUserFromJson(Map<String, dynamic> json) => EditUser(
     );
 
 Map<String, dynamic> _$EditUserToJson(EditUser instance) => <String, dynamic>{
-      'UserId': instance.userId,
       'SomethingId': instance.somethingId,
+      'UserId': instance.userId,
       'List': instance.list,
       'Array': instance.array,
       'Dictionary':
