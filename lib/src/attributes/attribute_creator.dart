@@ -12,7 +12,9 @@ class AttributeCreator {
 
   String create(AttributeRef attributeRef) {
     final knownMapping = maybeHandleDeprecated(attributeRef);
-    if (knownMapping != null) return knownMapping;
+    if (knownMapping != null) {
+      return knownMapping;
+    }
 
     final params = [
       for (final param in attributeRef.argument)
@@ -28,7 +30,9 @@ class AttributeCreator {
   }
 
   String? maybeHandleDeprecated(AttributeRef attributeRef) {
-    if (attributeRef.attributeName != 'System.ObsoleteAttribute') return null;
+    if (attributeRef.attributeName != 'System.ObsoleteAttribute') {
+      return null;
+    }
 
     // this attribute can have zero, one, or two positional arguments
     // we don't care about the 'two' case

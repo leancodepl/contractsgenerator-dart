@@ -81,7 +81,9 @@ class GeneratorDatabase {
       for (final name in curr) {
         var isSafe = true;
         for (final other in curr) {
-          if (name.key == other.key) continue;
+          if (name.key == other.key) {
+            continue;
+          }
 
           if (name.value == other.value) {
             isSafe = false;
@@ -116,7 +118,9 @@ class GeneratorDatabase {
 
     final name = typeRef.ensureInternal().name;
 
-    if (_isKindCache[kind]!.contains(name)) return true;
+    if (_isKindCache[kind]!.contains(name)) {
+      return true;
+    }
 
     final statement = find(name)!;
 
@@ -172,7 +176,9 @@ class GeneratorDatabase {
   TypeRef _resolveType(TypeRef type, Map<String, TypeRef> generics) {
     if (type.hasGeneric()) {
       final arg = generics[type.generic.name];
-      if (arg == null) return type;
+      if (arg == null) {
+        return type;
+      }
 
       return arg
         ..freeze()
@@ -219,7 +225,9 @@ class GeneratorDatabase {
         .expand((typeRef) {
           final internal = typeRef.ensureInternal();
           final statement = find(internal.name);
-          if (statement == null) return <PropertyRef>[];
+          if (statement == null) {
+            return <PropertyRef>[];
+          }
 
           final resolvedGenerics = typeDescriptorOf(statement)
                   ?.genericParameters

@@ -1,5 +1,7 @@
 Iterable<String> toDartdoc(String doc) {
-  if (doc.isEmpty) return const [];
+  if (doc.isEmpty) {
+    return const [];
+  }
 
   return doc
       .split('\n')

@@ -14,13 +14,15 @@ jobs:
           submodules: recursive
 
       - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: 2.15.1
 
       - name: Inject pub.dev credentials
         env:
-          PUB_DEV_CREDENTIALS: ${{ secrets.PUB_DEV_CREDENTIALS }}
+          CREDENTIALS: ${{ secrets.PUB_DEV_CREDENTIALS }}
         run: |
-          mkdir -p ~/.pub-cache
-          echo $PUB_DEV_CREDENTIALS > ~/.pub-cache/credentials.json
+          mkdir -p $XDG_CONFIG_HOME/dart
+          echo $CREDENTIALS > $XDG_CONFIG_HOME/dart/pub-credentials.json
 
       - name: Publish to pub.dev
         run: |

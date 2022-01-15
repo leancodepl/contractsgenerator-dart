@@ -52,7 +52,9 @@ Future<Version> bumpedVersion(String versionBumpType) async {
   final versionMatch =
       RegExp(r'version: (\d+)\.(\d+)\.(\d+)').firstMatch(pubspecContents);
 
-  if (versionMatch == null) throw Exception('Failed to find pubspec version');
+  if (versionMatch == null) {
+    throw Exception('Failed to find pubspec version');
+  }
 
   var major = int.parse(versionMatch.group(1)!);
   var minor = int.parse(versionMatch.group(2)!);

@@ -1,7 +1,5 @@
 import 'package:contracts_generator/contracts_generator.dart';
-import 'package:contracts_generator/src/contracts_generator_config.dart';
 import 'package:contracts_generator/src/generator_database.dart';
-import 'package:contracts_generator/src/generator_script.dart';
 import 'package:contracts_generator/src/proto/contracts.pb.dart';
 import 'package:test/test.dart';
 

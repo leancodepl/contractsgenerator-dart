@@ -17,7 +17,7 @@ Future<void> main(List<String> arguments) async {
   try {
     if (arguments.isEmpty) {
       final configFile = File(configFileName);
-      if (!await configFile.exists()) {
+      if (!configFile.existsSync()) {
         fatalError(
           'No $configFileName config file found in the current directory. Did you run `${runner.executableName} ${initCommand.name}`?',
         );
@@ -35,8 +35,9 @@ Future<void> main(List<String> arguments) async {
   } on ContractsGeneratorException catch (err) {
     fatalError(err.message);
   } catch (err, st) {
-    stderr.writeln(err);
-    stderr.writeln(st);
+    stderr
+      ..writeln(err)
+      ..writeln(st);
     fatalError(
       'An unknown error occurred, this is most likely a bug. '
       'Please consider reporting it with the above error.',
