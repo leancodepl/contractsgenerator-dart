@@ -1,10 +1,10 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 import 'package:cqrs/cqrs.dart';
 import 'package:cqrs/contracts.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:equatable/equatable.dart';
 part 'contracts.g.dart';
-
-final _ = EquatableConfig.stringify = true;
 
 class DurationJsonConverter extends JsonConverter<Duration, String> {
   const DurationJsonConverter();

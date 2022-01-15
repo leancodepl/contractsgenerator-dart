@@ -33,6 +33,10 @@ class ContractsGenerator {
   final ContractsGeneratorConfig config;
 
   static final emitter = DartEmitter();
+  static const header = '''
+    // GENERATED CODE - DO NOT MODIFY BY HAND
+    // ignore_for_file: type=lint
+    ''';
 
   /// generates `code_builder` structures that can still be modified
   Future<Library> generate() async {
@@ -91,20 +95,26 @@ class ContractsGenerator {
     return Library(
       (l) => l
         ..body.addAll([
-          Code(config.directives),
-          Code("part '${config.name}.g.dart';"),
-          Code('\n\n${config.extra}\n\n'),
-          // hack to run code in the top level
-          const Code('final _ = EquatableConfig.stringify = true;'),
-          ...jsonConverters.converters,
-          timeClass,
-          ...body,
-        ])
-        ..directives.addAll([
-          Directive.import('package:cqrs/cqrs.dart'),
-          Directive.import('package:cqrs/contracts.dart'),
-          Directive.import('package:json_annotation/json_annotation.dart'),
-          Directive.import('package:equatable/equatable.dart'),
+          const Code(header),
+          Library(
+            (l) => l
+              ..body.addAll([
+                Code(config.directives),
+                Code("part '${config.name}.g.dart';"),
+                Code('\n\n${config.extra}\n\n'),
+                ...jsonConverters.converters,
+                timeClass,
+                ...body,
+              ])
+              ..directives.addAll([
+                Directive.import('package:cqrs/cqrs.dart'),
+                Directive.import('package:cqrs/contracts.dart'),
+                Directive.import(
+                  'package:json_annotation/json_annotation.dart',
+                ),
+                Directive.import('package:equatable/equatable.dart'),
+              ]),
+          ),
         ]),
     );
   }
