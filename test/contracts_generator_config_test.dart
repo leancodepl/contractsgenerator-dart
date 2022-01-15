@@ -1,6 +1,4 @@
 import 'package:contracts_generator/src/contracts_generator_config.dart';
-import 'package:test/expect.dart';
-import 'package:test/scaffolding.dart';
 import 'package:test/test.dart';
 import 'package:yaml/yaml.dart';
 

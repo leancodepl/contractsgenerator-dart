@@ -1,5 +1,4 @@
 import 'package:contracts_generator/src/utils/rename_field.dart';
-import 'package:test/scaffolding.dart';
 import 'package:test/test.dart';
 
 // This being here and compiling shows that these keywords can be used as identifiers

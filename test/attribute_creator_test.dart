@@ -2,7 +2,6 @@ import 'package:contracts_generator/src/attributes/attribute_creator.dart';
 import 'package:contracts_generator/src/types/type_handler.dart';
 import 'package:contracts_generator/src/values/value_creator.dart';
 import 'package:fixnum/fixnum.dart';
-import 'package:test/scaffolding.dart';
 import 'package:test/test.dart';
 
 void main() {
