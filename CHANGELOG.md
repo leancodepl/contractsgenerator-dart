@@ -1,3 +1,7 @@
+# Unreleased
+
+- Generated contracts now ignore the linter
+
 # 0.4.0
 
 - **Breaking**: Drop support for `json_serializable: ^4.0.0`

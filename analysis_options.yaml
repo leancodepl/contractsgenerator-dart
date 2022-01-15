@@ -4,3 +4,4 @@ analyzer:
   exclude:
     - lib/src/proto/*
     - lib/**.g.dart
+    - example/**
