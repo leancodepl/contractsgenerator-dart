@@ -1,4 +1,4 @@
-# Unreleased
+# 0.4.1
 
 - Generated contracts now ignore the linter
 
