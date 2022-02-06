@@ -9,4 +9,6 @@ TypeDescriptor? typeDescriptorOf(Statement statement) {
   } else if (statement.hasCommand()) {
     return statement.command.typeDescriptor;
   }
+
+  return null;
 }
