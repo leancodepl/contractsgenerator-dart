@@ -107,7 +107,6 @@ class ContractsGenerator {
                 ...body,
               ])
               ..directives.addAll([
-                Directive.import('package:cqrs/cqrs.dart'),
                 Directive.import('package:cqrs/contracts.dart'),
                 Directive.import(
                   'package:json_annotation/json_annotation.dart',
