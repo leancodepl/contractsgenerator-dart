@@ -1,3 +1,7 @@
+# 0.4.2
+
+- Require `cqrs: ^6.2.0` and remove unused generated import
+
 # 0.4.1
 
 - Generated contracts now ignore the linter
