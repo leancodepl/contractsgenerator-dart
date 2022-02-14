@@ -1,3 +1,7 @@
+# Unreleased
+
+- Remove dependency on `package:build_test`
+
 # 0.4.2
 
 - Require `cqrs: ^6.2.0` and remove unused generated import
