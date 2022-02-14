@@ -4,8 +4,8 @@ import 'dart:io';
 import 'package:build/build.dart';
 import 'package:build_resolvers/build_resolvers.dart';
 import 'package:build_runner_core/build_runner_core.dart';
-import 'package:build_test/build_test.dart';
 import 'package:code_builder/code_builder.dart';
+import 'package:contracts_generator/src/utils/memory_asset_writer.dart';
 import 'package:dart_style/dart_style.dart';
 import 'package:json_serializable/builder.dart';
 import 'package:path/path.dart' as p;
@@ -139,7 +139,7 @@ class ContractsGenerator {
     final f = AssetId(packageGraph.root.name, contractsPath);
 
     final env = IOEnvironment(packageGraph);
-    final writer = InMemoryAssetWriter();
+    final writer = MemoryAssetWriter();
 
     final res = AnalyzerResolvers();
 
