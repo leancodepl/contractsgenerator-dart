@@ -1,4 +1,4 @@
-# Unreleased
+# 0.4.3
 
 - Remove dependency on `package:build_test`
 
