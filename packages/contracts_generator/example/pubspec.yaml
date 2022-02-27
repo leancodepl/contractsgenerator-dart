@@ -12,5 +12,7 @@ dependencies:
   json_annotation: ^4.3.0
   contracts_generator:
     path: ..
-dev_dependencies: 
+  contracts_runtime:
+    path: ../../contracts_runtime
+dev_dependencies:
   leancode_lint: ^1.0.2

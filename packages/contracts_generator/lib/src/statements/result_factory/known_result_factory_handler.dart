@@ -1,5 +1,4 @@
 import '../../json_converters/json_converters.dart';
-import '../../time_class.dart';
 import '../../types/known_type_handler.dart';
 import '../../types/utils/nullable_suffix.dart';
 import 'result_factory_handler.dart';
@@ -53,10 +52,10 @@ class KnownResultFactoryHandler extends ResultFactoryHandler {
 
       case KnownType.TimeOnly:
       case KnownType.Time:
-        return '${ifNullablePrefix(typeRef, paramName)}$timeClassName.fromJson($paramName)';
+        return '${ifNullablePrefix(typeRef, paramName)}TimeOnly.fromJson($paramName)';
 
       case KnownType.TimeSpan:
-        return 'const ${jsonConverters.getConverter(typeRef)!.name}().fromJson($paramName as String$q)';
+        return 'const ${jsonConverters.getConverter(typeRef)}().fromJson($paramName as String$q)';
 
       case KnownType.Array:
         return '($paramName as Iterable<dynamic>$q)$q'

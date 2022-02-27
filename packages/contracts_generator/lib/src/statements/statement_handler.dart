@@ -1,4 +1,5 @@
 import 'package:code_builder/code_builder.dart';
+import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import 'package:source_helper/source_helper.dart';
 
@@ -59,7 +60,7 @@ abstract class StatementHandler {
 
     final neededConverters = properties
         .map((p) => jsonConverters.getConverter(p.type))
-        .whereType<Class>()
+        .whereNotNull()
         .toSet();
 
     return Class((b) {
@@ -138,7 +139,7 @@ abstract class StatementHandler {
             ),
           ),
           for (final converter in neededConverters)
-            CodeExpression(Code('${converter.name}()')),
+            CodeExpression(Code('$converter()')),
         ])
         ..docs.addAll([
           ...toDartdoc(statement.comment),

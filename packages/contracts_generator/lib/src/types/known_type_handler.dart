@@ -1,4 +1,3 @@
-import '../time_class.dart';
 import 'type_handler.dart';
 
 class KnownTypeHandler extends TypeHandler {
@@ -46,7 +45,7 @@ class KnownTypeHandler extends TypeHandler {
         return 'double';
       case KnownType.TimeOnly:
       case KnownType.Time:
-        return timeClassName;
+        return 'TimeOnly';
       case KnownType.TimeSpan:
         return 'Duration';
       case KnownType.Date:

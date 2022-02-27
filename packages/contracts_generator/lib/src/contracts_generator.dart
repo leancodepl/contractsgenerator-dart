@@ -20,7 +20,6 @@ import 'statements/dto_handler.dart';
 import 'statements/enum_handler.dart';
 import 'statements/query_handler.dart';
 import 'statements/statement_creator.dart';
-import 'time_class.dart';
 import 'types/generic_type_handler.dart';
 import 'types/internal_type_handler.dart';
 import 'types/known_type_handler.dart';
@@ -102,16 +101,12 @@ class ContractsGenerator {
                 Code(config.directives),
                 Code("part '${config.name}.g.dart';"),
                 Code('\n\n${config.extra}\n\n'),
-                ...jsonConverters.converters,
-                timeClass,
                 ...body,
               ])
               ..directives.addAll([
-                Directive.import('package:cqrs/contracts.dart'),
                 Directive.import(
-                  'package:json_annotation/json_annotation.dart',
+                  'package:contracts_runtime/contracts.dart',
                 ),
-                Directive.import('package:equatable/equatable.dart'),
               ]),
           ),
         ]),
