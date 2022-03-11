@@ -105,7 +105,7 @@ class ContractsGenerator {
               ])
               ..directives.addAll([
                 Directive.import(
-                  'package:contracts_runtime/contracts.dart',
+                  'package:contracts/contracts.dart',
                 ),
               ]),
           ),

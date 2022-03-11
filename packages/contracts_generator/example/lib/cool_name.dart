@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-import 'package:contracts_runtime/contracts.dart';
+import 'package:contracts/contracts.dart';
 export 'my_extensions.dart';
 part 'cool_name.g.dart';
 
