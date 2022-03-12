@@ -1,18 +1,26 @@
-name: ci
+name: contracts_generator-test
 
 on:
   push:
     branches: [main]
+    paths: [packages/contracts_generator/**]
   pull_request:
     branches: [main]
+    paths: [packages/contracts_generator/**]
 
 jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: packages/contracts_generator
+
     env:
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
       DOTNET_CLI_TELEMETRY_OPTOUT: 1
+
     steps:
       - uses: actions/checkout@v2
         with:
@@ -25,7 +33,7 @@ jobs:
 
       - uses: dart-lang/setup-dart@v1
         with:
-          sdk: 2.15.1
+          sdk: 2.16.1
 
       - name: Get dependencies
         run: dart pub get
