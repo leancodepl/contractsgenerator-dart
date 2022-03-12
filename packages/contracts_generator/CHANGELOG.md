@@ -1,3 +1,13 @@
+# Unreleased
+
+- **BREAKING**: generates contracts now depend on `package:contracts`
+
+Migration from `v0.4.x` to `v0.5.0`:
+
+- Add `contracts` package: `dart pub add contracts`
+- If you ever imported generated contracts for a contract type (such as `TimeOnly`) you will now have to import `package:contracts/contracts.dart`
+- _Optional_: if you are not using them directly, you can remove dependency on `package:equatable`, `package:cqrs`, and `package:json_annotation`
+
 # 0.4.3
 
 - Remove dependency on `package:build_test`
