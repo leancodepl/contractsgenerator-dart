@@ -7,10 +7,12 @@ import 'package:json_annotation/json_annotation.dart';
 class DurationJsonConverter implements JsonConverter<Duration, String> {
   const DurationJsonConverter();
 
+  static final _matcher =
+      RegExp(r'^-?((\d+)\.)?(\d\d):(\d\d):(\d\d)(\.(\d+))?$');
+
   @override
   Duration fromJson(String json) {
-    final m = RegExp(r'^-?((\d+)\.)?(\d\d):(\d\d):(\d\d)(\.(\d+))?$')
-        .firstMatch(json)!;
+    final m = _matcher.firstMatch(json)!;
 
     return Duration(
           days: int.parse(m[2] ?? '0'),
