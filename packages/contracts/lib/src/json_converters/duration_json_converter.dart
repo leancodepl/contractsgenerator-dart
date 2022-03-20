@@ -1,10 +1,13 @@
 import 'package:json_annotation/json_annotation.dart';
 
-// System.TimeSpan <-> Duration
 // TODO: while https://github.com/google/json_serializable.dart/issues/822
 // is not resolved there needs to be two seperate converters for each type
 
+/// {@template DurationJsonConverter}
+/// Converter for converting between C#'s `System.TimeSpan` and Dart's [Duration]
+/// {@endtemplate}
 class DurationJsonConverter implements JsonConverter<Duration, String> {
+  /// {@macro DurationJsonConverter}
   const DurationJsonConverter();
 
   static final _matcher =
@@ -38,8 +41,12 @@ class DurationJsonConverter implements JsonConverter<Duration, String> {
   }
 }
 
+/// {@template NullableDurationJsonConverter}
+/// Nullable converter for converting between C#'s `System.TimeSpan` and Dart's [Duration].
+/// {@endtemplate}
 class NullableDurationJsonConverter
     implements JsonConverter<Duration?, String?> {
+  /// {@macro NullableDurationJsonConverter}
   const NullableDurationJsonConverter();
 
   @override
