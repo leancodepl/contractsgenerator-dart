@@ -1,0 +1,32 @@
+name: leancode_contracts-publish
+
+on:
+  push:
+    tags: ["leancode_contracts-v*.*.*"]
+
+jobs:
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: packages/leancode_contracts
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: 2.16.1
+
+      - name: Inject pub.dev credentials
+        env:
+          CREDENTIALS: ${{ secrets.PUB_DEV_CREDENTIALS }}
+        run: |
+          mkdir -p $XDG_CONFIG_HOME/dart
+          echo $CREDENTIALS > $XDG_CONFIG_HOME/dart/pub-credentials.json
+
+      - name: Publish to pub.dev
+        run: |
+          dart pub publish -f

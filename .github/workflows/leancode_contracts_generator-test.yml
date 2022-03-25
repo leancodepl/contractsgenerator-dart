@@ -1,0 +1,53 @@
+name: leancode_contracts_generator-test
+
+on:
+  push:
+    branches: [main]
+    paths: [packages/leancode_contracts_generator/**]
+  pull_request:
+    branches: [main]
+    paths: [packages/leancode_contracts_generator/**]
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: packages/leancode_contracts_generator
+
+    env:
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Setup .NET Core SDK 6.0
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: 2.16.1
+
+      - name: Get dependencies
+        run: dart pub get
+
+      - name: Check formatting
+        run: dart format --set-exit-if-changed --output none .
+
+      - name: Run lints
+        run: dart analyze --fatal-warnings --fatal-infos
+
+      - name: Run tests
+        run: dart test
+
+      - name: Dry run pub publish
+        run: |
+          # We don't want it to fail the CI, it's just to see how would `pub publish` behave.
+          dart pub publish --dry-run || true
