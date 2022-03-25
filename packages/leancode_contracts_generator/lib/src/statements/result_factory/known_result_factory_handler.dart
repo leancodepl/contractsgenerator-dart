@@ -47,8 +47,10 @@ class KnownResultFactoryHandler extends ResultFactoryHandler {
       case KnownType.Date:
       case KnownType.DateTime:
       case KnownType.DateTimeOffset:
-      case KnownType.DateOnly:
         return '${ifNullablePrefix(typeRef, paramName)}DateTime.parse($paramName)';
+
+      case KnownType.DateOnly:
+        return '${ifNullablePrefix(typeRef, paramName)}DateOnly.fromJson($paramName)';
 
       case KnownType.TimeOnly:
       case KnownType.Time:

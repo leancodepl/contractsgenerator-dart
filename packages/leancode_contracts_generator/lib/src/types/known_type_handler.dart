@@ -51,8 +51,9 @@ class KnownTypeHandler extends TypeHandler {
       case KnownType.Date:
       case KnownType.DateTime:
       case KnownType.DateTimeOffset:
-      case KnownType.DateOnly:
         return 'DateTime';
+      case KnownType.DateOnly:
+        return 'DateOnly';
       case KnownType.Array:
         return 'List';
       case KnownType.Map:
