@@ -1,8 +1,8 @@
 # Dart contracts generator
 
-[![](https://img.shields.io/pub/v/contracts_generator.svg?logo=dart)](https://pub.dev/packages/contracts_generator)
-[![](https://github.com/leancodepl/contractsgenerator-dart/workflows/contracts_generator-test/badge.svg)](https://github.com/leancodepl/contractsgenerator-dart/actions)
-[![](https://github.com/leancodepl/contractsgenerator-dart/workflows/contracts-test/badge.svg)](https://github.com/leancodepl/contractsgenerator-dart/actions)
+[![](https://img.shields.io/pub/v/leancode_contracts_generator.svg?logo=dart)](https://pub.dev/packages/leancode_contracts_generator)
+[![](https://github.com/leancodepl/contractsgenerator-dart/workflows/leancode_contracts_generator-test/badge.svg)](https://github.com/leancodepl/contractsgenerator-dart/actions)
+[![](https://github.com/leancodepl/contractsgenerator-dart/workflows/leancode_contracts-test/badge.svg)](https://github.com/leancodepl/contractsgenerator-dart/actions)
 
 Dart contracts client generator for a CQRS API. Generated code is based on the format described in <https://github.com/leancodepl/contractsgenerator>.
 
@@ -28,13 +28,13 @@ Finally, add the x64 dotnet to your `PATH`: `/usr/local/share/dotnet/x64`
 ## Installation
 
 ```sh
-dart pub add contracts_generator --dev
-dart pub add contracts
+dart pub add leancode_contracts_generator --dev
+dart pub add leancode_contracts
 ```
 
 ## Usage
 
 First run will take longer due to the need to download external dependencies.
 
-- Initialize a config file filled with defaults with `dart run contracts_generator init`
-- Generate client contracts code with `dart run contracts_generator`
+- Initialize a config file filled with defaults with `dart run leancode_contracts_generator init`
+- Generate client contracts code with `dart run leancode_contracts_generator`
