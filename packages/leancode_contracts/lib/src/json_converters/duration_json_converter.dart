@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:json_annotation/json_annotation.dart';
 
 // TODO: while https://github.com/google/json_serializable.dart/issues/822
@@ -16,13 +18,16 @@ class DurationJsonConverter implements JsonConverter<Duration, String> {
   @override
   Duration fromJson(String json) {
     final m = _matcher.firstMatch(json)!;
+    final last = m[7] ?? '0';
+    final smallest = last.substring(0, min(6, last.length));
 
     return Duration(
           days: int.parse(m[2] ?? '0'),
           hours: int.parse(m[3]!),
           minutes: int.parse(m[4]!),
           seconds: int.parse(m[5]!),
-          microseconds: int.parse(m[7] ?? '0') ~/ 10,
+          microseconds:
+              int.parse(smallest) * pow(10, 6 - smallest.length) as int,
         ) *
         (json.startsWith('-') ? -1 : 1);
   }
@@ -33,11 +38,11 @@ class DurationJsonConverter implements JsonConverter<Duration, String> {
       return '-${toJson(-object)}';
     }
 
-    return '${object.inDays}.'
-        '${object.inHours % Duration.hoursPerDay}:'
-        '${object.inMinutes % Duration.minutesPerHour}:'
-        '${object.inSeconds % Duration.secondsPerMinute}.'
-        '${(object.inMicroseconds % Duration.microsecondsPerSecond).toString().padLeft(6, '0')}';
+    return '${object.inDays}'
+        '.${(object.inHours % Duration.hoursPerDay).toString().padLeft(2, '0')}'
+        ':${(object.inMinutes % Duration.minutesPerHour).toString().padLeft(2, '0')}'
+        ':${(object.inSeconds % Duration.secondsPerMinute).toString().padLeft(2, '0')}'
+        '.${(object.inMicroseconds % Duration.microsecondsPerSecond).toString().padLeft(6, '0')}';
   }
 }
 

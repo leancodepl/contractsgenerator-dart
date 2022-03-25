@@ -28,7 +28,12 @@ class TimeOnly {
   int get microsecond => source.inMicroseconds % Duration.microsecondsPerSecond;
 
   /// Serializes [TimeOnly] to a string.
-  String toJson() => const DurationJsonConverter().toJson(source);
+  String toJson() {
+    return '${hour.toString().padLeft(2, '0')}'
+        ':${minute.toString().padLeft(2, '0')}'
+        ':${second.toString().padLeft(2, '0')}'
+        '.${microsecond.toString().padLeft(6, '0')}';
+  }
 
   @override
   String toString() => source.toString();
