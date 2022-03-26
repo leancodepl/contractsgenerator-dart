@@ -58,9 +58,9 @@ class KnownTypeHandler extends TypeHandler {
       case KnownType.Map:
         return 'Map';
       case KnownType.Query:
-        return 'IRemoteQuery';
+        return 'Query';
       case KnownType.Command:
-        return 'IRemoteCommand';
+        return 'Command';
       case KnownType.CommandResult:
         return 'CommandResult';
       case KnownType.AuthorizeWhenAttribute:
