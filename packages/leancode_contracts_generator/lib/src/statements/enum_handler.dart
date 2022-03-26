@@ -1,4 +1,5 @@
 import 'package:code_builder/code_builder.dart';
+import 'package:leancode_contracts_generator/src/utils/rename_type.dart';
 
 import '../attributes/attribute_creator.dart';
 import '../generator_database.dart';
@@ -20,7 +21,7 @@ class EnumHandler extends StatementHandler {
 
   @override
   Spec build(Statement statement) {
-    final name = db.resolveName(statement.name);
+    final name = renameType(db.resolveName(statement.name));
 
     return Enum(
       (b) => b

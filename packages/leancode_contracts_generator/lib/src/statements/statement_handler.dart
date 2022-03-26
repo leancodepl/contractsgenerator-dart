@@ -1,5 +1,6 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:collection/collection.dart';
+import 'package:leancode_contracts_generator/src/utils/rename_type.dart';
 import 'package:meta/meta.dart';
 import 'package:source_helper/source_helper.dart';
 
@@ -42,7 +43,7 @@ abstract class StatementHandler {
     );
     assert(canHandle(statement));
 
-    final name = db.resolveName(statement.name);
+    final name = renameType(db.resolveName(statement.name));
     final typeDescriptor = typeDescriptorOf(statement)!;
     final properties = db.allPropertiesOf(statement);
 

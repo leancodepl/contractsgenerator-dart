@@ -2,6 +2,7 @@
 
 - **BREAKING**: generates contracts now depend on `package:leancode_contracts`
 - **BREAKING**: `package:contracts_generator` has been discontinued and replaced with `package:leancode_contracts_generator`
+- **BREAKING**: generated contracts use `Query` and `Command` from `package:cqrs` instead of `IRemoteQuery` and `IRemoteCommand`
 
 Migration from `v0.4.x` to `v0.5.0`:
 

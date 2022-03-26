@@ -53,7 +53,7 @@ class Roles with EquatableMixin {
 /// This is a class-level comment.
 abstract class PaginatedQuery<TResult>
     with EquatableMixin
-    implements IRemoteQuery<PaginatedResult<TResult>> {
+    implements Query<PaginatedResult<TResult>> {
   PaginatedQuery({
     required this.pageNumber,
     required this.pageSize,
@@ -145,9 +145,7 @@ class AllUsers with EquatableMixin implements PaginatedQuery<UserInfoDTO> {
 /// LeanCode.CQRS.Security.AuthorizeWhenHasAnyOfAttribute('admin')
 /// LeanCode.ContractsGeneratorV2.ExampleContracts.Security.AuthorizeWhenHasSomethingAccessAttribute()
 @JsonSerializable(fieldRename: FieldRename.pascal)
-class EditUser
-    with EquatableMixin
-    implements IRemoteCommand, ISomethingRelated {
+class EditUser with EquatableMixin implements Command, ISomethingRelated {
   EditUser({
     required this.somethingId,
     required this.userId,
@@ -205,7 +203,7 @@ class EditUserErrorCodes {
 
 /// LeanCode.CQRS.Security.AuthorizeWhenHasAnyOfAttribute('admin')
 @JsonSerializable(fieldRename: FieldRename.pascal)
-class UserById with EquatableMixin implements IRemoteQuery<UserInfoDTO?> {
+class UserById with EquatableMixin implements Query<UserInfoDTO?> {
   UserById();
 
   factory UserById.fromJson(Map<String, dynamic> json) =>
@@ -250,7 +248,7 @@ class UserInfoDTO with EquatableMixin {
 
 /// LeanCode.CQRS.Security.AuthorizeWhenHasAnyOfAttribute('admin')
 @JsonSerializable(fieldRename: FieldRename.pascal)
-class UserSomething with EquatableMixin implements IRemoteQuery<int?> {
+class UserSomething with EquatableMixin implements Query<int?> {
   UserSomething();
 
   factory UserSomething.fromJson(Map<String, dynamic> json) =>

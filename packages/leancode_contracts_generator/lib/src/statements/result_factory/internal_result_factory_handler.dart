@@ -1,3 +1,5 @@
+import 'package:leancode_contracts_generator/src/utils/rename_type.dart';
+
 import '../../generator_database.dart';
 import '../../utils/rename_field.dart';
 import 'result_factory_handler.dart';
@@ -16,7 +18,7 @@ class InternalResultFactoryHandler extends ResultFactoryHandler {
   ) {
     assert(canHandle(typeRef));
 
-    final name = db.resolveName(typeRef.internal.name);
+    final name = renameType(db.resolveName(typeRef.internal.name));
 
     // enums do not get a _$FromJson generated
     final statement = db.find(typeRef.internal.name);

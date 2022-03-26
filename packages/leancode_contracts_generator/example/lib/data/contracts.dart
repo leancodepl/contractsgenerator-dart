@@ -5,7 +5,7 @@ part 'contracts.g.dart';
 
 /// LeanCode.CQRS.Security.AllowUnauthorizedAttribute()
 @JsonSerializable(fieldRename: FieldRename.pascal)
-class Command with EquatableMixin implements IRemoteCommand {
+class Command with EquatableMixin implements Command {
   Command();
 
   factory Command.fromJson(Map<String, dynamic> json) =>
@@ -21,7 +21,7 @@ class CommandErrorCodes {}
 
 /// LeanCode.CQRS.Security.AllowUnauthorizedAttribute()
 @JsonSerializable(fieldRename: FieldRename.pascal)
-class Query with EquatableMixin implements IRemoteQuery<int> {
+class Query with EquatableMixin implements Query<int> {
   Query();
 
   factory Query.fromJson(Map<String, dynamic> json) => _$QueryFromJson(json);
