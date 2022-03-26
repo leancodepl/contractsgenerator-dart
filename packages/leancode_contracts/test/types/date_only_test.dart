@@ -15,6 +15,21 @@ void main() {
       expect(DateOnly(23030, 12, 31), isA<DateOnly>());
     });
 
+    test('drops time from DateTime', () {
+      expect(
+        DateOnly.fromDateTime(DateTime(1999, 1, 2, 23, 2, 1)),
+        DateOnly.fromDateTime(DateTime(1999, 1, 2)),
+      );
+      expect(
+        DateOnly.fromDateTime(DateTime(1999, 1, 2, 0, 0, 0, 0, 1)),
+        DateOnly.fromDateTime(DateTime(1999, 1, 2)),
+      );
+      expect(
+        DateOnly.fromDateTime(DateTime(1999, 1, 2, 1)),
+        DateOnly.fromDateTime(DateTime(1999, 1, 2)),
+      );
+    });
+
     test('rejects negative years', () {
       expect(() => DateOnly(-10, 1, 1), throwsAssertionError);
       expect(() => DateOnly(-1, 1, 1), throwsAssertionError);

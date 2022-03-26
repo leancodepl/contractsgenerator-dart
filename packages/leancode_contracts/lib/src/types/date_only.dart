@@ -7,7 +7,9 @@ class DateOnly {
       : this.fromDateTime(DateTime(year, month, day));
 
   /// Constructs a [DateOnly] from [DateTime]
-  DateOnly.fromDateTime(this.source) : assert(source.year >= 0);
+  DateOnly.fromDateTime(DateTime source)
+      : source = DateTime(source.year, source.month, source.day),
+        assert(source.year >= 0);
 
   /// Deserializes a string into [DateOnly]
   factory DateOnly.fromJson(String json) {
