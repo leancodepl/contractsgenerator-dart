@@ -1,3 +1,7 @@
+# 0.2.1
+
+- Fix `DateOnly` not dropping time part
+
 # 0.2.0
 
 - Fix `TimeOnly` serde
