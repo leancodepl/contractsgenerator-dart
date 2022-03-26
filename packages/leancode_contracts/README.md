@@ -16,5 +16,6 @@ dart pub add leancode_contracts
 The following types are provided by `package:leancode_contracts`:
 
 - `TimeOnly` - describes a time of day with microsecond precision
+- `DateOnly` - describes a particular day
 
 Refer to the [API documentation](https://pub.dev/documentation/leancode_contracts/latest/) for more info.
