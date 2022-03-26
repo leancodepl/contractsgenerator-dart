@@ -1,4 +1,4 @@
-# Unreleased
+# 0.5.0
 
 - **BREAKING**: generates contracts now depend on `package:leancode_contracts`
 - **BREAKING**: `package:contracts_generator` has been discontinued and replaced with `package:leancode_contracts_generator`
