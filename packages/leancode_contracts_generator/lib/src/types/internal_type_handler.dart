@@ -1,3 +1,5 @@
+import 'package:leancode_contracts_generator/src/utils/rename_type.dart';
+
 import '../generator_database.dart';
 import 'type_handler.dart';
 
@@ -10,7 +12,7 @@ class InternalTypeHandler extends TypeHandler {
   String build(TypeRef typeRef, Iterable<TypeHandler> handlers) {
     assert(canHandle(typeRef));
 
-    final name = db.resolveName(typeRef.internal.name);
+    final name = renameType(db.resolveName(typeRef.internal.name));
 
     if (typeRef.internal.arguments.isNotEmpty) {
       final argumentList = typeRef.internal.arguments
