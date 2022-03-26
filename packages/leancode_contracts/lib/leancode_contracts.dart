@@ -1,4 +1,4 @@
-export 'package:cqrs/contracts.dart';
+export 'package:cqrs/cqrs.dart';
 export 'package:equatable/equatable.dart';
 export 'package:json_annotation/json_annotation.dart';
 
