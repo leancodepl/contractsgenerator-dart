@@ -42,6 +42,33 @@ void main() {
       expect(complex.microsecond, 1000);
     });
 
-    // TODO: json tests
+    test('serialization', () {
+      expect(TimeOnly(Duration.zero).toJson(), '00:00:00.000000');
+      expect(
+        TimeOnly(const Duration(days: 1) - const Duration(microseconds: 1))
+            .toJson(),
+        '23:59:59.999999',
+      );
+      expect(
+        TimeOnly(
+          const Duration(hours: 23, minutes: 32, seconds: 42, milliseconds: 1),
+        ).toJson(),
+        '23:32:42.001000',
+      );
+    });
+
+    test('deserialization', () {
+      expect(TimeOnly.fromJson('00:00:00.000000'), TimeOnly(Duration.zero));
+      expect(
+        TimeOnly.fromJson('23:59:59.999999'),
+        TimeOnly(const Duration(days: 1) - const Duration(microseconds: 1)),
+      );
+      expect(
+        TimeOnly.fromJson('23:32:42.001000'),
+        TimeOnly(
+          const Duration(hours: 23, minutes: 32, seconds: 42, milliseconds: 1),
+        ),
+      );
+    });
   });
 }
