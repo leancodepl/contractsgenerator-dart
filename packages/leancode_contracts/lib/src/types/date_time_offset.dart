@@ -8,7 +8,8 @@ class DateTimeOffset {
       : assert(utcDateTime.isUtc),
         assert(offsetInMinutes.abs() <= Duration.minutesPerHour * 14);
 
-  /// Deserializes an ISO 8601 string into [DateTimeOffset]
+  /// Deserializes an ISO 8601 string into [DateTimeOffset].
+  /// If no timezone information is present, timestamp is interpreted as local time.
   factory DateTimeOffset.fromJson(String json) {
     final match = _parseFormat.firstMatch(json);
 
@@ -16,8 +17,8 @@ class DateTimeOffset {
       throw FormatException('Invalid date format', json);
     }
 
-    var offsetInMinutes = 0;
-    var dateTimeString = json;
+    final int offsetInMinutes;
+    final DateTime dateTime;
 
     if (match[8] != null) {
       final tzSign = match[9];
@@ -26,14 +27,24 @@ class DateTimeOffset {
         final hourDifference = int.parse(match[10]!);
         final minuteDifference = match[11] == null ? 0 : int.parse(match[11]!);
 
-        offsetInMinutes =
-            sign * (Duration.minutesPerDay * hourDifference + minuteDifference);
+        offsetInMinutes = sign *
+            (Duration.minutesPerHour * hourDifference + minuteDifference);
+      } else {
+        offsetInMinutes = 0;
       }
 
-      dateTimeString = json.substring(0, json.length - match[8]!.length);
+      final iso = json.substring(0, json.length - match[8]!.length);
+      dateTime = DateTime.parse('${iso}Z');
+    } else {
+      final dt = DateTime.parse(json);
+      dateTime = dt.toUtc().add(dt.timeZoneOffset);
+      offsetInMinutes = dt.timeZoneOffset.inMinutes;
     }
 
-    return DateTimeOffset(DateTime.parse(dateTimeString), offsetInMinutes);
+    return DateTimeOffset(
+      dateTime,
+      offsetInMinutes,
+    );
   }
 
   /// UTC [DateTime]
