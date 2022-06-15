@@ -180,11 +180,9 @@ class GeneratorDatabase {
         return type;
       }
 
-      return arg
-        ..freeze()
-        ..rebuild((arg) {
-          arg.nullable = type.nullable || arg.nullable;
-        });
+      return (arg..freeze()).rebuild((arg) {
+        arg.nullable = type.nullable || arg.nullable;
+      });
     } else if (type.hasInternal()) {
       return TypeRef(
         nullable: type.nullable,
