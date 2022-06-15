@@ -5,15 +5,15 @@ part 'contracts.g.dart';
 
 /// LeanCode.CQRS.Security.AllowUnauthorizedAttribute()
 @JsonSerializable(fieldRename: FieldRename.pascal)
-class Command with EquatableMixin implements Command {
-  Command();
+class Command_ with EquatableMixin implements Command {
+  Command_();
 
-  factory Command.fromJson(Map<String, dynamic> json) =>
-      _$CommandFromJson(json);
+  factory Command_.fromJson(Map<String, dynamic> json) =>
+      _$Command_FromJson(json);
 
   get props => [];
 
-  Map<String, dynamic> toJson() => _$CommandToJson(this);
+  Map<String, dynamic> toJson() => _$Command_ToJson(this);
   String getFullName() => 'A.Command';
 }
 
@@ -21,14 +21,14 @@ class CommandErrorCodes {}
 
 /// LeanCode.CQRS.Security.AllowUnauthorizedAttribute()
 @JsonSerializable(fieldRename: FieldRename.pascal)
-class Query with EquatableMixin implements Query<int> {
-  Query();
+class Query_ with EquatableMixin implements Query<int> {
+  Query_();
 
-  factory Query.fromJson(Map<String, dynamic> json) => _$QueryFromJson(json);
+  factory Query_.fromJson(Map<String, dynamic> json) => _$Query_FromJson(json);
 
   get props => [];
 
-  Map<String, dynamic> toJson() => _$QueryToJson(this);
+  Map<String, dynamic> toJson() => _$Query_ToJson(this);
   int resultFactory(dynamic decodedJson) => decodedJson as int;
   String getFullName() => 'B.Query';
 }
