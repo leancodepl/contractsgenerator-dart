@@ -22,7 +22,7 @@ TypeRef typeRefOf(String name) =>
     TypeRef(internal: TypeRef_Internal(name: name), nullable: true);
 
 void main() {
-  group('generator database', () {
+  group('GeneratorDatabase', () {
     group('shouldInclude', () {
       test('classifies correctly', () {
         final db = makeDb(include: RegExp(r'^Some\.Namespace?'));
@@ -531,7 +531,7 @@ void main() {
             PropertyRef(
               name: 'c',
               type:
-                  TypeRef(nullable: false, generic: TypeRef_Generic(name: 'T')),
+                  TypeRef(nullable: true, generic: TypeRef_Generic(name: 'T')),
               comment: '',
             ),
             PropertyRef(
@@ -545,7 +545,7 @@ void main() {
             PropertyRef(
               name: 'e',
               type:
-                  TypeRef(nullable: false, generic: TypeRef_Generic(name: 'T')),
+                  TypeRef(nullable: true, generic: TypeRef_Generic(name: 'T')),
               comment: '',
             ),
           ],

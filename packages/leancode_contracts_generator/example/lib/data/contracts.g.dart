@@ -6,10 +6,10 @@ part of 'contracts.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Command _$CommandFromJson(Map<String, dynamic> json) => Command();
+Command_ _$Command_FromJson(Map<String, dynamic> json) => Command_();
 
-Map<String, dynamic> _$CommandToJson(Command instance) => <String, dynamic>{};
+Map<String, dynamic> _$Command_ToJson(Command_ instance) => <String, dynamic>{};
 
-Query _$QueryFromJson(Map<String, dynamic> json) => Query();
+Query_ _$Query_FromJson(Map<String, dynamic> json) => Query_();
 
-Map<String, dynamic> _$QueryToJson(Query instance) => <String, dynamic>{};
+Map<String, dynamic> _$Query_ToJson(Query_ instance) => <String, dynamic>{};

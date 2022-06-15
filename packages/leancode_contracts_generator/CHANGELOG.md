@@ -1,3 +1,7 @@
+# Unreleased
+
+- Support `LeanCode.ContractsGenerator` `v1.0.0`
+
 # 0.5.0
 
 - **BREAKING**: generates contracts now depend on `package:leancode_contracts`
