@@ -38,7 +38,7 @@ class DateTimeOffset {
           .subtract(Duration(minutes: offsetInMinutes));
     } else {
       final dt = DateTime.parse(json);
-      dateTime = dt.toUtc().add(dt.timeZoneOffset);
+      dateTime = dt.toUtc();
       offsetInMinutes = dt.timeZoneOffset.inMinutes;
     }
 
@@ -53,7 +53,7 @@ class DateTimeOffset {
     final now = DateTime.now();
 
     return DateTimeOffset(
-      now.toUtc().add(now.timeZoneOffset),
+      now.toUtc(),
       now.timeZoneOffset.inMinutes,
     );
   }
@@ -67,9 +67,12 @@ class DateTimeOffset {
   /// [offsetInMinutes] converted to [Duration]
   Duration get offset => Duration(minutes: offsetInMinutes);
 
+  /// [DateTimeOffset] converted to local [DateTime]
+  DateTime get localDateTime => utcDateTime.toLocal();
+
   /// Serializes [DateTimeOffset] into a ISO 8601 timestamp
   String toJson() {
-    var iso = utcDateTime.toIso8601String();
+    var iso = utcDateTime.add(offset).toIso8601String();
     iso = iso.substring(0, iso.length - 1);
 
     final absOffset = offsetInMinutes.abs();

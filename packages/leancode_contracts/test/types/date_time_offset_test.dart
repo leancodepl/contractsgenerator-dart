@@ -75,11 +75,11 @@ void main() {
       );
       expect(
         DateTimeOffset(dt2, off2).toJson(),
-        '2022-06-15T11:54:44.923464+03:09',
+        '2022-06-15T15:03:44.923464+03:09',
       );
       expect(
         DateTimeOffset(dt3, off3).toJson(),
-        '2022-06-15T08:54:44.923464-12:39',
+        '2022-06-14T20:15:44.923464-12:39',
       );
     });
 
@@ -114,7 +114,7 @@ void main() {
         expect(
           DateTimeOffset.fromJson('2022-06-15T08:54:44.923464'),
           DateTimeOffset(
-            DateTime.utc(2022, 6, 15, 8, 54, 44, 923, 464),
+            DateTime.utc(2022, 6, 15, 8, 54, 44, 923, 464).subtract(myTimeZone),
             myTimeZone.inMinutes,
           ),
         );
