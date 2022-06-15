@@ -1,3 +1,7 @@
+# 0.2.2
+
+- Add `toLocalWithOffset` serializer
+
 # 0.2.1
 
 - Fix `DateOnly` not dropping time part
