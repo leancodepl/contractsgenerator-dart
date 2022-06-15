@@ -34,7 +34,8 @@ class DateTimeOffset {
       }
 
       final iso = json.substring(0, json.length - match[8]!.length);
-      dateTime = DateTime.parse('${iso}Z');
+      dateTime = DateTime.parse('${iso}Z')
+          .subtract(Duration(minutes: offsetInMinutes));
     } else {
       final dt = DateTime.parse(json);
       dateTime = dt.toUtc().add(dt.timeZoneOffset);
@@ -44,6 +45,16 @@ class DateTimeOffset {
     return DateTimeOffset(
       dateTime,
       offsetInMinutes,
+    );
+  }
+
+  /// [DateTimeOffset] at the current instant with local timezone.
+  factory DateTimeOffset.now() {
+    final now = DateTime.now();
+
+    return DateTimeOffset(
+      now.toUtc().add(now.timeZoneOffset),
+      now.timeZoneOffset.inMinutes,
     );
   }
 

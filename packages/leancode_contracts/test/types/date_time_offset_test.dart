@@ -88,14 +88,14 @@ void main() {
         expect(
           DateTimeOffset.fromJson('2022-06-15T08:54:44.923464+02:00'),
           DateTimeOffset(
-            DateTime.utc(2022, 6, 15, 8, 54, 44, 923, 464),
+            DateTime.utc(2022, 6, 15, 6, 54, 44, 923, 464),
             2 * Duration.minutesPerHour,
           ),
         );
         expect(
           DateTimeOffset.fromJson('2022-06-15T08:54:44.923464-03:00'),
           DateTimeOffset(
-            DateTime.utc(2022, 6, 15, 8, 54, 44, 923, 464),
+            DateTime.utc(2022, 6, 15, 11, 54, 44, 923, 464),
             -3 * Duration.minutesPerHour,
           ),
         );
