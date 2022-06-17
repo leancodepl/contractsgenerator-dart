@@ -2,7 +2,7 @@
 /// A [DateTime] with a fixed offset
 /// {@endtemplate}
 class DateTimeOffset {
-  /// Constructs a [DateTimeOffset] from a utc [DateTime] and a given offset in minutes.
+  /// Constructs a [DateTimeOffset] from a UTC [DateTime] and a given offset in minutes.
   /// Assets that the given [DateTime] is UTC and the given offset is between -14h and 14h (inclusive)
   DateTimeOffset(this.utcDateTime, this.offsetInMinutes)
       : assert(utcDateTime.isUtc),
