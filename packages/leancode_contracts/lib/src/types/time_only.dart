@@ -3,7 +3,7 @@ import '../json_converters/duration_json_converter.dart';
 /// {@template TimeOnly}
 /// Represents a time of day, as would be read from a clock, within the range 00:00:00 to 23:59:59.999999.
 /// {@endtemplate}
-class TimeOnly {
+class TimeOnly implements Comparable<TimeOnly> {
   /// Constructs a [TimeOnly] from [Duration] and asserts that it represents a valid time.
   const TimeOnly(this.source)
       : assert(source < const Duration(days: 1) && source >= Duration.zero);
@@ -58,4 +58,9 @@ class TimeOnly {
 
   @override
   int get hashCode => source.hashCode;
+
+  @override
+  int compareTo(TimeOnly other) {
+    return source.compareTo(other.source);
+  }
 }
