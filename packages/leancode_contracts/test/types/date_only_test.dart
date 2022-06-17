@@ -5,7 +5,7 @@ import 'package:test/scaffolding.dart';
 final throwsAssertionError = throwsA(isA<AssertionError>());
 
 void main() {
-  group('DateTime', () {
+  group('DateOnly', () {
     test('accepts correct dates', () {
       expect(
         DateOnly(1999, 1, 29),
