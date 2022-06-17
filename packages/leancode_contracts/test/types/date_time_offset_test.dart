@@ -60,6 +60,76 @@ void main() {
       );
     });
 
+    test('date getter', () {
+      final dt1 = DateTime.parse('2022-06-15T08:54:44.923464+02:00');
+      final dt2 = DateTime.parse('2022-06-15T08:54:44.923464-03:00');
+      final dt3 = DateTime.parse('2022-06-15T08:54:44.923464Z');
+
+      const off1 = 0;
+      const off2 = 3 * Duration.minutesPerHour + 9;
+      const off3 = -(12 * Duration.minutesPerHour + 39);
+
+      expect(
+        DateTimeOffset(dt1, off1).date,
+        DateOnly(2022, 6, 15),
+      );
+      expect(
+        DateTimeOffset(dt2, off2).date,
+        DateOnly(2022, 6, 15),
+      );
+      expect(
+        DateTimeOffset(dt3, off3).date,
+        DateOnly(2022, 6, 14),
+      );
+    });
+
+    test('time getter', () {
+      final dt1 = DateTime.parse('2022-06-15T08:54:44.923464+02:00');
+      final dt2 = DateTime.parse('2022-06-15T08:54:44.923464-03:00');
+      final dt3 = DateTime.parse('2022-06-15T08:54:44.923464Z');
+
+      const off1 = 0;
+      const off2 = 3 * Duration.minutesPerHour + 9;
+      const off3 = -(12 * Duration.minutesPerHour + 39);
+
+      expect(
+        DateTimeOffset(dt1, off1).time,
+        TimeOnly(
+          const Duration(
+            hours: 6,
+            minutes: 54,
+            seconds: 44,
+            milliseconds: 923,
+            microseconds: 464,
+          ),
+        ),
+      );
+      expect(
+        DateTimeOffset(dt2, off2).time,
+        TimeOnly(
+          const Duration(
+            hours: 15,
+            minutes: 3,
+            seconds: 44,
+            milliseconds: 923,
+            microseconds: 464,
+          ),
+        ),
+      );
+      expect(
+        DateTimeOffset(dt3, off3).time,
+        TimeOnly(
+          const Duration(
+            hours: 20,
+            minutes: 15,
+            seconds: 44,
+            milliseconds: 923,
+            microseconds: 464,
+          ),
+        ),
+      );
+    });
+
     test('serialization', () {
       final dt1 = DateTime.parse('2022-06-15T08:54:44.923464+02:00');
       final dt2 = DateTime.parse('2022-06-15T08:54:44.923464-03:00');

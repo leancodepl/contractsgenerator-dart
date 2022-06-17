@@ -1,3 +1,5 @@
+import 'package:leancode_contracts/leancode_contracts.dart';
+
 /// {@template DateTimeOffset}
 /// A [DateTime] with a fixed offset
 /// {@endtemplate}
@@ -58,19 +60,25 @@ class DateTimeOffset {
     );
   }
 
-  /// UTC [DateTime]
+  /// UTC [DateTime].
   final DateTime utcDateTime;
 
-  /// Offset in minutes from [utcDateTime]
+  /// Offset in minutes from [utcDateTime].
   final int offsetInMinutes;
 
-  /// [offsetInMinutes] converted to [Duration]
+  /// [offsetInMinutes] converted to [Duration].
   Duration get offset => Duration(minutes: offsetInMinutes);
 
-  /// [DateTimeOffset] converted to local [DateTime]
+  /// [DateTimeOffset] converted to local [DateTime].
   DateTime get localDateTime => utcDateTime.toLocal();
 
-  /// Serializes [DateTimeOffset] into a ISO 8601 timestamp
+  /// The [DateOnly] when this instant occurred.
+  DateOnly get date => DateOnly.fromDateTime(utcDateTime.add(offset));
+
+  /// The [TimeOnly] when this instant occurred.
+  TimeOnly get time => TimeOnly.fromDateTime(utcDateTime.add(offset));
+
+  /// Serializes [DateTimeOffset] into a ISO 8601 timestamp.
   String toJson() {
     var iso = utcDateTime.add(offset).toIso8601String();
     iso = iso.substring(0, iso.length - 1);
