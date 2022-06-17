@@ -1,6 +1,7 @@
 # 0.2.2
 
 - Add `DateTimeOffset` type
+- Implement `Comparable` for `DateOnly` and `TimeOnly`
 
 # 0.2.1
 

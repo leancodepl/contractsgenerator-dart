@@ -60,5 +60,44 @@ void main() {
         DateOnly(1999, 1, 29),
       );
     });
+
+    group('compareTo', () {
+      test('greater than', () {
+        expect(
+          DateOnly(2000, 1, 24).compareTo(DateOnly(2000, 1, 23)),
+          isPositive,
+        );
+        expect(
+          DateOnly(2000, 1, 24).compareTo(DateOnly(1999, 1, 24)),
+          isPositive,
+        );
+        expect(
+          DateOnly(2000, 2, 24).compareTo(DateOnly(2000, 1, 24)),
+          isPositive,
+        );
+      });
+
+      test('less than', () {
+        expect(
+          DateOnly(2000, 1, 23).compareTo(DateOnly(2000, 1, 24)),
+          isNegative,
+        );
+        expect(
+          DateOnly(1999, 1, 24).compareTo(DateOnly(2000, 1, 24)),
+          isNegative,
+        );
+        expect(
+          DateOnly(2000, 1, 24).compareTo(DateOnly(2000, 2, 24)),
+          isNegative,
+        );
+      });
+
+      test('equal', () {
+        expect(
+          DateOnly(2000, 1, 23).compareTo(DateOnly(2000, 1, 23)),
+          isZero,
+        );
+      });
+    });
   });
 }

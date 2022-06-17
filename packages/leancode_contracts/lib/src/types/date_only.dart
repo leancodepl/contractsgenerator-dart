@@ -1,7 +1,7 @@
 /// {@template DateOnly}
 /// Represents a single day
 /// {@endtemplate}
-class DateOnly {
+class DateOnly implements Comparable<DateOnly> {
   /// Constructs a [DateOnly] from [DateTime] and asserts that it represents a valid time.
   DateOnly(int year, int month, int day)
       : this.fromDateTime(DateTime(year, month, day));
@@ -51,4 +51,9 @@ class DateOnly {
 
   @override
   int get hashCode => source.hashCode;
+
+  @override
+  int compareTo(DateOnly other) {
+    return source.compareTo(other.source);
+  }
 }

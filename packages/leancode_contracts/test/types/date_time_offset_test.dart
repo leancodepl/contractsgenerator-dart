@@ -190,5 +190,57 @@ void main() {
         );
       });
     });
+
+    group('compareTo', () {
+      test('greater than', () {
+        final now = DateTime.now().toUtc();
+
+        expect(
+          DateTimeOffset(now, 0).compareTo(DateTimeOffset(now, -2)),
+          isPositive,
+        );
+        expect(
+          DateTimeOffset(now, 0).compareTo(
+            DateTimeOffset(now.subtract(const Duration(seconds: 1)), 0),
+          ),
+          isPositive,
+        );
+      });
+
+      test('less than', () {
+        final now = DateTime.now().toUtc();
+
+        expect(
+          DateTimeOffset(now, 0).compareTo(DateTimeOffset(now, 2)),
+          isNegative,
+        );
+        expect(
+          DateTimeOffset(now, 0).compareTo(
+            DateTimeOffset(now.add(const Duration(seconds: 1)), 0),
+          ),
+          isNegative,
+        );
+      });
+
+      test('equal', () {
+        expect(
+          DateTimeOffset(DateTime.utc(2022), -2)
+              .compareTo(DateTimeOffset(DateTime.utc(2022), -2)),
+          isZero,
+        );
+        expect(
+          DateTimeOffset(
+            DateTime.utc(2022, 1, 1, 13),
+            -2 * Duration.minutesPerHour,
+          ).compareTo(
+            DateTimeOffset(
+              DateTime.utc(2022, 1, 1, 9),
+              2 * Duration.minutesPerHour,
+            ),
+          ),
+          isZero,
+        );
+      });
+    });
   });
 }

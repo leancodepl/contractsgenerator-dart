@@ -3,7 +3,7 @@ import 'package:leancode_contracts/leancode_contracts.dart';
 /// {@template DateTimeOffset}
 /// A [DateTime] with a fixed offset
 /// {@endtemplate}
-class DateTimeOffset {
+class DateTimeOffset implements Comparable<DateTimeOffset> {
   /// Constructs a [DateTimeOffset] from a UTC [DateTime] and a given offset in minutes.
   /// Assets that the given [DateTime] is UTC and the given offset is between -14h and 14h (inclusive)
   DateTimeOffset(this.utcDateTime, this.offsetInMinutes)
@@ -103,6 +103,13 @@ class DateTimeOffset {
 
   @override
   int get hashCode => Object.hash(utcDateTime, offsetInMinutes);
+
+  @override
+  int compareTo(DateTimeOffset other) {
+    return utcDateTime
+        .add(offset)
+        .compareTo(other.utcDateTime.add(other.offset));
+  }
 }
 
 // taken from Dart's DateTime implementation

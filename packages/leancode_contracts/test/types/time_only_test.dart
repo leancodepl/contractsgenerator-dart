@@ -113,5 +113,31 @@ void main() {
         ),
       );
     });
+
+    group('compareTo', () {
+      test('greater than', () {
+        expect(
+          TimeOnly(const Duration(hours: 1))
+              .compareTo(TimeOnly(const Duration(minutes: 1))),
+          isPositive,
+        );
+      });
+
+      test('less than', () {
+        expect(
+          TimeOnly(const Duration(minutes: 1))
+              .compareTo(TimeOnly(const Duration(hours: 1))),
+          isNegative,
+        );
+      });
+
+      test('equal', () {
+        expect(
+          TimeOnly(const Duration(hours: 1))
+              .compareTo(TimeOnly(const Duration(hours: 1))),
+          isZero,
+        );
+      });
+    });
   });
 }
