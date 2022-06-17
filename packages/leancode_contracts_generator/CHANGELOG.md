@@ -1,6 +1,7 @@
-# Unreleased
+# 0.6.0
 
 - Support `LeanCode.ContractsGenerator` `v1.0.0`
+- **BREAKING**: `KnownType::DateTimeOffset` is now correctly (de)serialized to a dedicated `DateTimeOffset` type from `package:leancode_contracts`. See the type's definition for more info about conversions between `DateTime`, `DateOnly`, `TimeOnly`, and `DateTimeOffset`.
 
 # 0.5.0
 
