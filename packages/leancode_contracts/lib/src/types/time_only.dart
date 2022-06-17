@@ -8,6 +8,18 @@ class TimeOnly {
   const TimeOnly(this.source)
       : assert(source < const Duration(days: 1) && source >= Duration.zero);
 
+  /// Constructs a [TimeOnly] from [DateTime] by disregarding the date component.
+  TimeOnly.fromDateTime(DateTime source)
+      : this(
+          Duration(
+            hours: source.hour,
+            minutes: source.minute,
+            seconds: source.second,
+            milliseconds: source.millisecond,
+            microseconds: source.microsecond,
+          ),
+        );
+
   /// Deserializes a string into [TimeOnly]
   TimeOnly.fromJson(String json)
       : this(const DurationJsonConverter().fromJson(json));

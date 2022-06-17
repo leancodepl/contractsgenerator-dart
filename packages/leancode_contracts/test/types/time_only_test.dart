@@ -25,6 +25,49 @@ void main() {
       );
     });
 
+    test('fromDateTime', () {
+      final dt1 = DateTime.parse('2022-06-15T08:54:44.923464+02:00');
+      final dt2 = DateTime.parse('2022-06-15T08:54:44.923464-03:00');
+      final dt3 = DateTime.parse('2022-06-15T08:54:44.923464Z');
+
+      expect(
+        TimeOnly.fromDateTime(dt1),
+        TimeOnly(
+          const Duration(
+            hours: 6,
+            minutes: 54,
+            seconds: 44,
+            milliseconds: 923,
+            microseconds: 464,
+          ),
+        ),
+      );
+      expect(
+        TimeOnly.fromDateTime(dt2),
+        TimeOnly(
+          const Duration(
+            hours: 11,
+            minutes: 54,
+            seconds: 44,
+            milliseconds: 923,
+            microseconds: 464,
+          ),
+        ),
+      );
+      expect(
+        TimeOnly.fromDateTime(dt3),
+        TimeOnly(
+          const Duration(
+            hours: 8,
+            minutes: 54,
+            seconds: 44,
+            milliseconds: 923,
+            microseconds: 464,
+          ),
+        ),
+      );
+    });
+
     test('time part getters', () {
       final zero = TimeOnly(Duration.zero);
       final complex = TimeOnly(
