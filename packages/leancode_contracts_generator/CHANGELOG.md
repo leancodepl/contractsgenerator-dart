@@ -1,3 +1,7 @@
+# 0.6.1
+
+- Add missing result factory mapping for `DateTimeOffset`
+
 # 0.6.0
 
 - Support `LeanCode.ContractsGenerator` `v1.0.0`
