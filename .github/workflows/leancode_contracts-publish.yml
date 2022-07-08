@@ -18,7 +18,7 @@ jobs:
 
       - uses: dart-lang/setup-dart@v1
         with:
-          sdk: 2.16.1
+          sdk: 2.16.2
 
       - name: Inject pub.dev credentials
         env:
