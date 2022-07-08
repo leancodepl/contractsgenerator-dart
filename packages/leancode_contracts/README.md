@@ -17,5 +17,7 @@ The following types are provided by `package:leancode_contracts`:
 
 - `TimeOnly` - describes a time of day with microsecond precision
 - `DateOnly` - describes a particular day
+- `DateTimeOffset` - a `DateTime` with a fixed offset
+- `Binary` - binary data stored as a base64 encoded string
 
 Refer to the [API documentation](https://pub.dev/documentation/leancode_contracts/latest/) for more info.
