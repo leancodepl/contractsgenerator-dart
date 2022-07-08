@@ -3,15 +3,25 @@ name: leancode_contracts-test
 on:
   push:
     branches: [main]
-    paths: [packages/leancode_contracts/**]
+    paths:
+      - packages/leancode_contracts/**
+      - .github/**
   pull_request:
     branches: [main]
-    paths: [packages/leancode_contracts/**]
+    paths:
+      - packages/leancode_contracts/**
+      - .github/**
 
 jobs:
   test:
-    name: Test
+    name: Dart ${{ matrix.dart_sdk }}
+
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        dart_sdk: ["2.16.2", "2.17.5"]
 
     defaults:
       run:
@@ -22,7 +32,7 @@ jobs:
 
       - uses: dart-lang/setup-dart@v1
         with:
-          sdk: 2.16.1
+          sdk: ${{ matrix.dart_sdk }}
 
       - name: Get dependencies
         run: dart pub get
