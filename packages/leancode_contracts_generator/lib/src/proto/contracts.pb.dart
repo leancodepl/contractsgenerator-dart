@@ -2394,7 +2394,103 @@ class Statement_Command extends $pb.GeneratedMessage {
   $core.List<ErrorCode> get errorCodes => $_getList(1);
 }
 
-enum Statement_Content { dto, enum_11, query, command, notSet }
+class Statement_Operation extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'Statement.Operation',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..aOM<TypeDescriptor>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'typeDescriptor',
+        protoName: 'typeDescriptor',
+        subBuilder: TypeDescriptor.create)
+    ..aOM<TypeRef>(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'returnType',
+        protoName: 'returnType',
+        subBuilder: TypeRef.create)
+    ..hasRequiredFields = false;
+
+  Statement_Operation._() : super();
+  factory Statement_Operation({
+    TypeDescriptor? typeDescriptor,
+    TypeRef? returnType,
+  }) {
+    final _result = create();
+    if (typeDescriptor != null) {
+      _result.typeDescriptor = typeDescriptor;
+    }
+    if (returnType != null) {
+      _result.returnType = returnType;
+    }
+    return _result;
+  }
+  factory Statement_Operation.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory Statement_Operation.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  Statement_Operation clone() => Statement_Operation()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  Statement_Operation copyWith(void Function(Statement_Operation) updates) =>
+      super.copyWith((message) => updates(message as Statement_Operation))
+          as Statement_Operation; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static Statement_Operation create() => Statement_Operation._();
+  Statement_Operation createEmptyInstance() => create();
+  static $pb.PbList<Statement_Operation> createRepeated() =>
+      $pb.PbList<Statement_Operation>();
+  @$core.pragma('dart2js:noInline')
+  static Statement_Operation getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<Statement_Operation>(create);
+  static Statement_Operation? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  TypeDescriptor get typeDescriptor => $_getN(0);
+  @$pb.TagNumber(1)
+  set typeDescriptor(TypeDescriptor v) {
+    setField(1, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasTypeDescriptor() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTypeDescriptor() => clearField(1);
+  @$pb.TagNumber(1)
+  TypeDescriptor ensureTypeDescriptor() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  TypeRef get returnType => $_getN(1);
+  @$pb.TagNumber(2)
+  set returnType(TypeRef v) {
+    setField(2, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasReturnType() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearReturnType() => clearField(2);
+  @$pb.TagNumber(2)
+  TypeRef ensureReturnType() => $_ensure(1);
+}
+
+enum Statement_Content { dto, enum_11, query, command, operation, notSet }
 
 class Statement extends $pb.GeneratedMessage {
   static const $core.Map<$core.int, Statement_Content> _Statement_ContentByTag =
@@ -2403,6 +2499,7 @@ class Statement extends $pb.GeneratedMessage {
     11: Statement_Content.enum_11,
     12: Statement_Content.query,
     13: Statement_Content.command,
+    14: Statement_Content.operation,
     0: Statement_Content.notSet
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
@@ -2414,7 +2511,7 @@ class Statement extends $pb.GeneratedMessage {
               ? ''
               : 'leancode.contracts'),
       createEmptyInstance: create)
-    ..oo(0, [10, 11, 12, 13])
+    ..oo(0, [10, 11, 12, 13, 14])
     ..aOS(
         1,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -2456,6 +2553,12 @@ class Statement extends $pb.GeneratedMessage {
             ? ''
             : 'command',
         subBuilder: Statement_Command.create)
+    ..aOM<Statement_Operation>(
+        14,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'operation',
+        subBuilder: Statement_Operation.create)
     ..hasRequiredFields = false;
 
   Statement._() : super();
@@ -2467,6 +2570,7 @@ class Statement extends $pb.GeneratedMessage {
     Statement_Enum? enum_11,
     Statement_Query? query,
     Statement_Command? command,
+    Statement_Operation? operation,
   }) {
     final _result = create();
     if (name != null) {
@@ -2489,6 +2593,9 @@ class Statement extends $pb.GeneratedMessage {
     }
     if (command != null) {
       _result.command = command;
+    }
+    if (operation != null) {
+      _result.operation = operation;
     }
     return _result;
   }
@@ -2603,6 +2710,20 @@ class Statement extends $pb.GeneratedMessage {
   void clearCommand() => clearField(13);
   @$pb.TagNumber(13)
   Statement_Command ensureCommand() => $_ensure(6);
+
+  @$pb.TagNumber(14)
+  Statement_Operation get operation => $_getN(7);
+  @$pb.TagNumber(14)
+  set operation(Statement_Operation v) {
+    setField(14, v);
+  }
+
+  @$pb.TagNumber(14)
+  $core.bool hasOperation() => $_has(7);
+  @$pb.TagNumber(14)
+  void clearOperation() => clearField(14);
+  @$pb.TagNumber(14)
+  Statement_Operation ensureOperation() => $_ensure(7);
 }
 
 class Export extends $pb.GeneratedMessage {
