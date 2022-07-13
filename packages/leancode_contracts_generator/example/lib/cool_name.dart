@@ -117,7 +117,7 @@ class WhenHasSomethingAccess with EquatableMixin {
   Map<String, dynamic> toJson() => _$WhenHasSomethingAccessToJson(this);
 }
 
-/// LeanCode.CQRS.Security.AuthorizeWhenHasAnyOfAttribute('admin')
+/// LeanCode.Contracts.Security.AuthorizeWhenHasAnyOfAttribute('admin')
 @JsonSerializable(fieldRename: FieldRename.pascal)
 class AllUsers with EquatableMixin implements PaginatedQuery<UserInfoDTO> {
   AllUsers({
@@ -142,7 +142,7 @@ class AllUsers with EquatableMixin implements PaginatedQuery<UserInfoDTO> {
       'LeanCode.ContractsGeneratorV2.ExampleContracts.Users.AllUsers';
 }
 
-/// LeanCode.CQRS.Security.AuthorizeWhenHasAnyOfAttribute('admin')
+/// LeanCode.Contracts.Security.AuthorizeWhenHasAnyOfAttribute('admin')
 /// LeanCode.ContractsGeneratorV2.ExampleContracts.Security.AuthorizeWhenHasSomethingAccessAttribute()
 @JsonSerializable(fieldRename: FieldRename.pascal)
 class EditUser with EquatableMixin implements Command, ISomethingRelated {
@@ -201,7 +201,7 @@ class EditUserErrorCodes {
   static const userInfoEmailIsTaken = 1010;
 }
 
-/// LeanCode.CQRS.Security.AuthorizeWhenHasAnyOfAttribute('admin')
+/// LeanCode.Contracts.Security.AuthorizeWhenHasAnyOfAttribute('admin')
 @JsonSerializable(fieldRename: FieldRename.pascal)
 class UserById with EquatableMixin implements Query<UserInfoDTO?> {
   UserById();
@@ -246,7 +246,7 @@ class UserInfoDTO with EquatableMixin {
   Map<String, dynamic> toJson() => _$UserInfoDTOToJson(this);
 }
 
-/// LeanCode.CQRS.Security.AuthorizeWhenHasAnyOfAttribute('admin')
+/// LeanCode.Contracts.Security.AuthorizeWhenHasAnyOfAttribute('admin')
 @JsonSerializable(fieldRename: FieldRename.pascal)
 class UserSomething with EquatableMixin implements Query<int?> {
   UserSomething();

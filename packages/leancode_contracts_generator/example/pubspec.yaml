@@ -4,10 +4,10 @@ version: 1.0.0
 publish_to: none
 
 environment:
-  sdk: ">=2.15.0 <3.0.0"
+  sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
-  cqrs: ^6.0.0
+  cqrs: ^7.0.0
   equatable: ^2.0.3
   json_annotation: ^4.3.0
   leancode_contracts_generator:
@@ -15,4 +15,4 @@ dependencies:
   leancode_contracts:
     path: ../../leancode_contracts
 dev_dependencies:
-  leancode_lint: ^1.0.2
+  leancode_lint: ^1.2.1
