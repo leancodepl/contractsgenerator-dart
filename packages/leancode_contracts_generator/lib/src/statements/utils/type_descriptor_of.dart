@@ -8,6 +8,8 @@ TypeDescriptor? typeDescriptorOf(Statement statement) {
     return statement.query.typeDescriptor;
   } else if (statement.hasCommand()) {
     return statement.command.typeDescriptor;
+  } else if (statement.hasOperation()) {
+    return statement.operation.typeDescriptor;
   }
 
   return null;

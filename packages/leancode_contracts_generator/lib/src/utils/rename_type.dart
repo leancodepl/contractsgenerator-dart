@@ -5,6 +5,7 @@ const _reservedTypes = {
   'Duration',
   'Query',
   'Command',
+  'Operation',
 };
 
 /// Renames a type to avoid potential dart types conflicts

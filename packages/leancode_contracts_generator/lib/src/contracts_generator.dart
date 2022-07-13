@@ -7,6 +7,7 @@ import 'package:build_runner_core/build_runner_core.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
 import 'package:json_serializable/builder.dart';
+import 'package:leancode_contracts_generator/src/statements/operation_handler.dart';
 import 'package:leancode_contracts_generator/src/utils/memory_asset_writer.dart';
 import 'package:leancode_contracts_generator/src/utils/verbose_log.dart';
 import 'package:path/path.dart' as p;
@@ -83,6 +84,13 @@ class ContractsGenerator {
         jsonConverters,
         db,
         errorCreator,
+      ),
+      OperationHandler(
+        typeCreator,
+        valueCreator,
+        attributeCreator,
+        jsonConverters,
+        db,
       ),
       EnumHandler(
         typeCreator,
