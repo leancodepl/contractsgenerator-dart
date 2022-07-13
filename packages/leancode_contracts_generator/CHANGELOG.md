@@ -1,6 +1,7 @@
 # Unreleased
 
 - Add verbose CLI logging under the `--verbose`/`-v` flag
+- Sort generated statements according to namespace
 
 # 0.6.1
 

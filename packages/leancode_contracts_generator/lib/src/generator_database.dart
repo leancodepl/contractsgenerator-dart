@@ -14,7 +14,9 @@ class GeneratorDatabase {
   @visibleForTesting
   GeneratorDatabase(this.config, this._export)
       : _statements = LinkedHashMap.fromEntries(
-          _export.statements.map((e) => MapEntry(e.name, e)),
+          _export.statements
+              .map((e) => MapEntry(e.name, e))
+              .sortedBy((e) => e.key),
         );
 
   static Future<GeneratorDatabase> fromConfig(
