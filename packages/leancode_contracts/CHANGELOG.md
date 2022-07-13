@@ -1,6 +1,7 @@
-# 0.2.3
+# 0.3.0
 
 - Add `Binary` type
+- Bump `package:cqrs` to `7.0.0`
 
 # 0.2.2
 
