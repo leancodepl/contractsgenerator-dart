@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using LeanCode.CQRS;
+using LeanCode.Contracts;
 
 namespace LeanCode.ContractsGeneratorV2.ExampleContracts
 {
     /// This is a class-level comment.
-    public abstract class PaginatedQuery<TResult> : IRemoteQuery<PaginatedResult<TResult>>
+    public abstract class PaginatedQuery<TResult> : IQuery<PaginatedResult<TResult>>
     {
         public int PageNumber { get; set; }
         public int PageSize { get; set; }

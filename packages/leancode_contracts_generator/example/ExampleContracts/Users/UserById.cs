@@ -1,9 +1,9 @@
-using LeanCode.CQRS;
-using LeanCode.CQRS.Security;
+using LeanCode.Contracts;
+using LeanCode.Contracts.Security;
 
 namespace LeanCode.ContractsGeneratorV2.ExampleContracts.Users
 {
     [AuthorizeWhenHasAnyOf(Auth.Roles.Admin)]
-    public class UserById : IRemoteQuery<UserInfoDTO?>
+    public class UserById : IQuery<UserInfoDTO?>
     { }
 }
