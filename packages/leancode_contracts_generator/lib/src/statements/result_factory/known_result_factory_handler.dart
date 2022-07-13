@@ -61,6 +61,9 @@ class KnownResultFactoryHandler extends ResultFactoryHandler {
       case KnownType.TimeSpan:
         return 'const ${jsonConverters.getConverter(typeRef)}().fromJson($paramName as String$q)';
 
+      case KnownType.Binary:
+        return '${ifNullablePrefix(typeRef, paramName)}Binary.fromJson($paramName)';
+
       case KnownType.Array:
         return '($paramName as Iterable<dynamic>$q)$q'
             '.map((dynamic e) => ${ResultFactoryHandler.buildFrom(known.arguments.first, handlers, 'e')}).toList()';
@@ -75,6 +78,7 @@ class KnownResultFactoryHandler extends ResultFactoryHandler {
 
       case KnownType.Query:
       case KnownType.Command:
+      case KnownType.Operation:
       case KnownType.AuthorizeWhenAttribute:
       case KnownType.AuthorizeWhenHasAnyOfAttribute:
       case KnownType.QueryCacheAttribute:

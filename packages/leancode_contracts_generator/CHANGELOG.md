@@ -1,7 +1,10 @@
-# Unreleased
+# 0.7.0
 
 - Add verbose CLI logging under the `--verbose`/`-v` flag
 - Sort generated statements according to namespace
+- Add support for `KnownType::Binary`
+- Add support for `KnownType::Operation`
+- **BREAKING**: Bump `LeanCode.ContractsGenerator` to `v2.0.0-alpha.1`
 
 # 0.6.1
 

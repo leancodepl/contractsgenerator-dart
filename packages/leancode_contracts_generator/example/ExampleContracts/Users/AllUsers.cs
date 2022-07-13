@@ -1,4 +1,4 @@
-using LeanCode.CQRS.Security;
+using LeanCode.Contracts.Security;
 
 namespace LeanCode.ContractsGeneratorV2.ExampleContracts.Users
 {

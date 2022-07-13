@@ -40,6 +40,8 @@ const KnownType$json = const {
     const {'1': 'Query', '2': 1000},
     const {'1': 'Command', '2': 1001},
     const {'1': 'CommandResult', '2': 1002},
+    const {'1': 'Operation', '2': 1003},
+    const {'1': 'Binary', '2': 1004},
     const {'1': 'Attribute', '2': 1100},
     const {'1': 'AuthorizeWhenAttribute', '2': 1101},
     const {'1': 'AuthorizeWhenHasAnyOfAttribute', '2': 1102},
@@ -49,7 +51,7 @@ const KnownType$json = const {
 
 /// Descriptor for `KnownType`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List knownTypeDescriptor = $convert.base64Decode(
-    'CglLbm93blR5cGUSCgoGT2JqZWN0EAASCgoGU3RyaW5nEAESCAoER3VpZBADEgcKA1VyaRAEEgsKB0Jvb2xlYW4QBRIJCgVVSW50OBBkEggKBEludDgQZRIJCgVJbnQxNhBmEgoKBlVJbnQxNhBnEgkKBUludDMyEGgSCgoGVUludDMyEGkSCQoFSW50NjQQahIKCgZVSW50NjQQaxIMCgdGbG9hdDMyEJYBEgwKB0Zsb2F0NjQQlwESDQoIRGF0ZU9ubHkQyAESDQoIVGltZU9ubHkQyQESDQoIRGF0ZVRpbWUQygESEwoORGF0ZVRpbWVPZmZzZXQQywESDQoIVGltZVNwYW4QzAESCQoERGF0ZRDNARIJCgRUaW1lEM4BEgoKBUFycmF5EKwCEggKA01hcBCtAhIKCgVRdWVyeRDoBxIMCgdDb21tYW5kEOkHEhIKDUNvbW1hbmRSZXN1bHQQ6gcSDgoJQXR0cmlidXRlEMwIEhsKFkF1dGhvcml6ZVdoZW5BdHRyaWJ1dGUQzQgSIwoeQXV0aG9yaXplV2hlbkhhc0FueU9mQXR0cmlidXRlEM4IEhgKE1F1ZXJ5Q2FjaGVBdHRyaWJ1dGUQzwg=');
+    'CglLbm93blR5cGUSCgoGT2JqZWN0EAASCgoGU3RyaW5nEAESCAoER3VpZBADEgcKA1VyaRAEEgsKB0Jvb2xlYW4QBRIJCgVVSW50OBBkEggKBEludDgQZRIJCgVJbnQxNhBmEgoKBlVJbnQxNhBnEgkKBUludDMyEGgSCgoGVUludDMyEGkSCQoFSW50NjQQahIKCgZVSW50NjQQaxIMCgdGbG9hdDMyEJYBEgwKB0Zsb2F0NjQQlwESDQoIRGF0ZU9ubHkQyAESDQoIVGltZU9ubHkQyQESDQoIRGF0ZVRpbWUQygESEwoORGF0ZVRpbWVPZmZzZXQQywESDQoIVGltZVNwYW4QzAESCQoERGF0ZRDNARIJCgRUaW1lEM4BEgoKBUFycmF5EKwCEggKA01hcBCtAhIKCgVRdWVyeRDoBxIMCgdDb21tYW5kEOkHEhIKDUNvbW1hbmRSZXN1bHQQ6gcSDgoJT3BlcmF0aW9uEOsHEgsKBkJpbmFyeRDsBxIOCglBdHRyaWJ1dGUQzAgSGwoWQXV0aG9yaXplV2hlbkF0dHJpYnV0ZRDNCBIjCh5BdXRob3JpemVXaGVuSGFzQW55T2ZBdHRyaWJ1dGUQzggSGAoTUXVlcnlDYWNoZUF0dHJpYnV0ZRDPCA==');
 @$core.Deprecated('Use valueRefDescriptor instead')
 const ValueRef$json = const {
   '1': 'ValueRef',
@@ -546,12 +548,22 @@ const Statement$json = const {
       '9': 0,
       '10': 'command'
     },
+    const {
+      '1': 'operation',
+      '3': 14,
+      '4': 1,
+      '5': 11,
+      '6': '.leancode.contracts.Statement.Operation',
+      '9': 0,
+      '10': 'operation'
+    },
   ],
   '3': const [
     Statement_DTO$json,
     Statement_Enum$json,
     Statement_Query$json,
-    Statement_Command$json
+    Statement_Command$json,
+    Statement_Operation$json
   ],
   '8': const [
     const {'1': 'content'},
@@ -634,9 +646,32 @@ const Statement_Command$json = const {
   ],
 };
 
+@$core.Deprecated('Use statementDescriptor instead')
+const Statement_Operation$json = const {
+  '1': 'Operation',
+  '2': const [
+    const {
+      '1': 'typeDescriptor',
+      '3': 1,
+      '4': 1,
+      '5': 11,
+      '6': '.leancode.contracts.TypeDescriptor',
+      '10': 'typeDescriptor'
+    },
+    const {
+      '1': 'returnType',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.leancode.contracts.TypeRef',
+      '10': 'returnType'
+    },
+  ],
+};
+
 /// Descriptor for `Statement`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List statementDescriptor = $convert.base64Decode(
-    'CglTdGF0ZW1lbnQSEgoEbmFtZRgBIAEoCVIEbmFtZRIYCgdjb21tZW50GAIgASgJUgdjb21tZW50EkAKCmF0dHJpYnV0ZXMYAyADKAsyIC5sZWFuY29kZS5jb250cmFjdHMuQXR0cmlidXRlUmVmUgphdHRyaWJ1dGVzEjUKA2R0bxgKIAEoCzIhLmxlYW5jb2RlLmNvbnRyYWN0cy5TdGF0ZW1lbnQuRFRPSABSA2R0bxI4CgRlbnVtGAsgASgLMiIubGVhbmNvZGUuY29udHJhY3RzLlN0YXRlbWVudC5FbnVtSABSBGVudW0SOwoFcXVlcnkYDCABKAsyIy5sZWFuY29kZS5jb250cmFjdHMuU3RhdGVtZW50LlF1ZXJ5SABSBXF1ZXJ5EkEKB2NvbW1hbmQYDSABKAsyJS5sZWFuY29kZS5jb250cmFjdHMuU3RhdGVtZW50LkNvbW1hbmRIAFIHY29tbWFuZBpRCgNEVE8SSgoOdHlwZURlc2NyaXB0b3IYASABKAsyIi5sZWFuY29kZS5jb250cmFjdHMuVHlwZURlc2NyaXB0b3JSDnR5cGVEZXNjcmlwdG9yGj8KBEVudW0SNwoHbWVtYmVycxgBIAMoCzIdLmxlYW5jb2RlLmNvbnRyYWN0cy5FbnVtVmFsdWVSB21lbWJlcnMakAEKBVF1ZXJ5EkoKDnR5cGVEZXNjcmlwdG9yGAEgASgLMiIubGVhbmNvZGUuY29udHJhY3RzLlR5cGVEZXNjcmlwdG9yUg50eXBlRGVzY3JpcHRvchI7CgpyZXR1cm5UeXBlGAIgASgLMhsubGVhbmNvZGUuY29udHJhY3RzLlR5cGVSZWZSCnJldHVyblR5cGUalAEKB0NvbW1hbmQSSgoOdHlwZURlc2NyaXB0b3IYASABKAsyIi5sZWFuY29kZS5jb250cmFjdHMuVHlwZURlc2NyaXB0b3JSDnR5cGVEZXNjcmlwdG9yEj0KCmVycm9yQ29kZXMYAiADKAsyHS5sZWFuY29kZS5jb250cmFjdHMuRXJyb3JDb2RlUgplcnJvckNvZGVzQgkKB2NvbnRlbnQ=');
+    'CglTdGF0ZW1lbnQSEgoEbmFtZRgBIAEoCVIEbmFtZRIYCgdjb21tZW50GAIgASgJUgdjb21tZW50EkAKCmF0dHJpYnV0ZXMYAyADKAsyIC5sZWFuY29kZS5jb250cmFjdHMuQXR0cmlidXRlUmVmUgphdHRyaWJ1dGVzEjUKA2R0bxgKIAEoCzIhLmxlYW5jb2RlLmNvbnRyYWN0cy5TdGF0ZW1lbnQuRFRPSABSA2R0bxI4CgRlbnVtGAsgASgLMiIubGVhbmNvZGUuY29udHJhY3RzLlN0YXRlbWVudC5FbnVtSABSBGVudW0SOwoFcXVlcnkYDCABKAsyIy5sZWFuY29kZS5jb250cmFjdHMuU3RhdGVtZW50LlF1ZXJ5SABSBXF1ZXJ5EkEKB2NvbW1hbmQYDSABKAsyJS5sZWFuY29kZS5jb250cmFjdHMuU3RhdGVtZW50LkNvbW1hbmRIAFIHY29tbWFuZBJHCglvcGVyYXRpb24YDiABKAsyJy5sZWFuY29kZS5jb250cmFjdHMuU3RhdGVtZW50Lk9wZXJhdGlvbkgAUglvcGVyYXRpb24aUQoDRFRPEkoKDnR5cGVEZXNjcmlwdG9yGAEgASgLMiIubGVhbmNvZGUuY29udHJhY3RzLlR5cGVEZXNjcmlwdG9yUg50eXBlRGVzY3JpcHRvcho/CgRFbnVtEjcKB21lbWJlcnMYASADKAsyHS5sZWFuY29kZS5jb250cmFjdHMuRW51bVZhbHVlUgdtZW1iZXJzGpABCgVRdWVyeRJKCg50eXBlRGVzY3JpcHRvchgBIAEoCzIiLmxlYW5jb2RlLmNvbnRyYWN0cy5UeXBlRGVzY3JpcHRvclIOdHlwZURlc2NyaXB0b3ISOwoKcmV0dXJuVHlwZRgCIAEoCzIbLmxlYW5jb2RlLmNvbnRyYWN0cy5UeXBlUmVmUgpyZXR1cm5UeXBlGpQBCgdDb21tYW5kEkoKDnR5cGVEZXNjcmlwdG9yGAEgASgLMiIubGVhbmNvZGUuY29udHJhY3RzLlR5cGVEZXNjcmlwdG9yUg50eXBlRGVzY3JpcHRvchI9CgplcnJvckNvZGVzGAIgAygLMh0ubGVhbmNvZGUuY29udHJhY3RzLkVycm9yQ29kZVIKZXJyb3JDb2RlcxqUAQoJT3BlcmF0aW9uEkoKDnR5cGVEZXNjcmlwdG9yGAEgASgLMiIubGVhbmNvZGUuY29udHJhY3RzLlR5cGVEZXNjcmlwdG9yUg50eXBlRGVzY3JpcHRvchI7CgpyZXR1cm5UeXBlGAIgASgLMhsubGVhbmNvZGUuY29udHJhY3RzLlR5cGVSZWZSCnJldHVyblR5cGVCCQoHY29udGVudA==');
 @$core.Deprecated('Use exportDescriptor instead')
 const Export$json = const {
   '1': 'Export',

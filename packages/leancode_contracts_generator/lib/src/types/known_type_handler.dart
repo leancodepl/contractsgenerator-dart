@@ -55,6 +55,8 @@ class KnownTypeHandler extends TypeHandler {
         return 'DateTimeOffset';
       case KnownType.DateOnly:
         return 'DateOnly';
+      case KnownType.Binary:
+        return 'Binary';
       case KnownType.Array:
         return 'List';
       case KnownType.Map:
@@ -63,6 +65,8 @@ class KnownTypeHandler extends TypeHandler {
         return 'Query';
       case KnownType.Command:
         return 'Command';
+      case KnownType.Operation:
+        return 'Operation';
       case KnownType.CommandResult:
         return 'CommandResult';
       case KnownType.AuthorizeWhenAttribute:

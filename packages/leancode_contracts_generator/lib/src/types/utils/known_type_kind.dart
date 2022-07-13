@@ -39,11 +39,13 @@ KnownTypeKind knownTypeKind(KnownType knownType) {
     case KnownType.TimeSpan:
     case KnownType.DateTime:
     case KnownType.DateTimeOffset:
+    case KnownType.Binary:
     case KnownType.Array:
     case KnownType.Map:
       return KnownTypeKind.complex;
     case KnownType.Query:
     case KnownType.Command:
+    case KnownType.Operation:
     case KnownType.CommandResult:
       return KnownTypeKind.cqrs;
     case KnownType.Attribute:

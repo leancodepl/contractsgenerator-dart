@@ -145,6 +145,16 @@ class KnownType extends $pb.ProtobufEnum {
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'CommandResult');
+  static const KnownType Operation = KnownType._(
+      1003,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'Operation');
+  static const KnownType Binary = KnownType._(
+      1004,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'Binary');
   static const KnownType Attribute = KnownType._(
       1100,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
@@ -194,6 +204,8 @@ class KnownType extends $pb.ProtobufEnum {
     Query,
     Command,
     CommandResult,
+    Operation,
+    Binary,
     Attribute,
     AuthorizeWhenAttribute,
     AuthorizeWhenHasAnyOfAttribute,
