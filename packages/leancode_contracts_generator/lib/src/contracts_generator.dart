@@ -8,6 +8,7 @@ import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
 import 'package:json_serializable/builder.dart';
 import 'package:leancode_contracts_generator/src/utils/memory_asset_writer.dart';
+import 'package:leancode_contracts_generator/src/utils/verbose_log.dart';
 import 'package:path/path.dart' as p;
 
 import 'attributes/attribute_creator.dart';
@@ -27,9 +28,10 @@ import 'types/type_creator.dart';
 import 'values/value_creator.dart';
 
 class ContractsGenerator {
-  const ContractsGenerator(this.config);
+  const ContractsGenerator(this.config, {this.verbose = false});
 
   final ContractsGeneratorConfig config;
+  final bool verbose;
 
   static final emitter = DartEmitter();
   static const header = '''
@@ -39,8 +41,17 @@ class ContractsGenerator {
 
   /// generates `code_builder` structures that can still be modified
   Future<Library> generate() async {
+    final doneDb = verboseLog(
+      message: 'Analysing contracts',
+      verbose: verbose,
+    );
     final db = await GeneratorDatabase.fromConfig(config);
+    doneDb();
 
+    final doneGen = verboseLog(
+      message: 'Generating dart code',
+      verbose: verbose,
+    );
     final jsonConverters = JsonConverters();
     final typeCreator = TypeCreator([
       const KnownTypeHandler(),
@@ -91,7 +102,7 @@ class ContractsGenerator {
     // TODO: knownGroups?
     // TODO: projectName?
 
-    return Library(
+    final library = Library(
       (l) => l
         ..body.addAll([
           const Code(header),
@@ -111,6 +122,9 @@ class ContractsGenerator {
           ),
         ]),
     );
+    doneGen();
+
+    return library;
   }
 
   /// Contracts dart code without generated `json_serializable` file
@@ -124,11 +138,22 @@ class ContractsGenerator {
       '${config.name}.dart',
     );
 
+    final code = await toCode();
+
+    final doneWriting = verboseLog(
+      message: 'Writing dart code to $contractsPath',
+      verbose: verbose,
+    );
     await config.output.create(recursive: true);
     await File(contractsPath).writeAsString(
-      DartFormatter().format(await toCode()),
+      DartFormatter().format(code),
     );
+    doneWriting();
 
+    final doneJson = verboseLog(
+      message: 'Generating json_serializable file',
+      verbose: verbose,
+    );
     final packageGraph = await PackageGraph.forThisPackage();
     final js = jsonSerializable(BuilderOptions.empty);
     final f = AssetId(packageGraph.root.name, contractsPath);
@@ -160,5 +185,6 @@ part of '${config.name}.dart';
 
 ${utf8.decode(generated ?? [])}''',
     );
+    doneJson();
   }
 }

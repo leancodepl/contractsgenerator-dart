@@ -1,3 +1,7 @@
+# Unreleased
+
+- Add verbose CLI logging under the `--verbose`/`-v` flag
+
 # 0.6.1
 
 - Add missing result factory mapping for `DateTimeOffset`
