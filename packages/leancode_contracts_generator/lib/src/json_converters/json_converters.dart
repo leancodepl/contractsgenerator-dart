@@ -10,9 +10,7 @@ class JsonConverters {
 
     switch (knownType) {
       case KnownType.TimeSpan:
-        return typeRef.nullable
-            ? 'NullableDurationJsonConverter'
-            : 'DurationJsonConverter';
+        return 'DurationJsonConverter';
       default:
         return null;
     }

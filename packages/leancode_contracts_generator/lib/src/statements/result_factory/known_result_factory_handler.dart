@@ -59,7 +59,7 @@ class KnownResultFactoryHandler extends ResultFactoryHandler {
         return '${ifNullablePrefix(typeRef, paramName)}TimeOnly.fromJson($paramName)';
 
       case KnownType.TimeSpan:
-        return 'const ${jsonConverters.getConverter(typeRef)}().fromJson($paramName as String$q)';
+        return '${ifNullablePrefix(typeRef, paramName)}const ${jsonConverters.getConverter(typeRef)}().fromJson($paramName as String)';
 
       case KnownType.Binary:
         return '${ifNullablePrefix(typeRef, paramName)}Binary.fromJson($paramName)';

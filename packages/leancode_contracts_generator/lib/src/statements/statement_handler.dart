@@ -1,12 +1,10 @@
 import 'package:code_builder/code_builder.dart';
-import 'package:collection/collection.dart';
 import 'package:leancode_contracts_generator/src/utils/rename_type.dart';
 import 'package:meta/meta.dart';
 import 'package:source_helper/source_helper.dart';
 
 import '../attributes/attribute_creator.dart';
 import '../generator_database.dart';
-import '../json_converters/json_converters.dart';
 import '../proto/contracts.pb.dart';
 import '../types/type_creator.dart';
 import '../utils/rename_field.dart';
@@ -21,14 +19,12 @@ abstract class StatementHandler {
     this.typeCreator,
     this.valueCreator,
     this.attributeCreator,
-    this.jsonConverters,
     this.db,
   );
 
   final TypeCreator typeCreator;
   final ValueCreator valueCreator;
   final AttributeCreator attributeCreator;
-  final JsonConverters jsonConverters;
   final GeneratorDatabase db;
 
   Spec build(Statement statement);
@@ -58,11 +54,6 @@ abstract class StatementHandler {
     final genericFactories = typeDescriptor.genericParameters
         .map((e) => _GenericFactory(e.name))
         .toList();
-
-    final neededConverters = properties
-        .map((p) => jsonConverters.getConverter(p.type))
-        .whereNotNull()
-        .toSet();
 
     return Class((b) {
       b
@@ -136,11 +127,9 @@ abstract class StatementHandler {
         ..annotations.addAll([
           CodeExpression(
             Code(
-              'JsonSerializable(fieldRename: FieldRename.pascal${genericFactories.isEmpty ? '' : ', genericArgumentFactories: true'})',
+              'ContractsSerializable(${genericFactories.isEmpty ? '' : 'genericArgumentFactories: true'})',
             ),
           ),
-          for (final converter in neededConverters)
-            CodeExpression(Code('$converter()')),
         ])
         ..docs.addAll([
           ...toDartdoc(statement.comment),
