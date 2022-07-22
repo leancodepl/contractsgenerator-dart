@@ -31,7 +31,7 @@ class OperationHandler extends StatementHandler {
 
   @override
   Spec build(Statement statement) {
-    return createBase(statement).rebuild(
+    return createBase(statement, requiredParameters: true).rebuild(
       (b) => b
         ..methods.addAll(
           [

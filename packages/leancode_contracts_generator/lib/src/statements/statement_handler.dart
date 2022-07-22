@@ -32,7 +32,7 @@ abstract class StatementHandler {
   bool canHandle(Statement statement);
 
   @protected
-  Class createBase(Statement statement) {
+  Class createBase(Statement statement, {bool requiredParameters = false}) {
     assert(
       typeDescriptorOf(statement) != null,
       'createBase should be used with statements that have a typeDescriptor',
@@ -43,10 +43,13 @@ abstract class StatementHandler {
     final typeDescriptor = typeDescriptorOf(statement)!;
     final properties = db.allPropertiesOf(statement);
 
-    final parameters = properties.map(_createParameter).toList();
+    final parameters = properties
+        .map((e) => _createParameter(e, required: requiredParameters))
+        .toList();
     if (parameters.isNotEmpty) {
       parameters[parameters.length - 1] = _createParameter(
         properties.last,
+        required: requiredParameters,
         addTrailingComma: true,
       );
     }
@@ -149,6 +152,7 @@ abstract class StatementHandler {
 
   Parameter _createParameter(
     PropertyRef prop, {
+    required bool required,
     bool addTrailingComma = false,
   }) {
     final type = typeCreator.create(prop.type);
@@ -157,7 +161,7 @@ abstract class StatementHandler {
       (b) => b
         // hack to add a trailing comma in parameters
         ..name = renameField(prop.name) + (addTrailingComma ? ',' : '')
-        ..required = !(type.symbol?.endsWith('?') ?? false)
+        ..required = !(type.symbol?.endsWith('?') ?? false) || required
         ..named = true
         ..toThis = true,
     );
