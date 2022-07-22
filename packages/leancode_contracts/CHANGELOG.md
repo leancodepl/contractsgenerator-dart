@@ -1,3 +1,8 @@
+# 0.4.0
+
+- **Breaking**: Remove `NullableDurationJsonConverter`
+- Add `@ContractsSerializable` annotation with pre-configured options for contracts
+
 # 0.3.0
 
 - Add `Binary` type
