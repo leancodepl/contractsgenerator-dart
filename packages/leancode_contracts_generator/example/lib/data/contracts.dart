@@ -4,7 +4,7 @@ import 'package:leancode_contracts/leancode_contracts.dart';
 part 'contracts.g.dart';
 
 /// LeanCode.Contracts.Security.AllowUnauthorizedAttribute()
-@JsonSerializable(fieldRename: FieldRename.pascal)
+@ContractsSerializable()
 class Command_ with EquatableMixin implements Command {
   Command_();
 
@@ -20,7 +20,7 @@ class Command_ with EquatableMixin implements Command {
 class CommandErrorCodes {}
 
 /// LeanCode.Contracts.Security.AllowUnauthorizedAttribute()
-@JsonSerializable(fieldRename: FieldRename.pascal)
+@ContractsSerializable()
 class Query_ with EquatableMixin implements Query<int> {
   Query_();
 

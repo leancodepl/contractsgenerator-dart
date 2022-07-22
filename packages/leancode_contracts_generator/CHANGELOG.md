@@ -1,4 +1,4 @@
-# 0.7.1
+# Unreleased
 
 - Annotate statements with `ContractsSerializable` instead of plain `JsonSerializable`
 

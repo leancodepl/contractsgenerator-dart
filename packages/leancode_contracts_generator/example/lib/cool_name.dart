@@ -6,7 +6,7 @@ part 'cool_name.g.dart';
 
 // :)
 
-@JsonSerializable(fieldRename: FieldRename.pascal)
+@ContractsSerializable()
 class Auth with EquatableMixin {
   Auth();
 
@@ -17,7 +17,7 @@ class Auth with EquatableMixin {
   Map<String, dynamic> toJson() => _$AuthToJson(this);
 }
 
-@JsonSerializable(fieldRename: FieldRename.pascal)
+@ContractsSerializable()
 class KnownClaims with EquatableMixin {
   KnownClaims();
 
@@ -33,7 +33,7 @@ class KnownClaims with EquatableMixin {
   Map<String, dynamic> toJson() => _$KnownClaimsToJson(this);
 }
 
-@JsonSerializable(fieldRename: FieldRename.pascal)
+@ContractsSerializable()
 class Roles with EquatableMixin {
   Roles();
 
@@ -67,8 +67,7 @@ abstract class PaginatedQuery<TResult>
 }
 
 /// This one is in XML.
-@JsonSerializable(
-    fieldRename: FieldRename.pascal, genericArgumentFactories: true)
+@ContractsSerializable(genericArgumentFactories: true)
 class PaginatedResult<TResult> with EquatableMixin {
   PaginatedResult({
     required this.items,
@@ -87,7 +86,7 @@ class PaginatedResult<TResult> with EquatableMixin {
   get props => [items, totalCount];
 }
 
-@JsonSerializable(fieldRename: FieldRename.pascal)
+@ContractsSerializable()
 class ISomethingRelated with EquatableMixin {
   ISomethingRelated({
     required this.somethingId,
@@ -105,7 +104,7 @@ class ISomethingRelated with EquatableMixin {
 
 /// System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('?', 'SA1302', Justification: 'Convention for authorizers.')
 /// System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('?', 'IDE1006', Justification: 'Convention for authorizers.')
-@JsonSerializable(fieldRename: FieldRename.pascal)
+@ContractsSerializable()
 class WhenHasSomethingAccess with EquatableMixin {
   WhenHasSomethingAccess();
 
@@ -118,7 +117,7 @@ class WhenHasSomethingAccess with EquatableMixin {
 }
 
 /// LeanCode.Contracts.Security.AuthorizeWhenHasAnyOfAttribute('admin')
-@JsonSerializable(fieldRename: FieldRename.pascal)
+@ContractsSerializable()
 class AllUsers with EquatableMixin implements PaginatedQuery<UserInfoDTO> {
   AllUsers({
     required this.pageNumber,
@@ -144,7 +143,7 @@ class AllUsers with EquatableMixin implements PaginatedQuery<UserInfoDTO> {
 
 /// LeanCode.Contracts.Security.AuthorizeWhenHasAnyOfAttribute('admin')
 /// LeanCode.ContractsGeneratorV2.ExampleContracts.Security.AuthorizeWhenHasSomethingAccessAttribute()
-@JsonSerializable(fieldRename: FieldRename.pascal)
+@ContractsSerializable()
 class EditUser with EquatableMixin implements Command, ISomethingRelated {
   EditUser({
     required this.somethingId,
@@ -202,7 +201,7 @@ class EditUserErrorCodes {
 }
 
 /// LeanCode.Contracts.Security.AuthorizeWhenHasAnyOfAttribute('admin')
-@JsonSerializable(fieldRename: FieldRename.pascal)
+@ContractsSerializable()
 class UserById with EquatableMixin implements Query<UserInfoDTO?> {
   UserById();
 
@@ -220,7 +219,7 @@ class UserById with EquatableMixin implements Query<UserInfoDTO?> {
 }
 
 @Deprecated('Use something else instead')
-@JsonSerializable(fieldRename: FieldRename.pascal)
+@ContractsSerializable()
 class UserInfoDTO with EquatableMixin {
   UserInfoDTO({
     required this.firstname,
@@ -247,7 +246,7 @@ class UserInfoDTO with EquatableMixin {
 }
 
 /// LeanCode.Contracts.Security.AuthorizeWhenHasAnyOfAttribute('admin')
-@JsonSerializable(fieldRename: FieldRename.pascal)
+@ContractsSerializable()
 class UserSomething with EquatableMixin implements Query<int?> {
   UserSomething();
 
