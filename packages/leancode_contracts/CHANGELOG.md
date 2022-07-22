@@ -1,6 +1,6 @@
 # 0.4.0
 
-- **Breaking**: Remove `NullableDurationJsonConverter`
+- **BREAKING**: Remove `NullableDurationJsonConverter`
 - Add `@ContractsSerializable` annotation with pre-configured options for contracts
 
 # 0.3.0
