@@ -1,3 +1,7 @@
+# 0.7.1
+
+- Annotate statements with `ContractsSerializable` instead of plain `JsonSerializable`
+
 # 0.7.0
 
 - Add verbose CLI logging under the `--verbose`/`-v` flag
