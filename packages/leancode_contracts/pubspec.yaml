@@ -1,7 +1,7 @@
 name: leancode_contracts
 repository: https://github.com/leancodepl/contractsgenerator-dart
 description: Dart contracts runtime for a CQRS API.
-version: 0.3.0
+version: 0.4.0
 
 environment:
   sdk: ">=2.16.0 <3.0.0"
@@ -9,7 +9,7 @@ environment:
 dependencies:
   cqrs: ^7.0.0
   equatable: ^2.0.3
-  json_annotation: ^4.4.0
+  json_annotation: ^4.6.0
 
 dev_dependencies:
   leancode_lint: ^1.0.2

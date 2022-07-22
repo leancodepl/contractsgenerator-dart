@@ -2,9 +2,6 @@ import 'dart:math';
 
 import 'package:json_annotation/json_annotation.dart';
 
-// TODO: while https://github.com/google/json_serializable.dart/issues/822
-// is not resolved there needs to be two seperate converters for each type
-
 /// {@template DurationJsonConverter}
 /// Converter for converting between C#'s `System.TimeSpan` and Dart's [Duration]
 /// {@endtemplate}
@@ -43,24 +40,5 @@ class DurationJsonConverter implements JsonConverter<Duration, String> {
         ':${(object.inMinutes % Duration.minutesPerHour).toString().padLeft(2, '0')}'
         ':${(object.inSeconds % Duration.secondsPerMinute).toString().padLeft(2, '0')}'
         '.${(object.inMicroseconds % Duration.microsecondsPerSecond).toString().padLeft(6, '0')}';
-  }
-}
-
-/// {@template NullableDurationJsonConverter}
-/// Nullable converter for converting between C#'s `System.TimeSpan` and Dart's [Duration].
-/// {@endtemplate}
-class NullableDurationJsonConverter
-    implements JsonConverter<Duration?, String?> {
-  /// {@macro NullableDurationJsonConverter}
-  const NullableDurationJsonConverter();
-
-  @override
-  Duration? fromJson(String? json) {
-    return json == null ? null : const DurationJsonConverter().fromJson(json);
-  }
-
-  @override
-  String? toJson(Duration? object) {
-    return object == null ? null : const DurationJsonConverter().toJson(object);
   }
 }
