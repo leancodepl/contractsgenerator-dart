@@ -25,7 +25,7 @@ class CommandHandler extends StatementHandler {
       (b) => b
         ..body.addAll(
           [
-            createBase(statement).rebuild(
+            createBase(statement, requiredParameters: true).rebuild(
               (b) => b..methods.add(getFullNameMethod(statement)),
             ),
             errorCreator.create(

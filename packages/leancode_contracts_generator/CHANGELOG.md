@@ -1,6 +1,7 @@
-# Unreleased
+# 0.8.0
 
 - Annotate statements with `ContractsSerializable` instead of plain `JsonSerializable`
+- **BREAKING**: Generated `Command`s, `Query`s, and `Operation`s now require all constructor parameters to be provided
 
 # 0.7.0
 
