@@ -25,7 +25,7 @@ class QueryHandler extends StatementHandler {
           ],
           typeCreator,
         ),
-        super(typeCreator, valueCreator, attributeCreator, jsonConverters, db);
+        super(typeCreator, valueCreator, attributeCreator, db);
 
   final ResultFactoryCreator resultFactoryCreator;
 

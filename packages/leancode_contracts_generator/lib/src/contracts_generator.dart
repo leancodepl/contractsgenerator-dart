@@ -67,7 +67,6 @@ class ContractsGenerator {
         typeCreator,
         valueCreator,
         attributeCreator,
-        jsonConverters,
         db,
       ),
       QueryHandler(
@@ -81,7 +80,6 @@ class ContractsGenerator {
         typeCreator,
         valueCreator,
         attributeCreator,
-        jsonConverters,
         db,
         errorCreator,
       ),
@@ -96,7 +94,6 @@ class ContractsGenerator {
         typeCreator,
         valueCreator,
         attributeCreator,
-        jsonConverters,
         db,
       ),
     ]);

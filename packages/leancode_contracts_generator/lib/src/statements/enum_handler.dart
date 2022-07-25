@@ -3,7 +3,6 @@ import 'package:leancode_contracts_generator/src/utils/rename_type.dart';
 
 import '../attributes/attribute_creator.dart';
 import '../generator_database.dart';
-import '../json_converters/json_converters.dart';
 import '../types/type_creator.dart';
 import '../utils/rename_field.dart';
 import '../values/value_creator.dart';
@@ -15,9 +14,8 @@ class EnumHandler extends StatementHandler {
     TypeCreator typeCreator,
     ValueCreator valueCreator,
     AttributeCreator attributeCreator,
-    JsonConverters jsonConverters,
     GeneratorDatabase db,
-  ) : super(typeCreator, valueCreator, attributeCreator, jsonConverters, db);
+  ) : super(typeCreator, valueCreator, attributeCreator, db);
 
   @override
   Spec build(Statement statement) {
