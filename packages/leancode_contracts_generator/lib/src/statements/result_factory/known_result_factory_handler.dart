@@ -42,27 +42,27 @@ class KnownResultFactoryHandler extends ResultFactoryHandler {
         return '($paramName as num$q)$q.toDouble()';
 
       case KnownType.Uri:
-        return '${ifNullablePrefix(typeRef, paramName)}Uri.parse($paramName)';
+        return '${ifNullablePrefix(typeRef, paramName)}Uri.parse($paramName as String)';
 
       case KnownType.Date:
       case KnownType.DateTime:
-        return '${ifNullablePrefix(typeRef, paramName)}DateTime.parse($paramName)';
+        return '${ifNullablePrefix(typeRef, paramName)}DateTime.parse($paramName as String)';
 
       case KnownType.DateTimeOffset:
-        return '${ifNullablePrefix(typeRef, paramName)}DateTimeOffset.fromJson($paramName)';
+        return '${ifNullablePrefix(typeRef, paramName)}DateTimeOffset.fromJson($paramName as String)';
 
       case KnownType.DateOnly:
-        return '${ifNullablePrefix(typeRef, paramName)}DateOnly.fromJson($paramName)';
+        return '${ifNullablePrefix(typeRef, paramName)}DateOnly.fromJson($paramName as String)';
 
       case KnownType.TimeOnly:
       case KnownType.Time:
-        return '${ifNullablePrefix(typeRef, paramName)}TimeOnly.fromJson($paramName)';
+        return '${ifNullablePrefix(typeRef, paramName)}TimeOnly.fromJson($paramName as String)';
 
       case KnownType.TimeSpan:
         return '${ifNullablePrefix(typeRef, paramName)}const ${jsonConverters.getConverter(typeRef)}().fromJson($paramName as String)';
 
       case KnownType.Binary:
-        return '${ifNullablePrefix(typeRef, paramName)}Binary.fromJson($paramName)';
+        return '${ifNullablePrefix(typeRef, paramName)}Binary.fromJson($paramName as String)';
 
       case KnownType.Array:
         return '($paramName as Iterable<dynamic>$q)$q'
