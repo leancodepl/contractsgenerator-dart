@@ -1,3 +1,7 @@
+# 0.8.1
+
+- Fix missing type cast in result factories
+
 # 0.8.0
 
 - Annotate statements with `ContractsSerializable` instead of plain `JsonSerializable`
