@@ -1,3 +1,8 @@
+# 0.9.0
+
+- Fix double trailing commas. More trailing commas will appear with statements.
+- **BREAKING**: Bump Dart SDK to 2.17
+
 # 0.8.1
 
 - Fix missing type cast in result factories

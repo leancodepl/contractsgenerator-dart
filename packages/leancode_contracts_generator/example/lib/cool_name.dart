@@ -74,8 +74,10 @@ class PaginatedResult<TResult> with EquatableMixin {
     required this.totalCount,
   });
 
-  factory PaginatedResult.fromJson(Map<String, dynamic> json,
-          TResult Function(Object?) fromJsonTResult) =>
+  factory PaginatedResult.fromJson(
+    Map<String, dynamic> json,
+    TResult Function(Object?) fromJsonTResult,
+  ) =>
       _$PaginatedResultFromJson(json, fromJsonTResult);
 
   /// And this is a property comment.
@@ -88,9 +90,7 @@ class PaginatedResult<TResult> with EquatableMixin {
 
 @ContractsSerializable()
 class ISomethingRelated with EquatableMixin {
-  ISomethingRelated({
-    required this.somethingId,
-  });
+  ISomethingRelated({required this.somethingId});
 
   factory ISomethingRelated.fromJson(Map<String, dynamic> json) =>
       _$ISomethingRelatedFromJson(json);
