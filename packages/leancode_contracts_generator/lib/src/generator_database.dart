@@ -113,7 +113,7 @@ class GeneratorDatabase {
     assert(kind == KnownTypeKind.cqrs || kind == KnownTypeKind.attribute);
 
     if (typeRef.hasKnown()) {
-      return knownTypeKind(typeRef.known.type) == kind;
+      return KnownTypeKind.fromKnownType(typeRef.known.type) == kind;
     } else if (typeRef.hasGeneric()) {
       return false;
     }
