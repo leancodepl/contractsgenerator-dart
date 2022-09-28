@@ -46,13 +46,6 @@ abstract class StatementHandler {
     final parameters = properties
         .map((e) => _createParameter(e, required: requiredParameters))
         .toList();
-    if (parameters.isNotEmpty) {
-      parameters[parameters.length - 1] = _createParameter(
-        properties.last,
-        required: requiredParameters,
-        addTrailingComma: true,
-      );
-    }
 
     final genericFactories = typeDescriptor.genericParameters
         .map((e) => _GenericFactory(e.name))
@@ -153,14 +146,12 @@ abstract class StatementHandler {
   Parameter _createParameter(
     PropertyRef prop, {
     required bool required,
-    bool addTrailingComma = false,
   }) {
     final type = typeCreator.create(prop.type);
 
     return Parameter(
       (b) => b
-        // hack to add a trailing comma in parameters
-        ..name = renameField(prop.name) + (addTrailingComma ? ',' : '')
+        ..name = renameField(prop.name)
         ..required = !(type.symbol?.endsWith('?') ?? false) || required
         ..named = true
         ..toThis = true,
