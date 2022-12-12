@@ -1598,6 +1598,13 @@ class EnumValue extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'comment')
+    ..pc<AttributeRef>(
+        4,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'attributes',
+        $pb.PbFieldType.PM,
+        subBuilder: AttributeRef.create)
     ..hasRequiredFields = false;
 
   EnumValue._() : super();
@@ -1605,6 +1612,7 @@ class EnumValue extends $pb.GeneratedMessage {
     $core.String? name,
     $fixnum.Int64? value,
     $core.String? comment,
+    $core.Iterable<AttributeRef>? attributes,
   }) {
     final _result = create();
     if (name != null) {
@@ -1615,6 +1623,9 @@ class EnumValue extends $pb.GeneratedMessage {
     }
     if (comment != null) {
       _result.comment = comment;
+    }
+    if (attributes != null) {
+      _result.attributes.addAll(attributes);
     }
     return _result;
   }
@@ -1679,6 +1690,9 @@ class EnumValue extends $pb.GeneratedMessage {
   $core.bool hasComment() => $_has(2);
   @$pb.TagNumber(3)
   void clearComment() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.List<AttributeRef> get attributes => $_getList(3);
 }
 
 class ErrorCode_Single extends $pb.GeneratedMessage {

@@ -29,7 +29,10 @@ class EnumHandler extends StatementHandler {
             (e) => EnumValue(
               (b) => b
                 ..name = renameField(e.name)
-                ..docs.addAll(toDartdoc(e.comment))
+                ..docs.addAll([
+                  ...toDartdoc(e.comment),
+                  ...e.attributes.map(attributeCreator.create),
+                ])
                 ..annotations.add(
                   CodeExpression(Code('JsonValue(${e.value})')),
                 ),

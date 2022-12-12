@@ -389,12 +389,20 @@ const EnumValue$json = const {
     const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
     const {'1': 'value', '3': 2, '4': 1, '5': 3, '10': 'value'},
     const {'1': 'comment', '3': 3, '4': 1, '5': 9, '10': 'comment'},
+    const {
+      '1': 'attributes',
+      '3': 4,
+      '4': 3,
+      '5': 11,
+      '6': '.leancode.contracts.AttributeRef',
+      '10': 'attributes'
+    },
   ],
 };
 
 /// Descriptor for `EnumValue`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List enumValueDescriptor = $convert.base64Decode(
-    'CglFbnVtVmFsdWUSEgoEbmFtZRgBIAEoCVIEbmFtZRIUCgV2YWx1ZRgCIAEoA1IFdmFsdWUSGAoHY29tbWVudBgDIAEoCVIHY29tbWVudA==');
+    'CglFbnVtVmFsdWUSEgoEbmFtZRgBIAEoCVIEbmFtZRIUCgV2YWx1ZRgCIAEoA1IFdmFsdWUSGAoHY29tbWVudBgDIAEoCVIHY29tbWVudBJACgphdHRyaWJ1dGVzGAQgAygLMiAubGVhbmNvZGUuY29udHJhY3RzLkF0dHJpYnV0ZVJlZlIKYXR0cmlidXRlcw==');
 @$core.Deprecated('Use errorCodeDescriptor instead')
 const ErrorCode$json = const {
   '1': 'ErrorCode',
