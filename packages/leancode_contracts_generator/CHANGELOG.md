@@ -1,3 +1,10 @@
+# 0.10.0
+
+- Support `LeanCode.ContractsGenerator` `v2.0.0-alpha.3`
+  - **BREAKING**: Remove support for `KnownType::Date`, `KnownType::Time`, and `KnownType::DateTime`
+  - Support attributes on enum variants
+  - Support .NET7
+
 # 0.9.0
 
 - Fix double trailing commas. More trailing commas will appear with statements.
