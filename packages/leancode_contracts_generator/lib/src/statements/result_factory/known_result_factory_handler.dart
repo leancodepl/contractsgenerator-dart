@@ -44,10 +44,6 @@ class KnownResultFactoryHandler extends ResultFactoryHandler {
       case KnownType.Uri:
         return '${ifNullablePrefix(typeRef, paramName)}Uri.parse($paramName as String)';
 
-      case KnownType.Date:
-      case KnownType.DateTime:
-        return '${ifNullablePrefix(typeRef, paramName)}DateTime.parse($paramName as String)';
-
       case KnownType.DateTimeOffset:
         return '${ifNullablePrefix(typeRef, paramName)}DateTimeOffset.fromJson($paramName as String)';
 
@@ -55,7 +51,6 @@ class KnownResultFactoryHandler extends ResultFactoryHandler {
         return '${ifNullablePrefix(typeRef, paramName)}DateOnly.fromJson($paramName as String)';
 
       case KnownType.TimeOnly:
-      case KnownType.Time:
         return '${ifNullablePrefix(typeRef, paramName)}TimeOnly.fromJson($paramName as String)';
 
       case KnownType.TimeSpan:

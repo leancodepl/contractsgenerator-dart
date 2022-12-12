@@ -117,7 +117,7 @@ void main() {
         );
 
         final differentKnownTypeKind = TypeRef(
-          known: TypeRef_Known(type: KnownType.DateTime),
+          known: TypeRef_Known(type: KnownType.DateTimeOffset),
         );
         final genericType = TypeRef(
           generic: TypeRef_Generic(name: 'T'),

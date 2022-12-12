@@ -3,7 +3,7 @@
 //  source: contracts.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields,deprecated_member_use_from_same_package
+// ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,deprecated_member_use_from_same_package,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
 
 import 'dart:core' as $core;
 import 'dart:convert' as $convert;
@@ -30,11 +30,8 @@ const KnownType$json = const {
     const {'1': 'Float64', '2': 151},
     const {'1': 'DateOnly', '2': 200},
     const {'1': 'TimeOnly', '2': 201},
-    const {'1': 'DateTime', '2': 202},
-    const {'1': 'DateTimeOffset', '2': 203},
-    const {'1': 'TimeSpan', '2': 204},
-    const {'1': 'Date', '2': 205},
-    const {'1': 'Time', '2': 206},
+    const {'1': 'DateTimeOffset', '2': 202},
+    const {'1': 'TimeSpan', '2': 203},
     const {'1': 'Array', '2': 300},
     const {'1': 'Map', '2': 301},
     const {'1': 'Query', '2': 1000},
@@ -51,7 +48,7 @@ const KnownType$json = const {
 
 /// Descriptor for `KnownType`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List knownTypeDescriptor = $convert.base64Decode(
-    'CglLbm93blR5cGUSCgoGT2JqZWN0EAASCgoGU3RyaW5nEAESCAoER3VpZBADEgcKA1VyaRAEEgsKB0Jvb2xlYW4QBRIJCgVVSW50OBBkEggKBEludDgQZRIJCgVJbnQxNhBmEgoKBlVJbnQxNhBnEgkKBUludDMyEGgSCgoGVUludDMyEGkSCQoFSW50NjQQahIKCgZVSW50NjQQaxIMCgdGbG9hdDMyEJYBEgwKB0Zsb2F0NjQQlwESDQoIRGF0ZU9ubHkQyAESDQoIVGltZU9ubHkQyQESDQoIRGF0ZVRpbWUQygESEwoORGF0ZVRpbWVPZmZzZXQQywESDQoIVGltZVNwYW4QzAESCQoERGF0ZRDNARIJCgRUaW1lEM4BEgoKBUFycmF5EKwCEggKA01hcBCtAhIKCgVRdWVyeRDoBxIMCgdDb21tYW5kEOkHEhIKDUNvbW1hbmRSZXN1bHQQ6gcSDgoJT3BlcmF0aW9uEOsHEgsKBkJpbmFyeRDsBxIOCglBdHRyaWJ1dGUQzAgSGwoWQXV0aG9yaXplV2hlbkF0dHJpYnV0ZRDNCBIjCh5BdXRob3JpemVXaGVuSGFzQW55T2ZBdHRyaWJ1dGUQzggSGAoTUXVlcnlDYWNoZUF0dHJpYnV0ZRDPCA==');
+    'CglLbm93blR5cGUSCgoGT2JqZWN0EAASCgoGU3RyaW5nEAESCAoER3VpZBADEgcKA1VyaRAEEgsKB0Jvb2xlYW4QBRIJCgVVSW50OBBkEggKBEludDgQZRIJCgVJbnQxNhBmEgoKBlVJbnQxNhBnEgkKBUludDMyEGgSCgoGVUludDMyEGkSCQoFSW50NjQQahIKCgZVSW50NjQQaxIMCgdGbG9hdDMyEJYBEgwKB0Zsb2F0NjQQlwESDQoIRGF0ZU9ubHkQyAESDQoIVGltZU9ubHkQyQESEwoORGF0ZVRpbWVPZmZzZXQQygESDQoIVGltZVNwYW4QywESCgoFQXJyYXkQrAISCAoDTWFwEK0CEgoKBVF1ZXJ5EOgHEgwKB0NvbW1hbmQQ6QcSEgoNQ29tbWFuZFJlc3VsdBDqBxIOCglPcGVyYXRpb24Q6wcSCwoGQmluYXJ5EOwHEg4KCUF0dHJpYnV0ZRDMCBIbChZBdXRob3JpemVXaGVuQXR0cmlidXRlEM0IEiMKHkF1dGhvcml6ZVdoZW5IYXNBbnlPZkF0dHJpYnV0ZRDOCBIYChNRdWVyeUNhY2hlQXR0cmlidXRlEM8I');
 @$core.Deprecated('Use valueRefDescriptor instead')
 const ValueRef$json = const {
   '1': 'ValueRef',

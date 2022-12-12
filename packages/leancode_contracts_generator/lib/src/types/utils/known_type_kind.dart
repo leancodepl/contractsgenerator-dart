@@ -31,12 +31,9 @@ enum KnownTypeKind {
       case KnownType.Float64:
         return KnownTypeKind.primitive;
       case KnownType.Uri:
-      case KnownType.Date:
-      case KnownType.Time:
       case KnownType.DateOnly:
       case KnownType.TimeOnly:
       case KnownType.TimeSpan:
-      case KnownType.DateTime:
       case KnownType.DateTimeOffset:
       case KnownType.Binary:
       case KnownType.Array:
