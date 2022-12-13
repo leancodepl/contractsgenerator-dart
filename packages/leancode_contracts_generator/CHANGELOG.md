@@ -1,6 +1,6 @@
 # 0.10.0
 
-- Support `LeanCode.ContractsGenerator` `v2.0.0-alpha.3`
+- Support `LeanCode.ContractsGenerator` `v2.0.0-alpha.4`
   - **BREAKING**: Remove support for `KnownType::Date`, `KnownType::Time`, and `KnownType::DateTime`
   - Support attributes on enum variants
   - Support .NET7
