@@ -3,7 +3,7 @@
 //  source: contracts.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
+// ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
 
 // ignore_for_file: UNDEFINED_SHOWN_NAME
 import 'dart:core' as $core;
@@ -95,31 +95,16 @@ class KnownType extends $pb.ProtobufEnum {
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'TimeOnly');
-  static const KnownType DateTime = KnownType._(
-      202,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'DateTime');
   static const KnownType DateTimeOffset = KnownType._(
-      203,
+      202,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'DateTimeOffset');
   static const KnownType TimeSpan = KnownType._(
-      204,
+      203,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'TimeSpan');
-  static const KnownType Date = KnownType._(
-      205,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'Date');
-  static const KnownType Time = KnownType._(
-      206,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'Time');
   static const KnownType Array = KnownType._(
       300,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
@@ -194,11 +179,8 @@ class KnownType extends $pb.ProtobufEnum {
     Float64,
     DateOnly,
     TimeOnly,
-    DateTime,
     DateTimeOffset,
     TimeSpan,
-    Date,
-    Time,
     Array,
     Map,
     Query,

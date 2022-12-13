@@ -3,7 +3,7 @@
 //  source: contracts.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
+// ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
 
 import 'dart:core' as $core;
 
@@ -1598,6 +1598,13 @@ class EnumValue extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'comment')
+    ..pc<AttributeRef>(
+        4,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'attributes',
+        $pb.PbFieldType.PM,
+        subBuilder: AttributeRef.create)
     ..hasRequiredFields = false;
 
   EnumValue._() : super();
@@ -1605,6 +1612,7 @@ class EnumValue extends $pb.GeneratedMessage {
     $core.String? name,
     $fixnum.Int64? value,
     $core.String? comment,
+    $core.Iterable<AttributeRef>? attributes,
   }) {
     final _result = create();
     if (name != null) {
@@ -1615,6 +1623,9 @@ class EnumValue extends $pb.GeneratedMessage {
     }
     if (comment != null) {
       _result.comment = comment;
+    }
+    if (attributes != null) {
+      _result.attributes.addAll(attributes);
     }
     return _result;
   }
@@ -1679,6 +1690,9 @@ class EnumValue extends $pb.GeneratedMessage {
   $core.bool hasComment() => $_has(2);
   @$pb.TagNumber(3)
   void clearComment() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.List<AttributeRef> get attributes => $_getList(3);
 }
 
 class ErrorCode_Single extends $pb.GeneratedMessage {

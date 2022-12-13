@@ -27,7 +27,8 @@ void main() {
         p.join(inDir, 'project/aggregated/A/A.csproj'),
         p.join(inDir, 'project/aggregated/B/B.csproj'),
       ]),
-      GeneratorScript.path([p.join(inDir, 'simple/**')]),
+      for (final file in Directory(p.join(inDir, 'simple')).listSync())
+        GeneratorScript.path([file.path]),
       GeneratorScript.path(['example/ExampleContracts/**']),
       GeneratorScript.path([p.join(inDir, 'properties/composite_types.cs')]),
       GeneratorScript.path([p.join(inDir, 'properties/known_types.cs')]),
