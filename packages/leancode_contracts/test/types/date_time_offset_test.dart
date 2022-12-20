@@ -179,10 +179,11 @@ void main() {
       });
 
       test('without timezone', () {
-        final myTimeZone = DateTime.now().timeZoneOffset;
+        const iso = '2022-06-15T08:54:44.923464';
+        final myTimeZone = DateTime.parse(iso).timeZoneOffset;
 
         expect(
-          DateTimeOffset.fromJson('2022-06-15T08:54:44.923464'),
+          DateTimeOffset.fromJson(iso),
           DateTimeOffset(
             DateTime.utc(2022, 6, 15, 8, 54, 44, 923, 464).subtract(myTimeZone),
             myTimeZone.inMinutes,
