@@ -1,3 +1,7 @@
+# 0.4.1
+
+- Fix `Binary` type not being exported
+
 # 0.4.0
 
 - **BREAKING**: Remove `NullableDurationJsonConverter`
