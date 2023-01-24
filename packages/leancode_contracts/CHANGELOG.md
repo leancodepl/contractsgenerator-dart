@@ -1,3 +1,7 @@
+# 0.4.2
+
+- Change the `pacakge:cqrs` constraint to `">=7.0.0 <9.0.0"`
+
 # 0.4.1
 
 - Fix `Binary` type not being exported
