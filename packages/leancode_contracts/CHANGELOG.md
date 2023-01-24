@@ -1,3 +1,8 @@
+# 0.5.0
+
+- **BREAKING**: Bump minimum dart SDK to 2.17.0
+- Change the `pacakge:cqrs` constraint to `">=7.0.0 <9.0.0"`
+
 # 0.4.1
 
 - Fix `Binary` type not being exported
