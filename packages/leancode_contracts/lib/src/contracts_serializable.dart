@@ -6,12 +6,10 @@ import 'package:leancode_contracts/leancode_contracts.dart';
 class ContractsSerializable extends JsonSerializable {
   /// Constructs a pre-configured [JsonSerializable] annotation.
   const ContractsSerializable({
-    bool? explicitToJson,
-    bool? genericArgumentFactories,
+    super.explicitToJson,
+    super.genericArgumentFactories,
   }) : super(
-          explicitToJson: explicitToJson,
           fieldRename: FieldRename.pascal,
           converters: const [DurationJsonConverter()],
-          genericArgumentFactories: genericArgumentFactories,
         );
 }
