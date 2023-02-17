@@ -28,7 +28,7 @@ jobs:
         working-directory: packages/leancode_contracts
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: dart-lang/setup-dart@v1
         with:
