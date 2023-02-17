@@ -9,6 +9,9 @@ jobs:
     name: Publish
     runs-on: ubuntu-latest
 
+    permissions:
+      id-token: write
+
     defaults:
       run:
         working-directory: packages/leancode_contracts
@@ -19,13 +22,6 @@ jobs:
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: 2.19.0
-
-      - name: Inject pub.dev credentials
-        env:
-          CREDENTIALS: ${{ secrets.PUB_DEV_CREDENTIALS }}
-        run: |
-          mkdir -p $XDG_CONFIG_HOME/dart
-          echo $CREDENTIALS > $XDG_CONFIG_HOME/dart/pub-credentials.json
 
       - name: Publish to pub.dev
         run: |
