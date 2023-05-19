@@ -1,3 +1,8 @@
+# 0.11.0
+
+- **BREAKING**: Bump Dart SDK to 2.19
+- Generate type name for `EquatableMixin`'s `props`
+
 # 0.10.0
 
 - Support `LeanCode.ContractsGenerator` `v2.0.0-alpha.4`
