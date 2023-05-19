@@ -11,7 +11,7 @@ class Command_ with EquatableMixin implements Command {
   factory Command_.fromJson(Map<String, dynamic> json) =>
       _$Command_FromJson(json);
 
-  get props => [];
+  List<Object?> get props => [];
 
   Map<String, dynamic> toJson() => _$Command_ToJson(this);
   String getFullName() => 'A.Command';
@@ -26,7 +26,7 @@ class Query_ with EquatableMixin implements Query<int> {
 
   factory Query_.fromJson(Map<String, dynamic> json) => _$Query_FromJson(json);
 
-  get props => [];
+  List<Object?> get props => [];
 
   Map<String, dynamic> toJson() => _$Query_ToJson(this);
   int resultFactory(dynamic decodedJson) => decodedJson as int;
