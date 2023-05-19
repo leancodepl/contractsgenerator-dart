@@ -1,4 +1,6 @@
 @Timeout(Duration(minutes: 30))
+library;
+
 import 'dart:io';
 
 import 'package:leancode_contracts_generator/leancode_contracts_generator.dart';

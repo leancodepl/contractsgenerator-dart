@@ -4,7 +4,7 @@ description: Dart contracts client generator for a CQRS API.
 version: 0.10.0+1
 
 environment:
-  sdk: ">=2.17.6 <3.0.0"
+  sdk: ">=2.19.0 <3.0.0"
 
 dependencies:
   args: ^2.1.1
@@ -26,7 +26,7 @@ dependencies:
 dev_dependencies:
   leancode_contracts:
     path: ../leancode_contracts
-  leancode_lint: ^2.0.0+1
+  leancode_lint: ^3.0.0
   test: ^1.17.10
 
 executables:

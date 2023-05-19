@@ -9,12 +9,12 @@ class MemoryAssetWriter implements AssetWriter {
   final assets = <AssetId, List<int>>{};
 
   @override
-  Future writeAsBytes(AssetId id, List<int> bytes) async {
+  Future<void> writeAsBytes(AssetId id, List<int> bytes) async {
     assets[id] = bytes;
   }
 
   @override
-  Future writeAsString(
+  Future<void> writeAsString(
     AssetId id,
     String contents, {
     Encoding encoding = utf8,
