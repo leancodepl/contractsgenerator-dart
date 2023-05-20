@@ -62,7 +62,7 @@ abstract class StatementHandler {
             (b) => b
               ..name =
                   'get props => [${properties.map((e) => renameField(e.name)).join(',')}]'
-              ..type = refer(''),
+              ..type = refer('List<Object?>'),
           ),
         ])
         ..constructors.addAll([

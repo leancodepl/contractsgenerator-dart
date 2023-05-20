@@ -12,7 +12,7 @@ class Auth with EquatableMixin {
 
   factory Auth.fromJson(Map<String, dynamic> json) => _$AuthFromJson(json);
 
-  get props => [];
+  List<Object?> get props => [];
 
   Map<String, dynamic> toJson() => _$AuthToJson(this);
 }
@@ -28,7 +28,7 @@ class KnownClaims with EquatableMixin {
 
   static const String role = 'role';
 
-  get props => [];
+  List<Object?> get props => [];
 
   Map<String, dynamic> toJson() => _$KnownClaimsToJson(this);
 }
@@ -45,7 +45,7 @@ class Roles with EquatableMixin {
 
   static const String system = 'system';
 
-  get props => [];
+  List<Object?> get props => [];
 
   Map<String, dynamic> toJson() => _$RolesToJson(this);
 }
@@ -63,7 +63,7 @@ abstract class PaginatedQuery<TResult>
 
   final int pageSize;
 
-  get props => [pageNumber, pageSize];
+  List<Object?> get props => [pageNumber, pageSize];
 }
 
 /// This one is in XML.
@@ -85,7 +85,7 @@ class PaginatedResult<TResult> with EquatableMixin {
 
   final int totalCount;
 
-  get props => [items, totalCount];
+  List<Object?> get props => [items, totalCount];
 }
 
 @ContractsSerializable()
@@ -97,7 +97,7 @@ class ISomethingRelated with EquatableMixin {
 
   final String somethingId;
 
-  get props => [somethingId];
+  List<Object?> get props => [somethingId];
 
   Map<String, dynamic> toJson() => _$ISomethingRelatedToJson(this);
 }
@@ -111,7 +111,7 @@ class WhenHasSomethingAccess with EquatableMixin {
   factory WhenHasSomethingAccess.fromJson(Map<String, dynamic> json) =>
       _$WhenHasSomethingAccessFromJson(json);
 
-  get props => [];
+  List<Object?> get props => [];
 
   Map<String, dynamic> toJson() => _$WhenHasSomethingAccessToJson(this);
 }
@@ -131,7 +131,7 @@ class AllUsers with EquatableMixin implements PaginatedQuery<UserInfoDTO> {
 
   final int pageSize;
 
-  get props => [pageNumber, pageSize];
+  List<Object?> get props => [pageNumber, pageSize];
 
   Map<String, dynamic> toJson() => _$AllUsersToJson(this);
   PaginatedResult<UserInfoDTO> resultFactory(dynamic decodedJson) =>
@@ -169,7 +169,8 @@ class EditUser with EquatableMixin implements Command, ISomethingRelated {
 
   final UserInfoDTO userInfo;
 
-  get props => [somethingId, userId, list, array, dictionary, userInfo];
+  List<Object?> get props =>
+      [somethingId, userId, list, array, dictionary, userInfo];
 
   Map<String, dynamic> toJson() => _$EditUserToJson(this);
   String getFullName() =>
@@ -208,7 +209,7 @@ class UserById with EquatableMixin implements Query<UserInfoDTO?> {
   factory UserById.fromJson(Map<String, dynamic> json) =>
       _$UserByIdFromJson(json);
 
-  get props => [];
+  List<Object?> get props => [];
 
   Map<String, dynamic> toJson() => _$UserByIdToJson(this);
   UserInfoDTO? resultFactory(dynamic decodedJson) => decodedJson == null
@@ -240,7 +241,7 @@ class UserInfoDTO with EquatableMixin {
 
   final String emailAddress;
 
-  get props => [firstname, surname, username, emailAddress];
+  List<Object?> get props => [firstname, surname, username, emailAddress];
 
   Map<String, dynamic> toJson() => _$UserInfoDTOToJson(this);
 }
@@ -253,7 +254,7 @@ class UserSomething with EquatableMixin implements Query<int?> {
   factory UserSomething.fromJson(Map<String, dynamic> json) =>
       _$UserSomethingFromJson(json);
 
-  get props => [];
+  List<Object?> get props => [];
 
   Map<String, dynamic> toJson() => _$UserSomethingToJson(this);
   int? resultFactory(dynamic decodedJson) => decodedJson as int?;
