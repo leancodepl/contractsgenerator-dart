@@ -1,3 +1,8 @@
+# 0.6.0
+
+- **BREAKING**: Removed `DateOnly.source`. Use `DateOnly.toDateTimeLocal()` or `DateOnly.toDateTimeUtc()` instead
+- Make `DateOnly` const-constructable
+
 # 0.5.0
 
 - **BREAKING**: Bump minimum dart SDK to 2.17.0
