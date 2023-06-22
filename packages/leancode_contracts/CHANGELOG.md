@@ -3,7 +3,6 @@
 - **BREAKING**: Removed `DateOnly.source`. Use `DateOnly.toDateTimeLocal()` or `DateOnly.toDateTimeUtc()` instead
 - **BREAKING**: Removed `TimeOnly.source`. Use `DateOnly.toDuration()` instead
 - **BREAKING**: `TimeOnly` constructor now accepts individual components instead of a `Duration` object. Use `TimeOnly.fromDuration` instead
-- Make `DateOnly` const-constructable
 - Allow `cqrs` v9
 
 # 0.5.0

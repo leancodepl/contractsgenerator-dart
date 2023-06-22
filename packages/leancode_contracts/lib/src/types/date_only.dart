@@ -4,7 +4,17 @@
 class DateOnly implements Comparable<DateOnly> {
   /// Constructs a [DateOnly] from `year`, `month`, and `day`.
   /// Additionally asserts that it represents a valid date.
-  const DateOnly(this.year, this.month, this.day) : assert(year >= 0);
+  DateOnly(this.year, this.month, this.day)
+      : assert(
+          () {
+            final dateTime = DateTime(year, month, day);
+            // if the processed components are different, an overflow happened
+            return dateTime.year == year &&
+                dateTime.month == month &&
+                dateTime.day == day;
+          }(),
+          'components do not form a valid date',
+        );
 
   /// Constructs a [DateOnly] from [DateTime].
   DateOnly.fromDateTime(DateTime source)

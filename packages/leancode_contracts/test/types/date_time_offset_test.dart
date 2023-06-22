@@ -71,15 +71,15 @@ void main() {
 
       expect(
         DateTimeOffset(dt1, off1).date,
-        const DateOnly(2022, 6, 15),
+        DateOnly(2022, 6, 15),
       );
       expect(
         DateTimeOffset(dt2, off2).date,
-        const DateOnly(2022, 6, 15),
+        DateOnly(2022, 6, 15),
       );
       expect(
         DateTimeOffset(dt3, off3).date,
-        const DateOnly(2022, 6, 14),
+        DateOnly(2022, 6, 14),
       );
     });
 
