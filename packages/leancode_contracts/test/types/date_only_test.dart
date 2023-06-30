@@ -2,8 +2,6 @@ import 'package:leancode_contracts/src/types/date_only.dart';
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 
-final throwsAssertionError = throwsA(isA<AssertionError>());
-
 void main() {
   group('DateOnly', () {
     test('accepts correct dates', () {
@@ -30,9 +28,22 @@ void main() {
       );
     });
 
-    test('rejects negative years', () {
-      expect(() => DateOnly(-10, 1, 1), throwsAssertionError);
-      expect(() => DateOnly(-1, 1, 1), throwsAssertionError);
+    group('rejects invalid dates', () {
+      test('with out of range component', () {
+        expect(() => DateOnly(1, 0, 1), throwsArgumentError);
+        expect(() => DateOnly(1, 1, 0), throwsArgumentError);
+
+        expect(() => DateOnly(1, -1, 1), throwsArgumentError);
+        expect(() => DateOnly(1, 1, -1), throwsArgumentError);
+
+        expect(() => DateOnly(1, 13, 1), throwsArgumentError);
+        expect(() => DateOnly(1, 1, 32), throwsArgumentError);
+      });
+
+      test('with wrong leap year', () {
+        expect(() => DateOnly(2023, 2, 29), throwsArgumentError);
+        expect(() => DateOnly(2024, 2, 29), isNot(throwsArgumentError));
+      });
     });
 
     test('date part getters', () {
@@ -46,6 +57,22 @@ void main() {
       expect(complex.year, 1999);
       expect(complex.month, 1);
       expect(complex.day, 29);
+    });
+
+    test('toDateTimeLocal', () {
+      final one = DateOnly(1, 1, 1);
+      final complex = DateOnly(1999, 1, 29);
+
+      expect(one.toDateTimeLocal(), DateTime(1));
+      expect(complex.toDateTimeLocal(), DateTime(1999, 1, 29));
+    });
+
+    test('toDateTimeUtc', () {
+      final one = DateOnly(1, 1, 1);
+      final complex = DateOnly(1999, 1, 29);
+
+      expect(one.toDateTimeUtc(), DateTime.utc(1));
+      expect(complex.toDateTimeUtc(), DateTime.utc(1999, 1, 29));
     });
 
     test('serialization', () {

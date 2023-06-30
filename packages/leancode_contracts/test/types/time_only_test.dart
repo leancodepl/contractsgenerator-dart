@@ -2,27 +2,44 @@ import 'package:leancode_contracts/leancode_contracts.dart';
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 
-final throwsAssertionError = throwsA(isA<AssertionError>());
-
 void main() {
   group('TimeOnly', () {
     test('accepts correct durations', () {
       expect(
-        TimeOnly(const Duration(days: 1) - const Duration(microseconds: 1)),
+        TimeOnly.fromDuration(
+          const Duration(days: 1) - const Duration(microseconds: 1),
+        ),
         isA<TimeOnly>(),
       );
-      expect(TimeOnly(Duration.zero), isA<TimeOnly>());
-      expect(TimeOnly(const Duration(hours: 23)), isA<TimeOnly>());
+      expect(TimeOnly.fromDuration(Duration.zero), isA<TimeOnly>());
+      expect(TimeOnly.fromDuration(const Duration(hours: 23)), isA<TimeOnly>());
     });
 
     test('rejects wrong durations', () {
-      expect(() => TimeOnly(const Duration(days: 1)), throwsAssertionError);
-      expect(() => TimeOnly(const Duration(days: 24)), throwsAssertionError);
-      expect(() => TimeOnly(-const Duration(days: 1)), throwsAssertionError);
       expect(
-        () => TimeOnly(-const Duration(milliseconds: 1)),
-        throwsAssertionError,
+        () => TimeOnly.fromDuration(const Duration(days: 1)),
+        throwsRangeError,
       );
+      expect(
+        () => TimeOnly.fromDuration(const Duration(days: 24)),
+        throwsRangeError,
+      );
+      expect(
+        () => TimeOnly.fromDuration(-const Duration(days: 1)),
+        throwsRangeError,
+      );
+      expect(
+        () => TimeOnly.fromDuration(-const Duration(milliseconds: 1)),
+        throwsRangeError,
+      );
+      expect(() => TimeOnly(-1, 0, 0, 0), throwsRangeError);
+      expect(() => TimeOnly(0, -1, 0, 0), throwsRangeError);
+      expect(() => TimeOnly(0, 0, -1, 0), throwsRangeError);
+      expect(() => TimeOnly(0, 0, 0, -1), throwsRangeError);
+      expect(() => TimeOnly(24, 0, 0, 0), throwsRangeError);
+      expect(() => TimeOnly(0, 60, 0, 0), throwsRangeError);
+      expect(() => TimeOnly(0, 0, 60, 0), throwsRangeError);
+      expect(() => TimeOnly(0, 0, 0, 1000000), throwsRangeError);
     });
 
     test('fromDateTime', () {
@@ -32,7 +49,7 @@ void main() {
 
       expect(
         TimeOnly.fromDateTime(dt1),
-        TimeOnly(
+        TimeOnly.fromDuration(
           const Duration(
             hours: 6,
             minutes: 54,
@@ -44,7 +61,7 @@ void main() {
       );
       expect(
         TimeOnly.fromDateTime(dt2),
-        TimeOnly(
+        TimeOnly.fromDuration(
           const Duration(
             hours: 11,
             minutes: 54,
@@ -56,7 +73,7 @@ void main() {
       );
       expect(
         TimeOnly.fromDateTime(dt3),
-        TimeOnly(
+        TimeOnly.fromDuration(
           const Duration(
             hours: 8,
             minutes: 54,
@@ -69,8 +86,8 @@ void main() {
     });
 
     test('time part getters', () {
-      final zero = TimeOnly(Duration.zero);
-      final complex = TimeOnly(
+      final zero = TimeOnly.fromDuration(Duration.zero);
+      final complex = TimeOnly.fromDuration(
         const Duration(hours: 23, minutes: 32, seconds: 42, milliseconds: 1),
       );
 
@@ -85,15 +102,27 @@ void main() {
       expect(complex.microsecond, 1000);
     });
 
-    test('serialization', () {
-      expect(TimeOnly(Duration.zero).toJson(), '00:00:00.000000');
+    test('toDuration', () {
+      final zero = TimeOnly(0, 0, 0, 0);
+      final complex = TimeOnly(23, 32, 42, 1000);
+
+      expect(zero.toDuration(), Duration.zero);
       expect(
-        TimeOnly(const Duration(days: 1) - const Duration(microseconds: 1))
-            .toJson(),
+        complex.toDuration(),
+        const Duration(hours: 23, minutes: 32, seconds: 42, milliseconds: 1),
+      );
+    });
+
+    test('serialization', () {
+      expect(TimeOnly.fromDuration(Duration.zero).toJson(), '00:00:00.000000');
+      expect(
+        TimeOnly.fromDuration(
+          const Duration(days: 1) - const Duration(microseconds: 1),
+        ).toJson(),
         '23:59:59.999999',
       );
       expect(
-        TimeOnly(
+        TimeOnly.fromDuration(
           const Duration(hours: 23, minutes: 32, seconds: 42, milliseconds: 1),
         ).toJson(),
         '23:32:42.001000',
@@ -101,14 +130,19 @@ void main() {
     });
 
     test('deserialization', () {
-      expect(TimeOnly.fromJson('00:00:00.000000'), TimeOnly(Duration.zero));
+      expect(
+        TimeOnly.fromJson('00:00:00.000000'),
+        TimeOnly.fromDuration(Duration.zero),
+      );
       expect(
         TimeOnly.fromJson('23:59:59.999999'),
-        TimeOnly(const Duration(days: 1) - const Duration(microseconds: 1)),
+        TimeOnly.fromDuration(
+          const Duration(days: 1) - const Duration(microseconds: 1),
+        ),
       );
       expect(
         TimeOnly.fromJson('23:32:42.001000'),
-        TimeOnly(
+        TimeOnly.fromDuration(
           const Duration(hours: 23, minutes: 32, seconds: 42, milliseconds: 1),
         ),
       );
@@ -117,24 +151,24 @@ void main() {
     group('compareTo', () {
       test('greater than', () {
         expect(
-          TimeOnly(const Duration(hours: 1))
-              .compareTo(TimeOnly(const Duration(minutes: 1))),
+          TimeOnly.fromDuration(const Duration(hours: 1))
+              .compareTo(TimeOnly.fromDuration(const Duration(minutes: 1))),
           isPositive,
         );
       });
 
       test('less than', () {
         expect(
-          TimeOnly(const Duration(minutes: 1))
-              .compareTo(TimeOnly(const Duration(hours: 1))),
+          TimeOnly.fromDuration(const Duration(minutes: 1))
+              .compareTo(TimeOnly.fromDuration(const Duration(hours: 1))),
           isNegative,
         );
       });
 
       test('equal', () {
         expect(
-          TimeOnly(const Duration(hours: 1))
-              .compareTo(TimeOnly(const Duration(hours: 1))),
+          TimeOnly.fromDuration(const Duration(hours: 1))
+              .compareTo(TimeOnly.fromDuration(const Duration(hours: 1))),
           isZero,
         );
       });

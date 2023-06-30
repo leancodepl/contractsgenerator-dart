@@ -94,7 +94,7 @@ void main() {
 
       expect(
         DateTimeOffset(dt1, off1).time,
-        TimeOnly(
+        TimeOnly.fromDuration(
           const Duration(
             hours: 6,
             minutes: 54,
@@ -106,7 +106,7 @@ void main() {
       );
       expect(
         DateTimeOffset(dt2, off2).time,
-        TimeOnly(
+        TimeOnly.fromDuration(
           const Duration(
             hours: 15,
             minutes: 3,
@@ -118,7 +118,7 @@ void main() {
       );
       expect(
         DateTimeOffset(dt3, off3).time,
-        TimeOnly(
+        TimeOnly.fromDuration(
           const Duration(
             hours: 20,
             minutes: 15,
