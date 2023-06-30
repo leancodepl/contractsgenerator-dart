@@ -2,8 +2,6 @@ import 'package:leancode_contracts/leancode_contracts.dart';
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 
-final throwsAssertionError = throwsA(isA<AssertionError>());
-
 void main() {
   group('TimeOnly', () {
     test('accepts correct durations', () {
@@ -20,20 +18,28 @@ void main() {
     test('rejects wrong durations', () {
       expect(
         () => TimeOnly.fromDuration(const Duration(days: 1)),
-        throwsAssertionError,
+        throwsRangeError,
       );
       expect(
         () => TimeOnly.fromDuration(const Duration(days: 24)),
-        throwsAssertionError,
+        throwsRangeError,
       );
       expect(
         () => TimeOnly.fromDuration(-const Duration(days: 1)),
-        throwsAssertionError,
+        throwsRangeError,
       );
       expect(
         () => TimeOnly.fromDuration(-const Duration(milliseconds: 1)),
-        throwsAssertionError,
+        throwsRangeError,
       );
+      expect(() => TimeOnly(-1, 0, 0, 0), throwsRangeError);
+      expect(() => TimeOnly(0, -1, 0, 0), throwsRangeError);
+      expect(() => TimeOnly(0, 0, -1, 0), throwsRangeError);
+      expect(() => TimeOnly(0, 0, 0, -1), throwsRangeError);
+      expect(() => TimeOnly(24, 0, 0, 0), throwsRangeError);
+      expect(() => TimeOnly(0, 60, 0, 0), throwsRangeError);
+      expect(() => TimeOnly(0, 0, 60, 0), throwsRangeError);
+      expect(() => TimeOnly(0, 0, 0, 1000000), throwsRangeError);
     });
 
     test('fromDateTime', () {
@@ -97,8 +103,8 @@ void main() {
     });
 
     test('toDuration', () {
-      const zero = TimeOnly(0, 0, 0, 0);
-      const complex = TimeOnly(23, 32, 42, 1000);
+      final zero = TimeOnly(0, 0, 0, 0);
+      final complex = TimeOnly(23, 32, 42, 1000);
 
       expect(zero.toDuration(), Duration.zero);
       expect(

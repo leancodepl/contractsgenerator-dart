@@ -4,18 +4,14 @@ import '../json_converters/duration_json_converter.dart';
 /// Represents a time of day, as would be read from a clock, within the range 00:00:00 to 23:59:59.999999.
 /// {@endtemplate}
 class TimeOnly implements Comparable<TimeOnly> {
-  /// Constructs a [TimeOnly] from the individual components and asserts they represent a valid time.
-  const TimeOnly(this.hour, this.minute, this.second, this.microsecond)
-      : assert(
-          hour >= 0 &&
-              hour < 24 &&
-              minute >= 0 &&
-              minute < 60 &&
-              second >= 0 &&
-              second < 60 &&
-              microsecond >= 0 &&
-              microsecond < 1000000,
-        );
+  /// Constructs a [TimeOnly] from the individual components.
+  /// Throws [RangeError] if any component is outside of its valid range.
+  TimeOnly(this.hour, this.minute, this.second, this.microsecond) {
+    RangeError.checkValueInInterval(hour, 0, 23);
+    RangeError.checkValueInInterval(minute, 0, 59);
+    RangeError.checkValueInInterval(second, 0, 59);
+    RangeError.checkValueInInterval(microsecond, 0, 999999);
+  }
 
   /// Constructs a [TimeOnly] from [DateTime] by disregarding the date component.
   TimeOnly.fromDateTime(DateTime source)
