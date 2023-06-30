@@ -2,8 +2,6 @@ import 'package:leancode_contracts/src/types/date_only.dart';
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 
-final throwsAssertionError = throwsA(isA<AssertionError>());
-
 void main() {
   group('DateOnly', () {
     test('accepts correct dates', () {
@@ -32,19 +30,19 @@ void main() {
 
     group('rejects invalid dates', () {
       test('with out of range component', () {
-        expect(() => DateOnly(1, 0, 1), throwsAssertionError);
-        expect(() => DateOnly(1, 1, 0), throwsAssertionError);
+        expect(() => DateOnly(1, 0, 1), throwsArgumentError);
+        expect(() => DateOnly(1, 1, 0), throwsArgumentError);
 
-        expect(() => DateOnly(1, -1, 1), throwsAssertionError);
-        expect(() => DateOnly(1, 1, -1), throwsAssertionError);
+        expect(() => DateOnly(1, -1, 1), throwsArgumentError);
+        expect(() => DateOnly(1, 1, -1), throwsArgumentError);
 
-        expect(() => DateOnly(1, 13, 1), throwsAssertionError);
-        expect(() => DateOnly(1, 1, 32), throwsAssertionError);
+        expect(() => DateOnly(1, 13, 1), throwsArgumentError);
+        expect(() => DateOnly(1, 1, 32), throwsArgumentError);
       });
 
       test('with wrong leap year', () {
-        expect(() => DateOnly(2023, 2, 29), throwsAssertionError);
-        expect(() => DateOnly(2024, 2, 29), isNot(throwsAssertionError));
+        expect(() => DateOnly(2023, 2, 29), throwsArgumentError);
+        expect(() => DateOnly(2024, 2, 29), isNot(throwsArgumentError));
       });
     });
 
