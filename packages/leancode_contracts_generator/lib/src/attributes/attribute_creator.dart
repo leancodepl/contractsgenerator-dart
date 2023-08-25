@@ -23,7 +23,7 @@ class AttributeCreator {
         else if (param.hasNamed())
           '${param.named.name}: ${valueCreator.create(param.named.value).assignment}'
         else
-          throw StateError('Unhandled AttributeRef variant')
+          throw StateError('Unhandled AttributeRef variant'),
     ];
 
     return '/// ${attributeRef.attributeName}(${params.join(', ')})';

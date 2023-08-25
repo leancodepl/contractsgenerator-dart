@@ -17,7 +17,7 @@ class QueryHandler extends StatementHandler {
   ) : resultFactoryCreator = ResultFactoryCreator(
           [
             InternalResultFactoryHandler(db),
-            KnownResultFactoryHandler(jsonConverters)
+            KnownResultFactoryHandler(jsonConverters),
           ],
           typeCreator,
         );

@@ -348,10 +348,10 @@ void main() {
                             TypeRef(
                               nullable: true,
                               generic: TypeRef_Generic(name: 'T'),
-                            )
+                            ),
                           ],
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -367,7 +367,7 @@ void main() {
                         TypeRef(
                           nullable: true,
                           generic: TypeRef_Generic(name: 'T'),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -483,7 +483,7 @@ void main() {
                           TypeRef(
                             nullable: true,
                             known: TypeRef_Known(type: KnownType.Float64),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -500,7 +500,7 @@ void main() {
                                 TypeRef(
                                   nullable: true,
                                   known: TypeRef_Known(type: KnownType.Float64),
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -522,7 +522,7 @@ void main() {
                     TypeRef(
                       nullable: true,
                       known: TypeRef_Known(type: KnownType.Float64),
-                    )
+                    ),
                   ],
                 ),
               ),

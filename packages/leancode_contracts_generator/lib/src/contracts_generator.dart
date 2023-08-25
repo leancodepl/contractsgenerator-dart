@@ -101,7 +101,7 @@ class ContractsGenerator {
     final body = [
       for (final statement in db.statements)
         if (db.shouldInclude(statement.name) && !db.isAttribute(statement))
-          statementCreator.create(statement)
+          statementCreator.create(statement),
     ];
 
     // TODO: knownGroups?

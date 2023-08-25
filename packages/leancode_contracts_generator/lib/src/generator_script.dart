@@ -46,7 +46,7 @@ class GeneratorScript {
       stdoutEncoding: null,
       stderrEncoding: null,
       environment: {
-        'SERVER_VERSION': overrideGeneratorVersion ?? supportedVersion
+        'SERVER_VERSION': overrideGeneratorVersion ?? supportedVersion,
       },
     );
 
