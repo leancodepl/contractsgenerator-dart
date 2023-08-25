@@ -1,9 +1,13 @@
-///
+//
 //  Generated code. Do not modify.
 //  source: contracts.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
+
+// ignore_for_file: annotate_overrides, camel_case_types, comment_references
+// ignore_for_file: constant_identifier_names, library_prefixes
+// ignore_for_file: non_constant_identifier_names, prefer_final_fields
+// ignore_for_file: unnecessary_import, unnecessary_this, unused_import
 
 import 'dart:core' as $core;
 
@@ -15,25 +19,22 @@ import 'contracts.pbenum.dart';
 export 'contracts.pbenum.dart';
 
 class ValueRef_Null extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'ValueRef.Null',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
-      createEmptyInstance: create)
-    ..hasRequiredFields = false;
-
-  ValueRef_Null._() : super();
   factory ValueRef_Null() => create();
+  ValueRef_Null._() : super();
   factory ValueRef_Null.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory ValueRef_Null.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'ValueRef.Null',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..hasRequiredFields = false;
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -43,8 +44,10 @@ class ValueRef_Null extends $pb.GeneratedMessage {
       'Will be removed in next major version')
   ValueRef_Null copyWith(void Function(ValueRef_Null) updates) =>
       super.copyWith((message) => updates(message as ValueRef_Null))
-          as ValueRef_Null; // ignore: deprecated_member_use
+          as ValueRef_Null;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static ValueRef_Null create() => ValueRef_Null._();
   ValueRef_Null createEmptyInstance() => create();
@@ -57,38 +60,31 @@ class ValueRef_Null extends $pb.GeneratedMessage {
 }
 
 class ValueRef_Number extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'ValueRef.Number',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
-      createEmptyInstance: create)
-    ..aInt64(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'value')
-    ..hasRequiredFields = false;
-
-  ValueRef_Number._() : super();
   factory ValueRef_Number({
     $fixnum.Int64? value,
   }) {
-    final _result = create();
+    final $result = create();
     if (value != null) {
-      _result.value = value;
+      $result.value = value;
     }
-    return _result;
+    return $result;
   }
+  ValueRef_Number._() : super();
   factory ValueRef_Number.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory ValueRef_Number.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'ValueRef.Number',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..aInt64(1, _omitFieldNames ? '' : 'value')
+    ..hasRequiredFields = false;
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -98,8 +94,10 @@ class ValueRef_Number extends $pb.GeneratedMessage {
       'Will be removed in next major version')
   ValueRef_Number copyWith(void Function(ValueRef_Number) updates) =>
       super.copyWith((message) => updates(message as ValueRef_Number))
-          as ValueRef_Number; // ignore: deprecated_member_use
+          as ValueRef_Number;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static ValueRef_Number create() => ValueRef_Number._();
   ValueRef_Number createEmptyInstance() => create();
@@ -124,39 +122,31 @@ class ValueRef_Number extends $pb.GeneratedMessage {
 }
 
 class ValueRef_FloatingPointNumber extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'ValueRef.FloatingPointNumber',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
-      createEmptyInstance: create)
-    ..a<$core.double>(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'value',
-        $pb.PbFieldType.OD)
-    ..hasRequiredFields = false;
-
-  ValueRef_FloatingPointNumber._() : super();
   factory ValueRef_FloatingPointNumber({
     $core.double? value,
   }) {
-    final _result = create();
+    final $result = create();
     if (value != null) {
-      _result.value = value;
+      $result.value = value;
     }
-    return _result;
+    return $result;
   }
+  ValueRef_FloatingPointNumber._() : super();
   factory ValueRef_FloatingPointNumber.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory ValueRef_FloatingPointNumber.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'ValueRef.FloatingPointNumber',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..a<$core.double>(1, _omitFieldNames ? '' : 'value', $pb.PbFieldType.OD)
+    ..hasRequiredFields = false;
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -169,8 +159,10 @@ class ValueRef_FloatingPointNumber extends $pb.GeneratedMessage {
           void Function(ValueRef_FloatingPointNumber) updates) =>
       super.copyWith(
               (message) => updates(message as ValueRef_FloatingPointNumber))
-          as ValueRef_FloatingPointNumber; // ignore: deprecated_member_use
+          as ValueRef_FloatingPointNumber;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static ValueRef_FloatingPointNumber create() =>
       ValueRef_FloatingPointNumber._();
@@ -196,38 +188,31 @@ class ValueRef_FloatingPointNumber extends $pb.GeneratedMessage {
 }
 
 class ValueRef_String extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'ValueRef.String',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
-      createEmptyInstance: create)
-    ..aOS(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'value')
-    ..hasRequiredFields = false;
-
-  ValueRef_String._() : super();
   factory ValueRef_String({
     $core.String? value,
   }) {
-    final _result = create();
+    final $result = create();
     if (value != null) {
-      _result.value = value;
+      $result.value = value;
     }
-    return _result;
+    return $result;
   }
+  ValueRef_String._() : super();
   factory ValueRef_String.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory ValueRef_String.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'ValueRef.String',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'value')
+    ..hasRequiredFields = false;
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -237,8 +222,10 @@ class ValueRef_String extends $pb.GeneratedMessage {
       'Will be removed in next major version')
   ValueRef_String copyWith(void Function(ValueRef_String) updates) =>
       super.copyWith((message) => updates(message as ValueRef_String))
-          as ValueRef_String; // ignore: deprecated_member_use
+          as ValueRef_String;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static ValueRef_String create() => ValueRef_String._();
   ValueRef_String createEmptyInstance() => create();
@@ -263,38 +250,31 @@ class ValueRef_String extends $pb.GeneratedMessage {
 }
 
 class ValueRef_Boolean extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'ValueRef.Boolean',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
-      createEmptyInstance: create)
-    ..aOB(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'value')
-    ..hasRequiredFields = false;
-
-  ValueRef_Boolean._() : super();
   factory ValueRef_Boolean({
     $core.bool? value,
   }) {
-    final _result = create();
+    final $result = create();
     if (value != null) {
-      _result.value = value;
+      $result.value = value;
     }
-    return _result;
+    return $result;
   }
+  ValueRef_Boolean._() : super();
   factory ValueRef_Boolean.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory ValueRef_Boolean.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'ValueRef.Boolean',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..aOB(1, _omitFieldNames ? '' : 'value')
+    ..hasRequiredFields = false;
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -304,8 +284,10 @@ class ValueRef_Boolean extends $pb.GeneratedMessage {
       'Will be removed in next major version')
   ValueRef_Boolean copyWith(void Function(ValueRef_Boolean) updates) =>
       super.copyWith((message) => updates(message as ValueRef_Boolean))
-          as ValueRef_Boolean; // ignore: deprecated_member_use
+          as ValueRef_Boolean;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static ValueRef_Boolean create() => ValueRef_Boolean._();
   ValueRef_Boolean createEmptyInstance() => create();
@@ -332,6 +314,39 @@ class ValueRef_Boolean extends $pb.GeneratedMessage {
 enum ValueRef_Value { null_1, number, floatingPoint, string, bool_5, notSet }
 
 class ValueRef extends $pb.GeneratedMessage {
+  factory ValueRef({
+    ValueRef_Null? null_1,
+    ValueRef_Number? number,
+    ValueRef_FloatingPointNumber? floatingPoint,
+    ValueRef_String? string,
+    ValueRef_Boolean? bool_5,
+  }) {
+    final $result = create();
+    if (null_1 != null) {
+      $result.null_1 = null_1;
+    }
+    if (number != null) {
+      $result.number = number;
+    }
+    if (floatingPoint != null) {
+      $result.floatingPoint = floatingPoint;
+    }
+    if (string != null) {
+      $result.string = string;
+    }
+    if (bool_5 != null) {
+      $result.bool_5 = bool_5;
+    }
+    return $result;
+  }
+  ValueRef._() : super();
+  factory ValueRef.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ValueRef.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
   static const $core.Map<$core.int, ValueRef_Value> _ValueRef_ValueByTag = {
     1: ValueRef_Value.null_1,
     2: ValueRef_Value.number,
@@ -341,80 +356,25 @@ class ValueRef extends $pb.GeneratedMessage {
     0: ValueRef_Value.notSet
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'ValueRef',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
+      _omitMessageNames ? '' : 'ValueRef',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
       createEmptyInstance: create)
     ..oo(0, [1, 2, 3, 4, 5])
-    ..aOM<ValueRef_Null>(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'null',
+    ..aOM<ValueRef_Null>(1, _omitFieldNames ? '' : 'null',
         subBuilder: ValueRef_Null.create)
-    ..aOM<ValueRef_Number>(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'number',
+    ..aOM<ValueRef_Number>(2, _omitFieldNames ? '' : 'number',
         subBuilder: ValueRef_Number.create)
     ..aOM<ValueRef_FloatingPointNumber>(
-        3,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'floatingPoint',
+        3, _omitFieldNames ? '' : 'floatingPoint',
         protoName: 'floatingPoint',
         subBuilder: ValueRef_FloatingPointNumber.create)
-    ..aOM<ValueRef_String>(
-        4,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'string',
+    ..aOM<ValueRef_String>(4, _omitFieldNames ? '' : 'string',
         subBuilder: ValueRef_String.create)
-    ..aOM<ValueRef_Boolean>(
-        5,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'bool',
+    ..aOM<ValueRef_Boolean>(5, _omitFieldNames ? '' : 'bool',
         subBuilder: ValueRef_Boolean.create)
     ..hasRequiredFields = false;
 
-  ValueRef._() : super();
-  factory ValueRef({
-    ValueRef_Null? null_1,
-    ValueRef_Number? number,
-    ValueRef_FloatingPointNumber? floatingPoint,
-    ValueRef_String? string,
-    ValueRef_Boolean? bool_5,
-  }) {
-    final _result = create();
-    if (null_1 != null) {
-      _result.null_1 = null_1;
-    }
-    if (number != null) {
-      _result.number = number;
-    }
-    if (floatingPoint != null) {
-      _result.floatingPoint = floatingPoint;
-    }
-    if (string != null) {
-      _result.string = string;
-    }
-    if (bool_5 != null) {
-      _result.bool_5 = bool_5;
-    }
-    return _result;
-  }
-  factory ValueRef.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(i, r);
-  factory ValueRef.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(i, r);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -423,9 +383,10 @@ class ValueRef extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   ValueRef copyWith(void Function(ValueRef) updates) =>
-      super.copyWith((message) => updates(message as ValueRef))
-          as ValueRef; // ignore: deprecated_member_use
+      super.copyWith((message) => updates(message as ValueRef)) as ValueRef;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static ValueRef create() => ValueRef._();
   ValueRef createEmptyInstance() => create();
@@ -510,38 +471,31 @@ class ValueRef extends $pb.GeneratedMessage {
 }
 
 class TypeRef_Generic extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'TypeRef.Generic',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
-      createEmptyInstance: create)
-    ..aOS(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'name')
-    ..hasRequiredFields = false;
-
-  TypeRef_Generic._() : super();
   factory TypeRef_Generic({
     $core.String? name,
   }) {
-    final _result = create();
+    final $result = create();
     if (name != null) {
-      _result.name = name;
+      $result.name = name;
     }
-    return _result;
+    return $result;
   }
+  TypeRef_Generic._() : super();
   factory TypeRef_Generic.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory TypeRef_Generic.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'TypeRef.Generic',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'name')
+    ..hasRequiredFields = false;
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -551,8 +505,10 @@ class TypeRef_Generic extends $pb.GeneratedMessage {
       'Will be removed in next major version')
   TypeRef_Generic copyWith(void Function(TypeRef_Generic) updates) =>
       super.copyWith((message) => updates(message as TypeRef_Generic))
-          as TypeRef_Generic; // ignore: deprecated_member_use
+          as TypeRef_Generic;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static TypeRef_Generic create() => TypeRef_Generic._();
   TypeRef_Generic createEmptyInstance() => create();
@@ -577,49 +533,37 @@ class TypeRef_Generic extends $pb.GeneratedMessage {
 }
 
 class TypeRef_Internal extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'TypeRef.Internal',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
-      createEmptyInstance: create)
-    ..aOS(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'name')
-    ..pc<TypeRef>(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'arguments',
-        $pb.PbFieldType.PM,
-        subBuilder: TypeRef.create)
-    ..hasRequiredFields = false;
-
-  TypeRef_Internal._() : super();
   factory TypeRef_Internal({
     $core.String? name,
     $core.Iterable<TypeRef>? arguments,
   }) {
-    final _result = create();
+    final $result = create();
     if (name != null) {
-      _result.name = name;
+      $result.name = name;
     }
     if (arguments != null) {
-      _result.arguments.addAll(arguments);
+      $result.arguments.addAll(arguments);
     }
-    return _result;
+    return $result;
   }
+  TypeRef_Internal._() : super();
   factory TypeRef_Internal.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory TypeRef_Internal.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'TypeRef.Internal',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'name')
+    ..pc<TypeRef>(2, _omitFieldNames ? '' : 'arguments', $pb.PbFieldType.PM,
+        subBuilder: TypeRef.create)
+    ..hasRequiredFields = false;
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -629,8 +573,10 @@ class TypeRef_Internal extends $pb.GeneratedMessage {
       'Will be removed in next major version')
   TypeRef_Internal copyWith(void Function(TypeRef_Internal) updates) =>
       super.copyWith((message) => updates(message as TypeRef_Internal))
-          as TypeRef_Internal; // ignore: deprecated_member_use
+          as TypeRef_Internal;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static TypeRef_Internal create() => TypeRef_Internal._();
   TypeRef_Internal createEmptyInstance() => create();
@@ -658,53 +604,40 @@ class TypeRef_Internal extends $pb.GeneratedMessage {
 }
 
 class TypeRef_Known extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'TypeRef.Known',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
-      createEmptyInstance: create)
-    ..e<KnownType>(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'type',
-        $pb.PbFieldType.OE,
-        defaultOrMaker: KnownType.Object_,
-        valueOf: KnownType.valueOf,
-        enumValues: KnownType.values)
-    ..pc<TypeRef>(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'arguments',
-        $pb.PbFieldType.PM,
-        subBuilder: TypeRef.create)
-    ..hasRequiredFields = false;
-
-  TypeRef_Known._() : super();
   factory TypeRef_Known({
     KnownType? type,
     $core.Iterable<TypeRef>? arguments,
   }) {
-    final _result = create();
+    final $result = create();
     if (type != null) {
-      _result.type = type;
+      $result.type = type;
     }
     if (arguments != null) {
-      _result.arguments.addAll(arguments);
+      $result.arguments.addAll(arguments);
     }
-    return _result;
+    return $result;
   }
+  TypeRef_Known._() : super();
   factory TypeRef_Known.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory TypeRef_Known.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'TypeRef.Known',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..e<KnownType>(1, _omitFieldNames ? '' : 'type', $pb.PbFieldType.OE,
+        defaultOrMaker: KnownType.Object_,
+        valueOf: KnownType.valueOf,
+        enumValues: KnownType.values)
+    ..pc<TypeRef>(2, _omitFieldNames ? '' : 'arguments', $pb.PbFieldType.PM,
+        subBuilder: TypeRef.create)
+    ..hasRequiredFields = false;
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -714,8 +647,10 @@ class TypeRef_Known extends $pb.GeneratedMessage {
       'Will be removed in next major version')
   TypeRef_Known copyWith(void Function(TypeRef_Known) updates) =>
       super.copyWith((message) => updates(message as TypeRef_Known))
-          as TypeRef_Known; // ignore: deprecated_member_use
+          as TypeRef_Known;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static TypeRef_Known create() => TypeRef_Known._();
   TypeRef_Known createEmptyInstance() => create();
@@ -745,6 +680,35 @@ class TypeRef_Known extends $pb.GeneratedMessage {
 enum TypeRef_Type { generic, internal, known, notSet }
 
 class TypeRef extends $pb.GeneratedMessage {
+  factory TypeRef({
+    $core.bool? nullable,
+    TypeRef_Generic? generic,
+    TypeRef_Internal? internal,
+    TypeRef_Known? known,
+  }) {
+    final $result = create();
+    if (nullable != null) {
+      $result.nullable = nullable;
+    }
+    if (generic != null) {
+      $result.generic = generic;
+    }
+    if (internal != null) {
+      $result.internal = internal;
+    }
+    if (known != null) {
+      $result.known = known;
+    }
+    return $result;
+  }
+  TypeRef._() : super();
+  factory TypeRef.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory TypeRef.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
   static const $core.Map<$core.int, TypeRef_Type> _TypeRef_TypeByTag = {
     2: TypeRef_Type.generic,
     3: TypeRef_Type.internal,
@@ -752,68 +716,20 @@ class TypeRef extends $pb.GeneratedMessage {
     0: TypeRef_Type.notSet
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'TypeRef',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
+      _omitMessageNames ? '' : 'TypeRef',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
       createEmptyInstance: create)
     ..oo(0, [2, 3, 4])
-    ..aOB(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'nullable')
-    ..aOM<TypeRef_Generic>(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'generic',
+    ..aOB(1, _omitFieldNames ? '' : 'nullable')
+    ..aOM<TypeRef_Generic>(2, _omitFieldNames ? '' : 'generic',
         subBuilder: TypeRef_Generic.create)
-    ..aOM<TypeRef_Internal>(
-        3,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'internal',
+    ..aOM<TypeRef_Internal>(3, _omitFieldNames ? '' : 'internal',
         subBuilder: TypeRef_Internal.create)
-    ..aOM<TypeRef_Known>(
-        4,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'known',
+    ..aOM<TypeRef_Known>(4, _omitFieldNames ? '' : 'known',
         subBuilder: TypeRef_Known.create)
     ..hasRequiredFields = false;
 
-  TypeRef._() : super();
-  factory TypeRef({
-    $core.bool? nullable,
-    TypeRef_Generic? generic,
-    TypeRef_Internal? internal,
-    TypeRef_Known? known,
-  }) {
-    final _result = create();
-    if (nullable != null) {
-      _result.nullable = nullable;
-    }
-    if (generic != null) {
-      _result.generic = generic;
-    }
-    if (internal != null) {
-      _result.internal = internal;
-    }
-    if (known != null) {
-      _result.known = known;
-    }
-    return _result;
-  }
-  factory TypeRef.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(i, r);
-  factory TypeRef.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(i, r);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -822,9 +738,10 @@ class TypeRef extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   TypeRef copyWith(void Function(TypeRef) updates) =>
-      super.copyWith((message) => updates(message as TypeRef))
-          as TypeRef; // ignore: deprecated_member_use
+      super.copyWith((message) => updates(message as TypeRef)) as TypeRef;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static TypeRef create() => TypeRef._();
   TypeRef createEmptyInstance() => create();
@@ -893,38 +810,31 @@ class TypeRef extends $pb.GeneratedMessage {
 }
 
 class GenericParameter extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'GenericParameter',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
-      createEmptyInstance: create)
-    ..aOS(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'name')
-    ..hasRequiredFields = false;
-
-  GenericParameter._() : super();
   factory GenericParameter({
     $core.String? name,
   }) {
-    final _result = create();
+    final $result = create();
     if (name != null) {
-      _result.name = name;
+      $result.name = name;
     }
-    return _result;
+    return $result;
   }
+  GenericParameter._() : super();
   factory GenericParameter.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory GenericParameter.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'GenericParameter',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'name')
+    ..hasRequiredFields = false;
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -934,8 +844,10 @@ class GenericParameter extends $pb.GeneratedMessage {
       'Will be removed in next major version')
   GenericParameter copyWith(void Function(GenericParameter) updates) =>
       super.copyWith((message) => updates(message as GenericParameter))
-          as GenericParameter; // ignore: deprecated_member_use
+          as GenericParameter;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static GenericParameter create() => GenericParameter._();
   GenericParameter createEmptyInstance() => create();
@@ -960,49 +872,37 @@ class GenericParameter extends $pb.GeneratedMessage {
 }
 
 class AttributeArgument_Positional extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'AttributeArgument.Positional',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
-      createEmptyInstance: create)
-    ..a<$core.int>(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'position',
-        $pb.PbFieldType.O3)
-    ..aOM<ValueRef>(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'value',
-        subBuilder: ValueRef.create)
-    ..hasRequiredFields = false;
-
-  AttributeArgument_Positional._() : super();
   factory AttributeArgument_Positional({
     $core.int? position,
     ValueRef? value,
   }) {
-    final _result = create();
+    final $result = create();
     if (position != null) {
-      _result.position = position;
+      $result.position = position;
     }
     if (value != null) {
-      _result.value = value;
+      $result.value = value;
     }
-    return _result;
+    return $result;
   }
+  AttributeArgument_Positional._() : super();
   factory AttributeArgument_Positional.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory AttributeArgument_Positional.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'AttributeArgument.Positional',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'position', $pb.PbFieldType.O3)
+    ..aOM<ValueRef>(2, _omitFieldNames ? '' : 'value',
+        subBuilder: ValueRef.create)
+    ..hasRequiredFields = false;
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -1015,8 +915,10 @@ class AttributeArgument_Positional extends $pb.GeneratedMessage {
           void Function(AttributeArgument_Positional) updates) =>
       super.copyWith(
               (message) => updates(message as AttributeArgument_Positional))
-          as AttributeArgument_Positional; // ignore: deprecated_member_use
+          as AttributeArgument_Positional;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static AttributeArgument_Positional create() =>
       AttributeArgument_Positional._();
@@ -1056,48 +958,37 @@ class AttributeArgument_Positional extends $pb.GeneratedMessage {
 }
 
 class AttributeArgument_Named extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'AttributeArgument.Named',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
-      createEmptyInstance: create)
-    ..aOS(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'name')
-    ..aOM<ValueRef>(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'value',
-        subBuilder: ValueRef.create)
-    ..hasRequiredFields = false;
-
-  AttributeArgument_Named._() : super();
   factory AttributeArgument_Named({
     $core.String? name,
     ValueRef? value,
   }) {
-    final _result = create();
+    final $result = create();
     if (name != null) {
-      _result.name = name;
+      $result.name = name;
     }
     if (value != null) {
-      _result.value = value;
+      $result.value = value;
     }
-    return _result;
+    return $result;
   }
+  AttributeArgument_Named._() : super();
   factory AttributeArgument_Named.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory AttributeArgument_Named.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'AttributeArgument.Named',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'name')
+    ..aOM<ValueRef>(2, _omitFieldNames ? '' : 'value',
+        subBuilder: ValueRef.create)
+    ..hasRequiredFields = false;
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -1109,8 +1000,10 @@ class AttributeArgument_Named extends $pb.GeneratedMessage {
   AttributeArgument_Named copyWith(
           void Function(AttributeArgument_Named) updates) =>
       super.copyWith((message) => updates(message as AttributeArgument_Named))
-          as AttributeArgument_Named; // ignore: deprecated_member_use
+          as AttributeArgument_Named;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static AttributeArgument_Named create() => AttributeArgument_Named._();
   AttributeArgument_Named createEmptyInstance() => create();
@@ -1151,6 +1044,27 @@ class AttributeArgument_Named extends $pb.GeneratedMessage {
 enum AttributeArgument_Attribute { positional, named, notSet }
 
 class AttributeArgument extends $pb.GeneratedMessage {
+  factory AttributeArgument({
+    AttributeArgument_Positional? positional,
+    AttributeArgument_Named? named,
+  }) {
+    final $result = create();
+    if (positional != null) {
+      $result.positional = positional;
+    }
+    if (named != null) {
+      $result.named = named;
+    }
+    return $result;
+  }
+  AttributeArgument._() : super();
+  factory AttributeArgument.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory AttributeArgument.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
   static const $core.Map<$core.int, AttributeArgument_Attribute>
       _AttributeArgument_AttributeByTag = {
     1: AttributeArgument_Attribute.positional,
@@ -1158,49 +1072,17 @@ class AttributeArgument extends $pb.GeneratedMessage {
     0: AttributeArgument_Attribute.notSet
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'AttributeArgument',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
+      _omitMessageNames ? '' : 'AttributeArgument',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
       createEmptyInstance: create)
     ..oo(0, [1, 2])
-    ..aOM<AttributeArgument_Positional>(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'positional',
+    ..aOM<AttributeArgument_Positional>(1, _omitFieldNames ? '' : 'positional',
         subBuilder: AttributeArgument_Positional.create)
-    ..aOM<AttributeArgument_Named>(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'named',
+    ..aOM<AttributeArgument_Named>(2, _omitFieldNames ? '' : 'named',
         subBuilder: AttributeArgument_Named.create)
     ..hasRequiredFields = false;
 
-  AttributeArgument._() : super();
-  factory AttributeArgument({
-    AttributeArgument_Positional? positional,
-    AttributeArgument_Named? named,
-  }) {
-    final _result = create();
-    if (positional != null) {
-      _result.positional = positional;
-    }
-    if (named != null) {
-      _result.named = named;
-    }
-    return _result;
-  }
-  factory AttributeArgument.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(i, r);
-  factory AttributeArgument.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(i, r);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -1210,8 +1092,10 @@ class AttributeArgument extends $pb.GeneratedMessage {
       'Will be removed in next major version')
   AttributeArgument copyWith(void Function(AttributeArgument) updates) =>
       super.copyWith((message) => updates(message as AttributeArgument))
-          as AttributeArgument; // ignore: deprecated_member_use
+          as AttributeArgument;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static AttributeArgument create() => AttributeArgument._();
   AttributeArgument createEmptyInstance() => create();
@@ -1256,50 +1140,38 @@ class AttributeArgument extends $pb.GeneratedMessage {
 }
 
 class AttributeRef extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'AttributeRef',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
-      createEmptyInstance: create)
-    ..aOS(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'attributeName',
-        protoName: 'attributeName')
-    ..pc<AttributeArgument>(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'argument',
-        $pb.PbFieldType.PM,
-        subBuilder: AttributeArgument.create)
-    ..hasRequiredFields = false;
-
-  AttributeRef._() : super();
   factory AttributeRef({
     $core.String? attributeName,
     $core.Iterable<AttributeArgument>? argument,
   }) {
-    final _result = create();
+    final $result = create();
     if (attributeName != null) {
-      _result.attributeName = attributeName;
+      $result.attributeName = attributeName;
     }
     if (argument != null) {
-      _result.argument.addAll(argument);
+      $result.argument.addAll(argument);
     }
-    return _result;
+    return $result;
   }
+  AttributeRef._() : super();
   factory AttributeRef.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory AttributeRef.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'AttributeRef',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'attributeName', protoName: 'attributeName')
+    ..pc<AttributeArgument>(
+        2, _omitFieldNames ? '' : 'argument', $pb.PbFieldType.PM,
+        subBuilder: AttributeArgument.create)
+    ..hasRequiredFields = false;
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -1309,8 +1181,10 @@ class AttributeRef extends $pb.GeneratedMessage {
       'Will be removed in next major version')
   AttributeRef copyWith(void Function(AttributeRef) updates) =>
       super.copyWith((message) => updates(message as AttributeRef))
-          as AttributeRef; // ignore: deprecated_member_use
+          as AttributeRef;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static AttributeRef create() => AttributeRef._();
   AttributeRef createEmptyInstance() => create();
@@ -1338,68 +1212,48 @@ class AttributeRef extends $pb.GeneratedMessage {
 }
 
 class PropertyRef extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'PropertyRef',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
-      createEmptyInstance: create)
-    ..aOM<TypeRef>(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'type',
-        subBuilder: TypeRef.create)
-    ..aOS(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'name')
-    ..pc<AttributeRef>(
-        3,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'attributes',
-        $pb.PbFieldType.PM,
-        subBuilder: AttributeRef.create)
-    ..aOS(
-        4,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'comment')
-    ..hasRequiredFields = false;
-
-  PropertyRef._() : super();
   factory PropertyRef({
     TypeRef? type,
     $core.String? name,
     $core.Iterable<AttributeRef>? attributes,
     $core.String? comment,
   }) {
-    final _result = create();
+    final $result = create();
     if (type != null) {
-      _result.type = type;
+      $result.type = type;
     }
     if (name != null) {
-      _result.name = name;
+      $result.name = name;
     }
     if (attributes != null) {
-      _result.attributes.addAll(attributes);
+      $result.attributes.addAll(attributes);
     }
     if (comment != null) {
-      _result.comment = comment;
+      $result.comment = comment;
     }
-    return _result;
+    return $result;
   }
+  PropertyRef._() : super();
   factory PropertyRef.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory PropertyRef.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'PropertyRef',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..aOM<TypeRef>(1, _omitFieldNames ? '' : 'type', subBuilder: TypeRef.create)
+    ..aOS(2, _omitFieldNames ? '' : 'name')
+    ..pc<AttributeRef>(
+        3, _omitFieldNames ? '' : 'attributes', $pb.PbFieldType.PM,
+        subBuilder: AttributeRef.create)
+    ..aOS(4, _omitFieldNames ? '' : 'comment')
+    ..hasRequiredFields = false;
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -1409,8 +1263,10 @@ class PropertyRef extends $pb.GeneratedMessage {
       'Will be removed in next major version')
   PropertyRef copyWith(void Function(PropertyRef) updates) =>
       super.copyWith((message) => updates(message as PropertyRef))
-          as PropertyRef; // ignore: deprecated_member_use
+          as PropertyRef;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static PropertyRef create() => PropertyRef._();
   PropertyRef createEmptyInstance() => create();
@@ -1463,57 +1319,42 @@ class PropertyRef extends $pb.GeneratedMessage {
 }
 
 class ConstantRef extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'ConstantRef',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
-      createEmptyInstance: create)
-    ..aOS(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'name')
-    ..aOM<ValueRef>(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'value',
-        subBuilder: ValueRef.create)
-    ..aOS(
-        3,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'comment')
-    ..hasRequiredFields = false;
-
-  ConstantRef._() : super();
   factory ConstantRef({
     $core.String? name,
     ValueRef? value,
     $core.String? comment,
   }) {
-    final _result = create();
+    final $result = create();
     if (name != null) {
-      _result.name = name;
+      $result.name = name;
     }
     if (value != null) {
-      _result.value = value;
+      $result.value = value;
     }
     if (comment != null) {
-      _result.comment = comment;
+      $result.comment = comment;
     }
-    return _result;
+    return $result;
   }
+  ConstantRef._() : super();
   factory ConstantRef.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory ConstantRef.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'ConstantRef',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'name')
+    ..aOM<ValueRef>(2, _omitFieldNames ? '' : 'value',
+        subBuilder: ValueRef.create)
+    ..aOS(3, _omitFieldNames ? '' : 'comment')
+    ..hasRequiredFields = false;
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -1523,8 +1364,10 @@ class ConstantRef extends $pb.GeneratedMessage {
       'Will be removed in next major version')
   ConstantRef copyWith(void Function(ConstantRef) updates) =>
       super.copyWith((message) => updates(message as ConstantRef))
-          as ConstantRef; // ignore: deprecated_member_use
+          as ConstantRef;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static ConstantRef create() => ConstantRef._();
   ConstantRef createEmptyInstance() => create();
@@ -1574,67 +1417,48 @@ class ConstantRef extends $pb.GeneratedMessage {
 }
 
 class EnumValue extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'EnumValue',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
-      createEmptyInstance: create)
-    ..aOS(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'name')
-    ..aInt64(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'value')
-    ..aOS(
-        3,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'comment')
-    ..pc<AttributeRef>(
-        4,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'attributes',
-        $pb.PbFieldType.PM,
-        subBuilder: AttributeRef.create)
-    ..hasRequiredFields = false;
-
-  EnumValue._() : super();
   factory EnumValue({
     $core.String? name,
     $fixnum.Int64? value,
     $core.String? comment,
     $core.Iterable<AttributeRef>? attributes,
   }) {
-    final _result = create();
+    final $result = create();
     if (name != null) {
-      _result.name = name;
+      $result.name = name;
     }
     if (value != null) {
-      _result.value = value;
+      $result.value = value;
     }
     if (comment != null) {
-      _result.comment = comment;
+      $result.comment = comment;
     }
     if (attributes != null) {
-      _result.attributes.addAll(attributes);
+      $result.attributes.addAll(attributes);
     }
-    return _result;
+    return $result;
   }
+  EnumValue._() : super();
   factory EnumValue.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory EnumValue.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'EnumValue',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'name')
+    ..aInt64(2, _omitFieldNames ? '' : 'value')
+    ..aOS(3, _omitFieldNames ? '' : 'comment')
+    ..pc<AttributeRef>(
+        4, _omitFieldNames ? '' : 'attributes', $pb.PbFieldType.PM,
+        subBuilder: AttributeRef.create)
+    ..hasRequiredFields = false;
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -1643,9 +1467,10 @@ class EnumValue extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   EnumValue copyWith(void Function(EnumValue) updates) =>
-      super.copyWith((message) => updates(message as EnumValue))
-          as EnumValue; // ignore: deprecated_member_use
+      super.copyWith((message) => updates(message as EnumValue)) as EnumValue;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static EnumValue create() => EnumValue._();
   EnumValue createEmptyInstance() => create();
@@ -1696,48 +1521,36 @@ class EnumValue extends $pb.GeneratedMessage {
 }
 
 class ErrorCode_Single extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'ErrorCode.Single',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
-      createEmptyInstance: create)
-    ..aOS(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'name')
-    ..a<$core.int>(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'code',
-        $pb.PbFieldType.O3)
-    ..hasRequiredFields = false;
-
-  ErrorCode_Single._() : super();
   factory ErrorCode_Single({
     $core.String? name,
     $core.int? code,
   }) {
-    final _result = create();
+    final $result = create();
     if (name != null) {
-      _result.name = name;
+      $result.name = name;
     }
     if (code != null) {
-      _result.code = code;
+      $result.code = code;
     }
-    return _result;
+    return $result;
   }
+  ErrorCode_Single._() : super();
   factory ErrorCode_Single.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory ErrorCode_Single.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'ErrorCode.Single',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'name')
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'code', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false;
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -1747,8 +1560,10 @@ class ErrorCode_Single extends $pb.GeneratedMessage {
       'Will be removed in next major version')
   ErrorCode_Single copyWith(void Function(ErrorCode_Single) updates) =>
       super.copyWith((message) => updates(message as ErrorCode_Single))
-          as ErrorCode_Single; // ignore: deprecated_member_use
+          as ErrorCode_Single;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static ErrorCode_Single create() => ErrorCode_Single._();
   ErrorCode_Single createEmptyInstance() => create();
@@ -1785,60 +1600,42 @@ class ErrorCode_Single extends $pb.GeneratedMessage {
 }
 
 class ErrorCode_Group extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'ErrorCode.Group',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
-      createEmptyInstance: create)
-    ..aOS(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'name')
-    ..aOS(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'groupId',
-        protoName: 'groupId')
-    ..pc<ErrorCode>(
-        3,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'innerCodes',
-        $pb.PbFieldType.PM,
-        protoName: 'innerCodes',
-        subBuilder: ErrorCode.create)
-    ..hasRequiredFields = false;
-
-  ErrorCode_Group._() : super();
   factory ErrorCode_Group({
     $core.String? name,
     $core.String? groupId,
     $core.Iterable<ErrorCode>? innerCodes,
   }) {
-    final _result = create();
+    final $result = create();
     if (name != null) {
-      _result.name = name;
+      $result.name = name;
     }
     if (groupId != null) {
-      _result.groupId = groupId;
+      $result.groupId = groupId;
     }
     if (innerCodes != null) {
-      _result.innerCodes.addAll(innerCodes);
+      $result.innerCodes.addAll(innerCodes);
     }
-    return _result;
+    return $result;
   }
+  ErrorCode_Group._() : super();
   factory ErrorCode_Group.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory ErrorCode_Group.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'ErrorCode.Group',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'name')
+    ..aOS(2, _omitFieldNames ? '' : 'groupId', protoName: 'groupId')
+    ..pc<ErrorCode>(3, _omitFieldNames ? '' : 'innerCodes', $pb.PbFieldType.PM,
+        protoName: 'innerCodes', subBuilder: ErrorCode.create)
+    ..hasRequiredFields = false;
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -1848,8 +1645,10 @@ class ErrorCode_Group extends $pb.GeneratedMessage {
       'Will be removed in next major version')
   ErrorCode_Group copyWith(void Function(ErrorCode_Group) updates) =>
       super.copyWith((message) => updates(message as ErrorCode_Group))
-          as ErrorCode_Group; // ignore: deprecated_member_use
+          as ErrorCode_Group;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static ErrorCode_Group create() => ErrorCode_Group._();
   ErrorCode_Group createEmptyInstance() => create();
@@ -1891,55 +1690,44 @@ class ErrorCode_Group extends $pb.GeneratedMessage {
 enum ErrorCode_Code { single, group, notSet }
 
 class ErrorCode extends $pb.GeneratedMessage {
-  static const $core.Map<$core.int, ErrorCode_Code> _ErrorCode_CodeByTag = {
-    1: ErrorCode_Code.single,
-    2: ErrorCode_Code.group,
-    0: ErrorCode_Code.notSet
-  };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'ErrorCode',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
-      createEmptyInstance: create)
-    ..oo(0, [1, 2])
-    ..aOM<ErrorCode_Single>(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'single',
-        subBuilder: ErrorCode_Single.create)
-    ..aOM<ErrorCode_Group>(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'group',
-        subBuilder: ErrorCode_Group.create)
-    ..hasRequiredFields = false;
-
-  ErrorCode._() : super();
   factory ErrorCode({
     ErrorCode_Single? single,
     ErrorCode_Group? group,
   }) {
-    final _result = create();
+    final $result = create();
     if (single != null) {
-      _result.single = single;
+      $result.single = single;
     }
     if (group != null) {
-      _result.group = group;
+      $result.group = group;
     }
-    return _result;
+    return $result;
   }
+  ErrorCode._() : super();
   factory ErrorCode.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory ErrorCode.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
+  static const $core.Map<$core.int, ErrorCode_Code> _ErrorCode_CodeByTag = {
+    1: ErrorCode_Code.single,
+    2: ErrorCode_Code.group,
+    0: ErrorCode_Code.notSet
+  };
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'ErrorCode',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..oo(0, [1, 2])
+    ..aOM<ErrorCode_Single>(1, _omitFieldNames ? '' : 'single',
+        subBuilder: ErrorCode_Single.create)
+    ..aOM<ErrorCode_Group>(2, _omitFieldNames ? '' : 'group',
+        subBuilder: ErrorCode_Group.create)
+    ..hasRequiredFields = false;
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -1948,9 +1736,10 @@ class ErrorCode extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   ErrorCode copyWith(void Function(ErrorCode) updates) =>
-      super.copyWith((message) => updates(message as ErrorCode))
-          as ErrorCode; // ignore: deprecated_member_use
+      super.copyWith((message) => updates(message as ErrorCode)) as ErrorCode;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static ErrorCode create() => ErrorCode._();
   ErrorCode createEmptyInstance() => create();
@@ -1993,74 +1782,52 @@ class ErrorCode extends $pb.GeneratedMessage {
 }
 
 class TypeDescriptor extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'TypeDescriptor',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
-      createEmptyInstance: create)
-    ..pc<TypeRef>(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'extends',
-        $pb.PbFieldType.PM,
-        subBuilder: TypeRef.create)
-    ..pc<GenericParameter>(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'genericParameters',
-        $pb.PbFieldType.PM,
-        protoName: 'genericParameters',
-        subBuilder: GenericParameter.create)
-    ..pc<PropertyRef>(
-        3,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'properties',
-        $pb.PbFieldType.PM,
-        subBuilder: PropertyRef.create)
-    ..pc<ConstantRef>(
-        4,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'constants',
-        $pb.PbFieldType.PM,
-        subBuilder: ConstantRef.create)
-    ..hasRequiredFields = false;
-
-  TypeDescriptor._() : super();
   factory TypeDescriptor({
     $core.Iterable<TypeRef>? extends_1,
     $core.Iterable<GenericParameter>? genericParameters,
     $core.Iterable<PropertyRef>? properties,
     $core.Iterable<ConstantRef>? constants,
   }) {
-    final _result = create();
+    final $result = create();
     if (extends_1 != null) {
-      _result.extends_1.addAll(extends_1);
+      $result.extends_1.addAll(extends_1);
     }
     if (genericParameters != null) {
-      _result.genericParameters.addAll(genericParameters);
+      $result.genericParameters.addAll(genericParameters);
     }
     if (properties != null) {
-      _result.properties.addAll(properties);
+      $result.properties.addAll(properties);
     }
     if (constants != null) {
-      _result.constants.addAll(constants);
+      $result.constants.addAll(constants);
     }
-    return _result;
+    return $result;
   }
+  TypeDescriptor._() : super();
   factory TypeDescriptor.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory TypeDescriptor.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'TypeDescriptor',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..pc<TypeRef>(1, _omitFieldNames ? '' : 'extends', $pb.PbFieldType.PM,
+        subBuilder: TypeRef.create)
+    ..pc<GenericParameter>(
+        2, _omitFieldNames ? '' : 'genericParameters', $pb.PbFieldType.PM,
+        protoName: 'genericParameters', subBuilder: GenericParameter.create)
+    ..pc<PropertyRef>(
+        3, _omitFieldNames ? '' : 'properties', $pb.PbFieldType.PM,
+        subBuilder: PropertyRef.create)
+    ..pc<ConstantRef>(4, _omitFieldNames ? '' : 'constants', $pb.PbFieldType.PM,
+        subBuilder: ConstantRef.create)
+    ..hasRequiredFields = false;
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -2070,8 +1837,10 @@ class TypeDescriptor extends $pb.GeneratedMessage {
       'Will be removed in next major version')
   TypeDescriptor copyWith(void Function(TypeDescriptor) updates) =>
       super.copyWith((message) => updates(message as TypeDescriptor))
-          as TypeDescriptor; // ignore: deprecated_member_use
+          as TypeDescriptor;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static TypeDescriptor create() => TypeDescriptor._();
   TypeDescriptor createEmptyInstance() => create();
@@ -2096,40 +1865,32 @@ class TypeDescriptor extends $pb.GeneratedMessage {
 }
 
 class Statement_DTO extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'Statement.DTO',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
-      createEmptyInstance: create)
-    ..aOM<TypeDescriptor>(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'typeDescriptor',
-        protoName: 'typeDescriptor',
-        subBuilder: TypeDescriptor.create)
-    ..hasRequiredFields = false;
-
-  Statement_DTO._() : super();
   factory Statement_DTO({
     TypeDescriptor? typeDescriptor,
   }) {
-    final _result = create();
+    final $result = create();
     if (typeDescriptor != null) {
-      _result.typeDescriptor = typeDescriptor;
+      $result.typeDescriptor = typeDescriptor;
     }
-    return _result;
+    return $result;
   }
+  Statement_DTO._() : super();
   factory Statement_DTO.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory Statement_DTO.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'Statement.DTO',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..aOM<TypeDescriptor>(1, _omitFieldNames ? '' : 'typeDescriptor',
+        protoName: 'typeDescriptor', subBuilder: TypeDescriptor.create)
+    ..hasRequiredFields = false;
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -2139,8 +1900,10 @@ class Statement_DTO extends $pb.GeneratedMessage {
       'Will be removed in next major version')
   Statement_DTO copyWith(void Function(Statement_DTO) updates) =>
       super.copyWith((message) => updates(message as Statement_DTO))
-          as Statement_DTO; // ignore: deprecated_member_use
+          as Statement_DTO;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static Statement_DTO create() => Statement_DTO._();
   Statement_DTO createEmptyInstance() => create();
@@ -2167,40 +1930,32 @@ class Statement_DTO extends $pb.GeneratedMessage {
 }
 
 class Statement_Enum extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'Statement.Enum',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
-      createEmptyInstance: create)
-    ..pc<EnumValue>(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'members',
-        $pb.PbFieldType.PM,
-        subBuilder: EnumValue.create)
-    ..hasRequiredFields = false;
-
-  Statement_Enum._() : super();
   factory Statement_Enum({
     $core.Iterable<EnumValue>? members,
   }) {
-    final _result = create();
+    final $result = create();
     if (members != null) {
-      _result.members.addAll(members);
+      $result.members.addAll(members);
     }
-    return _result;
+    return $result;
   }
+  Statement_Enum._() : super();
   factory Statement_Enum.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory Statement_Enum.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'Statement.Enum',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..pc<EnumValue>(1, _omitFieldNames ? '' : 'members', $pb.PbFieldType.PM,
+        subBuilder: EnumValue.create)
+    ..hasRequiredFields = false;
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -2210,8 +1965,10 @@ class Statement_Enum extends $pb.GeneratedMessage {
       'Will be removed in next major version')
   Statement_Enum copyWith(void Function(Statement_Enum) updates) =>
       super.copyWith((message) => updates(message as Statement_Enum))
-          as Statement_Enum; // ignore: deprecated_member_use
+          as Statement_Enum;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static Statement_Enum create() => Statement_Enum._();
   Statement_Enum createEmptyInstance() => create();
@@ -2227,51 +1984,38 @@ class Statement_Enum extends $pb.GeneratedMessage {
 }
 
 class Statement_Query extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'Statement.Query',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
-      createEmptyInstance: create)
-    ..aOM<TypeDescriptor>(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'typeDescriptor',
-        protoName: 'typeDescriptor',
-        subBuilder: TypeDescriptor.create)
-    ..aOM<TypeRef>(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'returnType',
-        protoName: 'returnType',
-        subBuilder: TypeRef.create)
-    ..hasRequiredFields = false;
-
-  Statement_Query._() : super();
   factory Statement_Query({
     TypeDescriptor? typeDescriptor,
     TypeRef? returnType,
   }) {
-    final _result = create();
+    final $result = create();
     if (typeDescriptor != null) {
-      _result.typeDescriptor = typeDescriptor;
+      $result.typeDescriptor = typeDescriptor;
     }
     if (returnType != null) {
-      _result.returnType = returnType;
+      $result.returnType = returnType;
     }
-    return _result;
+    return $result;
   }
+  Statement_Query._() : super();
   factory Statement_Query.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory Statement_Query.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'Statement.Query',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..aOM<TypeDescriptor>(1, _omitFieldNames ? '' : 'typeDescriptor',
+        protoName: 'typeDescriptor', subBuilder: TypeDescriptor.create)
+    ..aOM<TypeRef>(2, _omitFieldNames ? '' : 'returnType',
+        protoName: 'returnType', subBuilder: TypeRef.create)
+    ..hasRequiredFields = false;
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -2281,8 +2025,10 @@ class Statement_Query extends $pb.GeneratedMessage {
       'Will be removed in next major version')
   Statement_Query copyWith(void Function(Statement_Query) updates) =>
       super.copyWith((message) => updates(message as Statement_Query))
-          as Statement_Query; // ignore: deprecated_member_use
+          as Statement_Query;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static Statement_Query create() => Statement_Query._();
   Statement_Query createEmptyInstance() => create();
@@ -2323,52 +2069,38 @@ class Statement_Query extends $pb.GeneratedMessage {
 }
 
 class Statement_Command extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'Statement.Command',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
-      createEmptyInstance: create)
-    ..aOM<TypeDescriptor>(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'typeDescriptor',
-        protoName: 'typeDescriptor',
-        subBuilder: TypeDescriptor.create)
-    ..pc<ErrorCode>(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'errorCodes',
-        $pb.PbFieldType.PM,
-        protoName: 'errorCodes',
-        subBuilder: ErrorCode.create)
-    ..hasRequiredFields = false;
-
-  Statement_Command._() : super();
   factory Statement_Command({
     TypeDescriptor? typeDescriptor,
     $core.Iterable<ErrorCode>? errorCodes,
   }) {
-    final _result = create();
+    final $result = create();
     if (typeDescriptor != null) {
-      _result.typeDescriptor = typeDescriptor;
+      $result.typeDescriptor = typeDescriptor;
     }
     if (errorCodes != null) {
-      _result.errorCodes.addAll(errorCodes);
+      $result.errorCodes.addAll(errorCodes);
     }
-    return _result;
+    return $result;
   }
+  Statement_Command._() : super();
   factory Statement_Command.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory Statement_Command.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'Statement.Command',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..aOM<TypeDescriptor>(1, _omitFieldNames ? '' : 'typeDescriptor',
+        protoName: 'typeDescriptor', subBuilder: TypeDescriptor.create)
+    ..pc<ErrorCode>(2, _omitFieldNames ? '' : 'errorCodes', $pb.PbFieldType.PM,
+        protoName: 'errorCodes', subBuilder: ErrorCode.create)
+    ..hasRequiredFields = false;
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -2378,8 +2110,10 @@ class Statement_Command extends $pb.GeneratedMessage {
       'Will be removed in next major version')
   Statement_Command copyWith(void Function(Statement_Command) updates) =>
       super.copyWith((message) => updates(message as Statement_Command))
-          as Statement_Command; // ignore: deprecated_member_use
+          as Statement_Command;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static Statement_Command create() => Statement_Command._();
   Statement_Command createEmptyInstance() => create();
@@ -2409,51 +2143,38 @@ class Statement_Command extends $pb.GeneratedMessage {
 }
 
 class Statement_Operation extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'Statement.Operation',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
-      createEmptyInstance: create)
-    ..aOM<TypeDescriptor>(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'typeDescriptor',
-        protoName: 'typeDescriptor',
-        subBuilder: TypeDescriptor.create)
-    ..aOM<TypeRef>(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'returnType',
-        protoName: 'returnType',
-        subBuilder: TypeRef.create)
-    ..hasRequiredFields = false;
-
-  Statement_Operation._() : super();
   factory Statement_Operation({
     TypeDescriptor? typeDescriptor,
     TypeRef? returnType,
   }) {
-    final _result = create();
+    final $result = create();
     if (typeDescriptor != null) {
-      _result.typeDescriptor = typeDescriptor;
+      $result.typeDescriptor = typeDescriptor;
     }
     if (returnType != null) {
-      _result.returnType = returnType;
+      $result.returnType = returnType;
     }
-    return _result;
+    return $result;
   }
+  Statement_Operation._() : super();
   factory Statement_Operation.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory Statement_Operation.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'Statement.Operation',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..aOM<TypeDescriptor>(1, _omitFieldNames ? '' : 'typeDescriptor',
+        protoName: 'typeDescriptor', subBuilder: TypeDescriptor.create)
+    ..aOM<TypeRef>(2, _omitFieldNames ? '' : 'returnType',
+        protoName: 'returnType', subBuilder: TypeRef.create)
+    ..hasRequiredFields = false;
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -2463,8 +2184,10 @@ class Statement_Operation extends $pb.GeneratedMessage {
       'Will be removed in next major version')
   Statement_Operation copyWith(void Function(Statement_Operation) updates) =>
       super.copyWith((message) => updates(message as Statement_Operation))
-          as Statement_Operation; // ignore: deprecated_member_use
+          as Statement_Operation;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static Statement_Operation create() => Statement_Operation._();
   Statement_Operation createEmptyInstance() => create();
@@ -2507,75 +2230,6 @@ class Statement_Operation extends $pb.GeneratedMessage {
 enum Statement_Content { dto, enum_11, query, command, operation, notSet }
 
 class Statement extends $pb.GeneratedMessage {
-  static const $core.Map<$core.int, Statement_Content> _Statement_ContentByTag =
-      {
-    10: Statement_Content.dto,
-    11: Statement_Content.enum_11,
-    12: Statement_Content.query,
-    13: Statement_Content.command,
-    14: Statement_Content.operation,
-    0: Statement_Content.notSet
-  };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'Statement',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
-      createEmptyInstance: create)
-    ..oo(0, [10, 11, 12, 13, 14])
-    ..aOS(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'name')
-    ..aOS(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'comment')
-    ..pc<AttributeRef>(
-        3,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'attributes',
-        $pb.PbFieldType.PM,
-        subBuilder: AttributeRef.create)
-    ..aOM<Statement_DTO>(
-        10,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'dto',
-        subBuilder: Statement_DTO.create)
-    ..aOM<Statement_Enum>(
-        11,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'enum',
-        subBuilder: Statement_Enum.create)
-    ..aOM<Statement_Query>(
-        12,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'query',
-        subBuilder: Statement_Query.create)
-    ..aOM<Statement_Command>(
-        13,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'command',
-        subBuilder: Statement_Command.create)
-    ..aOM<Statement_Operation>(
-        14,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'operation',
-        subBuilder: Statement_Operation.create)
-    ..hasRequiredFields = false;
-
-  Statement._() : super();
   factory Statement({
     $core.String? name,
     $core.String? comment,
@@ -2586,39 +2240,73 @@ class Statement extends $pb.GeneratedMessage {
     Statement_Command? command,
     Statement_Operation? operation,
   }) {
-    final _result = create();
+    final $result = create();
     if (name != null) {
-      _result.name = name;
+      $result.name = name;
     }
     if (comment != null) {
-      _result.comment = comment;
+      $result.comment = comment;
     }
     if (attributes != null) {
-      _result.attributes.addAll(attributes);
+      $result.attributes.addAll(attributes);
     }
     if (dto != null) {
-      _result.dto = dto;
+      $result.dto = dto;
     }
     if (enum_11 != null) {
-      _result.enum_11 = enum_11;
+      $result.enum_11 = enum_11;
     }
     if (query != null) {
-      _result.query = query;
+      $result.query = query;
     }
     if (command != null) {
-      _result.command = command;
+      $result.command = command;
     }
     if (operation != null) {
-      _result.operation = operation;
+      $result.operation = operation;
     }
-    return _result;
+    return $result;
   }
+  Statement._() : super();
   factory Statement.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory Statement.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
+  static const $core.Map<$core.int, Statement_Content> _Statement_ContentByTag =
+      {
+    10: Statement_Content.dto,
+    11: Statement_Content.enum_11,
+    12: Statement_Content.query,
+    13: Statement_Content.command,
+    14: Statement_Content.operation,
+    0: Statement_Content.notSet
+  };
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'Statement',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..oo(0, [10, 11, 12, 13, 14])
+    ..aOS(1, _omitFieldNames ? '' : 'name')
+    ..aOS(2, _omitFieldNames ? '' : 'comment')
+    ..pc<AttributeRef>(
+        3, _omitFieldNames ? '' : 'attributes', $pb.PbFieldType.PM,
+        subBuilder: AttributeRef.create)
+    ..aOM<Statement_DTO>(10, _omitFieldNames ? '' : 'dto',
+        subBuilder: Statement_DTO.create)
+    ..aOM<Statement_Enum>(11, _omitFieldNames ? '' : 'enum',
+        subBuilder: Statement_Enum.create)
+    ..aOM<Statement_Query>(12, _omitFieldNames ? '' : 'query',
+        subBuilder: Statement_Query.create)
+    ..aOM<Statement_Command>(13, _omitFieldNames ? '' : 'command',
+        subBuilder: Statement_Command.create)
+    ..aOM<Statement_Operation>(14, _omitFieldNames ? '' : 'operation',
+        subBuilder: Statement_Operation.create)
+    ..hasRequiredFields = false;
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -2627,9 +2315,10 @@ class Statement extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   Statement copyWith(void Function(Statement) updates) =>
-      super.copyWith((message) => updates(message as Statement))
-          as Statement; // ignore: deprecated_member_use
+      super.copyWith((message) => updates(message as Statement)) as Statement;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static Statement create() => Statement._();
   Statement createEmptyInstance() => create();
@@ -2741,62 +2430,44 @@ class Statement extends $pb.GeneratedMessage {
 }
 
 class Export extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'Export',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'leancode.contracts'),
-      createEmptyInstance: create)
-    ..aOS(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'projectName',
-        protoName: 'projectName')
-    ..pc<Statement>(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'statements',
-        $pb.PbFieldType.PM,
-        subBuilder: Statement.create)
-    ..pc<ErrorCode_Group>(
-        3,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'knownErrorGroups',
-        $pb.PbFieldType.PM,
-        protoName: 'knownErrorGroups',
-        subBuilder: ErrorCode_Group.create)
-    ..hasRequiredFields = false;
-
-  Export._() : super();
   factory Export({
     $core.String? projectName,
     $core.Iterable<Statement>? statements,
     $core.Iterable<ErrorCode_Group>? knownErrorGroups,
   }) {
-    final _result = create();
+    final $result = create();
     if (projectName != null) {
-      _result.projectName = projectName;
+      $result.projectName = projectName;
     }
     if (statements != null) {
-      _result.statements.addAll(statements);
+      $result.statements.addAll(statements);
     }
     if (knownErrorGroups != null) {
-      _result.knownErrorGroups.addAll(knownErrorGroups);
+      $result.knownErrorGroups.addAll(knownErrorGroups);
     }
-    return _result;
+    return $result;
   }
+  Export._() : super();
   factory Export.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory Export.fromJson($core.String i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'Export',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'projectName', protoName: 'projectName')
+    ..pc<Statement>(2, _omitFieldNames ? '' : 'statements', $pb.PbFieldType.PM,
+        subBuilder: Statement.create)
+    ..pc<ErrorCode_Group>(
+        3, _omitFieldNames ? '' : 'knownErrorGroups', $pb.PbFieldType.PM,
+        protoName: 'knownErrorGroups', subBuilder: ErrorCode_Group.create)
+    ..hasRequiredFields = false;
+
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
@@ -2805,9 +2476,10 @@ class Export extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   Export copyWith(void Function(Export) updates) =>
-      super.copyWith((message) => updates(message as Export))
-          as Export; // ignore: deprecated_member_use
+      super.copyWith((message) => updates(message as Export)) as Export;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static Export create() => Export._();
   Export createEmptyInstance() => create();
@@ -2835,3 +2507,7 @@ class Export extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $core.List<ErrorCode_Group> get knownErrorGroups => $_getList(2);
 }
+
+const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
+const _omitMessageNames =
+    $core.bool.fromEnvironment('protobuf.omit_message_names');

@@ -1,59 +1,72 @@
-///
+//
 //  Generated code. Do not modify.
 //  source: contracts.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,deprecated_member_use_from_same_package,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
 
-import 'dart:core' as $core;
+// ignore_for_file: annotate_overrides, camel_case_types, comment_references
+// ignore_for_file: constant_identifier_names, library_prefixes
+// ignore_for_file: non_constant_identifier_names, prefer_final_fields
+// ignore_for_file: unnecessary_import, unnecessary_this, unused_import
+
 import 'dart:convert' as $convert;
+import 'dart:core' as $core;
 import 'dart:typed_data' as $typed_data;
 
 @$core.Deprecated('Use knownTypeDescriptor instead')
-const KnownType$json = const {
+const KnownType$json = {
   '1': 'KnownType',
-  '2': const [
-    const {'1': 'Object', '2': 0},
-    const {'1': 'String', '2': 1},
-    const {'1': 'Guid', '2': 3},
-    const {'1': 'Uri', '2': 4},
-    const {'1': 'Boolean', '2': 5},
-    const {'1': 'UInt8', '2': 100},
-    const {'1': 'Int8', '2': 101},
-    const {'1': 'Int16', '2': 102},
-    const {'1': 'UInt16', '2': 103},
-    const {'1': 'Int32', '2': 104},
-    const {'1': 'UInt32', '2': 105},
-    const {'1': 'Int64', '2': 106},
-    const {'1': 'UInt64', '2': 107},
-    const {'1': 'Float32', '2': 150},
-    const {'1': 'Float64', '2': 151},
-    const {'1': 'DateOnly', '2': 200},
-    const {'1': 'TimeOnly', '2': 201},
-    const {'1': 'DateTimeOffset', '2': 202},
-    const {'1': 'TimeSpan', '2': 203},
-    const {'1': 'Array', '2': 300},
-    const {'1': 'Map', '2': 301},
-    const {'1': 'Query', '2': 1000},
-    const {'1': 'Command', '2': 1001},
-    const {'1': 'CommandResult', '2': 1002},
-    const {'1': 'Operation', '2': 1003},
-    const {'1': 'Binary', '2': 1004},
-    const {'1': 'Attribute', '2': 1100},
-    const {'1': 'AuthorizeWhenAttribute', '2': 1101},
-    const {'1': 'AuthorizeWhenHasAnyOfAttribute', '2': 1102},
-    const {'1': 'QueryCacheAttribute', '2': 1103},
+  '2': [
+    {'1': 'Object', '2': 0},
+    {'1': 'String', '2': 1},
+    {'1': 'Guid', '2': 3},
+    {'1': 'Uri', '2': 4},
+    {'1': 'Boolean', '2': 5},
+    {'1': 'UInt8', '2': 100},
+    {'1': 'Int8', '2': 101},
+    {'1': 'Int16', '2': 102},
+    {'1': 'UInt16', '2': 103},
+    {'1': 'Int32', '2': 104},
+    {'1': 'UInt32', '2': 105},
+    {'1': 'Int64', '2': 106},
+    {'1': 'UInt64', '2': 107},
+    {'1': 'Float32', '2': 150},
+    {'1': 'Float64', '2': 151},
+    {'1': 'DateOnly', '2': 200},
+    {'1': 'TimeOnly', '2': 201},
+    {'1': 'DateTimeOffset', '2': 202},
+    {'1': 'TimeSpan', '2': 203},
+    {'1': 'Array', '2': 300},
+    {'1': 'Map', '2': 301},
+    {'1': 'Query', '2': 1000},
+    {'1': 'Command', '2': 1001},
+    {'1': 'CommandResult', '2': 1002},
+    {'1': 'Operation', '2': 1003},
+    {'1': 'Binary', '2': 1004},
+    {'1': 'Attribute', '2': 1100},
+    {'1': 'AuthorizeWhenAttribute', '2': 1101},
+    {'1': 'AuthorizeWhenHasAnyOfAttribute', '2': 1102},
+    {'1': 'QueryCacheAttribute', '2': 1103},
   ],
 };
 
 /// Descriptor for `KnownType`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List knownTypeDescriptor = $convert.base64Decode(
-    'CglLbm93blR5cGUSCgoGT2JqZWN0EAASCgoGU3RyaW5nEAESCAoER3VpZBADEgcKA1VyaRAEEgsKB0Jvb2xlYW4QBRIJCgVVSW50OBBkEggKBEludDgQZRIJCgVJbnQxNhBmEgoKBlVJbnQxNhBnEgkKBUludDMyEGgSCgoGVUludDMyEGkSCQoFSW50NjQQahIKCgZVSW50NjQQaxIMCgdGbG9hdDMyEJYBEgwKB0Zsb2F0NjQQlwESDQoIRGF0ZU9ubHkQyAESDQoIVGltZU9ubHkQyQESEwoORGF0ZVRpbWVPZmZzZXQQygESDQoIVGltZVNwYW4QywESCgoFQXJyYXkQrAISCAoDTWFwEK0CEgoKBVF1ZXJ5EOgHEgwKB0NvbW1hbmQQ6QcSEgoNQ29tbWFuZFJlc3VsdBDqBxIOCglPcGVyYXRpb24Q6wcSCwoGQmluYXJ5EOwHEg4KCUF0dHJpYnV0ZRDMCBIbChZBdXRob3JpemVXaGVuQXR0cmlidXRlEM0IEiMKHkF1dGhvcml6ZVdoZW5IYXNBbnlPZkF0dHJpYnV0ZRDOCBIYChNRdWVyeUNhY2hlQXR0cmlidXRlEM8I');
+    'CglLbm93blR5cGUSCgoGT2JqZWN0EAASCgoGU3RyaW5nEAESCAoER3VpZBADEgcKA1VyaRAEEg'
+    'sKB0Jvb2xlYW4QBRIJCgVVSW50OBBkEggKBEludDgQZRIJCgVJbnQxNhBmEgoKBlVJbnQxNhBn'
+    'EgkKBUludDMyEGgSCgoGVUludDMyEGkSCQoFSW50NjQQahIKCgZVSW50NjQQaxIMCgdGbG9hdD'
+    'MyEJYBEgwKB0Zsb2F0NjQQlwESDQoIRGF0ZU9ubHkQyAESDQoIVGltZU9ubHkQyQESEwoORGF0'
+    'ZVRpbWVPZmZzZXQQygESDQoIVGltZVNwYW4QywESCgoFQXJyYXkQrAISCAoDTWFwEK0CEgoKBV'
+    'F1ZXJ5EOgHEgwKB0NvbW1hbmQQ6QcSEgoNQ29tbWFuZFJlc3VsdBDqBxIOCglPcGVyYXRpb24Q'
+    '6wcSCwoGQmluYXJ5EOwHEg4KCUF0dHJpYnV0ZRDMCBIbChZBdXRob3JpemVXaGVuQXR0cmlidX'
+    'RlEM0IEiMKHkF1dGhvcml6ZVdoZW5IYXNBbnlPZkF0dHJpYnV0ZRDOCBIYChNRdWVyeUNhY2hl'
+    'QXR0cmlidXRlEM8I');
+
 @$core.Deprecated('Use valueRefDescriptor instead')
-const ValueRef$json = const {
+const ValueRef$json = {
   '1': 'ValueRef',
-  '2': const [
-    const {
+  '2': [
+    {
       '1': 'null',
       '3': 1,
       '4': 1,
@@ -62,7 +75,7 @@ const ValueRef$json = const {
       '9': 0,
       '10': 'null'
     },
-    const {
+    {
       '1': 'number',
       '3': 2,
       '4': 1,
@@ -71,7 +84,7 @@ const ValueRef$json = const {
       '9': 0,
       '10': 'number'
     },
-    const {
+    {
       '1': 'floatingPoint',
       '3': 3,
       '4': 1,
@@ -80,7 +93,7 @@ const ValueRef$json = const {
       '9': 0,
       '10': 'floatingPoint'
     },
-    const {
+    {
       '1': 'string',
       '3': 4,
       '4': 1,
@@ -89,7 +102,7 @@ const ValueRef$json = const {
       '9': 0,
       '10': 'string'
     },
-    const {
+    {
       '1': 'bool',
       '3': 5,
       '4': 1,
@@ -99,64 +112,74 @@ const ValueRef$json = const {
       '10': 'bool'
     },
   ],
-  '3': const [
+  '3': [
     ValueRef_Null$json,
     ValueRef_Number$json,
     ValueRef_FloatingPointNumber$json,
     ValueRef_String$json,
     ValueRef_Boolean$json
   ],
-  '8': const [
-    const {'1': 'value'},
+  '8': [
+    {'1': 'value'},
   ],
 };
 
 @$core.Deprecated('Use valueRefDescriptor instead')
-const ValueRef_Null$json = const {
+const ValueRef_Null$json = {
   '1': 'Null',
 };
 
 @$core.Deprecated('Use valueRefDescriptor instead')
-const ValueRef_Number$json = const {
+const ValueRef_Number$json = {
   '1': 'Number',
-  '2': const [
-    const {'1': 'value', '3': 1, '4': 1, '5': 3, '10': 'value'},
+  '2': [
+    {'1': 'value', '3': 1, '4': 1, '5': 3, '10': 'value'},
   ],
 };
 
 @$core.Deprecated('Use valueRefDescriptor instead')
-const ValueRef_FloatingPointNumber$json = const {
+const ValueRef_FloatingPointNumber$json = {
   '1': 'FloatingPointNumber',
-  '2': const [
-    const {'1': 'value', '3': 1, '4': 1, '5': 1, '10': 'value'},
+  '2': [
+    {'1': 'value', '3': 1, '4': 1, '5': 1, '10': 'value'},
   ],
 };
 
 @$core.Deprecated('Use valueRefDescriptor instead')
-const ValueRef_String$json = const {
+const ValueRef_String$json = {
   '1': 'String',
-  '2': const [
-    const {'1': 'value', '3': 1, '4': 1, '5': 9, '10': 'value'},
+  '2': [
+    {'1': 'value', '3': 1, '4': 1, '5': 9, '10': 'value'},
   ],
 };
 
 @$core.Deprecated('Use valueRefDescriptor instead')
-const ValueRef_Boolean$json = const {
+const ValueRef_Boolean$json = {
   '1': 'Boolean',
-  '2': const [
-    const {'1': 'value', '3': 1, '4': 1, '5': 8, '10': 'value'},
+  '2': [
+    {'1': 'value', '3': 1, '4': 1, '5': 8, '10': 'value'},
   ],
 };
 
 /// Descriptor for `ValueRef`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List valueRefDescriptor = $convert.base64Decode(
-    'CghWYWx1ZVJlZhI3CgRudWxsGAEgASgLMiEubGVhbmNvZGUuY29udHJhY3RzLlZhbHVlUmVmLk51bGxIAFIEbnVsbBI9CgZudW1iZXIYAiABKAsyIy5sZWFuY29kZS5jb250cmFjdHMuVmFsdWVSZWYuTnVtYmVySABSBm51bWJlchJYCg1mbG9hdGluZ1BvaW50GAMgASgLMjAubGVhbmNvZGUuY29udHJhY3RzLlZhbHVlUmVmLkZsb2F0aW5nUG9pbnROdW1iZXJIAFINZmxvYXRpbmdQb2ludBI9CgZzdHJpbmcYBCABKAsyIy5sZWFuY29kZS5jb250cmFjdHMuVmFsdWVSZWYuU3RyaW5nSABSBnN0cmluZxI6CgRib29sGAUgASgLMiQubGVhbmNvZGUuY29udHJhY3RzLlZhbHVlUmVmLkJvb2xlYW5IAFIEYm9vbBoGCgROdWxsGh4KBk51bWJlchIUCgV2YWx1ZRgBIAEoA1IFdmFsdWUaKwoTRmxvYXRpbmdQb2ludE51bWJlchIUCgV2YWx1ZRgBIAEoAVIFdmFsdWUaHgoGU3RyaW5nEhQKBXZhbHVlGAEgASgJUgV2YWx1ZRofCgdCb29sZWFuEhQKBXZhbHVlGAEgASgIUgV2YWx1ZUIHCgV2YWx1ZQ==');
+    'CghWYWx1ZVJlZhI3CgRudWxsGAEgASgLMiEubGVhbmNvZGUuY29udHJhY3RzLlZhbHVlUmVmLk'
+    '51bGxIAFIEbnVsbBI9CgZudW1iZXIYAiABKAsyIy5sZWFuY29kZS5jb250cmFjdHMuVmFsdWVS'
+    'ZWYuTnVtYmVySABSBm51bWJlchJYCg1mbG9hdGluZ1BvaW50GAMgASgLMjAubGVhbmNvZGUuY2'
+    '9udHJhY3RzLlZhbHVlUmVmLkZsb2F0aW5nUG9pbnROdW1iZXJIAFINZmxvYXRpbmdQb2ludBI9'
+    'CgZzdHJpbmcYBCABKAsyIy5sZWFuY29kZS5jb250cmFjdHMuVmFsdWVSZWYuU3RyaW5nSABSBn'
+    'N0cmluZxI6CgRib29sGAUgASgLMiQubGVhbmNvZGUuY29udHJhY3RzLlZhbHVlUmVmLkJvb2xl'
+    'YW5IAFIEYm9vbBoGCgROdWxsGh4KBk51bWJlchIUCgV2YWx1ZRgBIAEoA1IFdmFsdWUaKwoTRm'
+    'xvYXRpbmdQb2ludE51bWJlchIUCgV2YWx1ZRgBIAEoAVIFdmFsdWUaHgoGU3RyaW5nEhQKBXZh'
+    'bHVlGAEgASgJUgV2YWx1ZRofCgdCb29sZWFuEhQKBXZhbHVlGAEgASgIUgV2YWx1ZUIHCgV2YW'
+    'x1ZQ==');
+
 @$core.Deprecated('Use typeRefDescriptor instead')
-const TypeRef$json = const {
+const TypeRef$json = {
   '1': 'TypeRef',
-  '2': const [
-    const {'1': 'nullable', '3': 1, '4': 1, '5': 8, '10': 'nullable'},
-    const {
+  '2': [
+    {'1': 'nullable', '3': 1, '4': 1, '5': 8, '10': 'nullable'},
+    {
       '1': 'generic',
       '3': 2,
       '4': 1,
@@ -165,7 +188,7 @@ const TypeRef$json = const {
       '9': 0,
       '10': 'generic'
     },
-    const {
+    {
       '1': 'internal',
       '3': 3,
       '4': 1,
@@ -174,7 +197,7 @@ const TypeRef$json = const {
       '9': 0,
       '10': 'internal'
     },
-    const {
+    {
       '1': 'known',
       '3': 4,
       '4': 1,
@@ -184,26 +207,26 @@ const TypeRef$json = const {
       '10': 'known'
     },
   ],
-  '3': const [TypeRef_Generic$json, TypeRef_Internal$json, TypeRef_Known$json],
-  '8': const [
-    const {'1': 'type'},
+  '3': [TypeRef_Generic$json, TypeRef_Internal$json, TypeRef_Known$json],
+  '8': [
+    {'1': 'type'},
   ],
 };
 
 @$core.Deprecated('Use typeRefDescriptor instead')
-const TypeRef_Generic$json = const {
+const TypeRef_Generic$json = {
   '1': 'Generic',
-  '2': const [
-    const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+  '2': [
+    {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
   ],
 };
 
 @$core.Deprecated('Use typeRefDescriptor instead')
-const TypeRef_Internal$json = const {
+const TypeRef_Internal$json = {
   '1': 'Internal',
-  '2': const [
-    const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
-    const {
+  '2': [
+    {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+    {
       '1': 'arguments',
       '3': 2,
       '4': 3,
@@ -215,10 +238,10 @@ const TypeRef_Internal$json = const {
 };
 
 @$core.Deprecated('Use typeRefDescriptor instead')
-const TypeRef_Known$json = const {
+const TypeRef_Known$json = {
   '1': 'Known',
-  '2': const [
-    const {
+  '2': [
+    {
       '1': 'type',
       '3': 1,
       '4': 1,
@@ -226,7 +249,7 @@ const TypeRef_Known$json = const {
       '6': '.leancode.contracts.KnownType',
       '10': 'type'
     },
-    const {
+    {
       '1': 'arguments',
       '3': 2,
       '4': 3,
@@ -239,23 +262,33 @@ const TypeRef_Known$json = const {
 
 /// Descriptor for `TypeRef`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List typeRefDescriptor = $convert.base64Decode(
-    'CgdUeXBlUmVmEhoKCG51bGxhYmxlGAEgASgIUghudWxsYWJsZRI/CgdnZW5lcmljGAIgASgLMiMubGVhbmNvZGUuY29udHJhY3RzLlR5cGVSZWYuR2VuZXJpY0gAUgdnZW5lcmljEkIKCGludGVybmFsGAMgASgLMiQubGVhbmNvZGUuY29udHJhY3RzLlR5cGVSZWYuSW50ZXJuYWxIAFIIaW50ZXJuYWwSOQoFa25vd24YBCABKAsyIS5sZWFuY29kZS5jb250cmFjdHMuVHlwZVJlZi5Lbm93bkgAUgVrbm93bhodCgdHZW5lcmljEhIKBG5hbWUYASABKAlSBG5hbWUaWQoISW50ZXJuYWwSEgoEbmFtZRgBIAEoCVIEbmFtZRI5Cglhcmd1bWVudHMYAiADKAsyGy5sZWFuY29kZS5jb250cmFjdHMuVHlwZVJlZlIJYXJndW1lbnRzGnUKBUtub3duEjEKBHR5cGUYASABKA4yHS5sZWFuY29kZS5jb250cmFjdHMuS25vd25UeXBlUgR0eXBlEjkKCWFyZ3VtZW50cxgCIAMoCzIbLmxlYW5jb2RlLmNvbnRyYWN0cy5UeXBlUmVmUglhcmd1bWVudHNCBgoEdHlwZQ==');
+    'CgdUeXBlUmVmEhoKCG51bGxhYmxlGAEgASgIUghudWxsYWJsZRI/CgdnZW5lcmljGAIgASgLMi'
+    'MubGVhbmNvZGUuY29udHJhY3RzLlR5cGVSZWYuR2VuZXJpY0gAUgdnZW5lcmljEkIKCGludGVy'
+    'bmFsGAMgASgLMiQubGVhbmNvZGUuY29udHJhY3RzLlR5cGVSZWYuSW50ZXJuYWxIAFIIaW50ZX'
+    'JuYWwSOQoFa25vd24YBCABKAsyIS5sZWFuY29kZS5jb250cmFjdHMuVHlwZVJlZi5Lbm93bkgA'
+    'UgVrbm93bhodCgdHZW5lcmljEhIKBG5hbWUYASABKAlSBG5hbWUaWQoISW50ZXJuYWwSEgoEbm'
+    'FtZRgBIAEoCVIEbmFtZRI5Cglhcmd1bWVudHMYAiADKAsyGy5sZWFuY29kZS5jb250cmFjdHMu'
+    'VHlwZVJlZlIJYXJndW1lbnRzGnUKBUtub3duEjEKBHR5cGUYASABKA4yHS5sZWFuY29kZS5jb2'
+    '50cmFjdHMuS25vd25UeXBlUgR0eXBlEjkKCWFyZ3VtZW50cxgCIAMoCzIbLmxlYW5jb2RlLmNv'
+    'bnRyYWN0cy5UeXBlUmVmUglhcmd1bWVudHNCBgoEdHlwZQ==');
+
 @$core.Deprecated('Use genericParameterDescriptor instead')
-const GenericParameter$json = const {
+const GenericParameter$json = {
   '1': 'GenericParameter',
-  '2': const [
-    const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+  '2': [
+    {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
   ],
 };
 
 /// Descriptor for `GenericParameter`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List genericParameterDescriptor = $convert
     .base64Decode('ChBHZW5lcmljUGFyYW1ldGVyEhIKBG5hbWUYASABKAlSBG5hbWU=');
+
 @$core.Deprecated('Use attributeArgumentDescriptor instead')
-const AttributeArgument$json = const {
+const AttributeArgument$json = {
   '1': 'AttributeArgument',
-  '2': const [
-    const {
+  '2': [
+    {
       '1': 'positional',
       '3': 1,
       '4': 1,
@@ -264,7 +297,7 @@ const AttributeArgument$json = const {
       '9': 0,
       '10': 'positional'
     },
-    const {
+    {
       '1': 'named',
       '3': 2,
       '4': 1,
@@ -274,18 +307,18 @@ const AttributeArgument$json = const {
       '10': 'named'
     },
   ],
-  '3': const [AttributeArgument_Positional$json, AttributeArgument_Named$json],
-  '8': const [
-    const {'1': 'attribute'},
+  '3': [AttributeArgument_Positional$json, AttributeArgument_Named$json],
+  '8': [
+    {'1': 'attribute'},
   ],
 };
 
 @$core.Deprecated('Use attributeArgumentDescriptor instead')
-const AttributeArgument_Positional$json = const {
+const AttributeArgument_Positional$json = {
   '1': 'Positional',
-  '2': const [
-    const {'1': 'position', '3': 1, '4': 1, '5': 5, '10': 'position'},
-    const {
+  '2': [
+    {'1': 'position', '3': 1, '4': 1, '5': 5, '10': 'position'},
+    {
       '1': 'value',
       '3': 2,
       '4': 1,
@@ -297,11 +330,11 @@ const AttributeArgument_Positional$json = const {
 };
 
 @$core.Deprecated('Use attributeArgumentDescriptor instead')
-const AttributeArgument_Named$json = const {
+const AttributeArgument_Named$json = {
   '1': 'Named',
-  '2': const [
-    const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
-    const {
+  '2': [
+    {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+    {
       '1': 'value',
       '3': 2,
       '4': 1,
@@ -314,13 +347,20 @@ const AttributeArgument_Named$json = const {
 
 /// Descriptor for `AttributeArgument`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List attributeArgumentDescriptor = $convert.base64Decode(
-    'ChFBdHRyaWJ1dGVBcmd1bWVudBJSCgpwb3NpdGlvbmFsGAEgASgLMjAubGVhbmNvZGUuY29udHJhY3RzLkF0dHJpYnV0ZUFyZ3VtZW50LlBvc2l0aW9uYWxIAFIKcG9zaXRpb25hbBJDCgVuYW1lZBgCIAEoCzIrLmxlYW5jb2RlLmNvbnRyYWN0cy5BdHRyaWJ1dGVBcmd1bWVudC5OYW1lZEgAUgVuYW1lZBpcCgpQb3NpdGlvbmFsEhoKCHBvc2l0aW9uGAEgASgFUghwb3NpdGlvbhIyCgV2YWx1ZRgCIAEoCzIcLmxlYW5jb2RlLmNvbnRyYWN0cy5WYWx1ZVJlZlIFdmFsdWUaTwoFTmFtZWQSEgoEbmFtZRgBIAEoCVIEbmFtZRIyCgV2YWx1ZRgCIAEoCzIcLmxlYW5jb2RlLmNvbnRyYWN0cy5WYWx1ZVJlZlIFdmFsdWVCCwoJYXR0cmlidXRl');
+    'ChFBdHRyaWJ1dGVBcmd1bWVudBJSCgpwb3NpdGlvbmFsGAEgASgLMjAubGVhbmNvZGUuY29udH'
+    'JhY3RzLkF0dHJpYnV0ZUFyZ3VtZW50LlBvc2l0aW9uYWxIAFIKcG9zaXRpb25hbBJDCgVuYW1l'
+    'ZBgCIAEoCzIrLmxlYW5jb2RlLmNvbnRyYWN0cy5BdHRyaWJ1dGVBcmd1bWVudC5OYW1lZEgAUg'
+    'VuYW1lZBpcCgpQb3NpdGlvbmFsEhoKCHBvc2l0aW9uGAEgASgFUghwb3NpdGlvbhIyCgV2YWx1'
+    'ZRgCIAEoCzIcLmxlYW5jb2RlLmNvbnRyYWN0cy5WYWx1ZVJlZlIFdmFsdWUaTwoFTmFtZWQSEg'
+    'oEbmFtZRgBIAEoCVIEbmFtZRIyCgV2YWx1ZRgCIAEoCzIcLmxlYW5jb2RlLmNvbnRyYWN0cy5W'
+    'YWx1ZVJlZlIFdmFsdWVCCwoJYXR0cmlidXRl');
+
 @$core.Deprecated('Use attributeRefDescriptor instead')
-const AttributeRef$json = const {
+const AttributeRef$json = {
   '1': 'AttributeRef',
-  '2': const [
-    const {'1': 'attributeName', '3': 1, '4': 1, '5': 9, '10': 'attributeName'},
-    const {
+  '2': [
+    {'1': 'attributeName', '3': 1, '4': 1, '5': 9, '10': 'attributeName'},
+    {
       '1': 'argument',
       '3': 2,
       '4': 3,
@@ -333,12 +373,15 @@ const AttributeRef$json = const {
 
 /// Descriptor for `AttributeRef`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List attributeRefDescriptor = $convert.base64Decode(
-    'CgxBdHRyaWJ1dGVSZWYSJAoNYXR0cmlidXRlTmFtZRgBIAEoCVINYXR0cmlidXRlTmFtZRJBCghhcmd1bWVudBgCIAMoCzIlLmxlYW5jb2RlLmNvbnRyYWN0cy5BdHRyaWJ1dGVBcmd1bWVudFIIYXJndW1lbnQ=');
+    'CgxBdHRyaWJ1dGVSZWYSJAoNYXR0cmlidXRlTmFtZRgBIAEoCVINYXR0cmlidXRlTmFtZRJBCg'
+    'hhcmd1bWVudBgCIAMoCzIlLmxlYW5jb2RlLmNvbnRyYWN0cy5BdHRyaWJ1dGVBcmd1bWVudFII'
+    'YXJndW1lbnQ=');
+
 @$core.Deprecated('Use propertyRefDescriptor instead')
-const PropertyRef$json = const {
+const PropertyRef$json = {
   '1': 'PropertyRef',
-  '2': const [
-    const {
+  '2': [
+    {
       '1': 'type',
       '3': 1,
       '4': 1,
@@ -346,8 +389,8 @@ const PropertyRef$json = const {
       '6': '.leancode.contracts.TypeRef',
       '10': 'type'
     },
-    const {'1': 'name', '3': 2, '4': 1, '5': 9, '10': 'name'},
-    const {
+    {'1': 'name', '3': 2, '4': 1, '5': 9, '10': 'name'},
+    {
       '1': 'attributes',
       '3': 3,
       '4': 3,
@@ -355,19 +398,23 @@ const PropertyRef$json = const {
       '6': '.leancode.contracts.AttributeRef',
       '10': 'attributes'
     },
-    const {'1': 'comment', '3': 4, '4': 1, '5': 9, '10': 'comment'},
+    {'1': 'comment', '3': 4, '4': 1, '5': 9, '10': 'comment'},
   ],
 };
 
 /// Descriptor for `PropertyRef`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List propertyRefDescriptor = $convert.base64Decode(
-    'CgtQcm9wZXJ0eVJlZhIvCgR0eXBlGAEgASgLMhsubGVhbmNvZGUuY29udHJhY3RzLlR5cGVSZWZSBHR5cGUSEgoEbmFtZRgCIAEoCVIEbmFtZRJACgphdHRyaWJ1dGVzGAMgAygLMiAubGVhbmNvZGUuY29udHJhY3RzLkF0dHJpYnV0ZVJlZlIKYXR0cmlidXRlcxIYCgdjb21tZW50GAQgASgJUgdjb21tZW50');
+    'CgtQcm9wZXJ0eVJlZhIvCgR0eXBlGAEgASgLMhsubGVhbmNvZGUuY29udHJhY3RzLlR5cGVSZW'
+    'ZSBHR5cGUSEgoEbmFtZRgCIAEoCVIEbmFtZRJACgphdHRyaWJ1dGVzGAMgAygLMiAubGVhbmNv'
+    'ZGUuY29udHJhY3RzLkF0dHJpYnV0ZVJlZlIKYXR0cmlidXRlcxIYCgdjb21tZW50GAQgASgJUg'
+    'djb21tZW50');
+
 @$core.Deprecated('Use constantRefDescriptor instead')
-const ConstantRef$json = const {
+const ConstantRef$json = {
   '1': 'ConstantRef',
-  '2': const [
-    const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
-    const {
+  '2': [
+    {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+    {
       '1': 'value',
       '3': 2,
       '4': 1,
@@ -375,21 +422,23 @@ const ConstantRef$json = const {
       '6': '.leancode.contracts.ValueRef',
       '10': 'value'
     },
-    const {'1': 'comment', '3': 3, '4': 1, '5': 9, '10': 'comment'},
+    {'1': 'comment', '3': 3, '4': 1, '5': 9, '10': 'comment'},
   ],
 };
 
 /// Descriptor for `ConstantRef`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List constantRefDescriptor = $convert.base64Decode(
-    'CgtDb25zdGFudFJlZhISCgRuYW1lGAEgASgJUgRuYW1lEjIKBXZhbHVlGAIgASgLMhwubGVhbmNvZGUuY29udHJhY3RzLlZhbHVlUmVmUgV2YWx1ZRIYCgdjb21tZW50GAMgASgJUgdjb21tZW50');
+    'CgtDb25zdGFudFJlZhISCgRuYW1lGAEgASgJUgRuYW1lEjIKBXZhbHVlGAIgASgLMhwubGVhbm'
+    'NvZGUuY29udHJhY3RzLlZhbHVlUmVmUgV2YWx1ZRIYCgdjb21tZW50GAMgASgJUgdjb21tZW50');
+
 @$core.Deprecated('Use enumValueDescriptor instead')
-const EnumValue$json = const {
+const EnumValue$json = {
   '1': 'EnumValue',
-  '2': const [
-    const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
-    const {'1': 'value', '3': 2, '4': 1, '5': 3, '10': 'value'},
-    const {'1': 'comment', '3': 3, '4': 1, '5': 9, '10': 'comment'},
-    const {
+  '2': [
+    {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+    {'1': 'value', '3': 2, '4': 1, '5': 3, '10': 'value'},
+    {'1': 'comment', '3': 3, '4': 1, '5': 9, '10': 'comment'},
+    {
       '1': 'attributes',
       '3': 4,
       '4': 3,
@@ -402,12 +451,15 @@ const EnumValue$json = const {
 
 /// Descriptor for `EnumValue`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List enumValueDescriptor = $convert.base64Decode(
-    'CglFbnVtVmFsdWUSEgoEbmFtZRgBIAEoCVIEbmFtZRIUCgV2YWx1ZRgCIAEoA1IFdmFsdWUSGAoHY29tbWVudBgDIAEoCVIHY29tbWVudBJACgphdHRyaWJ1dGVzGAQgAygLMiAubGVhbmNvZGUuY29udHJhY3RzLkF0dHJpYnV0ZVJlZlIKYXR0cmlidXRlcw==');
+    'CglFbnVtVmFsdWUSEgoEbmFtZRgBIAEoCVIEbmFtZRIUCgV2YWx1ZRgCIAEoA1IFdmFsdWUSGA'
+    'oHY29tbWVudBgDIAEoCVIHY29tbWVudBJACgphdHRyaWJ1dGVzGAQgAygLMiAubGVhbmNvZGUu'
+    'Y29udHJhY3RzLkF0dHJpYnV0ZVJlZlIKYXR0cmlidXRlcw==');
+
 @$core.Deprecated('Use errorCodeDescriptor instead')
-const ErrorCode$json = const {
+const ErrorCode$json = {
   '1': 'ErrorCode',
-  '2': const [
-    const {
+  '2': [
+    {
       '1': 'single',
       '3': 1,
       '4': 1,
@@ -416,7 +468,7 @@ const ErrorCode$json = const {
       '9': 0,
       '10': 'single'
     },
-    const {
+    {
       '1': 'group',
       '3': 2,
       '4': 1,
@@ -426,28 +478,28 @@ const ErrorCode$json = const {
       '10': 'group'
     },
   ],
-  '3': const [ErrorCode_Single$json, ErrorCode_Group$json],
-  '8': const [
-    const {'1': 'code'},
+  '3': [ErrorCode_Single$json, ErrorCode_Group$json],
+  '8': [
+    {'1': 'code'},
   ],
 };
 
 @$core.Deprecated('Use errorCodeDescriptor instead')
-const ErrorCode_Single$json = const {
+const ErrorCode_Single$json = {
   '1': 'Single',
-  '2': const [
-    const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
-    const {'1': 'code', '3': 2, '4': 1, '5': 5, '10': 'code'},
+  '2': [
+    {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+    {'1': 'code', '3': 2, '4': 1, '5': 5, '10': 'code'},
   ],
 };
 
 @$core.Deprecated('Use errorCodeDescriptor instead')
-const ErrorCode_Group$json = const {
+const ErrorCode_Group$json = {
   '1': 'Group',
-  '2': const [
-    const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
-    const {'1': 'groupId', '3': 2, '4': 1, '5': 9, '10': 'groupId'},
-    const {
+  '2': [
+    {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+    {'1': 'groupId', '3': 2, '4': 1, '5': 9, '10': 'groupId'},
+    {
       '1': 'innerCodes',
       '3': 3,
       '4': 3,
@@ -460,12 +512,18 @@ const ErrorCode_Group$json = const {
 
 /// Descriptor for `ErrorCode`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List errorCodeDescriptor = $convert.base64Decode(
-    'CglFcnJvckNvZGUSPgoGc2luZ2xlGAEgASgLMiQubGVhbmNvZGUuY29udHJhY3RzLkVycm9yQ29kZS5TaW5nbGVIAFIGc2luZ2xlEjsKBWdyb3VwGAIgASgLMiMubGVhbmNvZGUuY29udHJhY3RzLkVycm9yQ29kZS5Hcm91cEgAUgVncm91cBowCgZTaW5nbGUSEgoEbmFtZRgBIAEoCVIEbmFtZRISCgRjb2RlGAIgASgFUgRjb2RlGnQKBUdyb3VwEhIKBG5hbWUYASABKAlSBG5hbWUSGAoHZ3JvdXBJZBgCIAEoCVIHZ3JvdXBJZBI9Cgppbm5lckNvZGVzGAMgAygLMh0ubGVhbmNvZGUuY29udHJhY3RzLkVycm9yQ29kZVIKaW5uZXJDb2Rlc0IGCgRjb2Rl');
+    'CglFcnJvckNvZGUSPgoGc2luZ2xlGAEgASgLMiQubGVhbmNvZGUuY29udHJhY3RzLkVycm9yQ2'
+    '9kZS5TaW5nbGVIAFIGc2luZ2xlEjsKBWdyb3VwGAIgASgLMiMubGVhbmNvZGUuY29udHJhY3Rz'
+    'LkVycm9yQ29kZS5Hcm91cEgAUgVncm91cBowCgZTaW5nbGUSEgoEbmFtZRgBIAEoCVIEbmFtZR'
+    'ISCgRjb2RlGAIgASgFUgRjb2RlGnQKBUdyb3VwEhIKBG5hbWUYASABKAlSBG5hbWUSGAoHZ3Jv'
+    'dXBJZBgCIAEoCVIHZ3JvdXBJZBI9Cgppbm5lckNvZGVzGAMgAygLMh0ubGVhbmNvZGUuY29udH'
+    'JhY3RzLkVycm9yQ29kZVIKaW5uZXJDb2Rlc0IGCgRjb2Rl');
+
 @$core.Deprecated('Use typeDescriptorDescriptor instead')
-const TypeDescriptor$json = const {
+const TypeDescriptor$json = {
   '1': 'TypeDescriptor',
-  '2': const [
-    const {
+  '2': [
+    {
       '1': 'extends',
       '3': 1,
       '4': 3,
@@ -473,7 +531,7 @@ const TypeDescriptor$json = const {
       '6': '.leancode.contracts.TypeRef',
       '10': 'extends'
     },
-    const {
+    {
       '1': 'genericParameters',
       '3': 2,
       '4': 3,
@@ -481,7 +539,7 @@ const TypeDescriptor$json = const {
       '6': '.leancode.contracts.GenericParameter',
       '10': 'genericParameters'
     },
-    const {
+    {
       '1': 'properties',
       '3': 3,
       '4': 3,
@@ -489,7 +547,7 @@ const TypeDescriptor$json = const {
       '6': '.leancode.contracts.PropertyRef',
       '10': 'properties'
     },
-    const {
+    {
       '1': 'constants',
       '3': 4,
       '4': 3,
@@ -502,14 +560,20 @@ const TypeDescriptor$json = const {
 
 /// Descriptor for `TypeDescriptor`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List typeDescriptorDescriptor = $convert.base64Decode(
-    'Cg5UeXBlRGVzY3JpcHRvchI1CgdleHRlbmRzGAEgAygLMhsubGVhbmNvZGUuY29udHJhY3RzLlR5cGVSZWZSB2V4dGVuZHMSUgoRZ2VuZXJpY1BhcmFtZXRlcnMYAiADKAsyJC5sZWFuY29kZS5jb250cmFjdHMuR2VuZXJpY1BhcmFtZXRlclIRZ2VuZXJpY1BhcmFtZXRlcnMSPwoKcHJvcGVydGllcxgDIAMoCzIfLmxlYW5jb2RlLmNvbnRyYWN0cy5Qcm9wZXJ0eVJlZlIKcHJvcGVydGllcxI9Cgljb25zdGFudHMYBCADKAsyHy5sZWFuY29kZS5jb250cmFjdHMuQ29uc3RhbnRSZWZSCWNvbnN0YW50cw==');
+    'Cg5UeXBlRGVzY3JpcHRvchI1CgdleHRlbmRzGAEgAygLMhsubGVhbmNvZGUuY29udHJhY3RzLl'
+    'R5cGVSZWZSB2V4dGVuZHMSUgoRZ2VuZXJpY1BhcmFtZXRlcnMYAiADKAsyJC5sZWFuY29kZS5j'
+    'b250cmFjdHMuR2VuZXJpY1BhcmFtZXRlclIRZ2VuZXJpY1BhcmFtZXRlcnMSPwoKcHJvcGVydG'
+    'llcxgDIAMoCzIfLmxlYW5jb2RlLmNvbnRyYWN0cy5Qcm9wZXJ0eVJlZlIKcHJvcGVydGllcxI9'
+    'Cgljb25zdGFudHMYBCADKAsyHy5sZWFuY29kZS5jb250cmFjdHMuQ29uc3RhbnRSZWZSCWNvbn'
+    'N0YW50cw==');
+
 @$core.Deprecated('Use statementDescriptor instead')
-const Statement$json = const {
+const Statement$json = {
   '1': 'Statement',
-  '2': const [
-    const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
-    const {'1': 'comment', '3': 2, '4': 1, '5': 9, '10': 'comment'},
-    const {
+  '2': [
+    {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+    {'1': 'comment', '3': 2, '4': 1, '5': 9, '10': 'comment'},
+    {
       '1': 'attributes',
       '3': 3,
       '4': 3,
@@ -517,7 +581,7 @@ const Statement$json = const {
       '6': '.leancode.contracts.AttributeRef',
       '10': 'attributes'
     },
-    const {
+    {
       '1': 'dto',
       '3': 10,
       '4': 1,
@@ -526,7 +590,7 @@ const Statement$json = const {
       '9': 0,
       '10': 'dto'
     },
-    const {
+    {
       '1': 'enum',
       '3': 11,
       '4': 1,
@@ -535,7 +599,7 @@ const Statement$json = const {
       '9': 0,
       '10': 'enum'
     },
-    const {
+    {
       '1': 'query',
       '3': 12,
       '4': 1,
@@ -544,7 +608,7 @@ const Statement$json = const {
       '9': 0,
       '10': 'query'
     },
-    const {
+    {
       '1': 'command',
       '3': 13,
       '4': 1,
@@ -553,7 +617,7 @@ const Statement$json = const {
       '9': 0,
       '10': 'command'
     },
-    const {
+    {
       '1': 'operation',
       '3': 14,
       '4': 1,
@@ -563,23 +627,23 @@ const Statement$json = const {
       '10': 'operation'
     },
   ],
-  '3': const [
+  '3': [
     Statement_DTO$json,
     Statement_Enum$json,
     Statement_Query$json,
     Statement_Command$json,
     Statement_Operation$json
   ],
-  '8': const [
-    const {'1': 'content'},
+  '8': [
+    {'1': 'content'},
   ],
 };
 
 @$core.Deprecated('Use statementDescriptor instead')
-const Statement_DTO$json = const {
+const Statement_DTO$json = {
   '1': 'DTO',
-  '2': const [
-    const {
+  '2': [
+    {
       '1': 'typeDescriptor',
       '3': 1,
       '4': 1,
@@ -591,10 +655,10 @@ const Statement_DTO$json = const {
 };
 
 @$core.Deprecated('Use statementDescriptor instead')
-const Statement_Enum$json = const {
+const Statement_Enum$json = {
   '1': 'Enum',
-  '2': const [
-    const {
+  '2': [
+    {
       '1': 'members',
       '3': 1,
       '4': 3,
@@ -606,10 +670,10 @@ const Statement_Enum$json = const {
 };
 
 @$core.Deprecated('Use statementDescriptor instead')
-const Statement_Query$json = const {
+const Statement_Query$json = {
   '1': 'Query',
-  '2': const [
-    const {
+  '2': [
+    {
       '1': 'typeDescriptor',
       '3': 1,
       '4': 1,
@@ -617,7 +681,7 @@ const Statement_Query$json = const {
       '6': '.leancode.contracts.TypeDescriptor',
       '10': 'typeDescriptor'
     },
-    const {
+    {
       '1': 'returnType',
       '3': 2,
       '4': 1,
@@ -629,10 +693,10 @@ const Statement_Query$json = const {
 };
 
 @$core.Deprecated('Use statementDescriptor instead')
-const Statement_Command$json = const {
+const Statement_Command$json = {
   '1': 'Command',
-  '2': const [
-    const {
+  '2': [
+    {
       '1': 'typeDescriptor',
       '3': 1,
       '4': 1,
@@ -640,7 +704,7 @@ const Statement_Command$json = const {
       '6': '.leancode.contracts.TypeDescriptor',
       '10': 'typeDescriptor'
     },
-    const {
+    {
       '1': 'errorCodes',
       '3': 2,
       '4': 3,
@@ -652,10 +716,10 @@ const Statement_Command$json = const {
 };
 
 @$core.Deprecated('Use statementDescriptor instead')
-const Statement_Operation$json = const {
+const Statement_Operation$json = {
   '1': 'Operation',
-  '2': const [
-    const {
+  '2': [
+    {
       '1': 'typeDescriptor',
       '3': 1,
       '4': 1,
@@ -663,7 +727,7 @@ const Statement_Operation$json = const {
       '6': '.leancode.contracts.TypeDescriptor',
       '10': 'typeDescriptor'
     },
-    const {
+    {
       '1': 'returnType',
       '3': 2,
       '4': 1,
@@ -676,13 +740,32 @@ const Statement_Operation$json = const {
 
 /// Descriptor for `Statement`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List statementDescriptor = $convert.base64Decode(
-    'CglTdGF0ZW1lbnQSEgoEbmFtZRgBIAEoCVIEbmFtZRIYCgdjb21tZW50GAIgASgJUgdjb21tZW50EkAKCmF0dHJpYnV0ZXMYAyADKAsyIC5sZWFuY29kZS5jb250cmFjdHMuQXR0cmlidXRlUmVmUgphdHRyaWJ1dGVzEjUKA2R0bxgKIAEoCzIhLmxlYW5jb2RlLmNvbnRyYWN0cy5TdGF0ZW1lbnQuRFRPSABSA2R0bxI4CgRlbnVtGAsgASgLMiIubGVhbmNvZGUuY29udHJhY3RzLlN0YXRlbWVudC5FbnVtSABSBGVudW0SOwoFcXVlcnkYDCABKAsyIy5sZWFuY29kZS5jb250cmFjdHMuU3RhdGVtZW50LlF1ZXJ5SABSBXF1ZXJ5EkEKB2NvbW1hbmQYDSABKAsyJS5sZWFuY29kZS5jb250cmFjdHMuU3RhdGVtZW50LkNvbW1hbmRIAFIHY29tbWFuZBJHCglvcGVyYXRpb24YDiABKAsyJy5sZWFuY29kZS5jb250cmFjdHMuU3RhdGVtZW50Lk9wZXJhdGlvbkgAUglvcGVyYXRpb24aUQoDRFRPEkoKDnR5cGVEZXNjcmlwdG9yGAEgASgLMiIubGVhbmNvZGUuY29udHJhY3RzLlR5cGVEZXNjcmlwdG9yUg50eXBlRGVzY3JpcHRvcho/CgRFbnVtEjcKB21lbWJlcnMYASADKAsyHS5sZWFuY29kZS5jb250cmFjdHMuRW51bVZhbHVlUgdtZW1iZXJzGpABCgVRdWVyeRJKCg50eXBlRGVzY3JpcHRvchgBIAEoCzIiLmxlYW5jb2RlLmNvbnRyYWN0cy5UeXBlRGVzY3JpcHRvclIOdHlwZURlc2NyaXB0b3ISOwoKcmV0dXJuVHlwZRgCIAEoCzIbLmxlYW5jb2RlLmNvbnRyYWN0cy5UeXBlUmVmUgpyZXR1cm5UeXBlGpQBCgdDb21tYW5kEkoKDnR5cGVEZXNjcmlwdG9yGAEgASgLMiIubGVhbmNvZGUuY29udHJhY3RzLlR5cGVEZXNjcmlwdG9yUg50eXBlRGVzY3JpcHRvchI9CgplcnJvckNvZGVzGAIgAygLMh0ubGVhbmNvZGUuY29udHJhY3RzLkVycm9yQ29kZVIKZXJyb3JDb2RlcxqUAQoJT3BlcmF0aW9uEkoKDnR5cGVEZXNjcmlwdG9yGAEgASgLMiIubGVhbmNvZGUuY29udHJhY3RzLlR5cGVEZXNjcmlwdG9yUg50eXBlRGVzY3JpcHRvchI7CgpyZXR1cm5UeXBlGAIgASgLMhsubGVhbmNvZGUuY29udHJhY3RzLlR5cGVSZWZSCnJldHVyblR5cGVCCQoHY29udGVudA==');
+    'CglTdGF0ZW1lbnQSEgoEbmFtZRgBIAEoCVIEbmFtZRIYCgdjb21tZW50GAIgASgJUgdjb21tZW'
+    '50EkAKCmF0dHJpYnV0ZXMYAyADKAsyIC5sZWFuY29kZS5jb250cmFjdHMuQXR0cmlidXRlUmVm'
+    'UgphdHRyaWJ1dGVzEjUKA2R0bxgKIAEoCzIhLmxlYW5jb2RlLmNvbnRyYWN0cy5TdGF0ZW1lbn'
+    'QuRFRPSABSA2R0bxI4CgRlbnVtGAsgASgLMiIubGVhbmNvZGUuY29udHJhY3RzLlN0YXRlbWVu'
+    'dC5FbnVtSABSBGVudW0SOwoFcXVlcnkYDCABKAsyIy5sZWFuY29kZS5jb250cmFjdHMuU3RhdG'
+    'VtZW50LlF1ZXJ5SABSBXF1ZXJ5EkEKB2NvbW1hbmQYDSABKAsyJS5sZWFuY29kZS5jb250cmFj'
+    'dHMuU3RhdGVtZW50LkNvbW1hbmRIAFIHY29tbWFuZBJHCglvcGVyYXRpb24YDiABKAsyJy5sZW'
+    'FuY29kZS5jb250cmFjdHMuU3RhdGVtZW50Lk9wZXJhdGlvbkgAUglvcGVyYXRpb24aUQoDRFRP'
+    'EkoKDnR5cGVEZXNjcmlwdG9yGAEgASgLMiIubGVhbmNvZGUuY29udHJhY3RzLlR5cGVEZXNjcm'
+    'lwdG9yUg50eXBlRGVzY3JpcHRvcho/CgRFbnVtEjcKB21lbWJlcnMYASADKAsyHS5sZWFuY29k'
+    'ZS5jb250cmFjdHMuRW51bVZhbHVlUgdtZW1iZXJzGpABCgVRdWVyeRJKCg50eXBlRGVzY3JpcH'
+    'RvchgBIAEoCzIiLmxlYW5jb2RlLmNvbnRyYWN0cy5UeXBlRGVzY3JpcHRvclIOdHlwZURlc2Ny'
+    'aXB0b3ISOwoKcmV0dXJuVHlwZRgCIAEoCzIbLmxlYW5jb2RlLmNvbnRyYWN0cy5UeXBlUmVmUg'
+    'pyZXR1cm5UeXBlGpQBCgdDb21tYW5kEkoKDnR5cGVEZXNjcmlwdG9yGAEgASgLMiIubGVhbmNv'
+    'ZGUuY29udHJhY3RzLlR5cGVEZXNjcmlwdG9yUg50eXBlRGVzY3JpcHRvchI9CgplcnJvckNvZG'
+    'VzGAIgAygLMh0ubGVhbmNvZGUuY29udHJhY3RzLkVycm9yQ29kZVIKZXJyb3JDb2RlcxqUAQoJ'
+    'T3BlcmF0aW9uEkoKDnR5cGVEZXNjcmlwdG9yGAEgASgLMiIubGVhbmNvZGUuY29udHJhY3RzLl'
+    'R5cGVEZXNjcmlwdG9yUg50eXBlRGVzY3JpcHRvchI7CgpyZXR1cm5UeXBlGAIgASgLMhsubGVh'
+    'bmNvZGUuY29udHJhY3RzLlR5cGVSZWZSCnJldHVyblR5cGVCCQoHY29udGVudA==');
+
 @$core.Deprecated('Use exportDescriptor instead')
-const Export$json = const {
+const Export$json = {
   '1': 'Export',
-  '2': const [
-    const {'1': 'projectName', '3': 1, '4': 1, '5': 9, '10': 'projectName'},
-    const {
+  '2': [
+    {'1': 'projectName', '3': 1, '4': 1, '5': 9, '10': 'projectName'},
+    {
       '1': 'statements',
       '3': 2,
       '4': 3,
@@ -690,7 +773,7 @@ const Export$json = const {
       '6': '.leancode.contracts.Statement',
       '10': 'statements'
     },
-    const {
+    {
       '1': 'knownErrorGroups',
       '3': 3,
       '4': 3,
@@ -703,4 +786,7 @@ const Export$json = const {
 
 /// Descriptor for `Export`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List exportDescriptor = $convert.base64Decode(
-    'CgZFeHBvcnQSIAoLcHJvamVjdE5hbWUYASABKAlSC3Byb2plY3ROYW1lEj0KCnN0YXRlbWVudHMYAiADKAsyHS5sZWFuY29kZS5jb250cmFjdHMuU3RhdGVtZW50UgpzdGF0ZW1lbnRzEk8KEGtub3duRXJyb3JHcm91cHMYAyADKAsyIy5sZWFuY29kZS5jb250cmFjdHMuRXJyb3JDb2RlLkdyb3VwUhBrbm93bkVycm9yR3JvdXBz');
+    'CgZFeHBvcnQSIAoLcHJvamVjdE5hbWUYASABKAlSC3Byb2plY3ROYW1lEj0KCnN0YXRlbWVudH'
+    'MYAiADKAsyHS5sZWFuY29kZS5jb250cmFjdHMuU3RhdGVtZW50UgpzdGF0ZW1lbnRzEk8KEGtu'
+    'b3duRXJyb3JHcm91cHMYAyADKAsyIy5sZWFuY29kZS5jb250cmFjdHMuRXJyb3JDb2RlLkdyb3'
+    'VwUhBrbm93bkVycm9yR3JvdXBz');

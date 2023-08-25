@@ -1,165 +1,75 @@
-///
+//
 //  Generated code. Do not modify.
 //  source: contracts.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
 
-// ignore_for_file: UNDEFINED_SHOWN_NAME
+// ignore_for_file: annotate_overrides, camel_case_types, comment_references
+// ignore_for_file: constant_identifier_names, library_prefixes
+// ignore_for_file: non_constant_identifier_names, prefer_final_fields
+// ignore_for_file: unnecessary_import, unnecessary_this, unused_import
+
 import 'dart:core' as $core;
+
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class KnownType extends $pb.ProtobufEnum {
-  static const KnownType Object_ = KnownType._(
-      0,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'Object');
-  static const KnownType String = KnownType._(
-      1,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'String');
-  static const KnownType Guid = KnownType._(
-      3,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'Guid');
-  static const KnownType Uri = KnownType._(
-      4,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'Uri');
-  static const KnownType Boolean = KnownType._(
-      5,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'Boolean');
-  static const KnownType UInt8 = KnownType._(
-      100,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'UInt8');
-  static const KnownType Int8 = KnownType._(
-      101,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'Int8');
-  static const KnownType Int16 = KnownType._(
-      102,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'Int16');
-  static const KnownType UInt16 = KnownType._(
-      103,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'UInt16');
-  static const KnownType Int32 = KnownType._(
-      104,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'Int32');
-  static const KnownType UInt32 = KnownType._(
-      105,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'UInt32');
-  static const KnownType Int64 = KnownType._(
-      106,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'Int64');
-  static const KnownType UInt64 = KnownType._(
-      107,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'UInt64');
-  static const KnownType Float32 = KnownType._(
-      150,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'Float32');
-  static const KnownType Float64 = KnownType._(
-      151,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'Float64');
-  static const KnownType DateOnly = KnownType._(
-      200,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'DateOnly');
-  static const KnownType TimeOnly = KnownType._(
-      201,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'TimeOnly');
-  static const KnownType DateTimeOffset = KnownType._(
-      202,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'DateTimeOffset');
-  static const KnownType TimeSpan = KnownType._(
-      203,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'TimeSpan');
-  static const KnownType Array = KnownType._(
-      300,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'Array');
-  static const KnownType Map = KnownType._(
-      301,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'Map');
-  static const KnownType Query = KnownType._(
-      1000,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'Query');
-  static const KnownType Command = KnownType._(
-      1001,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'Command');
-  static const KnownType CommandResult = KnownType._(
-      1002,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'CommandResult');
-  static const KnownType Operation = KnownType._(
-      1003,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'Operation');
-  static const KnownType Binary = KnownType._(
-      1004,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'Binary');
-  static const KnownType Attribute = KnownType._(
-      1100,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'Attribute');
-  static const KnownType AuthorizeWhenAttribute = KnownType._(
-      1101,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'AuthorizeWhenAttribute');
-  static const KnownType AuthorizeWhenHasAnyOfAttribute = KnownType._(
-      1102,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'AuthorizeWhenHasAnyOfAttribute');
-  static const KnownType QueryCacheAttribute = KnownType._(
-      1103,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'QueryCacheAttribute');
+  static const KnownType Object_ =
+      KnownType._(0, _omitEnumNames ? '' : 'Object');
+  static const KnownType String =
+      KnownType._(1, _omitEnumNames ? '' : 'String');
+  static const KnownType Guid = KnownType._(3, _omitEnumNames ? '' : 'Guid');
+  static const KnownType Uri = KnownType._(4, _omitEnumNames ? '' : 'Uri');
+  static const KnownType Boolean =
+      KnownType._(5, _omitEnumNames ? '' : 'Boolean');
+  static const KnownType UInt8 =
+      KnownType._(100, _omitEnumNames ? '' : 'UInt8');
+  static const KnownType Int8 = KnownType._(101, _omitEnumNames ? '' : 'Int8');
+  static const KnownType Int16 =
+      KnownType._(102, _omitEnumNames ? '' : 'Int16');
+  static const KnownType UInt16 =
+      KnownType._(103, _omitEnumNames ? '' : 'UInt16');
+  static const KnownType Int32 =
+      KnownType._(104, _omitEnumNames ? '' : 'Int32');
+  static const KnownType UInt32 =
+      KnownType._(105, _omitEnumNames ? '' : 'UInt32');
+  static const KnownType Int64 =
+      KnownType._(106, _omitEnumNames ? '' : 'Int64');
+  static const KnownType UInt64 =
+      KnownType._(107, _omitEnumNames ? '' : 'UInt64');
+  static const KnownType Float32 =
+      KnownType._(150, _omitEnumNames ? '' : 'Float32');
+  static const KnownType Float64 =
+      KnownType._(151, _omitEnumNames ? '' : 'Float64');
+  static const KnownType DateOnly =
+      KnownType._(200, _omitEnumNames ? '' : 'DateOnly');
+  static const KnownType TimeOnly =
+      KnownType._(201, _omitEnumNames ? '' : 'TimeOnly');
+  static const KnownType DateTimeOffset =
+      KnownType._(202, _omitEnumNames ? '' : 'DateTimeOffset');
+  static const KnownType TimeSpan =
+      KnownType._(203, _omitEnumNames ? '' : 'TimeSpan');
+  static const KnownType Array =
+      KnownType._(300, _omitEnumNames ? '' : 'Array');
+  static const KnownType Map = KnownType._(301, _omitEnumNames ? '' : 'Map');
+  static const KnownType Query =
+      KnownType._(1000, _omitEnumNames ? '' : 'Query');
+  static const KnownType Command =
+      KnownType._(1001, _omitEnumNames ? '' : 'Command');
+  static const KnownType CommandResult =
+      KnownType._(1002, _omitEnumNames ? '' : 'CommandResult');
+  static const KnownType Operation =
+      KnownType._(1003, _omitEnumNames ? '' : 'Operation');
+  static const KnownType Binary =
+      KnownType._(1004, _omitEnumNames ? '' : 'Binary');
+  static const KnownType Attribute =
+      KnownType._(1100, _omitEnumNames ? '' : 'Attribute');
+  static const KnownType AuthorizeWhenAttribute =
+      KnownType._(1101, _omitEnumNames ? '' : 'AuthorizeWhenAttribute');
+  static const KnownType AuthorizeWhenHasAnyOfAttribute =
+      KnownType._(1102, _omitEnumNames ? '' : 'AuthorizeWhenHasAnyOfAttribute');
+  static const KnownType QueryCacheAttribute =
+      KnownType._(1103, _omitEnumNames ? '' : 'QueryCacheAttribute');
 
   static const $core.List<KnownType> values = <KnownType>[
     Object_,
@@ -200,3 +110,5 @@ class KnownType extends $pb.ProtobufEnum {
 
   const KnownType._($core.int v, $core.String n) : super(v, n);
 }
+
+const _omitEnumNames = $core.bool.fromEnvironment('protobuf.omit_enum_names');
