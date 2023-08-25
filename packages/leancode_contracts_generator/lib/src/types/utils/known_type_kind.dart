@@ -7,8 +7,8 @@ enum KnownTypeKind {
   /// require special serde
   complex,
 
-  /// cqrs-related interfaces
-  cqrs,
+  /// types related to the protocol
+  protocol,
 
   /// attributes
   attribute;
@@ -43,7 +43,8 @@ enum KnownTypeKind {
       case KnownType.Command:
       case KnownType.Operation:
       case KnownType.CommandResult:
-        return KnownTypeKind.cqrs;
+      case KnownType.Topic:
+        return KnownTypeKind.protocol;
       case KnownType.Attribute:
       case KnownType.AuthorizeWhenAttribute:
       case KnownType.AuthorizeWhenHasAnyOfAttribute:

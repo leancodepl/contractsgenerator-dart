@@ -15,8 +15,8 @@ class DtoHandler extends StatementHandler {
     return createBase(statement).rebuild((b) {
       final typeDescriptor = statement.dto.typeDescriptor;
 
-      // make it abstract if it extends a cqrs type
-      b.abstract = typeDescriptor.extends_1.any(db.isCqrs);
+      // make it abstract if it extends a protocol type
+      b.abstract = typeDescriptor.extends_1.any(db.isProtocol);
 
       if (b.abstract) {
         b

@@ -136,13 +136,13 @@ void main() {
           ],
         );
 
-        expect(db.isCqrs(cqrsType), true);
-        expect(db.isCqrs(typeRefOf('extending')), true);
-        expect(db.isCqrs(typeRefOf('secondIndirection')), true);
-        expect(db.isCqrs(typeRefOf('thirdIndirection')), true);
-        expect(db.isCqrs(differentKnownTypeKind), false);
-        expect(db.isCqrs(genericType), false);
-        expect(db.isCqrs(typeRefOf('nonCqrsStatement')), false);
+        expect(db.isProtocol(cqrsType), true);
+        expect(db.isProtocol(typeRefOf('extending')), true);
+        expect(db.isProtocol(typeRefOf('secondIndirection')), true);
+        expect(db.isProtocol(typeRefOf('thirdIndirection')), true);
+        expect(db.isProtocol(differentKnownTypeKind), false);
+        expect(db.isProtocol(genericType), false);
+        expect(db.isProtocol(typeRefOf('nonCqrsStatement')), false);
       });
     });
 

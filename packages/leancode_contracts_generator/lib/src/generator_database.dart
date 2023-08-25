@@ -104,13 +104,13 @@ class GeneratorDatabase {
   }
 
   final _isKindCache = {
-    KnownTypeKind.cqrs: HashSet<String>(),
+    KnownTypeKind.protocol: HashSet<String>(),
     KnownTypeKind.attribute: HashSet<String>(),
   };
 
-  /// Deep check for whether this type is/extends a CQRS/Attribute type
+  /// Deep check for whether this type is/extends a protocol type
   bool _isKind(TypeRef typeRef, KnownTypeKind kind) {
-    assert(kind == KnownTypeKind.cqrs || kind == KnownTypeKind.attribute);
+    assert(kind == KnownTypeKind.protocol || kind == KnownTypeKind.attribute);
 
     if (typeRef.hasKnown()) {
       return KnownTypeKind.fromKnownType(typeRef.known.type) == kind;
@@ -134,9 +134,9 @@ class GeneratorDatabase {
     return _isKindCache[kind]!.contains(name);
   }
 
-  /// Deep check for whether this type is/extends a CQRS type
-  bool isCqrs(TypeRef typeRef) {
-    return _isKind(typeRef, KnownTypeKind.cqrs);
+  /// Deep check for whether this type is/extends a protocol type
+  bool isProtocol(TypeRef typeRef) {
+    return _isKind(typeRef, KnownTypeKind.protocol);
   }
 
   /// Deep check for whether this statement is/extends an Attribute type
