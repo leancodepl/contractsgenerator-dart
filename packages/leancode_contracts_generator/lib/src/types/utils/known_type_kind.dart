@@ -47,7 +47,6 @@ enum KnownTypeKind {
       case KnownType.Attribute:
       case KnownType.AuthorizeWhenAttribute:
       case KnownType.AuthorizeWhenHasAnyOfAttribute:
-      case KnownType.QueryCacheAttribute:
         return KnownTypeKind.attribute;
     }
 

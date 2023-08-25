@@ -67,7 +67,6 @@ class KnownTypeHandler extends TypeHandler {
         return 'CommandResult';
       case KnownType.AuthorizeWhenAttribute:
       case KnownType.AuthorizeWhenHasAnyOfAttribute:
-      case KnownType.QueryCacheAttribute:
       case KnownType.Attribute:
         throw UnimplementedError(
           'There is a missing mapping for the type $knownType',
