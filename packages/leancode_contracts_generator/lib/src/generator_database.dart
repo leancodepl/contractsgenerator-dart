@@ -176,35 +176,36 @@ class GeneratorDatabase {
   }
 
   TypeRef _resolveType(TypeRef type, Map<String, TypeRef> generics) {
-    if (type.hasGeneric()) {
-      final arg = generics[type.generic.name];
-      if (arg == null) {
-        return type;
-      }
+    switch (type.whichType()) {
+      case TypeRef_Type.generic:
+        final arg = generics[type.generic.name];
+        if (arg == null) {
+          return type;
+        }
 
-      return (arg..freeze()).rebuild((arg) {
-        arg.nullable = type.nullable || arg.nullable;
-      });
-    } else if (type.hasInternal()) {
-      return TypeRef(
-        nullable: type.nullable,
-        internal: TypeRef_Internal(
-          name: type.internal.name,
-          arguments: type.internal.arguments
-              .map((type) => _resolveType(type, generics)),
-        ),
-      );
-    } else if (type.hasKnown()) {
-      return TypeRef(
-        nullable: type.nullable,
-        known: TypeRef_Known(
-          type: type.known.type,
-          arguments:
-              type.known.arguments.map((type) => _resolveType(type, generics)),
-        ),
-      );
-    } else {
-      throw StateError('Unhandled TypeRef type');
+        return (arg..freeze()).rebuild((arg) {
+          arg.nullable = type.nullable || arg.nullable;
+        });
+      case TypeRef_Type.internal:
+        return TypeRef(
+          nullable: type.nullable,
+          internal: TypeRef_Internal(
+            name: type.internal.name,
+            arguments: type.internal.arguments
+                .map((type) => _resolveType(type, generics)),
+          ),
+        );
+      case TypeRef_Type.known:
+        return TypeRef(
+          nullable: type.nullable,
+          known: TypeRef_Known(
+            type: type.known.type,
+            arguments: type.known.arguments
+                .map((type) => _resolveType(type, generics)),
+          ),
+        );
+      case TypeRef_Type.notSet:
+        throw UnimplementedError('Unhandled TypeRef type');
     }
   }
 
