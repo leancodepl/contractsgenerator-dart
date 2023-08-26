@@ -21,28 +21,37 @@ void main() {
 
   group('final contract compilation', () {
     final generatorScripts = [
-      GeneratorScript.project([p.join(inDir, 'project/single/single.csproj')]),
-      GeneratorScript.project([
-        p.join(inDir, 'project/aggregated/Combined/Combined.csproj'),
-      ]),
-      GeneratorScript.project([
-        p.join(inDir, 'project/aggregated/A/A.csproj'),
-        p.join(inDir, 'project/aggregated/B/B.csproj'),
-      ]),
+      for (final file in Directory(p.join(inDir, 'attributes')).listFiles())
+        GeneratorScript.path([file.path]),
+      for (final file in Directory(p.join(inDir, 'notifications')).listFiles())
+        GeneratorScript.path([file.path]),
+      // FIXME: Binary as Map key not working yet
+      // for (final file in Directory(p.join(inDir, 'properties')).listFiles())
+      //   GeneratorScript.path([file.path]),
       for (final file in Directory(p.join(inDir, 'simple')).listSync())
         GeneratorScript.path([file.path]),
+      for (final file
+          in Directory(p.join(inDir, 'supported_use_cases')).listFiles())
+        GeneratorScript.path([file.path]),
+      for (final file
+          in Directory(p.join(inDir, 'supported_use_cases', 'leanpipe'))
+              .listFiles())
+        GeneratorScript.path([file.path]),
+      GeneratorScript.path(
+        ['**/*.cs'],
+        exclude: ['**/Dto.cs'],
+        directory: p.join(inDir, 'project/globs'),
+      ),
+      // FIXME: figure out why csproj files have now version 9.9.9.9-internal
+      // GeneratorScript.project([
+      //   p.join(inDir, 'project/aggregated/Combined/Combined.csproj'),
+      // ]),
+      // GeneratorScript.project([
+      //   p.join(inDir, 'project/aggregated/A/A.csproj'),
+      //   p.join(inDir, 'project/aggregated/B/B.csproj'),
+      //   p.join(inDir, 'project/aggregated/B/B.csproj'),
+      // ]),
       GeneratorScript.path(['example/ExampleContracts/**']),
-      GeneratorScript.path([p.join(inDir, 'properties/composite_types.cs')]),
-      GeneratorScript.path([p.join(inDir, 'properties/known_types.cs')]),
-      GeneratorScript.path([
-        p.join(inDir, 'supported_use_cases/exclusions.cs'),
-      ]),
-      GeneratorScript.path([
-        p.join(inDir, 'supported_use_cases/same_names.cs'),
-      ]),
-      GeneratorScript.path([
-        p.join(inDir, 'supported_use_cases/shared_error_codes.cs'),
-      ]),
     ];
 
     for (final generatorScript in generatorScripts) {
@@ -68,8 +77,19 @@ void main() {
 
         final result = await Process.run('dart', ['run', mainPath]);
 
+        if (result.exitCode != 0) {
+          stderr
+            ..writeln('\nFailed to compile generated contracts:')
+            ..writeln(
+              File(p.join(outDir, 'contracts.dart')).readAsStringSync(),
+            );
+        }
         expect(result.exitCode, 0);
       });
     }
   });
+}
+
+extension on Directory {
+  Iterable<File> listFiles() => listSync().whereType<File>();
 }

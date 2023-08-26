@@ -8,6 +8,7 @@ import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
 import 'package:json_serializable/builder.dart';
 import 'package:leancode_contracts_generator/src/statements/operation_handler.dart';
+import 'package:leancode_contracts_generator/src/statements/topic_handler.dart';
 import 'package:leancode_contracts_generator/src/utils/memory_asset_writer.dart';
 import 'package:leancode_contracts_generator/src/utils/verbose_log.dart';
 import 'package:path/path.dart' as p;
@@ -124,6 +125,18 @@ class ContractsGenerator {
                 Code(config.directives),
                 Code("part '${config.name}.g.dart';"),
                 Code('\n\n${config.extra}\n\n'),
+                // FIXME: reference real interface
+                const Code('''
+abstract interface class Topic<N extends Object> {
+  N? castNotification(String fullName, dynamic json);
+
+  String getFullName();
+
+  Map<String, dynamic> toJson();
+
+  Topic<N> fromJson(Map<String, dynamic> json);
+}
+'''),
                 ...body,
               ])
               ..directives.addAll([
