@@ -132,6 +132,7 @@ abstract class StatementHandler {
           ...statement.attributes.map(attributeCreator.create),
         ])
         ..implements.addAll(
+          // FIXME: implement notification types
           typeDescriptor.extends_1
               // exclude extends that won't be included anyways
               .where(

@@ -63,6 +63,8 @@ class KnownTypeHandler extends TypeHandler {
         return 'Command';
       case KnownType.Operation:
         return 'Operation';
+      case KnownType.Topic:
+        return 'Topic';
       case KnownType.CommandResult:
         return 'CommandResult';
       case KnownType.AuthorizeWhenAttribute:

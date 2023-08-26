@@ -74,6 +74,7 @@ class KnownResultFactoryHandler extends ResultFactoryHandler {
       case KnownType.Query:
       case KnownType.Command:
       case KnownType.Operation:
+      case KnownType.Topic:
       case KnownType.AuthorizeWhenAttribute:
       case KnownType.AuthorizeWhenHasAnyOfAttribute:
       case KnownType.Attribute:

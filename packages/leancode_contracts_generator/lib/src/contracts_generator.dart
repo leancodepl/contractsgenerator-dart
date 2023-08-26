@@ -90,6 +90,13 @@ class ContractsGenerator {
         jsonConverters,
         db,
       ),
+      TopicHandler(
+        typeCreator,
+        valueCreator,
+        attributeCreator,
+        jsonConverters,
+        db,
+      ),
       EnumHandler(
         typeCreator,
         valueCreator,
