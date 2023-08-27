@@ -48,15 +48,15 @@ class GeneratorDatabase {
   Statement? find(String namespacedName) => _statements[namespacedName];
 
   final _resolveCache = HashMap<String, String>();
-  late final _names = statements
-      .where((e) => shouldInclude(e.name))
-      .map((e) => MapEntry(e.name, e.name.split(namespaceSeparator)));
+  late final _names = statements.where((e) => shouldInclude(e.name)).map(
+        (e) => (fullName: e.name, namespace: e.name.split(namespaceSeparator)),
+      );
 
   /// Returns the shortest name that has no name conflicts
   String resolveName(String namespacedName) {
-    if (_resolveCache.containsKey(namespacedName)) {
-      return _resolveCache[namespacedName]!;
-    } else if (!_names.any((e) => e.key == namespacedName)) {
+    if (_resolveCache[namespacedName] case final resolved?) {
+      return resolved;
+    } else if (!_names.any((e) => e.fullName == namespacedName)) {
       throw ContractsGeneratorException(
         'Tried to use a statement that is not included in the `include` config field: $namespacedName\n'
         'Consider adding ${RegExp.escape(namespacedName)} to `include` or moving this statement to an included namespace.',
@@ -64,18 +64,20 @@ class GeneratorDatabase {
     }
 
     final top = namespacedName.split(namespaceSeparator).last;
-    final conflicting = _names.where((e) => e.value.last == top).toList();
+    final conflicting = _names.where((e) => e.namespace.last == top).toList();
 
     if (conflicting.length == 1) {
-      return _resolveCache[conflicting.first.key] = top;
+      return _resolveCache[conflicting.first.fullName] = top;
     }
 
     for (var i = 2; conflicting.isNotEmpty; i++) {
       final curr = conflicting
           .map(
-            (e) => MapEntry(
-              e.key,
-              e.value.getRange(e.value.length - i, e.value.length).join(),
+            (e) => (
+              fullName: e.fullName,
+              name: e.namespace
+                  .getRange(e.namespace.length - i, e.namespace.length)
+                  .join(),
             ),
           )
           .toList();
@@ -83,19 +85,19 @@ class GeneratorDatabase {
       for (final name in curr) {
         var isSafe = true;
         for (final other in curr) {
-          if (name.key == other.key) {
+          if (name.fullName == other.fullName) {
             continue;
           }
 
-          if (name.value == other.value) {
+          if (name.name == other.name) {
             isSafe = false;
             break;
           }
         }
 
         if (isSafe) {
-          _resolveCache[name.key] = name.value;
-          conflicting.removeWhere((e) => e.key == name.key);
+          _resolveCache[name.fullName] = name.name;
+          conflicting.removeWhere((e) => e.fullName == name.fullName);
         }
       }
     }
@@ -152,24 +154,23 @@ class GeneratorDatabase {
   /// Follows the extension tree to retrieve all properties of the given statement.
   /// Performs monomorphization.
   List<PropertyRef> allPropertiesOf(Statement statement) {
-    if (_allPropsCache.containsKey(statement.name)) {
-      return _allPropsCache[statement.name]!;
+    if (_allPropsCache[statement.name] case final props?) {
+      return props;
     }
 
-    final resolvedGenerics = typeDescriptorOf(statement)
-            ?.genericParameters
-            .fold<Map<String, TypeRef>>(
-          {},
-          (acc, curr) => {
-            ...acc,
-            // initially, generics should resolve to a generic
-            curr.name: TypeRef(
-              generic: TypeRef_Generic(name: curr.name),
-              nullable: false,
-            ),
-          },
-        ) ??
-        {};
+    final resolvedGenerics =
+        typeDescriptorOf(statement)?.genericParameters.fold(
+              <String, TypeRef>{},
+              (acc, curr) => {
+                ...acc,
+                // initially, generics should resolve to a generic
+                curr.name: TypeRef(
+                  generic: TypeRef_Generic(name: curr.name),
+                  nullable: false,
+                ),
+              },
+            ) ??
+            {};
 
     return _allPropsCache[statement.name] =
         _allPropertiesOfAux(statement, resolvedGenerics);

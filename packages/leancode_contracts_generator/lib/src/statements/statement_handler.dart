@@ -33,14 +33,15 @@ abstract class StatementHandler {
 
   @protected
   Class createBase(Statement statement, {bool requiredParameters = false}) {
-    assert(
-      typeDescriptorOf(statement) != null,
-      'createBase should be used with statements that have a typeDescriptor',
-    );
+    final typeDescriptor = typeDescriptorOf(statement);
+    if (typeDescriptor == null) {
+      throw StateError(
+        'createBase should be used with statements that have a typeDescriptor',
+      );
+    }
     assert(canHandle(statement));
 
     final name = renameType(db.resolveName(statement.name));
-    final typeDescriptor = typeDescriptorOf(statement)!;
     final properties = db.allPropertiesOf(statement);
 
     final parameters = properties
