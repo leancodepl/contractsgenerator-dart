@@ -47,10 +47,49 @@ class GeneratorDatabase {
   /// Finds a statement by the fully qualified name
   Statement? find(String namespacedName) => _statements[namespacedName];
 
+  late final _implementingNotifications = statements
+      .where((e) => shouldInclude(e.name) && e.hasTopic())
+      .fold(<String, List<String>>{}, (acc, curr) {
+    for (final notification in curr.topic.notifications) {
+      // notifications need to be of kind internal
+      (acc[notification.type.ensureInternal().name] ??= [])
+          .add(resolveName(syntheticTopicNotificationFullName(curr)));
+    }
+    return acc;
+  });
+
+  /// Returns a list of notification names that a statement implements
+  List<String> getImplementingNotifications(String namespacedName) {
+    return _implementingNotifications[namespacedName] ?? [];
+  }
+
   final _resolveCache = HashMap<String, String>();
-  late final _names = statements.where((e) => shouldInclude(e.name)).map(
-        (e) => (fullName: e.name, namespace: e.name.split(namespaceSeparator)),
+  late final _names = statements.where((e) => shouldInclude(e.name)).expand(
+        (e) => [
+          // attach synthetic notification types
+          if (e.hasTopic())
+            switch (syntheticTopicNotificationFullName(e)) {
+              final fullName => (
+                  fullName: fullName,
+                  namespace: fullName.split(namespaceSeparator)
+                )
+            },
+          (fullName: e.name, namespace: e.name.split(namespaceSeparator)),
+        ],
       );
+
+  /// Returns the name of the synthetic notification type
+  String syntheticTopicNotificationFullName(Statement topic) {
+    assert(topic.hasTopic());
+
+    var candidate = '${topic.name}Notification';
+    while (find(candidate) != null) {
+      // ignore: use_string_buffers, we need the allocated string to call `find`, string buffer would be slow
+      candidate += '_';
+    }
+
+    return candidate;
+  }
 
   /// Returns the shortest name that has no name conflicts
   String resolveName(String namespacedName) {

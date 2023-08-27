@@ -64,6 +64,7 @@ class KnownTypeHandler extends TypeHandler {
       case KnownType.Operation:
         return 'Operation';
       case KnownType.Topic:
+        // FIXME: topics are generic over the notification type
         return 'Topic';
       case KnownType.CommandResult:
         return 'CommandResult';

@@ -80,6 +80,7 @@ void main() {
         if (result.exitCode != 0) {
           stderr
             ..writeln('\nFailed to compile generated contracts:')
+            ..writeln(result.stderr)
             ..writeln(
               File(p.join(outDir, 'contracts.dart')).readAsStringSync(),
             );

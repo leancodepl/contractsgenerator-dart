@@ -133,13 +133,15 @@ abstract class StatementHandler {
           ...statement.attributes.map(attributeCreator.create),
         ])
         ..implements.addAll(
-          // FIXME: implement notification types
           typeDescriptor.extends_1
               // exclude extends that won't be included anyways
               .where(
                 (e) => !e.hasInternal() || db.shouldInclude(e.internal.name),
               )
               .map(typeCreator.create),
+        )
+        ..implements.addAll(
+          db.getImplementingNotifications(statement.name).map(refer),
         )
         ..mixins.add(refer('EquatableMixin'));
     });

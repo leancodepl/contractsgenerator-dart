@@ -29,34 +29,47 @@ class TopicHandler extends StatementHandler {
   Spec build(Statement statement) {
     final base = createBase(statement, requiredParameters: true);
 
-    // FIXME: notification type
-    const notificationTypeName = 'Object';
+    final notificationTypeName =
+        db.resolveName(db.syntheticTopicNotificationFullName(statement));
 
-    return base.rebuild(
+    return Library(
       (b) => b
-        ..implements.removeWhere(
-          (e) => e.symbol == KnownTypeHandler.toDartType(KnownType.Topic),
-        )
-        // FIXME: implement real topic type
-        ..implements.add(refer('Topic<$notificationTypeName>'))
-        ..methods.addAll(
+        ..body.addAll(
           [
-            _castNotification(statement.topic, notificationTypeName),
-            Method(
+            base.rebuild(
               (b) => b
-                ..name = 'fromJson'
-                ..lambda = true
-                ..returns = refer(base.name)
-                ..requiredParameters.addAll([
-                  Parameter(
-                    (b) => b
-                      ..name = 'json'
-                      ..type = refer('Map<String, dynamic>'),
-                  ),
-                ])
-                ..body = Code('${base.name}.fromJson(json)'),
+                ..implements.removeWhere(
+                  (e) =>
+                      e.symbol == KnownTypeHandler.toDartType(KnownType.Topic),
+                )
+                // FIXME: implement real topic type
+                ..implements.add(refer('Topic<$notificationTypeName>'))
+                ..methods.addAll(
+                  [
+                    _castNotification(statement.topic, notificationTypeName),
+                    Method(
+                      (b) => b
+                        ..name = 'fromJson'
+                        ..lambda = true
+                        ..returns = refer(base.name)
+                        ..requiredParameters.addAll([
+                          Parameter(
+                            (b) => b
+                              ..name = 'json'
+                              ..type = refer('Map<String, dynamic>'),
+                          ),
+                        ])
+                        ..body = Code('${base.name}.fromJson(json)'),
+                    ),
+                    getFullNameMethod(statement),
+                  ],
+                ),
             ),
-            getFullNameMethod(statement),
+            Class(
+              (b) => b
+                ..sealed = true
+                ..name = notificationTypeName,
+            ),
           ],
         ),
     );
@@ -86,7 +99,9 @@ class TopicHandler extends StatementHandler {
               ..type = refer('dynamic'),
           ),
         ])
-        ..body = Code('switch(fullName) {${cases()}}'),
+        ..body = Code(
+          'switch(fullName) {${cases()}} as $notificationTypeName?',
+        ),
     );
   }
 
