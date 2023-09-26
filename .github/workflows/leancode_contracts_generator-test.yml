@@ -19,7 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        dart_sdk: ["3.0.7", "3.1.0"]
+        dart_sdk: ["3.1.2"]
 
     runs-on: ubuntu-latest
 
