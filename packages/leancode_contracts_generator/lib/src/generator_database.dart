@@ -83,6 +83,7 @@ class GeneratorDatabase {
     assert(topic.hasTopic());
 
     var candidate = '${topic.name}Notification';
+    // FIXME: does not take into account other synthetically created notification types
     while (find(candidate) != null) {
       // ignore: use_string_buffers, we need the allocated string to call `find`, string buffer would be slow
       candidate += '_';

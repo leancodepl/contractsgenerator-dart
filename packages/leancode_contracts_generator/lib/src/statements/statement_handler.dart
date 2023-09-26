@@ -1,4 +1,5 @@
 import 'package:code_builder/code_builder.dart';
+import 'package:collection/collection.dart';
 import 'package:leancode_contracts_generator/src/utils/rename_type.dart';
 import 'package:meta/meta.dart';
 import 'package:source_helper/source_helper.dart';
@@ -137,6 +138,17 @@ abstract class StatementHandler {
               // exclude extends that won't be included anyways
               .where(
                 (e) => !e.hasInternal() || db.shouldInclude(e.internal.name),
+              )
+              // edge case: implementing the topic type does not mean anything since we
+              // don't know what are the notification types
+              .whereNot((e) => e.hasKnown() && e.known.type == KnownType.Topic)
+              // edge case: we need to forfeit implementation of other topics. This can
+              // lead to implementing the Topic interface multiple times for different
+              // notification types. Dart will not allow that.
+              .whereNot(
+                (e) =>
+                    e.hasInternal() &&
+                    (db.find(e.internal.name)?.hasTopic() ?? false),
               )
               .map(typeCreator.create),
         )

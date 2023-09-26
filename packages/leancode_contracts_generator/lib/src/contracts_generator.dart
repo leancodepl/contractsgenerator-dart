@@ -128,7 +128,7 @@ class ContractsGenerator {
                 // FIXME: reference real interface
                 const Code('''
 abstract interface class Topic<N extends Object> {
-  N? castNotification(String fullName, dynamic json);
+  N? castNotification(String tag, dynamic json);
 
   String getFullName();
 

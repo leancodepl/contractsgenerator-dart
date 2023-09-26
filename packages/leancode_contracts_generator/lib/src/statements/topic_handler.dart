@@ -38,12 +38,11 @@ class TopicHandler extends StatementHandler {
           [
             base.rebuild(
               (b) => b
-                ..implements.removeWhere(
-                  (e) =>
-                      e.symbol == KnownTypeHandler.toDartType(KnownType.Topic),
+                ..implements.add(
+                  refer(
+                    '${KnownTypeHandler.toDartType(KnownType.Topic)}<$notificationTypeName>',
+                  ),
                 )
-                // FIXME: implement real topic type
-                ..implements.add(refer('Topic<$notificationTypeName>'))
                 ..methods.addAll(
                   [
                     _castNotification(statement.topic, notificationTypeName),
@@ -76,11 +75,11 @@ class TopicHandler extends StatementHandler {
   }
 
   Method _castNotification(Statement_Topic topic, String notificationTypeName) {
-    String cases() => [
-          for (final notification in topic.notifications)
-            '${literalString(notification.tag)} => ${resultFactoryCreator.createBody(notification.type, 'json')}',
-          '_ => null',
-        ].join(',');
+    final cases = [
+      for (final notification in topic.notifications)
+        '${literalString(notification.tag)} => ${resultFactoryCreator.createBody(notification.type, 'json')}',
+      '_ => null',
+    ].join(',');
 
     return Method(
       (b) => b
@@ -90,7 +89,7 @@ class TopicHandler extends StatementHandler {
         ..requiredParameters.addAll([
           Parameter(
             (b) => b
-              ..name = 'fullName'
+              ..name = 'tag'
               ..type = refer('String'),
           ),
           Parameter(
@@ -100,7 +99,7 @@ class TopicHandler extends StatementHandler {
           ),
         ])
         ..body = Code(
-          'switch(fullName) {${cases()}} as $notificationTypeName?',
+          'switch(tag) {$cases} as $notificationTypeName?',
         ),
     );
   }
