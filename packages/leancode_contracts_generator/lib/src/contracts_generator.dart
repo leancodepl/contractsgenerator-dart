@@ -166,7 +166,7 @@ class ContractsGenerator {
     final env = IOEnvironment(packageGraph);
     final writer = MemoryAssetWriter();
 
-    final res = AnalyzerResolvers();
+    final res = AnalyzerResolvers.sharedInstance;
 
     await runBuilder(js, [f], env.reader, writer, res);
 
