@@ -17,7 +17,7 @@ class OperationHandler extends StatementHandler {
   ) : resultFactoryCreator = ResultFactoryCreator(
           [
             InternalResultFactoryHandler(db),
-            KnownResultFactoryHandler(jsonConverters)
+            KnownResultFactoryHandler(jsonConverters),
           ],
           typeCreator,
         );

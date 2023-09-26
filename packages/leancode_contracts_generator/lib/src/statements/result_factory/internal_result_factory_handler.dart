@@ -28,14 +28,14 @@ class InternalResultFactoryHandler extends ResultFactoryHandler {
         for (final member in statement.enum_11.members)
           '${member.value}: $name.${renameField(member.name)},',
         '}[$paramName as int]',
-        if (!typeRef.nullable) '!'
+        if (!typeRef.nullable) '!',
       ].join();
     }
 
     final fromJsonParams = [
       '$paramName as Map<String, dynamic>',
       for (final generic in typeRef.internal.arguments)
-        '(e) => ${ResultFactoryHandler.buildFrom(generic, handlers, 'e')}'
+        '(e) => ${ResultFactoryHandler.buildFrom(generic, handlers, 'e')}',
     ].join(',');
 
     return '${ifNullablePrefix(typeRef, paramName)}_\$${name}FromJson($fromJsonParams)';

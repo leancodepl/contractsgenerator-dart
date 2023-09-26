@@ -101,7 +101,7 @@ class ContractsGenerator {
     final body = [
       for (final statement in db.statements)
         if (db.shouldInclude(statement.name) && !db.isAttribute(statement))
-          statementCreator.create(statement)
+          statementCreator.create(statement),
     ];
 
     // TODO: knownGroups?
@@ -166,7 +166,7 @@ class ContractsGenerator {
     final env = IOEnvironment(packageGraph);
     final writer = MemoryAssetWriter();
 
-    final res = AnalyzerResolvers();
+    final res = AnalyzerResolvers.sharedInstance;
 
     await runBuilder(js, [f], env.reader, writer, res);
 

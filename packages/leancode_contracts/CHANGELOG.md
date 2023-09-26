@@ -1,3 +1,7 @@
+# 0.7.0
+
+- **BREAKING**: Bump Dart SDK to 3.0.0
+
 # 0.6.0
 
 - **BREAKING**: Removed `DateOnly.source`. Use `DateOnly.toDateTimeLocal()` or `DateOnly.toDateTimeUtc()` instead

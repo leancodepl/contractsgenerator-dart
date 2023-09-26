@@ -1,3 +1,8 @@
+# 0.12.0
+
+- **BREAKING**: Bump `package:protobuf` to 3.0.0
+- **BREAKING**: Bump Dart SDK to 3.0.0
+
 # 0.11.0
 
 - **BREAKING**: Bump Dart SDK to 2.19
