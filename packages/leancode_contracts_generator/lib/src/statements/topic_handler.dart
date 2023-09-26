@@ -32,6 +32,8 @@ class TopicHandler extends StatementHandler {
     final notificationTypeName =
         db.resolveName(db.syntheticTopicNotificationFullName(statement));
 
+    db.markAsUsingTopics();
+
     return Library(
       (b) => b
         ..body.addAll(

@@ -125,8 +125,9 @@ class ContractsGenerator {
                 Code(config.directives),
                 Code("part '${config.name}.g.dart';"),
                 Code('\n\n${config.extra}\n\n'),
-                // FIXME: reference real interface
-                const Code('''
+                if (db.usesTopics)
+                  // FIXME: reference real interface
+                  const Code('''
 abstract interface class Topic<N extends Object> {
   N? castNotification(String tag, dynamic json);
 

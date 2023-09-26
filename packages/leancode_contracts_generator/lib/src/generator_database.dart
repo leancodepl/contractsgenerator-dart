@@ -63,6 +63,13 @@ class GeneratorDatabase {
     return _implementingNotifications[namespacedName] ?? [];
   }
 
+  /// Flag to see whether this [GeneratorDatabase] was used to generate a topic.
+  bool get usesTopics => _usesTopics;
+  bool _usesTopics = false;
+
+  /// Taints this [GeneratorDatabase] as being used to generate a topic.
+  void markAsUsingTopics() => _usesTopics = true;
+
   final _resolveCache = HashMap<String, String>();
   late final _names = statements.where((e) => shouldInclude(e.name)).expand(
         (e) => [
