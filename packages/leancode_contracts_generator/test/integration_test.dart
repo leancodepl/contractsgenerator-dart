@@ -42,15 +42,26 @@ void main() {
         exclude: ['**/Dto.cs'],
         directory: p.join(inDir, 'project/globs'),
       ),
-      // FIXME: figure out why csproj files have now version 9.9.9.9-internal
-      // GeneratorScript.project([
-      //   p.join(inDir, 'project/aggregated/Combined/Combined.csproj'),
-      // ]),
-      // GeneratorScript.project([
-      //   p.join(inDir, 'project/aggregated/A/A.csproj'),
-      //   p.join(inDir, 'project/aggregated/B/B.csproj'),
-      //   p.join(inDir, 'project/aggregated/B/B.csproj'),
-      // ]),
+      GeneratorScript.project([
+        p.join(inDir, 'project/implicitusings/implicitusings.csproj'),
+      ]),
+      GeneratorScript.project([
+        p.join(inDir, 'project/packagereference/packagereference.csproj'),
+      ]),
+      GeneratorScript.project([
+        p.join(inDir, 'project/referencetoembedded/referencetoembedded.csproj'),
+      ]),
+      GeneratorScript.project([p.join(inDir, 'project/single/single.csproj')]),
+      GeneratorScript.project([
+        p.join(inDir, 'project/aggregated/A/A.csproj'),
+        p.join(inDir, 'project/aggregated/B/B.csproj'),
+        p.join(inDir, 'project/aggregated/B/B.csproj'),
+      ]),
+      GeneratorScript.project([
+        p.join(inDir, 'project/aggregated/Combined/Combined.csproj'),
+        p.join(inDir, 'project/aggregated/B/B.csproj'),
+        p.join(inDir, 'project/aggregated/B/B.csproj'),
+      ]),
       GeneratorScript.path(['example/ExampleContracts/**']),
     ];
 
