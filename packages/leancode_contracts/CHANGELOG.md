@@ -1,3 +1,7 @@
+# 0.8.0
+
+- **BREAKING**: Bump `package:cqrs` to `10.0.0`
+
 # 0.7.0
 
 - **BREAKING**: Bump Dart SDK to 3.0.0
