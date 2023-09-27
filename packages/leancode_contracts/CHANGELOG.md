@@ -1,3 +1,7 @@
+# 0.8.0
+
+- **BREAKING**: change the `pacakge:cqrs` constraint to `">=9.0.0 <11.0.0"`
+
 # 0.7.0
 
 - **BREAKING**: Bump Dart SDK to 3.0.0
