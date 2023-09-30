@@ -39,12 +39,12 @@ class GeneratorDatabase {
 
   static const namespaceSeparator = '.';
 
-  /// Checks against the config whether a fully qualified item should be included
+  /// Checks against the config whether a fully qualified item should be included.
   bool shouldInclude(String namespacedName) {
     return namespacedName.contains(config.include);
   }
 
-  /// Finds a statement by the fully qualified name
+  /// Finds a statement by the fully qualified name.
   Statement? find(String namespacedName) => _statements[namespacedName];
 
   late final _implementingNotifications = statements
@@ -58,7 +58,7 @@ class GeneratorDatabase {
     return acc;
   });
 
-  /// Returns a list of notification names that a statement implements
+  /// Returns a list of notification names that a statement implements.
   List<String> getImplementingNotifications(String namespacedName) {
     return _implementingNotifications[namespacedName] ?? [];
   }
@@ -85,7 +85,7 @@ class GeneratorDatabase {
         ],
       );
 
-  /// Returns the name of the synthetic notification type
+  /// Returns the name of the synthetic notification type.
   String syntheticTopicNotificationFullName(Statement topic) {
     assert(topic.hasTopic());
 
@@ -98,7 +98,7 @@ class GeneratorDatabase {
     return candidate;
   }
 
-  /// Returns the shortest name that has no name conflicts
+  /// Returns the shortest name that has no name conflicts.
   String resolveName(String namespacedName) {
     if (_resolveCache[namespacedName] case final resolved?) {
       return resolved;
@@ -156,7 +156,7 @@ class GeneratorDatabase {
     KnownTypeKind.attribute: HashSet<String>(),
   };
 
-  /// Deep check for whether this type is/extends a protocol type
+  /// Deep check for whether this type is/extends a protocol/attribute type.
   bool _isKind(TypeRef typeRef, KnownTypeKind kind) {
     assert(kind == KnownTypeKind.protocol || kind == KnownTypeKind.attribute);
 
@@ -182,12 +182,12 @@ class GeneratorDatabase {
     return _isKindCache[kind]!.contains(name);
   }
 
-  /// Deep check for whether this type is/extends a protocol type
+  /// Deep check for whether this type is/extends a protocol type.
   bool isProtocol(TypeRef typeRef) {
     return _isKind(typeRef, KnownTypeKind.protocol);
   }
 
-  /// Deep check for whether this statement is/extends an Attribute type
+  /// Deep check for whether this statement is/extends an Attribute type.
   bool isAttribute(Statement statement) {
     return statement.hasDto() &&
         statement.dto.typeDescriptor.extends_1.any(
@@ -207,19 +207,17 @@ class GeneratorDatabase {
     final resolvedGenerics =
         typeDescriptorOf(statement)?.genericParameters.fold(
               <String, TypeRef>{},
-              (acc, curr) => {
-                ...acc,
-                // initially, generics should resolve to a generic
-                curr.name: TypeRef(
+              // initially, generics should resolve to a generic
+              (acc, curr) => acc
+                ..[curr.name] = TypeRef(
                   generic: TypeRef_Generic(name: curr.name),
                   nullable: false,
                 ),
-              },
             ) ??
             {};
 
     return _allPropsCache[statement.name] =
-        _allPropertiesOfAux(statement, resolvedGenerics);
+        _allPropertiesOfAux(statement, resolvedGenerics).toList();
   }
 
   TypeRef _resolveType(TypeRef type, Map<String, TypeRef> generics) {
@@ -257,8 +255,8 @@ class GeneratorDatabase {
   }
 
   /// Given a statement and a map of resolving generics (for example {'T': List<int>})
-  /// returns all properties of the statement with resolved generics
-  List<PropertyRef> _allPropertiesOfAux(
+  /// returns all properties of the statement with resolved generics.
+  Iterable<PropertyRef> _allPropertiesOfAux(
     Statement statement,
     Map<String, TypeRef> resolvedGenerics,
   ) {
@@ -277,17 +275,14 @@ class GeneratorDatabase {
             return <PropertyRef>[];
           }
 
-          final resolvedGenerics = typeDescriptorOf(statement)
-                  ?.genericParameters
-                  .foldIndexed<Map<String, TypeRef>>(
-                {},
-                (i, acc, curr) => {
-                  ...acc,
-                  // get the concrete type from child's generic argument list
-                  curr.name: internal.arguments[i],
-                },
-              ) ??
-              {};
+          final resolvedGenerics =
+              typeDescriptorOf(statement)?.genericParameters.indexed.fold(
+                    <String, TypeRef>{},
+                    // get the concrete type from child's generic argument list
+                    (acc, curr) =>
+                        acc..[curr.$2.name] = internal.arguments[curr.$1],
+                  ) ??
+                  {};
 
           return _allPropertiesOfAux(statement, resolvedGenerics);
         })
@@ -306,8 +301,7 @@ class GeneratorDatabase {
             comment: property.comment,
             type: _resolveType(property.type, resolvedGenerics),
           ),
-        )
-        .toList();
+        );
 
     return properties;
   }
