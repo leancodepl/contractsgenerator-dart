@@ -7,6 +7,8 @@ void main() {
       expect(renameType('Duration'), 'Duration_');
       expect(renameType('Query'), 'Query_');
       expect(renameType('Command'), 'Command_');
+      expect(renameType('Operation'), 'Operation_');
+      expect(renameType('Topic'), 'Topic_');
       expect(renameType('Object'), 'Object_');
       expect(renameType('await'), 'await');
       expect(renameType('Something'), 'Something');

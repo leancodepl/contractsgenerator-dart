@@ -6,16 +6,22 @@ import 'package:test/test.dart';
 GeneratorDatabase makeDb({
   RegExp? include,
   Set<String> statements = const {},
-  List<Statement>? rawStatements,
+}) =>
+    makeRawDb(
+      include: include,
+      statements: statements.map((e) => Statement(name: e)),
+    );
+
+GeneratorDatabase makeRawDb({
+  RegExp? include,
+  required Iterable<Statement> statements,
 }) =>
     GeneratorDatabase(
       ContractsGeneratorConfig(
         input: GeneratorScript.project([]),
         include: include,
       ),
-      Export(
-        statements: rawStatements ?? statements.map((e) => Statement(name: e)),
-      ),
+      Export(statements: statements),
     );
 
 TypeRef typeRefOf(String name) =>
@@ -45,6 +51,123 @@ void main() {
         expect(db.find('Some.Namespace.More'), isNotNull);
         expect(db.find('Some.Namespace.'), null);
         expect(db.find('.Some.Namespace'), null);
+      });
+    });
+
+    group('usesTopics', () {
+      test('is false by default', () {
+        final db = makeDb();
+
+        expect(db.usesTopics, false);
+      });
+
+      test('markAsUsingTopics turns the flag to true', () {
+        final db = makeDb()..markAsUsingTopics();
+
+        expect(db.usesTopics, true);
+      });
+
+      test('marking as using topics multiple times does nothing extra', () {
+        final db = makeDb()
+          ..markAsUsingTopics()
+          ..markAsUsingTopics()
+          ..markAsUsingTopics();
+
+        expect(db.usesTopics, true);
+      });
+    });
+
+    group('getImplementingNotifications', () {
+      test('collects notification types from various topics', () {
+        final ab = Statement(
+          name: 'A.B',
+          dto: Statement_DTO(),
+        );
+        final bb = Statement(
+          name: 'B.A',
+          dto: Statement_DTO(),
+        );
+        final topic1 = Statement(
+          name: 'Topic1',
+          topic: Statement_Topic(
+            notifications: [
+              NotificationTypeRef(
+                type: TypeRef(internal: TypeRef_Internal(name: 'A.B')),
+              ),
+              NotificationTypeRef(
+                type: TypeRef(internal: TypeRef_Internal(name: 'B.B')),
+              ),
+            ],
+          ),
+        );
+        final topic2 = Statement(
+          name: 'Topic2',
+          topic: Statement_Topic(
+            notifications: [
+              NotificationTypeRef(
+                type: TypeRef(internal: TypeRef_Internal(name: 'B.B')),
+              ),
+            ],
+          ),
+        );
+        final topic3 = Statement(
+          name: 'Topic3',
+          topic: Statement_Topic(
+            notifications: [
+              NotificationTypeRef(
+                type: TypeRef(internal: TypeRef_Internal(name: 'A.B')),
+              ),
+            ],
+          ),
+        );
+
+        final db = makeRawDb(statements: [ab, bb, topic1, topic2, topic3]);
+
+        final notificationTypesAB = db.getImplementingNotifications('A.B');
+        final notificationTypesBB = db.getImplementingNotifications('B.B');
+
+        expect(
+          notificationTypesAB,
+          unorderedEquals(['Topic1Notification', 'Topic3Notification']),
+        );
+        expect(
+          notificationTypesBB,
+          unorderedEquals(['Topic1Notification', 'Topic2Notification']),
+        );
+      });
+    });
+
+    group('syntheticTopicNotificationFullName', () {
+      test('the name is the topic name with a "Notification" suffix', () {
+        final topic = Statement(
+          name: 'A.B.Topic',
+          topic: Statement_Topic(),
+        );
+
+        final db = makeRawDb(statements: [topic]);
+
+        final syntheticName = db.syntheticTopicNotificationFullName(topic);
+        expect(syntheticName, 'A.B.TopicNotification');
+      });
+
+      test('the name is resistant to collisions', () {
+        final dto1 = Statement(
+          name: 'A.B.TopicNotification',
+          dto: Statement_DTO(),
+        );
+        final dto2 = Statement(
+          name: 'A.B.TopicNotification_',
+          dto: Statement_DTO(),
+        );
+        final topic = Statement(
+          name: 'A.B.Topic',
+          topic: Statement_Topic(),
+        );
+
+        final db = makeRawDb(statements: [dto1, dto2, topic]);
+
+        final syntheticName = db.syntheticTopicNotificationFullName(topic);
+        expect(syntheticName, 'A.B.TopicNotification__');
       });
     });
 
@@ -127,8 +250,8 @@ void main() {
           dto: Statement_DTO(),
         );
 
-        final db = makeDb(
-          rawStatements: [
+        final db = makeRawDb(
+          statements: [
             extending,
             secondIndirection,
             thirdIndirection,
@@ -163,8 +286,8 @@ void main() {
           ),
         );
 
-        final db = makeDb(
-          rawStatements: [simple],
+        final db = makeRawDb(
+          statements: [simple],
         );
 
         expect(db.allPropertiesOf(simple), properties);
@@ -212,8 +335,8 @@ void main() {
           ),
         );
 
-        final db = makeDb(
-          rawStatements: [
+        final db = makeRawDb(
+          statements: [
             simple1,
             simple2,
             simple3,
@@ -267,8 +390,8 @@ void main() {
           ),
         );
 
-        final db = makeDb(
-          rawStatements: [
+        final db = makeRawDb(
+          statements: [
             simple1,
             simple2,
             simple3,
@@ -463,7 +586,7 @@ void main() {
           ),
         );
 
-        final db = makeDb(rawStatements: [a, b, c, dto]);
+        final db = makeRawDb(statements: [a, b, c, dto]);
 
         expect(
           db.allPropertiesOf(dto),
