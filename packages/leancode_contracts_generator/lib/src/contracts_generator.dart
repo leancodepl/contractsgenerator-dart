@@ -125,25 +125,14 @@ class ContractsGenerator {
                 Code(config.directives),
                 Code("part '${config.name}.g.dart';"),
                 Code('\n\n${config.extra}\n\n'),
-                if (db.usesTopics)
-                  // FIXME: reference real interface
-                  const Code('''
-abstract interface class Topic<N extends Object> {
-  N? castNotification(String tag, dynamic json);
-
-  String getFullName();
-
-  Map<String, dynamic> toJson();
-
-  Topic<N> fromJson(Map<String, dynamic> json);
-}
-'''),
                 ...body,
               ])
               ..directives.addAll([
                 Directive.import(
                   'package:leancode_contracts/leancode_contracts.dart',
                 ),
+                if (db.usesTopics)
+                  Directive.import('package:leancode_pipe/leancode_pipe.dart'),
               ]),
           ),
         ]),
