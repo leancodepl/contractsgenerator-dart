@@ -62,14 +62,14 @@ class KnownType extends $pb.ProtobufEnum {
       KnownType._(1003, _omitEnumNames ? '' : 'Operation');
   static const KnownType Binary =
       KnownType._(1004, _omitEnumNames ? '' : 'Binary');
+  static const KnownType Topic =
+      KnownType._(1005, _omitEnumNames ? '' : 'Topic');
   static const KnownType Attribute =
       KnownType._(1100, _omitEnumNames ? '' : 'Attribute');
   static const KnownType AuthorizeWhenAttribute =
       KnownType._(1101, _omitEnumNames ? '' : 'AuthorizeWhenAttribute');
   static const KnownType AuthorizeWhenHasAnyOfAttribute =
       KnownType._(1102, _omitEnumNames ? '' : 'AuthorizeWhenHasAnyOfAttribute');
-  static const KnownType QueryCacheAttribute =
-      KnownType._(1103, _omitEnumNames ? '' : 'QueryCacheAttribute');
 
   static const $core.List<KnownType> values = <KnownType>[
     Object_,
@@ -98,10 +98,10 @@ class KnownType extends $pb.ProtobufEnum {
     CommandResult,
     Operation,
     Binary,
+    Topic,
     Attribute,
     AuthorizeWhenAttribute,
     AuthorizeWhenHasAnyOfAttribute,
-    QueryCacheAttribute,
   ];
 
   static final $core.Map<$core.int, KnownType> _byValue =

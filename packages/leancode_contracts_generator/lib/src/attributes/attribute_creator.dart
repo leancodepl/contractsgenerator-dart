@@ -18,12 +18,14 @@ class AttributeCreator {
 
     final params = [
       for (final param in attributeRef.argument)
-        if (param.hasPositional())
-          valueCreator.create(param.positional.value).assignment.toString()
-        else if (param.hasNamed())
-          '${param.named.name}: ${valueCreator.create(param.named.value).assignment}'
-        else
-          throw StateError('Unhandled AttributeRef variant'),
+        switch (param.whichAttribute()) {
+          AttributeArgument_Attribute.positional =>
+            valueCreator.create(param.positional.value).assignment.toString(),
+          AttributeArgument_Attribute.named =>
+            '${param.named.name}: ${valueCreator.create(param.named.value).assignment}',
+          AttributeArgument_Attribute.notSet =>
+            throw UnimplementedError('Unhandled AttributeRef variant'),
+        },
     ];
 
     return '/// ${attributeRef.attributeName}(${params.join(', ')})';

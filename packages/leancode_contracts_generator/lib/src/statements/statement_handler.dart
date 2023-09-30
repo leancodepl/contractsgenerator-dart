@@ -1,4 +1,5 @@
 import 'package:code_builder/code_builder.dart';
+import 'package:collection/collection.dart';
 import 'package:leancode_contracts_generator/src/utils/rename_type.dart';
 import 'package:meta/meta.dart';
 import 'package:source_helper/source_helper.dart';
@@ -33,14 +34,15 @@ abstract class StatementHandler {
 
   @protected
   Class createBase(Statement statement, {bool requiredParameters = false}) {
-    assert(
-      typeDescriptorOf(statement) != null,
-      'createBase should be used with statements that have a typeDescriptor',
-    );
+    final typeDescriptor = typeDescriptorOf(statement);
+    if (typeDescriptor == null) {
+      throw StateError(
+        'createBase should be used with statements that have a typeDescriptor',
+      );
+    }
     assert(canHandle(statement));
 
     final name = renameType(db.resolveName(statement.name));
-    final typeDescriptor = typeDescriptorOf(statement)!;
     final properties = db.allPropertiesOf(statement);
 
     final parameters = properties
@@ -137,7 +139,21 @@ abstract class StatementHandler {
               .where(
                 (e) => !e.hasInternal() || db.shouldInclude(e.internal.name),
               )
+              // edge case: implementing the topic type does not mean anything since we
+              // don't know what are the notification types
+              .whereNot((e) => e.hasKnown() && e.known.type == KnownType.Topic)
+              // edge case: we need to forfeit implementation of other topics. This can
+              // lead to implementing the Topic interface multiple times for different
+              // notification types. Dart will not allow that.
+              .whereNot(
+                (e) =>
+                    e.hasInternal() &&
+                    (db.find(e.internal.name)?.hasTopic() ?? false),
+              )
               .map(typeCreator.create),
+        )
+        ..implements.addAll(
+          db.getImplementingNotifications(statement.name).map(refer),
         )
         ..mixins.add(refer('EquatableMixin'));
     });

@@ -809,6 +809,87 @@ class TypeRef extends $pb.GeneratedMessage {
   TypeRef_Known ensureKnown() => $_ensure(3);
 }
 
+class NotificationTypeRef extends $pb.GeneratedMessage {
+  factory NotificationTypeRef({
+    TypeRef? type,
+    $core.String? tag,
+  }) {
+    final $result = create();
+    if (type != null) {
+      $result.type = type;
+    }
+    if (tag != null) {
+      $result.tag = tag;
+    }
+    return $result;
+  }
+  NotificationTypeRef._() : super();
+  factory NotificationTypeRef.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory NotificationTypeRef.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'NotificationTypeRef',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..aOM<TypeRef>(1, _omitFieldNames ? '' : 'type', subBuilder: TypeRef.create)
+    ..aOS(2, _omitFieldNames ? '' : 'tag')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  NotificationTypeRef clone() => NotificationTypeRef()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  NotificationTypeRef copyWith(void Function(NotificationTypeRef) updates) =>
+      super.copyWith((message) => updates(message as NotificationTypeRef))
+          as NotificationTypeRef;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static NotificationTypeRef create() => NotificationTypeRef._();
+  NotificationTypeRef createEmptyInstance() => create();
+  static $pb.PbList<NotificationTypeRef> createRepeated() =>
+      $pb.PbList<NotificationTypeRef>();
+  @$core.pragma('dart2js:noInline')
+  static NotificationTypeRef getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<NotificationTypeRef>(create);
+  static NotificationTypeRef? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  TypeRef get type => $_getN(0);
+  @$pb.TagNumber(1)
+  set type(TypeRef v) {
+    setField(1, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasType() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearType() => clearField(1);
+  @$pb.TagNumber(1)
+  TypeRef ensureType() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $core.String get tag => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set tag($core.String v) {
+    $_setString(1, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasTag() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearTag() => clearField(2);
+}
+
 class GenericParameter extends $pb.GeneratedMessage {
   factory GenericParameter({
     $core.String? name,
@@ -2227,7 +2308,90 @@ class Statement_Operation extends $pb.GeneratedMessage {
   TypeRef ensureReturnType() => $_ensure(1);
 }
 
-enum Statement_Content { dto, enum_11, query, command, operation, notSet }
+class Statement_Topic extends $pb.GeneratedMessage {
+  factory Statement_Topic({
+    TypeDescriptor? typeDescriptor,
+    $core.Iterable<NotificationTypeRef>? notifications,
+  }) {
+    final $result = create();
+    if (typeDescriptor != null) {
+      $result.typeDescriptor = typeDescriptor;
+    }
+    if (notifications != null) {
+      $result.notifications.addAll(notifications);
+    }
+    return $result;
+  }
+  Statement_Topic._() : super();
+  factory Statement_Topic.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory Statement_Topic.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'Statement.Topic',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
+      createEmptyInstance: create)
+    ..aOM<TypeDescriptor>(1, _omitFieldNames ? '' : 'typeDescriptor',
+        protoName: 'typeDescriptor', subBuilder: TypeDescriptor.create)
+    ..pc<NotificationTypeRef>(
+        2, _omitFieldNames ? '' : 'notifications', $pb.PbFieldType.PM,
+        subBuilder: NotificationTypeRef.create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  Statement_Topic clone() => Statement_Topic()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  Statement_Topic copyWith(void Function(Statement_Topic) updates) =>
+      super.copyWith((message) => updates(message as Statement_Topic))
+          as Statement_Topic;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static Statement_Topic create() => Statement_Topic._();
+  Statement_Topic createEmptyInstance() => create();
+  static $pb.PbList<Statement_Topic> createRepeated() =>
+      $pb.PbList<Statement_Topic>();
+  @$core.pragma('dart2js:noInline')
+  static Statement_Topic getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<Statement_Topic>(create);
+  static Statement_Topic? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  TypeDescriptor get typeDescriptor => $_getN(0);
+  @$pb.TagNumber(1)
+  set typeDescriptor(TypeDescriptor v) {
+    setField(1, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasTypeDescriptor() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTypeDescriptor() => clearField(1);
+  @$pb.TagNumber(1)
+  TypeDescriptor ensureTypeDescriptor() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $core.List<NotificationTypeRef> get notifications => $_getList(1);
+}
+
+enum Statement_Content {
+  dto,
+  enum_11,
+  query,
+  command,
+  operation,
+  topic,
+  notSet
+}
 
 class Statement extends $pb.GeneratedMessage {
   factory Statement({
@@ -2239,6 +2403,7 @@ class Statement extends $pb.GeneratedMessage {
     Statement_Query? query,
     Statement_Command? command,
     Statement_Operation? operation,
+    Statement_Topic? topic,
   }) {
     final $result = create();
     if (name != null) {
@@ -2265,6 +2430,9 @@ class Statement extends $pb.GeneratedMessage {
     if (operation != null) {
       $result.operation = operation;
     }
+    if (topic != null) {
+      $result.topic = topic;
+    }
     return $result;
   }
   Statement._() : super();
@@ -2282,6 +2450,7 @@ class Statement extends $pb.GeneratedMessage {
     12: Statement_Content.query,
     13: Statement_Content.command,
     14: Statement_Content.operation,
+    15: Statement_Content.topic,
     0: Statement_Content.notSet
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
@@ -2289,7 +2458,7 @@ class Statement extends $pb.GeneratedMessage {
       package:
           const $pb.PackageName(_omitMessageNames ? '' : 'leancode.contracts'),
       createEmptyInstance: create)
-    ..oo(0, [10, 11, 12, 13, 14])
+    ..oo(0, [10, 11, 12, 13, 14, 15])
     ..aOS(1, _omitFieldNames ? '' : 'name')
     ..aOS(2, _omitFieldNames ? '' : 'comment')
     ..pc<AttributeRef>(
@@ -2305,6 +2474,8 @@ class Statement extends $pb.GeneratedMessage {
         subBuilder: Statement_Command.create)
     ..aOM<Statement_Operation>(14, _omitFieldNames ? '' : 'operation',
         subBuilder: Statement_Operation.create)
+    ..aOM<Statement_Topic>(15, _omitFieldNames ? '' : 'topic',
+        subBuilder: Statement_Topic.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -2427,6 +2598,20 @@ class Statement extends $pb.GeneratedMessage {
   void clearOperation() => clearField(14);
   @$pb.TagNumber(14)
   Statement_Operation ensureOperation() => $_ensure(7);
+
+  @$pb.TagNumber(15)
+  Statement_Topic get topic => $_getN(8);
+  @$pb.TagNumber(15)
+  set topic(Statement_Topic v) {
+    setField(15, v);
+  }
+
+  @$pb.TagNumber(15)
+  $core.bool hasTopic() => $_has(8);
+  @$pb.TagNumber(15)
+  void clearTopic() => clearField(15);
+  @$pb.TagNumber(15)
+  Statement_Topic ensureTopic() => $_ensure(8);
 }
 
 class Export extends $pb.GeneratedMessage {

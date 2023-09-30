@@ -74,9 +74,9 @@ class KnownResultFactoryHandler extends ResultFactoryHandler {
       case KnownType.Query:
       case KnownType.Command:
       case KnownType.Operation:
+      case KnownType.Topic:
       case KnownType.AuthorizeWhenAttribute:
       case KnownType.AuthorizeWhenHasAnyOfAttribute:
-      case KnownType.QueryCacheAttribute:
       case KnownType.Attribute:
         throw UnimplementedError(
           'Cannot generate a resultFactory for ${known.type}',

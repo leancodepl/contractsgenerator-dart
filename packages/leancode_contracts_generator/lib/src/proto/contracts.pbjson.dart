@@ -43,10 +43,10 @@ const KnownType$json = {
     {'1': 'CommandResult', '2': 1002},
     {'1': 'Operation', '2': 1003},
     {'1': 'Binary', '2': 1004},
+    {'1': 'Topic', '2': 1005},
     {'1': 'Attribute', '2': 1100},
     {'1': 'AuthorizeWhenAttribute', '2': 1101},
     {'1': 'AuthorizeWhenHasAnyOfAttribute', '2': 1102},
-    {'1': 'QueryCacheAttribute', '2': 1103},
   ],
 };
 
@@ -58,9 +58,8 @@ final $typed_data.Uint8List knownTypeDescriptor = $convert.base64Decode(
     'MyEJYBEgwKB0Zsb2F0NjQQlwESDQoIRGF0ZU9ubHkQyAESDQoIVGltZU9ubHkQyQESEwoORGF0'
     'ZVRpbWVPZmZzZXQQygESDQoIVGltZVNwYW4QywESCgoFQXJyYXkQrAISCAoDTWFwEK0CEgoKBV'
     'F1ZXJ5EOgHEgwKB0NvbW1hbmQQ6QcSEgoNQ29tbWFuZFJlc3VsdBDqBxIOCglPcGVyYXRpb24Q'
-    '6wcSCwoGQmluYXJ5EOwHEg4KCUF0dHJpYnV0ZRDMCBIbChZBdXRob3JpemVXaGVuQXR0cmlidX'
-    'RlEM0IEiMKHkF1dGhvcml6ZVdoZW5IYXNBbnlPZkF0dHJpYnV0ZRDOCBIYChNRdWVyeUNhY2hl'
-    'QXR0cmlidXRlEM8I');
+    '6wcSCwoGQmluYXJ5EOwHEgoKBVRvcGljEO0HEg4KCUF0dHJpYnV0ZRDMCBIbChZBdXRob3Jpem'
+    'VXaGVuQXR0cmlidXRlEM0IEiMKHkF1dGhvcml6ZVdoZW5IYXNBbnlPZkF0dHJpYnV0ZRDOCA==');
 
 @$core.Deprecated('Use valueRefDescriptor instead')
 const ValueRef$json = {
@@ -271,6 +270,27 @@ final $typed_data.Uint8List typeRefDescriptor = $convert.base64Decode(
     'VHlwZVJlZlIJYXJndW1lbnRzGnUKBUtub3duEjEKBHR5cGUYASABKA4yHS5sZWFuY29kZS5jb2'
     '50cmFjdHMuS25vd25UeXBlUgR0eXBlEjkKCWFyZ3VtZW50cxgCIAMoCzIbLmxlYW5jb2RlLmNv'
     'bnRyYWN0cy5UeXBlUmVmUglhcmd1bWVudHNCBgoEdHlwZQ==');
+
+@$core.Deprecated('Use notificationTypeRefDescriptor instead')
+const NotificationTypeRef$json = {
+  '1': 'NotificationTypeRef',
+  '2': [
+    {
+      '1': 'type',
+      '3': 1,
+      '4': 1,
+      '5': 11,
+      '6': '.leancode.contracts.TypeRef',
+      '10': 'type'
+    },
+    {'1': 'tag', '3': 2, '4': 1, '5': 9, '10': 'tag'},
+  ],
+};
+
+/// Descriptor for `NotificationTypeRef`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List notificationTypeRefDescriptor = $convert.base64Decode(
+    'ChNOb3RpZmljYXRpb25UeXBlUmVmEi8KBHR5cGUYASABKAsyGy5sZWFuY29kZS5jb250cmFjdH'
+    'MuVHlwZVJlZlIEdHlwZRIQCgN0YWcYAiABKAlSA3RhZw==');
 
 @$core.Deprecated('Use genericParameterDescriptor instead')
 const GenericParameter$json = {
@@ -626,13 +646,23 @@ const Statement$json = {
       '9': 0,
       '10': 'operation'
     },
+    {
+      '1': 'topic',
+      '3': 15,
+      '4': 1,
+      '5': 11,
+      '6': '.leancode.contracts.Statement.Topic',
+      '9': 0,
+      '10': 'topic'
+    },
   ],
   '3': [
     Statement_DTO$json,
     Statement_Enum$json,
     Statement_Query$json,
     Statement_Command$json,
-    Statement_Operation$json
+    Statement_Operation$json,
+    Statement_Topic$json
   ],
   '8': [
     {'1': 'content'},
@@ -738,6 +768,29 @@ const Statement_Operation$json = {
   ],
 };
 
+@$core.Deprecated('Use statementDescriptor instead')
+const Statement_Topic$json = {
+  '1': 'Topic',
+  '2': [
+    {
+      '1': 'typeDescriptor',
+      '3': 1,
+      '4': 1,
+      '5': 11,
+      '6': '.leancode.contracts.TypeDescriptor',
+      '10': 'typeDescriptor'
+    },
+    {
+      '1': 'notifications',
+      '3': 2,
+      '4': 3,
+      '5': 11,
+      '6': '.leancode.contracts.NotificationTypeRef',
+      '10': 'notifications'
+    },
+  ],
+};
+
 /// Descriptor for `Statement`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List statementDescriptor = $convert.base64Decode(
     'CglTdGF0ZW1lbnQSEgoEbmFtZRgBIAEoCVIEbmFtZRIYCgdjb21tZW50GAIgASgJUgdjb21tZW'
@@ -747,18 +800,22 @@ final $typed_data.Uint8List statementDescriptor = $convert.base64Decode(
     'dC5FbnVtSABSBGVudW0SOwoFcXVlcnkYDCABKAsyIy5sZWFuY29kZS5jb250cmFjdHMuU3RhdG'
     'VtZW50LlF1ZXJ5SABSBXF1ZXJ5EkEKB2NvbW1hbmQYDSABKAsyJS5sZWFuY29kZS5jb250cmFj'
     'dHMuU3RhdGVtZW50LkNvbW1hbmRIAFIHY29tbWFuZBJHCglvcGVyYXRpb24YDiABKAsyJy5sZW'
-    'FuY29kZS5jb250cmFjdHMuU3RhdGVtZW50Lk9wZXJhdGlvbkgAUglvcGVyYXRpb24aUQoDRFRP'
-    'EkoKDnR5cGVEZXNjcmlwdG9yGAEgASgLMiIubGVhbmNvZGUuY29udHJhY3RzLlR5cGVEZXNjcm'
-    'lwdG9yUg50eXBlRGVzY3JpcHRvcho/CgRFbnVtEjcKB21lbWJlcnMYASADKAsyHS5sZWFuY29k'
-    'ZS5jb250cmFjdHMuRW51bVZhbHVlUgdtZW1iZXJzGpABCgVRdWVyeRJKCg50eXBlRGVzY3JpcH'
-    'RvchgBIAEoCzIiLmxlYW5jb2RlLmNvbnRyYWN0cy5UeXBlRGVzY3JpcHRvclIOdHlwZURlc2Ny'
-    'aXB0b3ISOwoKcmV0dXJuVHlwZRgCIAEoCzIbLmxlYW5jb2RlLmNvbnRyYWN0cy5UeXBlUmVmUg'
-    'pyZXR1cm5UeXBlGpQBCgdDb21tYW5kEkoKDnR5cGVEZXNjcmlwdG9yGAEgASgLMiIubGVhbmNv'
-    'ZGUuY29udHJhY3RzLlR5cGVEZXNjcmlwdG9yUg50eXBlRGVzY3JpcHRvchI9CgplcnJvckNvZG'
-    'VzGAIgAygLMh0ubGVhbmNvZGUuY29udHJhY3RzLkVycm9yQ29kZVIKZXJyb3JDb2RlcxqUAQoJ'
-    'T3BlcmF0aW9uEkoKDnR5cGVEZXNjcmlwdG9yGAEgASgLMiIubGVhbmNvZGUuY29udHJhY3RzLl'
-    'R5cGVEZXNjcmlwdG9yUg50eXBlRGVzY3JpcHRvchI7CgpyZXR1cm5UeXBlGAIgASgLMhsubGVh'
-    'bmNvZGUuY29udHJhY3RzLlR5cGVSZWZSCnJldHVyblR5cGVCCQoHY29udGVudA==');
+    'FuY29kZS5jb250cmFjdHMuU3RhdGVtZW50Lk9wZXJhdGlvbkgAUglvcGVyYXRpb24SOwoFdG9w'
+    'aWMYDyABKAsyIy5sZWFuY29kZS5jb250cmFjdHMuU3RhdGVtZW50LlRvcGljSABSBXRvcGljGl'
+    'EKA0RUTxJKCg50eXBlRGVzY3JpcHRvchgBIAEoCzIiLmxlYW5jb2RlLmNvbnRyYWN0cy5UeXBl'
+    'RGVzY3JpcHRvclIOdHlwZURlc2NyaXB0b3IaPwoERW51bRI3CgdtZW1iZXJzGAEgAygLMh0ubG'
+    'VhbmNvZGUuY29udHJhY3RzLkVudW1WYWx1ZVIHbWVtYmVycxqQAQoFUXVlcnkSSgoOdHlwZURl'
+    'c2NyaXB0b3IYASABKAsyIi5sZWFuY29kZS5jb250cmFjdHMuVHlwZURlc2NyaXB0b3JSDnR5cG'
+    'VEZXNjcmlwdG9yEjsKCnJldHVyblR5cGUYAiABKAsyGy5sZWFuY29kZS5jb250cmFjdHMuVHlw'
+    'ZVJlZlIKcmV0dXJuVHlwZRqUAQoHQ29tbWFuZBJKCg50eXBlRGVzY3JpcHRvchgBIAEoCzIiLm'
+    'xlYW5jb2RlLmNvbnRyYWN0cy5UeXBlRGVzY3JpcHRvclIOdHlwZURlc2NyaXB0b3ISPQoKZXJy'
+    'b3JDb2RlcxgCIAMoCzIdLmxlYW5jb2RlLmNvbnRyYWN0cy5FcnJvckNvZGVSCmVycm9yQ29kZX'
+    'MalAEKCU9wZXJhdGlvbhJKCg50eXBlRGVzY3JpcHRvchgBIAEoCzIiLmxlYW5jb2RlLmNvbnRy'
+    'YWN0cy5UeXBlRGVzY3JpcHRvclIOdHlwZURlc2NyaXB0b3ISOwoKcmV0dXJuVHlwZRgCIAEoCz'
+    'IbLmxlYW5jb2RlLmNvbnRyYWN0cy5UeXBlUmVmUgpyZXR1cm5UeXBlGqIBCgVUb3BpYxJKCg50'
+    'eXBlRGVzY3JpcHRvchgBIAEoCzIiLmxlYW5jb2RlLmNvbnRyYWN0cy5UeXBlRGVzY3JpcHRvcl'
+    'IOdHlwZURlc2NyaXB0b3ISTQoNbm90aWZpY2F0aW9ucxgCIAMoCzInLmxlYW5jb2RlLmNvbnRy'
+    'YWN0cy5Ob3RpZmljYXRpb25UeXBlUmVmUg1ub3RpZmljYXRpb25zQgkKB2NvbnRlbnQ=');
 
 @$core.Deprecated('Use exportDescriptor instead')
 const Export$json = {

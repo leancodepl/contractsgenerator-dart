@@ -24,13 +24,17 @@ class ResultFactoryCreator {
               ..type = refer('dynamic'),
           ),
         )
-        ..body = Code(
-          ResultFactoryHandler.buildFrom(
-            typeRef,
-            handlers,
-            paramName,
-          ),
-        ),
+        ..body = createBody(typeRef, paramName),
+    );
+  }
+
+  Code createBody(TypeRef typeRef, String paramName) {
+    return Code(
+      ResultFactoryHandler.buildFrom(
+        typeRef,
+        handlers,
+        paramName,
+      ),
     );
   }
 }

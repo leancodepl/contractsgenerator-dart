@@ -9,6 +9,12 @@
 dart pub add leancode_contracts_generator --dev
 ```
 
+If your contracts use `Topic`s additionally install `leancode_pipe`:
+
+```sh
+dart pub add leancode_pipe
+```
+
 ## Usage
 
 First run will take longer due to the need to download external dependencies.

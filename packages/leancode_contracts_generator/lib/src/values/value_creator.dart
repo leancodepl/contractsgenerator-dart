@@ -6,27 +6,18 @@ class ValueCreator {
   const ValueCreator();
 
   Field create(ValueRef valueRef) {
-    String type;
-    String value;
-
-    if (valueRef.hasNull_1()) {
-      type = 'Null';
-      value = 'null';
-    } else if (valueRef.hasNumber()) {
-      type = 'int';
-      value = valueRef.number.value.toString();
-    } else if (valueRef.hasFloatingPoint()) {
-      type = 'double';
-      value = valueRef.floatingPoint.value.toString();
-    } else if (valueRef.hasString()) {
-      type = 'String';
-      value = "'${valueRef.string.value}'";
-    } else if (valueRef.hasBool_5()) {
-      type = 'bool';
-      value = valueRef.bool_5.value.toString();
-    } else {
-      throw UnimplementedError('Missing handler of value $valueRef');
-    }
+    final (type, value) = switch (valueRef.whichValue()) {
+      ValueRef_Value.null_1 => ('Null', 'null'),
+      ValueRef_Value.number => ('int', valueRef.number.value.toString()),
+      ValueRef_Value.floatingPoint => (
+          'double',
+          valueRef.floatingPoint.value.toString()
+        ),
+      ValueRef_Value.string => ('String', "'${valueRef.string.value}'"),
+      ValueRef_Value.bool_5 => ('bool', valueRef.bool_5.value.toString()),
+      ValueRef_Value.notSet =>
+        throw UnimplementedError('Missing handler of value $valueRef'),
+    };
 
     return Field(
       (b) => b
