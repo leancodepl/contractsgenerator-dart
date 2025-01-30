@@ -134,9 +134,11 @@ class AllUsers with EquatableMixin implements PaginatedQuery<UserInfoDTO> {
   List<Object?> get props => [pageNumber, pageSize];
 
   Map<String, dynamic> toJson() => _$AllUsersToJson(this);
+
   PaginatedResult<UserInfoDTO> resultFactory(dynamic decodedJson) =>
       _$PaginatedResultFromJson(decodedJson as Map<String, dynamic>,
           (e) => _$UserInfoDTOFromJson(e as Map<String, dynamic>));
+
   String getFullName() =>
       'LeanCode.ContractsGeneratorV2.ExampleContracts.Users.AllUsers';
 }
@@ -173,6 +175,7 @@ class EditUser with EquatableMixin implements Command, ISomethingRelated {
       [somethingId, userId, list, array, dictionary, userInfo];
 
   Map<String, dynamic> toJson() => _$EditUserToJson(this);
+
   String getFullName() =>
       'LeanCode.ContractsGeneratorV2.ExampleContracts.Users.EditUser';
 }
@@ -212,9 +215,11 @@ class UserById with EquatableMixin implements Query<UserInfoDTO?> {
   List<Object?> get props => [];
 
   Map<String, dynamic> toJson() => _$UserByIdToJson(this);
+
   UserInfoDTO? resultFactory(dynamic decodedJson) => decodedJson == null
       ? null
       : _$UserInfoDTOFromJson(decodedJson as Map<String, dynamic>);
+
   String getFullName() =>
       'LeanCode.ContractsGeneratorV2.ExampleContracts.Users.UserById';
 }
@@ -257,7 +262,9 @@ class UserSomething with EquatableMixin implements Query<int?> {
   List<Object?> get props => [];
 
   Map<String, dynamic> toJson() => _$UserSomethingToJson(this);
+
   int? resultFactory(dynamic decodedJson) => decodedJson as int?;
+
   String getFullName() =>
       'LeanCode.ContractsGeneratorV2.ExampleContracts.Users.UserSomething';
 }
