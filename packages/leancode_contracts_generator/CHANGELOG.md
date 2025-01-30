@@ -1,3 +1,8 @@
+# 0.13.0
+
+- Support `LeanCode.ContractsGenerator` `v3.0.0-alpha.2`
+  - Support `leancode_pipe`
+
 # 0.12.0
 
 - **BREAKING**: Bump `package:protobuf` to 3.0.0
