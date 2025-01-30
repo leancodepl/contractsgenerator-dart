@@ -254,7 +254,7 @@ class GeneratorDatabase {
     }
   }
 
-  /// Given a statement and a map of resolving generics (for example {'T': List<int>})
+  /// Given a statement and a map of resolving generics (for example `{'T': List<int>}`)
   /// returns all properties of the statement with resolved generics.
   Iterable<PropertyRef> _allPropertiesOfAux(
     Statement statement,

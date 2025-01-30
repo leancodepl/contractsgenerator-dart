@@ -13,4 +13,4 @@ dependencies:
     path: ..
   leancode_pipe: ^1.0.0
 dev_dependencies:
-  leancode_lint: ^6.0.0
+  leancode_lint: ^14.3.0
