@@ -1,6 +1,6 @@
 # 0.13.0
 
-- Support `LeanCode.ContractsGenerator` `v3.0.0-alpha.2`
+- Support `LeanCode.ContractsGenerator` `v3.0.0`
   - Support `leancode_pipe`
 
 # 0.12.0
