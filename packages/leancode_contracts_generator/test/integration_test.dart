@@ -26,7 +26,8 @@ void main() {
       for (final file in Directory(p.join(inDir, 'notifications')).listFiles())
         GeneratorScript.path([file.path]),
       for (final file in Directory(p.join(inDir, 'properties')).listFiles())
-        // TODO: Binary as Map key not working yet
+        // Binary as Map key not working yet
+        // See: https://github.com/google/json_serializable.dart/issues/1393
         if (!file.path.endsWith('binary.cs')) GeneratorScript.path([file.path]),
       for (final file in Directory(p.join(inDir, 'simple')).listSync())
         GeneratorScript.path([file.path]),
