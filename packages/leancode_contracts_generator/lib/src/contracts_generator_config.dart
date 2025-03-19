@@ -1,4 +1,4 @@
-// Many deserialization code relies on dynamic values
+// Much deserialization code relies on dynamic values
 // ignore_for_file: avoid_dynamic_calls
 
 import 'dart:io';
