@@ -51,7 +51,7 @@ class GeneratorDatabase {
       .where((e) => shouldInclude(e.name) && e.hasTopic())
       .fold(<String, List<String>>{}, (acc, curr) {
     for (final notification in curr.topic.notifications) {
-      // notifications need to be of kind internal
+      // notifications need to be of internal access
       (acc[notification.type.ensureInternal().name] ??= [])
           .add(resolveName(syntheticTopicNotificationFullName(curr)));
     }
