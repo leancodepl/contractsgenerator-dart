@@ -39,24 +39,70 @@ class GeneratorDatabase {
 
   static const namespaceSeparator = '.';
 
-  /// Checks against the config whether a fully qualified item should be included
+  /// Checks against the config whether a fully qualified item should be included.
   bool shouldInclude(String namespacedName) {
     return namespacedName.contains(config.include);
   }
 
-  /// Finds a statement by the fully qualified name
+  /// Finds a statement by the fully qualified name.
   Statement? find(String namespacedName) => _statements[namespacedName];
 
-  final _resolveCache = HashMap<String, String>();
-  late final _names = statements
-      .where((e) => shouldInclude(e.name))
-      .map((e) => MapEntry(e.name, e.name.split(namespaceSeparator)));
+  late final _implementingNotifications = statements
+      .where((e) => shouldInclude(e.name) && e.hasTopic())
+      .fold(<String, List<String>>{}, (acc, curr) {
+    for (final notification in curr.topic.notifications) {
+      // notifications need to be of internal access
+      (acc[notification.type.ensureInternal().name] ??= [])
+          .add(resolveName(syntheticTopicNotificationFullName(curr)));
+    }
+    return acc;
+  });
 
-  /// Returns the shortest name that has no name conflicts
+  /// Returns a list of notification names that a statement implements.
+  List<String> getImplementingNotifications(String namespacedName) {
+    return _implementingNotifications[namespacedName] ?? [];
+  }
+
+  /// Flag to see whether this [GeneratorDatabase] was used to generate a topic.
+  bool get usesTopics => _usesTopics;
+  bool _usesTopics = false;
+
+  /// Taints this [GeneratorDatabase] as being used to generate a topic.
+  void markAsUsingTopics() => _usesTopics = true;
+
+  final _resolveCache = HashMap<String, String>();
+  late final _names = statements.where((e) => shouldInclude(e.name)).expand(
+        (e) => [
+          // attach synthetic notification types
+          if (e.hasTopic())
+            switch (syntheticTopicNotificationFullName(e)) {
+              final fullName => (
+                  fullName: fullName,
+                  namespace: fullName.split(namespaceSeparator)
+                )
+            },
+          (fullName: e.name, namespace: e.name.split(namespaceSeparator)),
+        ],
+      );
+
+  /// Returns the name of the synthetic notification type.
+  String syntheticTopicNotificationFullName(Statement topic) {
+    assert(topic.hasTopic());
+
+    var candidate = '${topic.name}Notification';
+    while (find(candidate) != null) {
+      // ignore: use_string_buffers, we need the allocated string to call `find`, string buffer would be slow
+      candidate += '_';
+    }
+
+    return candidate;
+  }
+
+  /// Returns the shortest name that has no name conflicts.
   String resolveName(String namespacedName) {
-    if (_resolveCache.containsKey(namespacedName)) {
-      return _resolveCache[namespacedName]!;
-    } else if (!_names.any((e) => e.key == namespacedName)) {
+    if (_resolveCache[namespacedName] case final resolved?) {
+      return resolved;
+    } else if (!_names.any((e) => e.fullName == namespacedName)) {
       throw ContractsGeneratorException(
         'Tried to use a statement that is not included in the `include` config field: $namespacedName\n'
         'Consider adding ${RegExp.escape(namespacedName)} to `include` or moving this statement to an included namespace.',
@@ -64,18 +110,20 @@ class GeneratorDatabase {
     }
 
     final top = namespacedName.split(namespaceSeparator).last;
-    final conflicting = _names.where((e) => e.value.last == top).toList();
+    final conflicting = _names.where((e) => e.namespace.last == top).toList();
 
     if (conflicting.length == 1) {
-      return _resolveCache[conflicting.first.key] = top;
+      return _resolveCache[conflicting.first.fullName] = top;
     }
 
     for (var i = 2; conflicting.isNotEmpty; i++) {
       final curr = conflicting
           .map(
-            (e) => MapEntry(
-              e.key,
-              e.value.getRange(e.value.length - i, e.value.length).join(),
+            (e) => (
+              fullName: e.fullName,
+              name: e.namespace
+                  .getRange(e.namespace.length - i, e.namespace.length)
+                  .join(),
             ),
           )
           .toList();
@@ -83,19 +131,19 @@ class GeneratorDatabase {
       for (final name in curr) {
         var isSafe = true;
         for (final other in curr) {
-          if (name.key == other.key) {
+          if (name.fullName == other.fullName) {
             continue;
           }
 
-          if (name.value == other.value) {
+          if (name.name == other.name) {
             isSafe = false;
             break;
           }
         }
 
         if (isSafe) {
-          _resolveCache[name.key] = name.value;
-          conflicting.removeWhere((e) => e.key == name.key);
+          _resolveCache[name.fullName] = name.name;
+          conflicting.removeWhere((e) => e.fullName == name.fullName);
         }
       }
     }
@@ -104,13 +152,13 @@ class GeneratorDatabase {
   }
 
   final _isKindCache = {
-    KnownTypeKind.cqrs: HashSet<String>(),
+    KnownTypeKind.protocol: HashSet<String>(),
     KnownTypeKind.attribute: HashSet<String>(),
   };
 
-  /// Deep check for whether this type is/extends a CQRS/Attribute type
+  /// Deep check for whether this type is/extends a protocol/attribute type.
   bool _isKind(TypeRef typeRef, KnownTypeKind kind) {
-    assert(kind == KnownTypeKind.cqrs || kind == KnownTypeKind.attribute);
+    assert(kind == KnownTypeKind.protocol || kind == KnownTypeKind.attribute);
 
     if (typeRef.hasKnown()) {
       return KnownTypeKind.fromKnownType(typeRef.known.type) == kind;
@@ -134,12 +182,12 @@ class GeneratorDatabase {
     return _isKindCache[kind]!.contains(name);
   }
 
-  /// Deep check for whether this type is/extends a CQRS type
-  bool isCqrs(TypeRef typeRef) {
-    return _isKind(typeRef, KnownTypeKind.cqrs);
+  /// Deep check for whether this type is/extends a protocol type.
+  bool isProtocol(TypeRef typeRef) {
+    return _isKind(typeRef, KnownTypeKind.protocol);
   }
 
-  /// Deep check for whether this statement is/extends an Attribute type
+  /// Deep check for whether this statement is/extends an Attribute type.
   bool isAttribute(Statement statement) {
     return statement.hasDto() &&
         statement.dto.typeDescriptor.extends_1.any(
@@ -152,65 +200,63 @@ class GeneratorDatabase {
   /// Follows the extension tree to retrieve all properties of the given statement.
   /// Performs monomorphization.
   List<PropertyRef> allPropertiesOf(Statement statement) {
-    if (_allPropsCache.containsKey(statement.name)) {
-      return _allPropsCache[statement.name]!;
+    if (_allPropsCache[statement.name] case final props?) {
+      return props;
     }
 
-    final resolvedGenerics = typeDescriptorOf(statement)
-            ?.genericParameters
-            .fold<Map<String, TypeRef>>(
-          {},
-          (acc, curr) => {
-            ...acc,
-            // initially, generics should resolve to a generic
-            curr.name: TypeRef(
-              generic: TypeRef_Generic(name: curr.name),
-              nullable: false,
-            ),
-          },
-        ) ??
-        {};
+    final resolvedGenerics =
+        typeDescriptorOf(statement)?.genericParameters.fold(
+              <String, TypeRef>{},
+              // initially, generics should resolve to a generic
+              (acc, curr) => acc
+                ..[curr.name] = TypeRef(
+                  generic: TypeRef_Generic(name: curr.name),
+                  nullable: false,
+                ),
+            ) ??
+            {};
 
     return _allPropsCache[statement.name] =
-        _allPropertiesOfAux(statement, resolvedGenerics);
+        _allPropertiesOfAux(statement, resolvedGenerics).toList();
   }
 
   TypeRef _resolveType(TypeRef type, Map<String, TypeRef> generics) {
-    if (type.hasGeneric()) {
-      final arg = generics[type.generic.name];
-      if (arg == null) {
-        return type;
-      }
+    switch (type.whichType()) {
+      case TypeRef_Type.generic:
+        final arg = generics[type.generic.name];
+        if (arg == null) {
+          return type;
+        }
 
-      return (arg..freeze()).rebuild((arg) {
-        arg.nullable = type.nullable || arg.nullable;
-      });
-    } else if (type.hasInternal()) {
-      return TypeRef(
-        nullable: type.nullable,
-        internal: TypeRef_Internal(
-          name: type.internal.name,
-          arguments: type.internal.arguments
-              .map((type) => _resolveType(type, generics)),
-        ),
-      );
-    } else if (type.hasKnown()) {
-      return TypeRef(
-        nullable: type.nullable,
-        known: TypeRef_Known(
-          type: type.known.type,
-          arguments:
-              type.known.arguments.map((type) => _resolveType(type, generics)),
-        ),
-      );
-    } else {
-      throw StateError('Unhandled TypeRef type');
+        return (arg..freeze()).rebuild((arg) {
+          arg.nullable = type.nullable || arg.nullable;
+        });
+      case TypeRef_Type.internal:
+        return TypeRef(
+          nullable: type.nullable,
+          internal: TypeRef_Internal(
+            name: type.internal.name,
+            arguments: type.internal.arguments
+                .map((type) => _resolveType(type, generics)),
+          ),
+        );
+      case TypeRef_Type.known:
+        return TypeRef(
+          nullable: type.nullable,
+          known: TypeRef_Known(
+            type: type.known.type,
+            arguments: type.known.arguments
+                .map((type) => _resolveType(type, generics)),
+          ),
+        );
+      case TypeRef_Type.notSet:
+        throw UnimplementedError('Unhandled TypeRef type');
     }
   }
 
-  /// Given a statement and a map of resolving generics (for example {'T': List<int>})
-  /// returns all properties of the statement with resolved generics
-  List<PropertyRef> _allPropertiesOfAux(
+  /// Given a statement and a map of resolving generics (for example `{'T': List<int>}`)
+  /// returns all properties of the statement with resolved generics.
+  Iterable<PropertyRef> _allPropertiesOfAux(
     Statement statement,
     Map<String, TypeRef> resolvedGenerics,
   ) {
@@ -229,17 +275,14 @@ class GeneratorDatabase {
             return <PropertyRef>[];
           }
 
-          final resolvedGenerics = typeDescriptorOf(statement)
-                  ?.genericParameters
-                  .foldIndexed<Map<String, TypeRef>>(
-                {},
-                (i, acc, curr) => {
-                  ...acc,
-                  // get the concrete type from child's generic argument list
-                  curr.name: internal.arguments[i],
-                },
-              ) ??
-              {};
+          final resolvedGenerics =
+              typeDescriptorOf(statement)?.genericParameters.indexed.fold(
+                    <String, TypeRef>{},
+                    // get the concrete type from child's generic argument list
+                    (acc, curr) =>
+                        acc..[curr.$2.name] = internal.arguments[curr.$1],
+                  ) ??
+                  {};
 
           return _allPropertiesOfAux(statement, resolvedGenerics);
         })
@@ -258,8 +301,7 @@ class GeneratorDatabase {
             comment: property.comment,
             type: _resolveType(property.type, resolvedGenerics),
           ),
-        )
-        .toList();
+        );
 
     return properties;
   }

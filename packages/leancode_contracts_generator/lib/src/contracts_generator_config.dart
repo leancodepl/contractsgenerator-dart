@@ -1,3 +1,4 @@
+// Much deserialization code relies on dynamic values
 // ignore_for_file: avoid_dynamic_calls
 
 import 'dart:io';
@@ -145,12 +146,12 @@ extra: ""
     final proj = _configureProject(input);
     final path = _configurePath(input);
 
-    if (!((proj != null) ^ (path != null))) {
-      throw ArgumentError(
-        '`input` has to have exactly one of "project", "path"',
-      );
-    }
-
-    return (proj ?? path)!;
+    return switch ((proj, path)) {
+      (final proj?, null) => proj,
+      (null, final path?) => path,
+      _ => throw ArgumentError(
+          '`input` has to have exactly one of "project", "path"',
+        )
+    };
   }
 }

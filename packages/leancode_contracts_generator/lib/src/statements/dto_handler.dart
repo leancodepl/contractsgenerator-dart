@@ -15,8 +15,8 @@ class DtoHandler extends StatementHandler {
     return createBase(statement).rebuild((b) {
       final typeDescriptor = statement.dto.typeDescriptor;
 
-      // make it abstract if it extends a cqrs type
-      b.abstract = typeDescriptor.extends_1.any(db.isCqrs);
+      // make it abstract if it extends a protocol type
+      b.abstract = typeDescriptor.extends_1.any(db.isProtocol);
 
       if (b.abstract) {
         b
@@ -25,7 +25,10 @@ class DtoHandler extends StatementHandler {
           ..constructors.removeWhere((e) => e.name == 'fromJson');
       }
 
-      // remove serde from generic DTOs
+      // Remove serde from generic DTOs. This is done because the
+      // toJson method has a signature that depends on the amount
+      // of type parameters of this DTO. This means this will break
+      // inheritance. Something like `class A extends B<T> {}`
       if (typeDescriptor.genericParameters.isNotEmpty) {
         b.methods.clear();
       }
