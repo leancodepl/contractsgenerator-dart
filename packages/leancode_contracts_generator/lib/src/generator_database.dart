@@ -65,7 +65,7 @@ class GeneratorDatabase {
 
   /// Flag to see whether this [GeneratorDatabase] was used to generate a topic.
   bool get usesTopics => _usesTopics;
-  bool _usesTopics = false;
+  var _usesTopics = false;
 
   /// Taints this [GeneratorDatabase] as being used to generate a topic.
   void markAsUsingTopics() => _usesTopics = true;

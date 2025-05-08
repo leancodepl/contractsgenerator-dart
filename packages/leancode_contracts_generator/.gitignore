@@ -8,3 +8,8 @@ build/
 pubspec.lock
 
 test/out
+
+# FVM Version Cache
+.fvm/
+
+.idea

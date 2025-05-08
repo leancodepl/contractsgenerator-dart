@@ -1,3 +1,7 @@
+# 0.14.0
+
+- Upgrade dependencies, support analyzer 7.3
+
 # 0.13.0
 
 - Support `LeanCode.ContractsGenerator` `v3.0.0`

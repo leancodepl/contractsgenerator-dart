@@ -11,6 +11,6 @@ dependencies:
     path: ../../leancode_contracts
   leancode_contracts_generator:
     path: ..
-  leancode_pipe: ^1.0.0
+  leancode_pipe: ^2.0.0
 dev_dependencies:
-  leancode_lint: ^14.3.0
+  leancode_lint: ^16.0.0
