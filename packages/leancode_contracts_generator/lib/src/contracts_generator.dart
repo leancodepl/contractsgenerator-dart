@@ -161,7 +161,8 @@ class ContractsGenerator {
     );
     await config.output.create(recursive: true);
     await File(contractsPath).writeAsString(
-      DartFormatter().format(code),
+      DartFormatter(languageVersion: DartFormatter.latestLanguageVersion)
+          .format(code),
     );
     doneWriting();
 
