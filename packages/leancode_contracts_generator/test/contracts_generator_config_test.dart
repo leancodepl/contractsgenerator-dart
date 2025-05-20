@@ -96,18 +96,6 @@ void main() {
           returnsNormally,
         );
       });
-
-      test('correctly parses override_generator_version', () {
-        final configProject = ContractsGeneratorConfig.fromYaml(
-          'input: {project: [foo, bar], override_generator_version: "123"}',
-        );
-        expect(configProject.input.overrideGeneratorVersion, '123');
-
-        final configPath = ContractsGeneratorConfig.fromYaml(
-          'input: {path: {include: [foo, bar]}, override_generator_version: "123"}',
-        );
-        expect(configPath.input.overrideGeneratorVersion, '123');
-      });
     });
 
     group('name field', () {

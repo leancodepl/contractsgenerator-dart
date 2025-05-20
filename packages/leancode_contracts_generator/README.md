@@ -17,6 +17,10 @@ dart pub add leancode_pipe
 
 ## Usage
 
+Ensure that you have .NET SDK installed with version capable of building target contracts project.
+
+The version of .NET generator is controlled using .NET tool manifest (see [example](.config/dotnet-tools.json)), the presence of which is required for .NET generator to be found. If it's missing, one can be created with `dotnet tool install dotnet-contracts-generate --create-manifest-if-needed`.
+
 First run will take longer due to the need to download external dependencies.
 
 ### CLI
