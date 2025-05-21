@@ -1,3 +1,9 @@
+# 0.15.0
+
+- Remove support for `override_generator_version`
+- Invoke .NET generator as a `dotnet tool`
+- Move .NET generator version configuration to .NET tool manifest
+
 # 0.14.0
 
 - Upgrade dependencies, support analyzer 7.3
