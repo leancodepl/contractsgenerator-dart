@@ -13,8 +13,6 @@ input:
   #     - Users/AllUsers.cs
   #   # The base directory used for globbing
   #   directory: ExampleContracts
-  # # Overrides the default backend generator version. Can lead to unexpected outputs.
-  # override_generator_version: "0.1.0-alpha7"
 # Name of the output dart file
 name: contracts
 # Regex to filter-in namespaced statements
