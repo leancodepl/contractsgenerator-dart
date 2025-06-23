@@ -2,7 +2,6 @@ import 'dart:collection';
 
 import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
-import 'package:protobuf/protobuf.dart';
 
 import 'contracts_generator_config.dart';
 import 'contracts_generator_exception.dart';
