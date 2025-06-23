@@ -2,12 +2,13 @@
 //  Generated code. Do not modify.
 //  source: contracts.proto
 //
-// @dart = 2.12
+// @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
-// ignore_for_file: constant_identifier_names, library_prefixes
-// ignore_for_file: non_constant_identifier_names, prefer_final_fields
-// ignore_for_file: unnecessary_import, unnecessary_this, unused_import
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: curly_braces_in_flow_control_structures
+// ignore_for_file: deprecated_member_use_from_same_package, library_prefixes
+// ignore_for_file: non_constant_identifier_names
 
 import 'dart:core' as $core;
 
@@ -49,6 +50,8 @@ class KnownType extends $pb.ProtobufEnum {
       KnownType._(202, _omitEnumNames ? '' : 'DateTimeOffset');
   static const KnownType TimeSpan =
       KnownType._(203, _omitEnumNames ? '' : 'TimeSpan');
+  static const KnownType DateTime =
+      KnownType._(204, _omitEnumNames ? '' : 'DateTime');
   static const KnownType Array =
       KnownType._(300, _omitEnumNames ? '' : 'Array');
   static const KnownType Map = KnownType._(301, _omitEnumNames ? '' : 'Map');
@@ -91,6 +94,7 @@ class KnownType extends $pb.ProtobufEnum {
     TimeOnly,
     DateTimeOffset,
     TimeSpan,
+    DateTime,
     Array,
     Map,
     Query,
@@ -108,7 +112,8 @@ class KnownType extends $pb.ProtobufEnum {
       $pb.ProtobufEnum.initByValue(values);
   static KnownType? valueOf($core.int value) => _byValue[value];
 
-  const KnownType._($core.int v, $core.String n) : super(v, n);
+  const KnownType._(super.value, super.name);
 }
 
-const _omitEnumNames = $core.bool.fromEnvironment('protobuf.omit_enum_names');
+const $core.bool _omitEnumNames =
+    $core.bool.fromEnvironment('protobuf.omit_enum_names');
