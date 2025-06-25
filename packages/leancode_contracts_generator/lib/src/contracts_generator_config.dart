@@ -102,17 +102,25 @@ output: lib/data
 directives: ""
 # Code to be added to the generated contracts file after all directives
 extra: ""
+# Additional flags to be passed into backend generator (allow-datetime etc.)
+options:
+    - allow-datetime
 ''';
 
-  static GeneratorScript? _configureProject(dynamic config) {
+  static GeneratorScript? _configureProject(
+      dynamic config, List<String>? options) {
     if (config['project'] == null) {
       return null;
     }
 
-    return GeneratorScript.project((config['project'] as List).cast<String>());
+    return GeneratorScript.project(
+      (config['project'] as List).cast<String>(),
+      options: options,
+    );
   }
 
-  static GeneratorScript? _configurePath(dynamic config) {
+  static GeneratorScript? _configurePath(
+      dynamic config, List<String>? options) {
     if (config['path'] == null) {
       return null;
     }
@@ -122,6 +130,7 @@ extra: ""
       (values['include'] as List).cast<String>(),
       exclude: (values['exclude'] as List?)?.cast<String>(),
       directory: values['directory'] as String?,
+      options: options,
     );
   }
 
@@ -133,8 +142,10 @@ extra: ""
       );
     }
 
-    final proj = _configureProject(input);
-    final path = _configurePath(input);
+    final options = (config['options'] as List?)?.cast<String>();
+
+    final proj = _configureProject(input, options);
+    final path = _configurePath(input, options);
 
     return switch ((proj, path)) {
       (final proj?, null) => proj,
