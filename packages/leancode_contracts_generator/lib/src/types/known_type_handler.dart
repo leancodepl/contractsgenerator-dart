@@ -47,6 +47,8 @@ class KnownTypeHandler extends TypeHandler {
         return 'TimeOnly';
       case KnownType.TimeSpan:
         return 'Duration';
+      case KnownType.DateTime:
+        return 'DateTime';
       case KnownType.DateTimeOffset:
         return 'DateTimeOffset';
       case KnownType.DateOnly:

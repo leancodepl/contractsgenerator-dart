@@ -2,12 +2,13 @@
 //  Generated code. Do not modify.
 //  source: contracts.proto
 //
-// @dart = 2.12
+// @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
-// ignore_for_file: constant_identifier_names, library_prefixes
-// ignore_for_file: non_constant_identifier_names, prefer_final_fields
-// ignore_for_file: unnecessary_import, unnecessary_this, unused_import
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: curly_braces_in_flow_control_structures
+// ignore_for_file: deprecated_member_use_from_same_package, library_prefixes
+// ignore_for_file: non_constant_identifier_names
 
 import 'dart:convert' as $convert;
 import 'dart:core' as $core;
@@ -36,6 +37,7 @@ const KnownType$json = {
     {'1': 'TimeOnly', '2': 201},
     {'1': 'DateTimeOffset', '2': 202},
     {'1': 'TimeSpan', '2': 203},
+    {'1': 'DateTime', '2': 204},
     {'1': 'Array', '2': 300},
     {'1': 'Map', '2': 301},
     {'1': 'Query', '2': 1000},
@@ -56,10 +58,11 @@ final $typed_data.Uint8List knownTypeDescriptor = $convert.base64Decode(
     'sKB0Jvb2xlYW4QBRIJCgVVSW50OBBkEggKBEludDgQZRIJCgVJbnQxNhBmEgoKBlVJbnQxNhBn'
     'EgkKBUludDMyEGgSCgoGVUludDMyEGkSCQoFSW50NjQQahIKCgZVSW50NjQQaxIMCgdGbG9hdD'
     'MyEJYBEgwKB0Zsb2F0NjQQlwESDQoIRGF0ZU9ubHkQyAESDQoIVGltZU9ubHkQyQESEwoORGF0'
-    'ZVRpbWVPZmZzZXQQygESDQoIVGltZVNwYW4QywESCgoFQXJyYXkQrAISCAoDTWFwEK0CEgoKBV'
-    'F1ZXJ5EOgHEgwKB0NvbW1hbmQQ6QcSEgoNQ29tbWFuZFJlc3VsdBDqBxIOCglPcGVyYXRpb24Q'
-    '6wcSCwoGQmluYXJ5EOwHEgoKBVRvcGljEO0HEg4KCUF0dHJpYnV0ZRDMCBIbChZBdXRob3Jpem'
-    'VXaGVuQXR0cmlidXRlEM0IEiMKHkF1dGhvcml6ZVdoZW5IYXNBbnlPZkF0dHJpYnV0ZRDOCA==');
+    'ZVRpbWVPZmZzZXQQygESDQoIVGltZVNwYW4QywESDQoIRGF0ZVRpbWUQzAESCgoFQXJyYXkQrA'
+    'ISCAoDTWFwEK0CEgoKBVF1ZXJ5EOgHEgwKB0NvbW1hbmQQ6QcSEgoNQ29tbWFuZFJlc3VsdBDq'
+    'BxIOCglPcGVyYXRpb24Q6wcSCwoGQmluYXJ5EOwHEgoKBVRvcGljEO0HEg4KCUF0dHJpYnV0ZR'
+    'DMCBIbChZBdXRob3JpemVXaGVuQXR0cmlidXRlEM0IEiMKHkF1dGhvcml6ZVdoZW5IYXNBbnlP'
+    'ZkF0dHJpYnV0ZRDOCA==');
 
 @$core.Deprecated('Use valueRefDescriptor instead')
 const ValueRef$json = {
@@ -817,6 +820,20 @@ final $typed_data.Uint8List statementDescriptor = $convert.base64Decode(
     'IOdHlwZURlc2NyaXB0b3ISTQoNbm90aWZpY2F0aW9ucxgCIAMoCzInLmxlYW5jb2RlLmNvbnRy'
     'YWN0cy5Ob3RpZmljYXRpb25UeXBlUmVmUg1ub3RpZmljYXRpb25zQgkKB2NvbnRlbnQ=');
 
+@$core.Deprecated('Use protocolDescriptor instead')
+const Protocol$json = {
+  '1': 'Protocol',
+  '2': [
+    {'1': 'version', '3': 1, '4': 1, '5': 9, '10': 'version'},
+    {'1': 'extensions', '3': 2, '4': 3, '5': 9, '10': 'extensions'},
+  ],
+};
+
+/// Descriptor for `Protocol`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List protocolDescriptor = $convert.base64Decode(
+    'CghQcm90b2NvbBIYCgd2ZXJzaW9uGAEgASgJUgd2ZXJzaW9uEh4KCmV4dGVuc2lvbnMYAiADKA'
+    'lSCmV4dGVuc2lvbnM=');
+
 @$core.Deprecated('Use exportDescriptor instead')
 const Export$json = {
   '1': 'Export',
@@ -838,6 +855,14 @@ const Export$json = {
       '6': '.leancode.contracts.ErrorCode.Group',
       '10': 'knownErrorGroups'
     },
+    {
+      '1': 'protocol',
+      '3': 4,
+      '4': 1,
+      '5': 11,
+      '6': '.leancode.contracts.Protocol',
+      '10': 'protocol'
+    },
   ],
 };
 
@@ -846,4 +871,5 @@ final $typed_data.Uint8List exportDescriptor = $convert.base64Decode(
     'CgZFeHBvcnQSIAoLcHJvamVjdE5hbWUYASABKAlSC3Byb2plY3ROYW1lEj0KCnN0YXRlbWVudH'
     'MYAiADKAsyHS5sZWFuY29kZS5jb250cmFjdHMuU3RhdGVtZW50UgpzdGF0ZW1lbnRzEk8KEGtu'
     'b3duRXJyb3JHcm91cHMYAyADKAsyIy5sZWFuY29kZS5jb250cmFjdHMuRXJyb3JDb2RlLkdyb3'
-    'VwUhBrbm93bkVycm9yR3JvdXBz');
+    'VwUhBrbm93bkVycm9yR3JvdXBzEjgKCHByb3RvY29sGAQgASgLMhwubGVhbmNvZGUuY29udHJh'
+    'Y3RzLlByb3RvY29sUghwcm90b2NvbA==');
