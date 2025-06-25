@@ -104,7 +104,6 @@ directives: ""
 extra: ""
 # Additional flags to be passed into backend generator (allow-datetime etc.)
 options:
-    - allow-datetime
 ''';
 
   static GeneratorScript? _configureProject(
