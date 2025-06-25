@@ -102,7 +102,7 @@ output: lib/data
 directives: ""
 # Code to be added to the generated contracts file after all directives
 extra: ""
-# Additional flags to be passed into backend generator (allow-datetime etc.)
+# Additional flags to be passed into backend generator (--allow-date-time, -k etc.)
 options:
 ''';
 

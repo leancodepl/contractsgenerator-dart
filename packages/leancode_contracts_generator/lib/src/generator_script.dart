@@ -8,12 +8,7 @@ class GeneratorScript {
   GeneratorScript.project(
     List<String> projects, {
     List<String>? options,
-  }) : args = [
-          'project',
-          '-p',
-          ...projects,
-          if (options != null) ...options.map((o) => '--$o')
-        ];
+  }) : args = ['project', '-p', ...projects, if (options != null) ...options];
 
   /// Generate for a all files in the globbed paths
   GeneratorScript.path(
@@ -33,7 +28,7 @@ class GeneratorScript {
             '-d',
             directory,
           ],
-          if (options != null) ...options.map((o) => '--$o')
+          if (options != null) ...options
         ];
 
   final List<String> args;
