@@ -8,7 +8,7 @@ Dart contracts client generator for a CQRS API. Generated code is based on the f
 
 ## Prerequisites
 
-You will need to have .NET 6 and the .NET version used in your project installed on your system and have `dotnet` available in your PATH.
+You will need to have .NET 8 or later and the .NET version used in your project installed on your system and have `dotnet` available in your PATH.
 
 ### M1 macs
 
@@ -17,8 +17,8 @@ When installing multiple .NET sdks you need to make sure all of them are for the
 ```sh
 # tap into repo that hosts mutually compatible dotnet casks
 brew tap isen-ng/dotnet-sdk-versions
-# force x64 .NET6
-arch -x86_64 brew install dotnet-sdk6-0-100
+# force x64 .NET8
+arch -x86_64 brew install dotnet-sdk8-0-100
 # install your needed version (see https://github.com/isen-ng/homebrew-dotnet-sdk-versions#versions)
 brew install --cask dotnet-sdk5-0-400
 ```
