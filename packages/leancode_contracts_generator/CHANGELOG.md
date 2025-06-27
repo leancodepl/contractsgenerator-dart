@@ -1,3 +1,9 @@
+# 0.16.0
+
+- Support `LeanCode.ContractsGenerator` `v4.0.0-alpha.1`
+- Allow arbitrary flags to be passed to .NET generator
+- Restore support for `KnownType::DateTime`
+
 # 0.15.0
 
 - Remove support for `override_generator_version`
