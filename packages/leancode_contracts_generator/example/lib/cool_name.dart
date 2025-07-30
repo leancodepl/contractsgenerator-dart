@@ -54,10 +54,7 @@ class Roles with EquatableMixin {
 abstract class PaginatedQuery<TResult>
     with EquatableMixin
     implements Query<PaginatedResult<TResult>> {
-  PaginatedQuery({
-    required this.pageNumber,
-    required this.pageSize,
-  });
+  PaginatedQuery({required this.pageNumber, required this.pageSize});
 
   final int pageNumber;
 
@@ -69,16 +66,12 @@ abstract class PaginatedQuery<TResult>
 /// This one is in XML.
 @ContractsSerializable(genericArgumentFactories: true)
 class PaginatedResult<TResult> with EquatableMixin {
-  PaginatedResult({
-    required this.items,
-    required this.totalCount,
-  });
+  PaginatedResult({required this.items, required this.totalCount});
 
   factory PaginatedResult.fromJson(
     Map<String, dynamic> json,
     TResult Function(Object?) fromJsonTResult,
-  ) =>
-      _$PaginatedResultFromJson(json, fromJsonTResult);
+  ) => _$PaginatedResultFromJson(json, fromJsonTResult);
 
   /// And this is a property comment.
   final List<TResult> items;
@@ -119,10 +112,7 @@ class WhenHasSomethingAccess with EquatableMixin {
 /// LeanCode.Contracts.Security.AuthorizeWhenHasAnyOfAttribute('admin')
 @ContractsSerializable()
 class AllUsers with EquatableMixin implements PaginatedQuery<UserInfoDTO> {
-  AllUsers({
-    required this.pageNumber,
-    required this.pageSize,
-  });
+  AllUsers({required this.pageNumber, required this.pageSize});
 
   factory AllUsers.fromJson(Map<String, dynamic> json) =>
       _$AllUsersFromJson(json);
@@ -136,8 +126,10 @@ class AllUsers with EquatableMixin implements PaginatedQuery<UserInfoDTO> {
   Map<String, dynamic> toJson() => _$AllUsersToJson(this);
 
   PaginatedResult<UserInfoDTO> resultFactory(dynamic decodedJson) =>
-      _$PaginatedResultFromJson(decodedJson as Map<String, dynamic>,
-          (e) => _$UserInfoDTOFromJson(e as Map<String, dynamic>));
+      _$PaginatedResultFromJson(
+        decodedJson as Map<String, dynamic>,
+        (e) => _$UserInfoDTOFromJson(e as Map<String, dynamic>),
+      );
 
   String getFullName() =>
       'LeanCode.ContractsGeneratorV2.ExampleContracts.Users.AllUsers';
@@ -171,8 +163,14 @@ class EditUser with EquatableMixin implements Command, ISomethingRelated {
 
   final UserInfoDTO userInfo;
 
-  List<Object?> get props =>
-      [somethingId, userId, list, array, dictionary, userInfo];
+  List<Object?> get props => [
+    somethingId,
+    userId,
+    list,
+    array,
+    dictionary,
+    userInfo,
+  ];
 
   Map<String, dynamic> toJson() => _$EditUserToJson(this);
 
@@ -267,4 +265,30 @@ class UserSomething with EquatableMixin implements Query<int?> {
 
   String getFullName() =>
       'LeanCode.ContractsGeneratorV2.ExampleContracts.Users.UserSomething';
+}
+
+class ValidateImportActivityTranslationsResult with EquatableMixin {
+  ValidateImportActivityTranslationsResult({
+    required this.activityDoesNotExist,
+  });
+
+  final ValidationResult<String> activityDoesNotExist;
+
+  List<Object?> get props => [activityDoesNotExist];
+}
+
+@ContractsSerializable(genericArgumentFactories: true)
+class ValidationResult<TElement> with EquatableMixin {
+  ValidationResult({required this.isInvalid, required this.elements});
+
+  factory ValidationResult.fromJson(
+    Map<String, dynamic> json,
+    TElement Function(Object?) fromJsonTElement,
+  ) => _$ValidationResultFromJson(json, fromJsonTElement);
+
+  final bool isInvalid;
+
+  final List<TElement> elements;
+
+  List<Object?> get props => [isInvalid, elements];
 }

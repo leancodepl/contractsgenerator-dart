@@ -25,7 +25,7 @@ PaginatedResult<TResult> _$PaginatedResultFromJson<TResult>(
 ) =>
     PaginatedResult<TResult>(
       items: (json['Items'] as List<dynamic>).map(fromJsonTResult).toList(),
-      totalCount: json['TotalCount'] as int,
+      totalCount: (json['TotalCount'] as num).toInt(),
     );
 
 Map<String, dynamic> _$PaginatedResultToJson<TResult>(
@@ -56,8 +56,8 @@ Map<String, dynamic> _$WhenHasSomethingAccessToJson(
     <String, dynamic>{};
 
 AllUsers _$AllUsersFromJson(Map<String, dynamic> json) => AllUsers(
-      pageNumber: json['PageNumber'] as int,
-      pageSize: json['PageSize'] as int,
+      pageNumber: (json['PageNumber'] as num).toInt(),
+      pageSize: (json['PageSize'] as num).toInt(),
     );
 
 Map<String, dynamic> _$AllUsersToJson(AllUsers instance) => <String, dynamic>{
@@ -68,8 +68,12 @@ Map<String, dynamic> _$AllUsersToJson(AllUsers instance) => <String, dynamic>{
 EditUser _$EditUserFromJson(Map<String, dynamic> json) => EditUser(
       somethingId: json['SomethingId'] as String,
       userId: json['UserId'] as String,
-      list: (json['List'] as List<dynamic>).map((e) => e as int).toList(),
-      array: (json['Array'] as List<dynamic>).map((e) => e as int).toList(),
+      list: (json['List'] as List<dynamic>)
+          .map((e) => (e as num).toInt())
+          .toList(),
+      array: (json['Array'] as List<dynamic>)
+          .map((e) => (e as num).toInt())
+          .toList(),
       dictionary: (json['Dictionary'] as Map<String, dynamic>).map(
         (k, e) => MapEntry(
             int.parse(k), EditUser.fromJson(e as Map<String, dynamic>)),
@@ -111,3 +115,22 @@ UserSomething _$UserSomethingFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$UserSomethingToJson(UserSomething instance) =>
     <String, dynamic>{};
+
+ValidationResult<TElement> _$ValidationResultFromJson<TElement>(
+  Map<String, dynamic> json,
+  TElement Function(Object? json) fromJsonTElement,
+) =>
+    ValidationResult<TElement>(
+      isInvalid: json['IsInvalid'] as bool,
+      elements:
+          (json['Elements'] as List<dynamic>).map(fromJsonTElement).toList(),
+    );
+
+Map<String, dynamic> _$ValidationResultToJson<TElement>(
+  ValidationResult<TElement> instance,
+  Object? Function(TElement value) toJsonTElement,
+) =>
+    <String, dynamic>{
+      'IsInvalid': instance.isInvalid,
+      'Elements': instance.elements.map(toJsonTElement).toList(),
+    };
