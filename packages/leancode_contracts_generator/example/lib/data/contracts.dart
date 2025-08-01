@@ -59,14 +59,12 @@ class Topic_ with EquatableMixin implements Topic<TopicNotification> {
 
   Map<String, dynamic> toJson() => _$Topic_ToJson(this);
 
-  TopicNotification? castNotification(
-    String tag,
-    dynamic json,
-  ) =>
+  TopicNotification? castNotification(String tag, dynamic json) =>
       switch (tag) {
-        'C.Notification' =>
-          _$NotificationFromJson(json as Map<String, dynamic>),
-        _ => null
+        'C.Notification' => _$NotificationFromJson(
+            json as Map<String, dynamic>,
+          ),
+        _ => null,
       } as TopicNotification?;
 
   Topic_ fromJson(Map<String, dynamic> json) => Topic_.fromJson(json);

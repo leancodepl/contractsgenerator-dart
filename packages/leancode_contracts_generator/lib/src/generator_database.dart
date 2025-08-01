@@ -194,6 +194,21 @@ class GeneratorDatabase {
         );
   }
 
+  /// Checks if a TypeRef refers to a generic DTO
+  bool isGenericDto(TypeRef typeRef) {
+    if (!typeRef.hasInternal()) {
+      return false;
+    }
+
+    final statement = find(typeRef.internal.name);
+    if (statement == null || !statement.hasDto()) {
+      return false;
+    }
+
+    final typeDescriptor = typeDescriptorOf(statement);
+    return typeDescriptor?.genericParameters.isNotEmpty ?? false;
+  }
+
   final _allPropsCache = HashMap<String, List<PropertyRef>>();
 
   /// Follows the extension tree to retrieve all properties of the given statement.

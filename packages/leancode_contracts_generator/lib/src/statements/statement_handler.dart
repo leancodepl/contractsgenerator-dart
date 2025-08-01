@@ -125,7 +125,7 @@ abstract class StatementHandler {
         ..annotations.addAll([
           CodeExpression(
             Code(
-              'ContractsSerializable(${genericFactories.isEmpty ? '' : 'genericArgumentFactories: true'})',
+              'JsonSerializable(fieldRename: FieldRename.pascal, converters: [DurationJsonConverter()]${genericFactories.isEmpty ? '' : ', genericArgumentFactories: true'})',
             ),
           ),
         ])

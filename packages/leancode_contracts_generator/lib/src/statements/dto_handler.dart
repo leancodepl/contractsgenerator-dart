@@ -32,6 +32,17 @@ class DtoHandler extends StatementHandler {
       if (typeDescriptor.genericParameters.isNotEmpty) {
         b.methods.clear();
       }
+
+      // See above, since we're removing toJson from generic
+      // DTOs, we also need to remove toJson from DTOs
+      // that have fields with generic DTOs, even if they
+      // are not generic themselves.
+      final hasGenericDtoFields = db
+          .allPropertiesOf(statement)
+          .any((prop) => db.isGenericDto(prop.type));
+      if (hasGenericDtoFields) {
+        b.methods.clear();
+      }
     });
   }
 

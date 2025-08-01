@@ -6,7 +6,10 @@ part 'cool_name.g.dart';
 
 // :)
 
-@ContractsSerializable()
+@JsonSerializable(
+  fieldRename: FieldRename.pascal,
+  converters: [DurationJsonConverter()],
+)
 class Auth with EquatableMixin {
   Auth();
 
@@ -17,7 +20,10 @@ class Auth with EquatableMixin {
   Map<String, dynamic> toJson() => _$AuthToJson(this);
 }
 
-@ContractsSerializable()
+@JsonSerializable(
+  fieldRename: FieldRename.pascal,
+  converters: [DurationJsonConverter()],
+)
 class KnownClaims with EquatableMixin {
   KnownClaims();
 
@@ -33,7 +39,10 @@ class KnownClaims with EquatableMixin {
   Map<String, dynamic> toJson() => _$KnownClaimsToJson(this);
 }
 
-@ContractsSerializable()
+@JsonSerializable(
+  fieldRename: FieldRename.pascal,
+  converters: [DurationJsonConverter()],
+)
 class Roles with EquatableMixin {
   Roles();
 
@@ -54,10 +63,7 @@ class Roles with EquatableMixin {
 abstract class PaginatedQuery<TResult>
     with EquatableMixin
     implements Query<PaginatedResult<TResult>> {
-  PaginatedQuery({
-    required this.pageNumber,
-    required this.pageSize,
-  });
+  PaginatedQuery({required this.pageNumber, required this.pageSize});
 
   final int pageNumber;
 
@@ -67,12 +73,13 @@ abstract class PaginatedQuery<TResult>
 }
 
 /// This one is in XML.
-@ContractsSerializable(genericArgumentFactories: true)
+@JsonSerializable(
+  fieldRename: FieldRename.pascal,
+  converters: [DurationJsonConverter()],
+  genericArgumentFactories: true,
+)
 class PaginatedResult<TResult> with EquatableMixin {
-  PaginatedResult({
-    required this.items,
-    required this.totalCount,
-  });
+  PaginatedResult({required this.items, required this.totalCount});
 
   factory PaginatedResult.fromJson(
     Map<String, dynamic> json,
@@ -88,7 +95,10 @@ class PaginatedResult<TResult> with EquatableMixin {
   List<Object?> get props => [items, totalCount];
 }
 
-@ContractsSerializable()
+@JsonSerializable(
+  fieldRename: FieldRename.pascal,
+  converters: [DurationJsonConverter()],
+)
 class ISomethingRelated with EquatableMixin {
   ISomethingRelated({required this.somethingId});
 
@@ -104,7 +114,10 @@ class ISomethingRelated with EquatableMixin {
 
 /// System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('?', 'SA1302', Justification: 'Convention for authorizers.')
 /// System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('?', 'IDE1006', Justification: 'Convention for authorizers.')
-@ContractsSerializable()
+@JsonSerializable(
+  fieldRename: FieldRename.pascal,
+  converters: [DurationJsonConverter()],
+)
 class WhenHasSomethingAccess with EquatableMixin {
   WhenHasSomethingAccess();
 
@@ -117,12 +130,12 @@ class WhenHasSomethingAccess with EquatableMixin {
 }
 
 /// LeanCode.Contracts.Security.AuthorizeWhenHasAnyOfAttribute('admin')
-@ContractsSerializable()
+@JsonSerializable(
+  fieldRename: FieldRename.pascal,
+  converters: [DurationJsonConverter()],
+)
 class AllUsers with EquatableMixin implements PaginatedQuery<UserInfoDTO> {
-  AllUsers({
-    required this.pageNumber,
-    required this.pageSize,
-  });
+  AllUsers({required this.pageNumber, required this.pageSize});
 
   factory AllUsers.fromJson(Map<String, dynamic> json) =>
       _$AllUsersFromJson(json);
@@ -136,8 +149,10 @@ class AllUsers with EquatableMixin implements PaginatedQuery<UserInfoDTO> {
   Map<String, dynamic> toJson() => _$AllUsersToJson(this);
 
   PaginatedResult<UserInfoDTO> resultFactory(dynamic decodedJson) =>
-      _$PaginatedResultFromJson(decodedJson as Map<String, dynamic>,
-          (e) => _$UserInfoDTOFromJson(e as Map<String, dynamic>));
+      _$PaginatedResultFromJson(
+        decodedJson as Map<String, dynamic>,
+        (e) => _$UserInfoDTOFromJson(e as Map<String, dynamic>),
+      );
 
   String getFullName() =>
       'LeanCode.ContractsGeneratorV2.ExampleContracts.Users.AllUsers';
@@ -145,7 +160,10 @@ class AllUsers with EquatableMixin implements PaginatedQuery<UserInfoDTO> {
 
 /// LeanCode.Contracts.Security.AuthorizeWhenHasAnyOfAttribute('admin')
 /// LeanCode.ContractsGeneratorV2.ExampleContracts.Security.AuthorizeWhenHasSomethingAccessAttribute()
-@ContractsSerializable()
+@JsonSerializable(
+  fieldRename: FieldRename.pascal,
+  converters: [DurationJsonConverter()],
+)
 class EditUser with EquatableMixin implements Command, ISomethingRelated {
   EditUser({
     required this.somethingId,
@@ -171,8 +189,14 @@ class EditUser with EquatableMixin implements Command, ISomethingRelated {
 
   final UserInfoDTO userInfo;
 
-  List<Object?> get props =>
-      [somethingId, userId, list, array, dictionary, userInfo];
+  List<Object?> get props => [
+        somethingId,
+        userId,
+        list,
+        array,
+        dictionary,
+        userInfo,
+      ];
 
   Map<String, dynamic> toJson() => _$EditUserToJson(this);
 
@@ -205,7 +229,10 @@ class EditUserErrorCodes {
 }
 
 /// LeanCode.Contracts.Security.AuthorizeWhenHasAnyOfAttribute('admin')
-@ContractsSerializable()
+@JsonSerializable(
+  fieldRename: FieldRename.pascal,
+  converters: [DurationJsonConverter()],
+)
 class UserById with EquatableMixin implements Query<UserInfoDTO?> {
   UserById();
 
@@ -225,7 +252,10 @@ class UserById with EquatableMixin implements Query<UserInfoDTO?> {
 }
 
 @Deprecated('Use something else instead')
-@ContractsSerializable()
+@JsonSerializable(
+  fieldRename: FieldRename.pascal,
+  converters: [DurationJsonConverter()],
+)
 class UserInfoDTO with EquatableMixin {
   UserInfoDTO({
     required this.firstname,
@@ -252,7 +282,10 @@ class UserInfoDTO with EquatableMixin {
 }
 
 /// LeanCode.Contracts.Security.AuthorizeWhenHasAnyOfAttribute('admin')
-@ContractsSerializable()
+@JsonSerializable(
+  fieldRename: FieldRename.pascal,
+  converters: [DurationJsonConverter()],
+)
 class UserSomething with EquatableMixin implements Query<int?> {
   UserSomething();
 
@@ -267,4 +300,44 @@ class UserSomething with EquatableMixin implements Query<int?> {
 
   String getFullName() =>
       'LeanCode.ContractsGeneratorV2.ExampleContracts.Users.UserSomething';
+}
+
+@JsonSerializable(
+  fieldRename: FieldRename.pascal,
+  converters: [DurationJsonConverter()],
+)
+class ValidateImportActivityTranslationsResult with EquatableMixin {
+  ValidateImportActivityTranslationsResult({
+    required this.activityDoesNotExist,
+  });
+
+  factory ValidateImportActivityTranslationsResult.fromJson(
+    Map<String, dynamic> json,
+  ) =>
+      _$ValidateImportActivityTranslationsResultFromJson(json);
+
+  final ValidationResult<String> activityDoesNotExist;
+
+  List<Object?> get props => [activityDoesNotExist];
+}
+
+@JsonSerializable(
+  fieldRename: FieldRename.pascal,
+  converters: [DurationJsonConverter()],
+  genericArgumentFactories: true,
+)
+class ValidationResult<TElement> with EquatableMixin {
+  ValidationResult({required this.isInvalid, required this.elements});
+
+  factory ValidationResult.fromJson(
+    Map<String, dynamic> json,
+    TElement Function(Object?) fromJsonTElement,
+  ) =>
+      _$ValidationResultFromJson(json, fromJsonTElement);
+
+  final bool isInvalid;
+
+  final List<TElement> elements;
+
+  List<Object?> get props => [isInvalid, elements];
 }
