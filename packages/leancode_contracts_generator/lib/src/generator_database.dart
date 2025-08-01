@@ -194,7 +194,7 @@ class GeneratorDatabase {
         );
   }
 
-  /// Checks if a TypeRef refers to a generic DTO (has genericArgumentFactories: true).
+  /// Checks if a TypeRef refers to a generic DTO
   bool isGenericDto(TypeRef typeRef) {
     if (!typeRef.hasInternal()) {
       return false;

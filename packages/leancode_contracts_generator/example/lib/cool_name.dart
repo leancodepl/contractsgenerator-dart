@@ -301,10 +301,18 @@ class UserSomething with EquatableMixin implements Query<int?> {
       'LeanCode.ContractsGeneratorV2.ExampleContracts.Users.UserSomething';
 }
 
+@JsonSerializable(
+  fieldRename: FieldRename.pascal,
+  converters: [DurationJsonConverter()],
+)
 class ValidateImportActivityTranslationsResult with EquatableMixin {
   ValidateImportActivityTranslationsResult({
     required this.activityDoesNotExist,
   });
+
+  factory ValidateImportActivityTranslationsResult.fromJson(
+    Map<String, dynamic> json,
+  ) => _$ValidateImportActivityTranslationsResultFromJson(json);
 
   final ValidationResult<String> activityDoesNotExist;
 

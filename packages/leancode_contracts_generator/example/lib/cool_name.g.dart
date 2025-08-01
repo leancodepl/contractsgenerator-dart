@@ -116,6 +116,21 @@ UserSomething _$UserSomethingFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$UserSomethingToJson(UserSomething instance) =>
     <String, dynamic>{};
 
+ValidateImportActivityTranslationsResult
+    _$ValidateImportActivityTranslationsResultFromJson(
+            Map<String, dynamic> json) =>
+        ValidateImportActivityTranslationsResult(
+          activityDoesNotExist: ValidationResult<String>.fromJson(
+              json['ActivityDoesNotExist'] as Map<String, dynamic>,
+              (value) => value as String),
+        );
+
+Map<String, dynamic> _$ValidateImportActivityTranslationsResultToJson(
+        ValidateImportActivityTranslationsResult instance) =>
+    <String, dynamic>{
+      'ActivityDoesNotExist': instance.activityDoesNotExist,
+    };
+
 ValidationResult<TElement> _$ValidationResultFromJson<TElement>(
   Map<String, dynamic> json,
   TElement Function(Object? json) fromJsonTElement,

@@ -33,17 +33,15 @@ class DtoHandler extends StatementHandler {
         b.methods.clear();
       }
 
-      // Remove serde from DTOs that have fields with generic DTOs.
-      // This is because json_serializable can't handle fields that
-      // reference generic types with genericArgumentFactories: true
+      // See above, since we're removing toJson from generic
+      // DTOs, we also need to remove toJson from DTOs
+      // that have fields with generic DTOs, even if they
+      // are not generic themselves.
       final hasGenericDtoFields = db
           .allPropertiesOf(statement)
           .any((prop) => db.isGenericDto(prop.type));
       if (hasGenericDtoFields) {
-        b
-          ..annotations.clear()
-          ..methods.clear()
-          ..constructors.removeWhere((e) => e.name == 'fromJson');
+        b.methods.clear();
       }
     });
   }
