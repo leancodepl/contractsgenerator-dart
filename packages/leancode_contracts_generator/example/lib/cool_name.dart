@@ -84,7 +84,8 @@ class PaginatedResult<TResult> with EquatableMixin {
   factory PaginatedResult.fromJson(
     Map<String, dynamic> json,
     TResult Function(Object?) fromJsonTResult,
-  ) => _$PaginatedResultFromJson(json, fromJsonTResult);
+  ) =>
+      _$PaginatedResultFromJson(json, fromJsonTResult);
 
   /// And this is a property comment.
   final List<TResult> items;
@@ -189,13 +190,13 @@ class EditUser with EquatableMixin implements Command, ISomethingRelated {
   final UserInfoDTO userInfo;
 
   List<Object?> get props => [
-    somethingId,
-    userId,
-    list,
-    array,
-    dictionary,
-    userInfo,
-  ];
+        somethingId,
+        userId,
+        list,
+        array,
+        dictionary,
+        userInfo,
+      ];
 
   Map<String, dynamic> toJson() => _$EditUserToJson(this);
 
@@ -312,7 +313,8 @@ class ValidateImportActivityTranslationsResult with EquatableMixin {
 
   factory ValidateImportActivityTranslationsResult.fromJson(
     Map<String, dynamic> json,
-  ) => _$ValidateImportActivityTranslationsResultFromJson(json);
+  ) =>
+      _$ValidateImportActivityTranslationsResultFromJson(json);
 
   final ValidationResult<String> activityDoesNotExist;
 
@@ -330,7 +332,8 @@ class ValidationResult<TElement> with EquatableMixin {
   factory ValidationResult.fromJson(
     Map<String, dynamic> json,
     TElement Function(Object?) fromJsonTElement,
-  ) => _$ValidationResultFromJson(json, fromJsonTElement);
+  ) =>
+      _$ValidationResultFromJson(json, fromJsonTElement);
 
   final bool isInvalid;
 
