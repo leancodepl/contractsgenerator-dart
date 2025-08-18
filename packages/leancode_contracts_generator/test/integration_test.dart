@@ -31,12 +31,13 @@ void main() {
         if (!file.path.endsWith('binary.cs')) GeneratorScript.path([file.path]),
       for (final file in Directory(p.join(inDir, 'simple')).listSync())
         GeneratorScript.path([file.path]),
-      for (final file
-          in Directory(p.join(inDir, 'supported_use_cases')).listFiles())
+      for (final file in Directory(
+        p.join(inDir, 'supported_use_cases'),
+      ).listFiles())
         GeneratorScript.path([file.path]),
-      for (final file
-          in Directory(p.join(inDir, 'supported_use_cases', 'leanpipe'))
-              .listFiles())
+      for (final file in Directory(
+        p.join(inDir, 'supported_use_cases', 'leanpipe'),
+      ).listFiles())
         GeneratorScript.path([file.path]),
       GeneratorScript.path(
         ['**/*.cs'],
@@ -77,15 +78,13 @@ void main() {
           ),
         ).writeAll();
 
-        await File(mainPath).writeAsString(
-          '''
+        await File(mainPath).writeAsString('''
         import 'contracts.dart';
 
         void main() {
           print('Hello');
         }
-        ''',
-        );
+        ''');
 
         final result = await Process.run('dart', ['run', mainPath]);
 

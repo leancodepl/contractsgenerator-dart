@@ -6,23 +6,21 @@ import 'package:test/test.dart';
 GeneratorDatabase makeDb({
   RegExp? include,
   Set<String> statements = const {},
-}) =>
-    makeRawDb(
-      include: include,
-      statements: statements.map((e) => Statement(name: e)),
-    );
+}) => makeRawDb(
+  include: include,
+  statements: statements.map((e) => Statement(name: e)),
+);
 
 GeneratorDatabase makeRawDb({
   RegExp? include,
   required Iterable<Statement> statements,
-}) =>
-    GeneratorDatabase(
-      ContractsGeneratorConfig(
-        input: GeneratorScript.project([]),
-        include: include,
-      ),
-      Export(statements: statements),
-    );
+}) => GeneratorDatabase(
+  ContractsGeneratorConfig(
+    input: GeneratorScript.project([]),
+    include: include,
+  ),
+  Export(statements: statements),
+);
 
 TypeRef typeRefOf(String name) =>
     TypeRef(internal: TypeRef_Internal(name: name), nullable: true);
@@ -79,14 +77,8 @@ void main() {
 
     group('getImplementingNotifications', () {
       test('collects notification types from various topics', () {
-        final ab = Statement(
-          name: 'A.B',
-          dto: Statement_DTO(),
-        );
-        final bb = Statement(
-          name: 'B.A',
-          dto: Statement_DTO(),
-        );
+        final ab = Statement(name: 'A.B', dto: Statement_DTO());
+        final bb = Statement(name: 'B.A', dto: Statement_DTO());
         final topic1 = Statement(
           name: 'Topic1',
           topic: Statement_Topic(
@@ -139,10 +131,7 @@ void main() {
 
     group('syntheticTopicNotificationFullName', () {
       test('the name is the topic name with a "Notification" suffix', () {
-        final topic = Statement(
-          name: 'A.B.Topic',
-          topic: Statement_Topic(),
-        );
+        final topic = Statement(name: 'A.B.Topic', topic: Statement_Topic());
 
         final db = makeRawDb(statements: [topic]);
 
@@ -159,10 +148,7 @@ void main() {
           name: 'A.B.TopicNotification_',
           dto: Statement_DTO(),
         );
-        final topic = Statement(
-          name: 'A.B.Topic',
-          topic: Statement_Topic(),
-        );
+        final topic = Statement(name: 'A.B.Topic', topic: Statement_Topic());
 
         final db = makeRawDb(statements: [dto1, dto2, topic]);
 
@@ -191,13 +177,7 @@ void main() {
       test('detects unknown names', () {
         final db = makeDb(
           include: RegExp('^(One|Three)'),
-          statements: {
-            'One.One',
-            'Three.One',
-            'One.Two',
-            'Two.One',
-            'Two.Two',
-          },
+          statements: {'One.One', 'Three.One', 'One.Two', 'Two.One', 'Two.Two'},
         );
 
         for (final name in ['Two.One', 'One', 'Two.Two', 'Two.One']) {
@@ -242,9 +222,7 @@ void main() {
         final differentKnownTypeKind = TypeRef(
           known: TypeRef_Known(type: KnownType.DateTimeOffset),
         );
-        final genericType = TypeRef(
-          generic: TypeRef_Generic(name: 'T'),
-        );
+        final genericType = TypeRef(generic: TypeRef_Generic(name: 'T'));
         final nonCqrsStatement = Statement(
           name: 'nonCqrsStatement',
           dto: Statement_DTO(),
@@ -286,9 +264,7 @@ void main() {
           ),
         );
 
-        final db = makeRawDb(
-          statements: [simple],
-        );
+        final db = makeRawDb(statements: [simple]);
 
         expect(db.allPropertiesOf(simple), properties);
       });
@@ -335,13 +311,7 @@ void main() {
           ),
         );
 
-        final db = makeRawDb(
-          statements: [
-            simple1,
-            simple2,
-            simple3,
-          ],
-        );
+        final db = makeRawDb(statements: [simple1, simple2, simple3]);
 
         expect(
           db.allPropertiesOf(simple1),
@@ -390,13 +360,7 @@ void main() {
           ),
         );
 
-        final db = makeRawDb(
-          statements: [
-            simple1,
-            simple2,
-            simple3,
-          ],
-        );
+        final db = makeRawDb(statements: [simple1, simple2, simple3]);
 
         expect(
           db.allPropertiesOf(simple1),
@@ -588,91 +552,86 @@ void main() {
 
         final db = makeRawDb(statements: [a, b, c, dto]);
 
-        expect(
-          db.allPropertiesOf(dto),
-          [
-            PropertyRef(
-              name: 'a',
-              type: TypeRef(
-                nullable: true,
-                known: TypeRef_Known(
-                  type: KnownType.Map,
-                  arguments: [
-                    TypeRef(
-                      nullable: true,
-                      known: TypeRef_Known(
-                        type: KnownType.Array,
-                        arguments: [
-                          TypeRef(
-                            nullable: true,
-                            known: TypeRef_Known(type: KnownType.Float64),
+        expect(db.allPropertiesOf(dto), [
+          PropertyRef(
+            name: 'a',
+            type: TypeRef(
+              nullable: true,
+              known: TypeRef_Known(
+                type: KnownType.Map,
+                arguments: [
+                  TypeRef(
+                    nullable: true,
+                    known: TypeRef_Known(
+                      type: KnownType.Array,
+                      arguments: [
+                        TypeRef(
+                          nullable: true,
+                          known: TypeRef_Known(type: KnownType.Float64),
+                        ),
+                      ],
+                    ),
+                  ),
+                  TypeRef(
+                    nullable: true,
+                    known: TypeRef_Known(
+                      type: KnownType.Array,
+                      arguments: [
+                        TypeRef(
+                          nullable: true,
+                          known: TypeRef_Known(
+                            type: KnownType.Array,
+                            arguments: [
+                              TypeRef(
+                                nullable: true,
+                                known: TypeRef_Known(type: KnownType.Float64),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    TypeRef(
-                      nullable: true,
-                      known: TypeRef_Known(
-                        type: KnownType.Array,
-                        arguments: [
-                          TypeRef(
-                            nullable: true,
-                            known: TypeRef_Known(
-                              type: KnownType.Array,
-                              arguments: [
-                                TypeRef(
-                                  nullable: true,
-                                  known: TypeRef_Known(type: KnownType.Float64),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              comment: '',
             ),
-            PropertyRef(
-              name: 'b',
-              type: TypeRef(
-                nullable: true,
-                known: TypeRef_Known(
-                  type: KnownType.Array,
-                  arguments: [
-                    TypeRef(
-                      nullable: true,
-                      known: TypeRef_Known(type: KnownType.Float64),
-                    ),
-                  ],
-                ),
+            comment: '',
+          ),
+          PropertyRef(
+            name: 'b',
+            type: TypeRef(
+              nullable: true,
+              known: TypeRef_Known(
+                type: KnownType.Array,
+                arguments: [
+                  TypeRef(
+                    nullable: true,
+                    known: TypeRef_Known(type: KnownType.Float64),
+                  ),
+                ],
               ),
-              comment: '',
             ),
-            PropertyRef(
-              name: 'c',
-              type:
-                  TypeRef(nullable: true, generic: TypeRef_Generic(name: 'T')),
-              comment: '',
+            comment: '',
+          ),
+          PropertyRef(
+            name: 'c',
+            type: TypeRef(nullable: true, generic: TypeRef_Generic(name: 'T')),
+            comment: '',
+          ),
+          PropertyRef(
+            name: 'd',
+            type: TypeRef(
+              nullable: true,
+              known: TypeRef_Known(type: KnownType.String),
             ),
-            PropertyRef(
-              name: 'd',
-              type: TypeRef(
-                nullable: true,
-                known: TypeRef_Known(type: KnownType.String),
-              ),
-              comment: '',
-            ),
-            PropertyRef(
-              name: 'e',
-              type:
-                  TypeRef(nullable: true, generic: TypeRef_Generic(name: 'T')),
-              comment: '',
-            ),
-          ],
-        );
+            comment: '',
+          ),
+          PropertyRef(
+            name: 'e',
+            type: TypeRef(nullable: true, generic: TypeRef_Generic(name: 'T')),
+            comment: '',
+          ),
+        ]);
       });
     });
   });

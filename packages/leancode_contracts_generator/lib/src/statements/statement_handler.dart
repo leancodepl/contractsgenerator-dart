@@ -68,9 +68,7 @@ abstract class StatementHandler {
           ),
         ])
         ..constructors.addAll([
-          Constructor(
-            (b) => b..optionalParameters.addAll(parameters),
-          ),
+          Constructor((b) => b..optionalParameters.addAll(parameters)),
           Constructor(
             (b) => b
               ..factory = true
@@ -90,10 +88,7 @@ abstract class StatementHandler {
                   ),
               ])
               ..body = Code(
-                '_\$${name}FromJson(${[
-                  'json',
-                  ...genericFactories.map((e) => e.fromJsonName),
-                ].join(',')})',
+                '_\$${name}FromJson(${['json', ...genericFactories.map((e) => e.fromJsonName)].join(',')})',
               ),
           ),
         ])
@@ -104,10 +99,7 @@ abstract class StatementHandler {
               ..lambda = true
               ..returns = refer('Map<String, dynamic>')
               ..body = Code(
-                '_\$${name}ToJson(${[
-                  'this',
-                  ...genericFactories.map((e) => e.toJsonName),
-                ].join(',')})',
+                '_\$${name}ToJson(${['this', ...genericFactories.map((e) => e.toJsonName)].join(',')})',
               )
               ..requiredParameters.addAll([
                 for (final genericFactory in genericFactories)
@@ -159,10 +151,7 @@ abstract class StatementHandler {
     });
   }
 
-  Parameter _createParameter(
-    PropertyRef prop, {
-    required bool required,
-  }) {
+  Parameter _createParameter(PropertyRef prop, {required bool required}) {
     final type = typeCreator.create(prop.type);
 
     return Parameter(
@@ -197,7 +186,9 @@ abstract class StatementHandler {
   }
 
   Field _createConstant(ConstantRef prop) {
-    return valueCreator.create(prop.value).rebuild(
+    return valueCreator
+        .create(prop.value)
+        .rebuild(
           (b) => b
             ..name = renameField(prop.name)
             ..modifier = FieldModifier.constant

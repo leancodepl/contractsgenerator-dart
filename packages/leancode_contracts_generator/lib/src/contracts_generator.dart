@@ -43,10 +43,7 @@ class ContractsGenerator {
 
   /// generates `code_builder` structures that can still be modified
   Future<Library> generate() async {
-    final doneDb = verboseLog(
-      message: 'Analysing contracts',
-      verbose: verbose,
-    );
+    final doneDb = verboseLog(message: 'Analysing contracts', verbose: verbose);
     final db = await GeneratorDatabase.fromConfig(config);
     doneDb();
 
@@ -64,12 +61,7 @@ class ContractsGenerator {
     const errorCreator = ErrorCreator();
     const attributeCreator = AttributeCreator(valueCreator);
     final statementCreator = StatementCreator([
-      DtoHandler(
-        typeCreator,
-        valueCreator,
-        attributeCreator,
-        db,
-      ),
+      DtoHandler(typeCreator, valueCreator, attributeCreator, db),
       QueryHandler(
         typeCreator,
         valueCreator,
@@ -98,12 +90,7 @@ class ContractsGenerator {
         jsonConverters,
         db,
       ),
-      EnumHandler(
-        typeCreator,
-        valueCreator,
-        attributeCreator,
-        db,
-      ),
+      EnumHandler(typeCreator, valueCreator, attributeCreator, db),
     ]);
 
     final body = [
@@ -161,8 +148,9 @@ class ContractsGenerator {
     );
     await config.output.create(recursive: true);
     await File(contractsPath).writeAsString(
-      DartFormatter(languageVersion: DartFormatter.latestLanguageVersion)
-          .format(code),
+      DartFormatter(
+        languageVersion: DartFormatter.latestLanguageVersion,
+      ).format(code),
     );
     doneWriting();
 
@@ -189,18 +177,14 @@ class ContractsGenerator {
       config.output.path,
       '${config.name}.g.dart',
     );
-    final generated = writer.assets[AssetId(
-      packageGraph.root.name,
-      jsonSerializablePathOld,
-    )];
-    await File(jsonSerializablePath).writeAsString(
-      '''
+    final generated =
+        writer.assets[AssetId(packageGraph.root.name, jsonSerializablePathOld)];
+    await File(jsonSerializablePath).writeAsString('''
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 part of '${config.name}.dart';
 
-${utf8.decode(generated ?? [])}''',
-    );
+${utf8.decode(generated ?? [])}''');
     doneJson();
   }
 }

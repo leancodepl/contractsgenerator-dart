@@ -14,13 +14,10 @@ class QueryHandler extends StatementHandler {
     super.attributeCreator,
     JsonConverters jsonConverters,
     super.db,
-  ) : resultFactoryCreator = ResultFactoryCreator(
-          [
-            InternalResultFactoryHandler(db),
-            KnownResultFactoryHandler(jsonConverters),
-          ],
-          typeCreator,
-        );
+  ) : resultFactoryCreator = ResultFactoryCreator([
+        InternalResultFactoryHandler(db),
+        KnownResultFactoryHandler(jsonConverters),
+      ], typeCreator);
 
   final ResultFactoryCreator resultFactoryCreator;
 
@@ -28,12 +25,10 @@ class QueryHandler extends StatementHandler {
   Spec build(Statement statement) {
     return createBase(statement, requiredParameters: true).rebuild(
       (b) => b
-        ..methods.addAll(
-          [
-            resultFactoryCreator.create(statement.query.returnType),
-            getFullNameMethod(statement),
-          ],
-        ),
+        ..methods.addAll([
+          resultFactoryCreator.create(statement.query.returnType),
+          getFullNameMethod(statement),
+        ]),
     );
   }
 
