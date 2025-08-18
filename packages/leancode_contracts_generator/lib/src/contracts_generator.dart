@@ -174,7 +174,7 @@ class ContractsGenerator {
     final js = jsonSerializable(BuilderOptions.empty);
     final f = AssetId(packageGraph.root.name, contractsPath);
 
-    final env = IOEnvironment(packageGraph);
+    final env = BuildEnvironment(packageGraph);
     final writer = MemoryAssetWriter();
 
     final res = AnalyzerResolvers.sharedInstance;
