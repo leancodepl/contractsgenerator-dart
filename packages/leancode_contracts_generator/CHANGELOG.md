@@ -1,3 +1,8 @@
+# 0.17.0
+
+- Support `build: ^3.0.0` and `build_runner: ^2.7.0`
+- **BREAKING**: Bum Dart SDK to 3.8.0
+
 # 0.16.0
 
 - Support `LeanCode.ContractsGenerator` `v4.0.0-alpha.1`
