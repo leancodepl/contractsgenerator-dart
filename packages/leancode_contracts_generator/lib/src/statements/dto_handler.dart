@@ -32,6 +32,16 @@ class DtoHandler extends StatementHandler {
       if (typeDescriptor.genericParameters.isNotEmpty) {
         b.methods.clear();
       }
+
+      b.fields.add(
+        Field(
+          (f) => f
+            ..name = 'fullName'
+            ..static = true
+            ..modifier = FieldModifier.constant
+            ..assignment = literalString(statement.name).code,
+        ),
+      );
     });
   }
 
