@@ -1,3 +1,7 @@
+# 0.16.1
+
+- Include fully qualified names in DTO classes
+
 # 0.16.0
 
 - Support `LeanCode.ContractsGenerator` `v4.0.0-alpha.1`
