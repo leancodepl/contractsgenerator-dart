@@ -36,7 +36,7 @@ class DtoHandler extends StatementHandler {
       b.fields.add(
         Field(
           (f) => f
-            ..name = 'fullName'
+            ..name = r'fullName$'
             ..static = true
             ..modifier = FieldModifier.constant
             ..assignment = literalString(statement.name).code,
