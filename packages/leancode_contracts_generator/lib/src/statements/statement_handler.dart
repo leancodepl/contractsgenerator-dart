@@ -1,8 +1,8 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:collection/collection.dart';
+import 'package:leancode_contracts_generator/src/utils/case_helpers.dart';
 import 'package:leancode_contracts_generator/src/utils/rename_type.dart';
 import 'package:meta/meta.dart';
-import 'package:source_helper/source_helper.dart';
 
 import '../attributes/attribute_creator.dart';
 import '../generator_database.dart';
