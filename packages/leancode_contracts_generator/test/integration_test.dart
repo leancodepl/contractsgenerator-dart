@@ -103,6 +103,7 @@ void main() {
               File(p.join(projDir, 'lib', 'contracts.dart')).readAsStringSync(),
             );
         }
+        expect(jsonResult.exitCode, 0);
 
         final result = await Process.run('dart', [
           'run',
