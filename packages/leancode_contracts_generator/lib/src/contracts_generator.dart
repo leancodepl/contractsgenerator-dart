@@ -137,6 +137,7 @@ class ContractsGenerator {
       message: 'Writing dart code to $contractsPath',
       verbose: verbose,
     );
+    await config.output.create(recursive: true);
     File(contractsPath).writeAsStringSync(
       DartFormatter(
         languageVersion: DartFormatter.latestLanguageVersion,
