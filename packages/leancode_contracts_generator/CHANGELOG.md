@@ -1,7 +1,8 @@
 # 0.17.0
 
-- Support `build: ^3.0.0` and `build_runner: ^2.7.0`
 - **BREAKING**: Bump Dart SDK to 3.8.0
+- **BREAKING**: Stop running `json_serializable` automatically
+- Stop depending on `build` and `build_runner`
 
 # 0.16.1
 
