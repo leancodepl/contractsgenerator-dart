@@ -19,17 +19,16 @@ class CommandHandler extends StatementHandler {
   Spec build(Statement statement) {
     return Library(
       (b) => b
-        ..body.addAll(
-          [
-            createBase(statement, requiredParameters: true).rebuild(
-              (b) => b..methods.add(getFullNameMethod(statement)),
-            ),
-            errorCreator.create(
-              statement.command.errorCodes,
-              db.resolveName(statement.name),
-            ),
-          ],
-        ),
+        ..body.addAll([
+          createBase(
+            statement,
+            requiredParameters: true,
+          ).rebuild((b) => b..methods.add(getFullNameMethod(statement))),
+          errorCreator.create(
+            statement.command.errorCodes,
+            db.resolveName(statement.name),
+          ),
+        ]),
     );
   }
 

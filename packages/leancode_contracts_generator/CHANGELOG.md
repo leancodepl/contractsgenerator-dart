@@ -1,3 +1,9 @@
+# 0.17.0
+
+- **BREAKING**: Bump Dart SDK to 3.8.0
+- **BREAKING**: Stop running `json_serializable` automatically
+- Stop depending on `build` and `build_runner`
+
 # 0.16.1
 
 - Include fully qualified names in DTO classes

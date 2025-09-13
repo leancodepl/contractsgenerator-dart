@@ -16,8 +16,8 @@ class ContractsGeneratorConfig {
     Directory? output,
     this.directives = '',
     this.extra = '',
-  })  : include = include ?? RegExp(''),
-        output = output ?? Directory.current;
+  }) : include = include ?? RegExp(''),
+       output = output ?? Directory.current;
 
   factory ContractsGeneratorConfig.fromYaml(String yaml) {
     final config = mergeMaps<dynamic, dynamic>(
@@ -107,7 +107,9 @@ options:
 ''';
 
   static GeneratorScript? _configureProject(
-      dynamic config, List<String>? options) {
+    dynamic config,
+    List<String>? options,
+  ) {
     if (config['project'] == null) {
       return null;
     }
@@ -119,7 +121,9 @@ options:
   }
 
   static GeneratorScript? _configurePath(
-      dynamic config, List<String>? options) {
+    dynamic config,
+    List<String>? options,
+  ) {
     if (config['path'] == null) {
       return null;
     }
@@ -150,8 +154,8 @@ options:
       (final proj?, null) => proj,
       (null, final path?) => path,
       _ => throw ArgumentError(
-          '`input` has to have exactly one of "project", "path"',
-        )
+        '`input` has to have exactly one of "project", "path"',
+      ),
     };
   }
 }

@@ -29,12 +29,6 @@ class ResultFactoryCreator {
   }
 
   Code createBody(TypeRef typeRef, String paramName) {
-    return Code(
-      ResultFactoryHandler.buildFrom(
-        typeRef,
-        handlers,
-        paramName,
-      ),
-    );
+    return Code(ResultFactoryHandler.buildFrom(typeRef, handlers, paramName));
   }
 }

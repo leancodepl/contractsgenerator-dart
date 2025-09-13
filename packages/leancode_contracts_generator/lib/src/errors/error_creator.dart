@@ -21,20 +21,22 @@ class ErrorCreator {
   List<Field> _createFields(ErrorCode errorCode, String context) {
     return switch (errorCode.whichCode()) {
       ErrorCode_Code.single => [
-          Field(
-            (b) => b
-              ..name = renameField(context + errorCode.single.name)
-              ..static = true
-              ..modifier = FieldModifier.constant
-              ..assignment = Code(errorCode.single.code.toString()),
-          ),
-        ],
-      ErrorCode_Code.group => errorCode.group.innerCodes
-          .map((code) => _createFields(code, errorCode.group.name))
-          .expand((e) => e)
-          .toList(),
-      ErrorCode_Code.notSet =>
-        throw UnimplementedError('ErrorCode $errorCode has no handler'),
+        Field(
+          (b) => b
+            ..name = renameField(context + errorCode.single.name)
+            ..static = true
+            ..modifier = FieldModifier.constant
+            ..assignment = Code(errorCode.single.code.toString()),
+        ),
+      ],
+      ErrorCode_Code.group =>
+        errorCode.group.innerCodes
+            .map((code) => _createFields(code, errorCode.group.name))
+            .expand((e) => e)
+            .toList(),
+      ErrorCode_Code.notSet => throw UnimplementedError(
+        'ErrorCode $errorCode has no handler',
+      ),
     };
   }
 }

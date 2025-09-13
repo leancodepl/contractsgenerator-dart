@@ -10,13 +10,14 @@ class ValueCreator {
       ValueRef_Value.null_1 => ('Null', 'null'),
       ValueRef_Value.number => ('int', valueRef.number.value.toString()),
       ValueRef_Value.floatingPoint => (
-          'double',
-          valueRef.floatingPoint.value.toString()
-        ),
+        'double',
+        valueRef.floatingPoint.value.toString(),
+      ),
       ValueRef_Value.string => ('String', "'${valueRef.string.value}'"),
       ValueRef_Value.bool_5 => ('bool', valueRef.bool_5.value.toString()),
-      ValueRef_Value.notSet =>
-        throw UnimplementedError('Missing handler of value $valueRef'),
+      ValueRef_Value.notSet => throw UnimplementedError(
+        'Missing handler of value $valueRef',
+      ),
     };
 
     return Field(

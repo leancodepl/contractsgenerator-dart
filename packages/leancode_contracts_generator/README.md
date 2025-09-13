@@ -15,6 +15,13 @@ If your contracts use `Topic`s additionally install `leancode_pipe`:
 dart pub add leancode_pipe
 ```
 
+Add dependencies for generating JSON serialization helpers:
+
+```sh
+dart pub add json_serializable --dev
+dart pub add build_runner --dev
+```
+
 ## Usage
 
 Ensure that you have .NET SDK installed with version capable of building target contracts project.
@@ -22,6 +29,12 @@ Ensure that you have .NET SDK installed with version capable of building target 
 The version of .NET generator is controlled using .NET tool manifest (see [example](.config/dotnet-tools.json)), the presence of which is required for .NET generator to be found. If it's missing, one can be created with `dotnet tool install dotnet-contracts-generate --create-manifest-if-needed`.
 
 First run will take longer due to the need to download external dependencies.
+
+After running the contracts generator, generate the JSON serialization helpers:
+
+```sh
+dart run build_runner build
+```
 
 ### CLI
 

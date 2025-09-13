@@ -34,9 +34,7 @@ void main() {
           ),
           AttributeArgument(
             positional: AttributeArgument_Positional(
-              value: ValueRef(
-                bool_5: ValueRef_Boolean(value: true),
-              ),
+              value: ValueRef(bool_5: ValueRef_Boolean(value: true)),
             ),
           ),
         ],
@@ -60,9 +58,7 @@ void main() {
         argument: [
           AttributeArgument(
             positional: AttributeArgument_Positional(
-              value: ValueRef(
-                number: ValueRef_Number(value: Int64(123)),
-              ),
+              value: ValueRef(number: ValueRef_Number(value: Int64(123))),
             ),
           ),
         ],
@@ -72,27 +68,20 @@ void main() {
         argument: [
           AttributeArgument(
             positional: AttributeArgument_Positional(
-              value: ValueRef(
-                number: ValueRef_Number(value: Int64(123)),
-              ),
+              value: ValueRef(number: ValueRef_Number(value: Int64(123))),
             ),
           ),
           AttributeArgument(
             named: AttributeArgument_Named(
               name: 'cool',
-              value: ValueRef(
-                bool_5: ValueRef_Boolean(value: true),
-              ),
+              value: ValueRef(bool_5: ValueRef_Boolean(value: true)),
             ),
           ),
         ],
       );
 
       expect(attributeCreator.create(noParams), '/// Some.Attribute()');
-      expect(
-        attributeCreator.create(oneParam),
-        '/// Some.Attribute(123)',
-      );
+      expect(attributeCreator.create(oneParam), '/// Some.Attribute(123)');
       expect(
         attributeCreator.create(twoParams),
         '/// Some.Attribute(123, cool: true)',

@@ -5,10 +5,8 @@ import 'contracts_generator_exception.dart';
 /// Interface to the C# protobuf generator
 class GeneratorScript {
   /// Generate for a list of projects. Passed paths need to point to a .csproj file.
-  GeneratorScript.project(
-    List<String> projects, {
-    List<String>? options,
-  }) : args = ['project', '-p', ...projects, if (options != null) ...options];
+  GeneratorScript.project(List<String> projects, {List<String>? options})
+    : args = ['project', '-p', ...projects, if (options != null) ...options];
 
   /// Generate for a all files in the globbed paths
   GeneratorScript.path(
@@ -17,19 +15,13 @@ class GeneratorScript {
     String? directory,
     List<String>? options,
   }) : args = [
-          'path',
-          '-i',
-          ...include,
-          if (exclude != null && exclude.isNotEmpty) ...[
-            '-e',
-            ...exclude,
-          ],
-          if (directory != null && directory.isNotEmpty) ...[
-            '-d',
-            directory,
-          ],
-          if (options != null) ...options
-        ];
+         'path',
+         '-i',
+         ...include,
+         if (exclude != null && exclude.isNotEmpty) ...['-e', ...exclude],
+         if (directory != null && directory.isNotEmpty) ...['-d', directory],
+         if (options != null) ...options,
+       ];
 
   final List<String> args;
 

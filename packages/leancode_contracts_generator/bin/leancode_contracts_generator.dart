@@ -32,11 +32,11 @@ Future<void> main(List<String> arguments) async {
 
 class GeneratorCommandRunner extends CommandRunner<int> {
   GeneratorCommandRunner()
-      : _initCommand = InitCommand(),
-        super(
-          'leancode_contracts_generator',
-          'Command line utility for generating dart CQRS contracts',
-        ) {
+    : _initCommand = InitCommand(),
+      super(
+        'leancode_contracts_generator',
+        'Command line utility for generating dart CQRS contracts',
+      ) {
     addCommand(_initCommand);
 
     argParser.addFlag(
