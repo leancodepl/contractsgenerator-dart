@@ -62,18 +62,6 @@ abstract class StatementHandler {
           ...typeDescriptor.constants.map(_createConstant),
           ...properties.map(_createField),
         ])
-        ..methods.add(
-          Method(
-            (m) => m
-              ..returns = refer('List<Object?>')
-              ..type = MethodType.getter
-              ..name = 'props'
-              ..lambda = true
-              ..body = Code(
-                '[${properties.map((e) => renameField(e.name)).join(',')}]',
-              ),
-          ),
-        )
         ..constructors.addAll([
           Constructor((b) => b..optionalParameters.addAll(parameters)),
           Constructor(
@@ -99,7 +87,17 @@ abstract class StatementHandler {
               ),
           ),
         ])
-        ..methods.add(
+        ..methods.addAll([
+          Method(
+            (m) => m
+              ..returns = refer('List<Object?>')
+              ..type = MethodType.getter
+              ..name = 'props'
+              ..lambda = true
+              ..body = Code(
+                '[${properties.map((e) => renameField(e.name)).join(',')}]',
+              ),
+          ),
           Method(
             (b) => b
               ..name = 'toJson'
@@ -117,7 +115,7 @@ abstract class StatementHandler {
                   ),
               ]),
           ),
-        )
+        ])
         ..types.addAll(
           typeDescriptor.genericParameters.map((t) => refer(t.name)),
         )

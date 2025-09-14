@@ -30,7 +30,9 @@ class DtoHandler extends StatementHandler {
       // of type parameters of this DTO. This means this will break
       // inheritance. Something like `class A extends B<T> {}`
       if (typeDescriptor.genericParameters.isNotEmpty) {
-        b.methods.clear();
+        b.methods.removeWhere(
+          (m) => m.name == 'toJson' || m.name == 'fromJson',
+        );
       }
 
       b.fields.add(
