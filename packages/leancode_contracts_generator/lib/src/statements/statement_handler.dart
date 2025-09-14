@@ -53,6 +53,8 @@ abstract class StatementHandler {
         .map((e) => _GenericFactory(e.name))
         .toList();
 
+    db.markAsUsingJsonSerialization();
+
     return Class((b) {
       b
         ..name = name
