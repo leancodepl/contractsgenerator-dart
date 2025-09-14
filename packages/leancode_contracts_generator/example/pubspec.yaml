@@ -14,4 +14,6 @@ dependencies:
   leancode_pipe: ^2.0.0
 
 dev_dependencies:
+  build_runner: ^2.7.1
+  json_serializable: ^6.11.1
   leancode_lint: ^17.0.0

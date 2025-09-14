@@ -44,6 +44,8 @@ class Notification with EquatableMixin implements TopicNotification {
   factory Notification.fromJson(Map<String, dynamic> json) =>
       _$NotificationFromJson(json);
 
+  static const fullName$ = 'C.Notification';
+
   List<Object?> get props => [];
 
   Map<String, dynamic> toJson() => _$NotificationToJson(this);
