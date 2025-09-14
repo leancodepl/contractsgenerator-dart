@@ -104,8 +104,7 @@ class ContractsGenerator {
             (l) => l
               ..body.addAll([
                 Code(config.directives),
-                // Only add json_serializable part if there are non-enum members
-                if (db.statements.any((stmt) => !stmt.hasEnum_11()))
+                if (db.usesJsonSerialization)
                   Code("part '${config.name}.g.dart';"),
                 Code('\n\n${config.extra}\n\n'),
                 ...body,

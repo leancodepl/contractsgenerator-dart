@@ -75,6 +75,32 @@ void main() {
       });
     });
 
+    group('usesJsonSerialization', () {
+      test('is false by default', () {
+        final db = makeDb();
+
+        expect(db.usesJsonSerialization, false);
+      });
+
+      test('markAsUsingJsonSerialization turns the flag to true', () {
+        final db = makeDb()..markAsUsingJsonSerialization();
+
+        expect(db.usesJsonSerialization, true);
+      });
+
+      test(
+        'marking as using JSON serialization multiple times does nothing extra',
+        () {
+          final db = makeDb()
+            ..markAsUsingJsonSerialization()
+            ..markAsUsingJsonSerialization()
+            ..markAsUsingJsonSerialization();
+
+          expect(db.usesJsonSerialization, true);
+        },
+      );
+    });
+
     group('getImplementingNotifications', () {
       test('collects notification types from various topics', () {
         final ab = Statement(name: 'A.B', dto: Statement_DTO());

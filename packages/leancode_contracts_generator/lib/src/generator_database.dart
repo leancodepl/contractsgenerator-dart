@@ -67,6 +67,15 @@ class GeneratorDatabase {
   /// Taints this [GeneratorDatabase] as being used to generate a topic.
   void markAsUsingTopics() => _usesTopics = true;
 
+  /// Flag to see whether this [GeneratorDatabase] was used to generate types
+  /// that require generation of JSON serialization helpers.
+  bool get usesJsonSerialization => _usesJsonSerialization;
+  var _usesJsonSerialization = false;
+
+  /// Taints this [GeneratorDatabase] as being used to generate types
+  /// that require generation of JSON serialization helpers.
+  void markAsUsingJsonSerialization() => _usesJsonSerialization = true;
+
   final _resolveCache = HashMap<String, String>();
   late final _names = statements
       .where((e) => shouldInclude(e.name))
