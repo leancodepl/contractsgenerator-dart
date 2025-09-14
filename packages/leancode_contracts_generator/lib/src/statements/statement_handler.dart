@@ -59,14 +59,19 @@ abstract class StatementHandler {
         ..fields.addAll([
           ...typeDescriptor.constants.map(_createConstant),
           ...properties.map(_createField),
-          // workaround to generate a getter
-          Field(
-            (b) => b
-              ..name =
-                  'get props => [${properties.map((e) => renameField(e.name)).join(',')}]'
-              ..type = refer('List<Object?>'),
-          ),
         ])
+        ..methods.add(
+          Method(
+            (m) => m
+              ..returns = refer('List<Object?>')
+              ..type = MethodType.getter
+              ..name = 'props'
+              ..lambda = true
+              ..body = Code(
+                '[${properties.map((e) => renameField(e.name)).join(',')}]',
+              ),
+          ),
+        )
         ..constructors.addAll([
           Constructor((b) => b..optionalParameters.addAll(parameters)),
           Constructor(
