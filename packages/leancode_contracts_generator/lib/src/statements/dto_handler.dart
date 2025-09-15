@@ -25,12 +25,12 @@ class DtoHandler extends StatementHandler {
           ..constructors.removeWhere((e) => e.name == 'fromJson');
       }
 
-      // Remove serde from generic DTOs. This is done because the
+      // Remove serialization from generic DTOs. This is done because the
       // toJson method has a signature that depends on the amount
       // of type parameters of this DTO. This means this will break
       // inheritance. Something like `class A extends B<T> {}`
       if (typeDescriptor.genericParameters.isNotEmpty) {
-        b.methods.clear();
+        b.methods.removeWhere((m) => m.name == 'toJson');
       }
 
       b.fields.add(

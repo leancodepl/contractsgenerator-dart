@@ -12,21 +12,18 @@ import 'types/utils/known_type_kind.dart';
 class GeneratorDatabase {
   @visibleForTesting
   GeneratorDatabase(this.config, this._export)
-      : _statements = LinkedHashMap.fromEntries(
-          _export.statements
-              .map((e) => MapEntry(e.name, e))
-              .sortedBy((e) => e.key),
-        );
+    : _statements = LinkedHashMap.fromEntries(
+        _export.statements
+            .map((e) => MapEntry(e.name, e))
+            .sortedBy((e) => e.key),
+      );
 
   static Future<GeneratorDatabase> fromConfig(
     ContractsGeneratorConfig config,
   ) async {
     final buffer = await config.input.run();
 
-    return GeneratorDatabase(
-      config,
-      Export.fromBuffer(buffer),
-    );
+    return GeneratorDatabase(config, Export.fromBuffer(buffer));
   }
 
   final ContractsGeneratorConfig config;
@@ -49,13 +46,14 @@ class GeneratorDatabase {
   late final _implementingNotifications = statements
       .where((e) => shouldInclude(e.name) && e.hasTopic())
       .fold(<String, List<String>>{}, (acc, curr) {
-    for (final notification in curr.topic.notifications) {
-      // notifications need to be of internal access
-      (acc[notification.type.ensureInternal().name] ??= [])
-          .add(resolveName(syntheticTopicNotificationFullName(curr)));
-    }
-    return acc;
-  });
+        for (final notification in curr.topic.notifications) {
+          // notifications need to be of internal access
+          (acc[notification.type.ensureInternal().name] ??= []).add(
+            resolveName(syntheticTopicNotificationFullName(curr)),
+          );
+        }
+        return acc;
+      });
 
   /// Returns a list of notification names that a statement implements.
   List<String> getImplementingNotifications(String namespacedName) {
@@ -69,16 +67,27 @@ class GeneratorDatabase {
   /// Taints this [GeneratorDatabase] as being used to generate a topic.
   void markAsUsingTopics() => _usesTopics = true;
 
+  /// Flag to see whether this [GeneratorDatabase] was used to generate types
+  /// that require generation of JSON serialization helpers.
+  bool get usesJsonSerialization => _usesJsonSerialization;
+  var _usesJsonSerialization = false;
+
+  /// Taints this [GeneratorDatabase] as being used to generate types
+  /// that require generation of JSON serialization helpers.
+  void markAsUsingJsonSerialization() => _usesJsonSerialization = true;
+
   final _resolveCache = HashMap<String, String>();
-  late final _names = statements.where((e) => shouldInclude(e.name)).expand(
+  late final _names = statements
+      .where((e) => shouldInclude(e.name))
+      .expand(
         (e) => [
           // attach synthetic notification types
           if (e.hasTopic())
             switch (syntheticTopicNotificationFullName(e)) {
               final fullName => (
-                  fullName: fullName,
-                  namespace: fullName.split(namespaceSeparator)
-                )
+                fullName: fullName,
+                namespace: fullName.split(namespaceSeparator),
+              ),
             },
           (fullName: e.name, namespace: e.name.split(namespaceSeparator)),
         ],
@@ -205,18 +214,20 @@ class GeneratorDatabase {
 
     final resolvedGenerics =
         typeDescriptorOf(statement)?.genericParameters.fold(
-              <String, TypeRef>{},
-              // initially, generics should resolve to a generic
-              (acc, curr) => acc
-                ..[curr.name] = TypeRef(
-                  generic: TypeRef_Generic(name: curr.name),
-                  nullable: false,
-                ),
-            ) ??
-            {};
+          <String, TypeRef>{},
+          // initially, generics should resolve to a generic
+          (acc, curr) => acc
+            ..[curr.name] = TypeRef(
+              generic: TypeRef_Generic(name: curr.name),
+              nullable: false,
+            ),
+        ) ??
+        {};
 
-    return _allPropsCache[statement.name] =
-        _allPropertiesOfAux(statement, resolvedGenerics).toList();
+    return _allPropsCache[statement.name] = _allPropertiesOfAux(
+      statement,
+      resolvedGenerics,
+    ).toList();
   }
 
   TypeRef _resolveType(TypeRef type, Map<String, TypeRef> generics) {
@@ -235,8 +246,9 @@ class GeneratorDatabase {
           nullable: type.nullable,
           internal: TypeRef_Internal(
             name: type.internal.name,
-            arguments: type.internal.arguments
-                .map((type) => _resolveType(type, generics)),
+            arguments: type.internal.arguments.map(
+              (type) => _resolveType(type, generics),
+            ),
           ),
         );
       case TypeRef_Type.known:
@@ -244,8 +256,9 @@ class GeneratorDatabase {
           nullable: type.nullable,
           known: TypeRef_Known(
             type: type.known.type,
-            arguments: type.known.arguments
-                .map((type) => _resolveType(type, generics)),
+            arguments: type.known.arguments.map(
+              (type) => _resolveType(type, generics),
+            ),
           ),
         );
       case TypeRef_Type.notSet:
@@ -276,21 +289,18 @@ class GeneratorDatabase {
 
           final resolvedGenerics =
               typeDescriptorOf(statement)?.genericParameters.indexed.fold(
-                    <String, TypeRef>{},
-                    // get the concrete type from child's generic argument list
-                    (acc, curr) =>
-                        acc..[curr.$2.name] = internal.arguments[curr.$1],
-                  ) ??
-                  {};
+                <String, TypeRef>{},
+                // get the concrete type from child's generic argument list
+                (acc, curr) =>
+                    acc..[curr.$2.name] = internal.arguments[curr.$1],
+              ) ??
+              {};
 
           return _allPropertiesOfAux(statement, resolvedGenerics);
         })
         .followedBy(typeDescriptor.properties)
         // remove duplicate properties which come from implementing an interface
-        .groupFoldBy(
-          (property) => property.name,
-          (_, property) => property,
-        )
+        .groupFoldBy((property) => property.name, (_, property) => property)
         .values
         // resolve generics to concrete types
         .map(

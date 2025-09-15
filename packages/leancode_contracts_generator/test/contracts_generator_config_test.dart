@@ -26,15 +26,13 @@ void main() {
 
       test('user config overrides defaults', () {
         const differentValue = 'different';
-        final config = ContractsGeneratorConfig.fromYaml(
-          '''
+        final config = ContractsGeneratorConfig.fromYaml('''
           $whateverInput
           name: $differentValue
           include: $differentValue
           output: $differentValue
           extra: $differentValue
-          ''',
-        );
+          ''');
 
         expect(config.name, differentValue);
         expect(config.include.pattern, differentValue);
@@ -51,12 +49,10 @@ void main() {
         );
 
         expect(
-          () => ContractsGeneratorConfig.fromYaml(
-            '''
+          () => ContractsGeneratorConfig.fromYaml('''
             input:
               unknown: {}
-            ''',
-          ),
+            '''),
           throwsA(isA<ArgumentError>()),
         );
 
@@ -68,14 +64,12 @@ void main() {
 
       test('cannot use multiple methods', () {
         expect(
-          () => ContractsGeneratorConfig.fromYaml(
-            '''
+          () => ContractsGeneratorConfig.fromYaml('''
             input:
               path:
                 include: [""]
               project: [""]
-            ''',
-          ),
+            '''),
           throwsA(isA<ArgumentError>()),
         );
       });
@@ -102,12 +96,10 @@ void main() {
       test('is a string', () {
         for (final value in nonStringYamlValues) {
           expect(
-            () => ContractsGeneratorConfig.fromYaml(
-              '''
+            () => ContractsGeneratorConfig.fromYaml('''
               $whateverInput
               name: $value
-              ''',
-            ),
+              '''),
             throwsA(isA<ArgumentError>()),
           );
         }
@@ -118,12 +110,10 @@ void main() {
       test('is a string', () {
         for (final value in nonStringYamlValues) {
           expect(
-            () => ContractsGeneratorConfig.fromYaml(
-              '''
+            () => ContractsGeneratorConfig.fromYaml('''
               $whateverInput
               include: $value
-              ''',
-            ),
+              '''),
             throwsA(isA<ArgumentError>()),
           );
         }
@@ -131,12 +121,10 @@ void main() {
 
       test('is a valid regex', () {
         expect(
-          () => ContractsGeneratorConfig.fromYaml(
-            '''
+          () => ContractsGeneratorConfig.fromYaml('''
               $whateverInput
               include: "[("
-              ''',
-          ),
+              '''),
           throwsA(isA<FormatException>()),
         );
       });
@@ -146,12 +134,10 @@ void main() {
       test('is a string', () {
         for (final value in nonStringYamlValues) {
           expect(
-            () => ContractsGeneratorConfig.fromYaml(
-              '''
+            () => ContractsGeneratorConfig.fromYaml('''
               $whateverInput
               output: $value
-              ''',
-            ),
+              '''),
             throwsA(isA<ArgumentError>()),
           );
         }
@@ -162,12 +148,10 @@ void main() {
       test('is a string', () {
         for (final value in nonStringYamlValues) {
           expect(
-            () => ContractsGeneratorConfig.fromYaml(
-              '''
+            () => ContractsGeneratorConfig.fromYaml('''
               $whateverInput
               directives: $value
-              ''',
-            ),
+              '''),
             throwsA(isA<ArgumentError>()),
           );
         }
@@ -178,12 +162,10 @@ void main() {
       test('is a string', () {
         for (final value in nonStringYamlValues) {
           expect(
-            () => ContractsGeneratorConfig.fromYaml(
-              '''
+            () => ContractsGeneratorConfig.fromYaml('''
               $whateverInput
               extra: $value
-              ''',
-            ),
+              '''),
             throwsA(isA<ArgumentError>()),
           );
         }

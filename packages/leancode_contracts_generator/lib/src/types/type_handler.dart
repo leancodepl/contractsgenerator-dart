@@ -8,10 +8,7 @@ abstract class TypeHandler {
 
   String build(TypeRef typeRef, Iterable<TypeHandler> handlers);
 
-  static String buildFrom(
-    TypeRef typeRef,
-    Iterable<TypeHandler> handlers,
-  ) {
+  static String buildFrom(TypeRef typeRef, Iterable<TypeHandler> handlers) {
     for (final handler in handlers) {
       if (handler.canHandle(typeRef)) {
         return handler.build(typeRef, handlers) + nullableSuffix(typeRef);

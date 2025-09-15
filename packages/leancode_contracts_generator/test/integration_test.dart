@@ -9,14 +9,17 @@ import 'package:test/test.dart';
 
 void main() {
   const inDir = 'contractsgenerator/examples';
-  const outDir = 'test/out';
-  final mainPath = p.join(outDir, 'main.dart');
+  const projDir = 'test/integration_test_project';
+  final binDir = p.join(projDir, 'bin');
+  final libDir = p.join(projDir, 'lib');
+  final mainPath = p.join(binDir, 'integration_test_project.dart');
 
   tearDown(() {
-    final dir = Directory(outDir);
+    final dir = Directory(libDir);
     if (dir.existsSync()) {
       dir.deleteSync(recursive: true);
     }
+    File(mainPath).writeAsStringSync('void main() {}\n');
   });
 
   group('final contract compilation', () {
@@ -31,12 +34,13 @@ void main() {
         if (!file.path.endsWith('binary.cs')) GeneratorScript.path([file.path]),
       for (final file in Directory(p.join(inDir, 'simple')).listSync())
         GeneratorScript.path([file.path]),
-      for (final file
-          in Directory(p.join(inDir, 'supported_use_cases')).listFiles())
+      for (final file in Directory(
+        p.join(inDir, 'supported_use_cases'),
+      ).listFiles())
         GeneratorScript.path([file.path]),
-      for (final file
-          in Directory(p.join(inDir, 'supported_use_cases', 'leanpipe'))
-              .listFiles())
+      for (final file in Directory(
+        p.join(inDir, 'supported_use_cases', 'leanpipe'),
+      ).listFiles())
         GeneratorScript.path([file.path]),
       GeneratorScript.path(
         ['**/*.cs'],
@@ -71,30 +75,46 @@ void main() {
         await ContractsGenerator(
           ContractsGeneratorConfig(
             input: generatorScript,
-            output: Directory(outDir),
+            output: Directory(libDir),
             extra: '// :)',
             include: RegExp('.*'),
           ),
         ).writeAll();
 
-        await File(mainPath).writeAsString(
-          '''
-        import 'contracts.dart';
+        Directory(binDir).createSync(recursive: true);
+        File(mainPath).writeAsStringSync('''
+        import 'package:integration_test_project/contracts.dart';
 
         void main() {
           print('Hello');
         }
-        ''',
-        );
+        ''');
 
-        final result = await Process.run('dart', ['run', mainPath]);
+        final jsonResult = await Process.run('dart', [
+          'run',
+          'build_runner',
+          'build',
+        ], workingDirectory: projDir);
+        if (jsonResult.exitCode != 0) {
+          stderr
+            ..writeln('\nFailed to generate JSON serialization for contracts:')
+            ..writeln(jsonResult.stderr)
+            ..writeln(
+              File(p.join(projDir, 'lib', 'contracts.dart')).readAsStringSync(),
+            );
+        }
+        expect(jsonResult.exitCode, 0);
+
+        final result = await Process.run('dart', [
+          'run',
+        ], workingDirectory: projDir);
 
         if (result.exitCode != 0) {
           stderr
             ..writeln('\nFailed to compile generated contracts:')
             ..writeln(result.stderr)
             ..writeln(
-              File(p.join(outDir, 'contracts.dart')).readAsStringSync(),
+              File(p.join(projDir, 'lib', 'contracts.dart')).readAsStringSync(),
             );
         }
         expect(result.exitCode, 0);

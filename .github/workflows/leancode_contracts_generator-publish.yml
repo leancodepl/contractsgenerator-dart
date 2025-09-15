@@ -23,7 +23,7 @@ jobs:
 
       - uses: dart-lang/setup-dart@v1
         with:
-          sdk: 3.7
+          sdk: 3.8
 
       - name: Publish to pub.dev
         run: |

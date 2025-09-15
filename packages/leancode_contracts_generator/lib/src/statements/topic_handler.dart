@@ -15,13 +15,10 @@ class TopicHandler extends StatementHandler {
     super.attributeCreator,
     JsonConverters jsonConverters,
     super.db,
-  ) : resultFactoryCreator = ResultFactoryCreator(
-          [
-            InternalResultFactoryHandler(db),
-            KnownResultFactoryHandler(jsonConverters),
-          ],
-          typeCreator,
-        );
+  ) : resultFactoryCreator = ResultFactoryCreator([
+        InternalResultFactoryHandler(db),
+        KnownResultFactoryHandler(jsonConverters),
+      ], typeCreator);
 
   final ResultFactoryCreator resultFactoryCreator;
 
@@ -29,50 +26,47 @@ class TopicHandler extends StatementHandler {
   Spec build(Statement statement) {
     final base = createBase(statement, requiredParameters: true);
 
-    final notificationTypeName =
-        db.resolveName(db.syntheticTopicNotificationFullName(statement));
+    final notificationTypeName = db.resolveName(
+      db.syntheticTopicNotificationFullName(statement),
+    );
 
     db.markAsUsingTopics();
 
     return Library(
       (b) => b
-        ..body.addAll(
-          [
-            base.rebuild(
-              (b) => b
-                ..implements.add(
-                  refer(
-                    '${KnownTypeHandler.toDartType(KnownType.Topic)}<$notificationTypeName>',
-                  ),
-                )
-                ..methods.addAll(
-                  [
-                    _castNotification(statement.topic, notificationTypeName),
-                    Method(
-                      (b) => b
-                        ..name = 'fromJson'
-                        ..lambda = true
-                        ..returns = refer(base.name)
-                        ..requiredParameters.addAll([
-                          Parameter(
-                            (b) => b
-                              ..name = 'json'
-                              ..type = refer('Map<String, dynamic>'),
-                          ),
-                        ])
-                        ..body = Code('${base.name}.fromJson(json)'),
-                    ),
-                    getFullNameMethod(statement),
-                  ],
+        ..body.addAll([
+          base.rebuild(
+            (b) => b
+              ..implements.add(
+                refer(
+                  '${KnownTypeHandler.toDartType(KnownType.Topic)}<$notificationTypeName>',
                 ),
-            ),
-            Class(
-              (b) => b
-                ..sealed = true
-                ..name = notificationTypeName,
-            ),
-          ],
-        ),
+              )
+              ..methods.addAll([
+                _castNotification(statement.topic, notificationTypeName),
+                Method(
+                  (b) => b
+                    ..name = 'fromJson'
+                    ..lambda = true
+                    ..returns = refer(base.name)
+                    ..requiredParameters.addAll([
+                      Parameter(
+                        (b) => b
+                          ..name = 'json'
+                          ..type = refer('Map<String, dynamic>'),
+                      ),
+                    ])
+                    ..body = Code('${base.name}.fromJson(json)'),
+                ),
+                getFullNameMethod(statement),
+              ]),
+          ),
+          Class(
+            (b) => b
+              ..sealed = true
+              ..name = notificationTypeName,
+          ),
+        ]),
     );
   }
 
@@ -100,9 +94,7 @@ class TopicHandler extends StatementHandler {
               ..type = refer('dynamic'),
           ),
         ])
-        ..body = Code(
-          'switch(tag) {$cases} as $notificationTypeName?',
-        ),
+        ..body = Code('switch(tag) {$cases} as $notificationTypeName?'),
     );
   }
 

@@ -35,8 +35,9 @@ class InitCommand extends Command<int> {
       message: 'Initializing config file in $dir',
       verbose: verbose,
     );
-    await File(p.join(dir, configFileName))
-        .writeAsString(ContractsGeneratorConfig.defaultYamlConfig);
+    await File(
+      p.join(dir, configFileName),
+    ).writeAsString(ContractsGeneratorConfig.defaultYamlConfig);
     done();
 
     return 0;

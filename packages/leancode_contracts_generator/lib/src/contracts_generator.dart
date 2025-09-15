@@ -1,15 +1,9 @@
-import 'dart:convert';
 import 'dart:io';
 
-import 'package:build/build.dart';
-import 'package:build_resolvers/build_resolvers.dart';
-import 'package:build_runner_core/build_runner_core.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
-import 'package:json_serializable/builder.dart';
 import 'package:leancode_contracts_generator/src/statements/operation_handler.dart';
 import 'package:leancode_contracts_generator/src/statements/topic_handler.dart';
-import 'package:leancode_contracts_generator/src/utils/memory_asset_writer.dart';
 import 'package:leancode_contracts_generator/src/utils/verbose_log.dart';
 import 'package:path/path.dart' as p;
 
@@ -43,10 +37,7 @@ class ContractsGenerator {
 
   /// generates `code_builder` structures that can still be modified
   Future<Library> generate() async {
-    final doneDb = verboseLog(
-      message: 'Analysing contracts',
-      verbose: verbose,
-    );
+    final doneDb = verboseLog(message: 'Analysing contracts', verbose: verbose);
     final db = await GeneratorDatabase.fromConfig(config);
     doneDb();
 
@@ -64,12 +55,7 @@ class ContractsGenerator {
     const errorCreator = ErrorCreator();
     const attributeCreator = AttributeCreator(valueCreator);
     final statementCreator = StatementCreator([
-      DtoHandler(
-        typeCreator,
-        valueCreator,
-        attributeCreator,
-        db,
-      ),
+      DtoHandler(typeCreator, valueCreator, attributeCreator, db),
       QueryHandler(
         typeCreator,
         valueCreator,
@@ -98,12 +84,7 @@ class ContractsGenerator {
         jsonConverters,
         db,
       ),
-      EnumHandler(
-        typeCreator,
-        valueCreator,
-        attributeCreator,
-        db,
-      ),
+      EnumHandler(typeCreator, valueCreator, attributeCreator, db),
     ]);
 
     final body = [
@@ -123,7 +104,8 @@ class ContractsGenerator {
             (l) => l
               ..body.addAll([
                 Code(config.directives),
-                Code("part '${config.name}.g.dart';"),
+                if (db.usesJsonSerialization)
+                  Code("part '${config.name}.g.dart';"),
                 Code('\n\n${config.extra}\n\n'),
                 ...body,
               ])
@@ -146,12 +128,9 @@ class ContractsGenerator {
   Future<String> toCode() async =>
       (await generate()).accept(emitter).toString();
 
-  /// Writes formatted contracts and generated build files into the file system
+  /// Writes formatted contracts into the file system
   Future<void> writeAll() async {
-    final contractsPath = p.join(
-      p.relative(config.output.path),
-      '${config.name}.dart',
-    );
+    final contractsPath = p.join(config.output.path, '${config.name}.dart');
 
     final code = await toCode();
 
@@ -160,47 +139,11 @@ class ContractsGenerator {
       verbose: verbose,
     );
     await config.output.create(recursive: true);
-    await File(contractsPath).writeAsString(
-      DartFormatter(languageVersion: DartFormatter.latestLanguageVersion)
-          .format(code),
+    File(contractsPath).writeAsStringSync(
+      DartFormatter(
+        languageVersion: DartFormatter.latestLanguageVersion,
+      ).format(code),
     );
     doneWriting();
-
-    final doneJson = verboseLog(
-      message: 'Generating json_serializable file',
-      verbose: verbose,
-    );
-    final packageGraph = await PackageGraph.forThisPackage();
-    final js = jsonSerializable(BuilderOptions.empty);
-    final f = AssetId(packageGraph.root.name, contractsPath);
-
-    final env = IOEnvironment(packageGraph);
-    final writer = MemoryAssetWriter();
-
-    final res = AnalyzerResolvers.sharedInstance;
-
-    await runBuilder(js, [f], env.reader, writer, res);
-
-    final jsonSerializablePathOld = p.join(
-      p.relative(config.output.path),
-      '${config.name}.json_serializable.g.part',
-    );
-    final jsonSerializablePath = p.join(
-      config.output.path,
-      '${config.name}.g.dart',
-    );
-    final generated = writer.assets[AssetId(
-      packageGraph.root.name,
-      jsonSerializablePathOld,
-    )];
-    await File(jsonSerializablePath).writeAsString(
-      '''
-// GENERATED CODE - DO NOT MODIFY BY HAND
-
-part of '${config.name}.dart';
-
-${utf8.decode(generated ?? [])}''',
-    );
-    doneJson();
   }
 }

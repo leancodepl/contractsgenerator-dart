@@ -1,8 +1,8 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:collection/collection.dart';
+import 'package:leancode_contracts_generator/src/utils/case_helpers.dart';
 import 'package:leancode_contracts_generator/src/utils/rename_type.dart';
 import 'package:meta/meta.dart';
-import 'package:source_helper/source_helper.dart';
 
 import '../attributes/attribute_creator.dart';
 import '../generator_database.dart';
@@ -53,24 +53,17 @@ abstract class StatementHandler {
         .map((e) => _GenericFactory(e.name))
         .toList();
 
+    db.markAsUsingJsonSerialization();
+
     return Class((b) {
       b
         ..name = name
         ..fields.addAll([
           ...typeDescriptor.constants.map(_createConstant),
           ...properties.map(_createField),
-          // workaround to generate a getter
-          Field(
-            (b) => b
-              ..name =
-                  'get props => [${properties.map((e) => renameField(e.name)).join(',')}]'
-              ..type = refer('List<Object?>'),
-          ),
         ])
         ..constructors.addAll([
-          Constructor(
-            (b) => b..optionalParameters.addAll(parameters),
-          ),
+          Constructor((b) => b..optionalParameters.addAll(parameters)),
           Constructor(
             (b) => b
               ..factory = true
@@ -90,24 +83,28 @@ abstract class StatementHandler {
                   ),
               ])
               ..body = Code(
-                '_\$${name}FromJson(${[
-                  'json',
-                  ...genericFactories.map((e) => e.fromJsonName),
-                ].join(',')})',
+                '_\$${name}FromJson(${['json', ...genericFactories.map((e) => e.fromJsonName)].join(',')})',
               ),
           ),
         ])
-        ..methods.add(
+        ..methods.addAll([
+          Method(
+            (m) => m
+              ..returns = refer('List<Object?>')
+              ..type = MethodType.getter
+              ..name = 'props'
+              ..lambda = true
+              ..body = Code(
+                '[${properties.map((e) => renameField(e.name)).join(',')}]',
+              ),
+          ),
           Method(
             (b) => b
               ..name = 'toJson'
               ..lambda = true
               ..returns = refer('Map<String, dynamic>')
               ..body = Code(
-                '_\$${name}ToJson(${[
-                  'this',
-                  ...genericFactories.map((e) => e.toJsonName),
-                ].join(',')})',
+                '_\$${name}ToJson(${['this', ...genericFactories.map((e) => e.toJsonName)].join(',')})',
               )
               ..requiredParameters.addAll([
                 for (final genericFactory in genericFactories)
@@ -118,7 +115,7 @@ abstract class StatementHandler {
                   ),
               ]),
           ),
-        )
+        ])
         ..types.addAll(
           typeDescriptor.genericParameters.map((t) => refer(t.name)),
         )
@@ -159,10 +156,7 @@ abstract class StatementHandler {
     });
   }
 
-  Parameter _createParameter(
-    PropertyRef prop, {
-    required bool required,
-  }) {
+  Parameter _createParameter(PropertyRef prop, {required bool required}) {
     final type = typeCreator.create(prop.type);
 
     return Parameter(
@@ -197,7 +191,9 @@ abstract class StatementHandler {
   }
 
   Field _createConstant(ConstantRef prop) {
-    return valueCreator.create(prop.value).rebuild(
+    return valueCreator
+        .create(prop.value)
+        .rebuild(
           (b) => b
             ..name = renameField(prop.name)
             ..modifier = FieldModifier.constant

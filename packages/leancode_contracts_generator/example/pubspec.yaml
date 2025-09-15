@@ -4,7 +4,7 @@ version: 1.0.0
 publish_to: none
 
 environment:
-  sdk: ">=3.5.4 <4.0.0"
+  sdk: ">=3.8.0 <4.0.0"
 
 dependencies:
   leancode_contracts:
@@ -12,5 +12,8 @@ dependencies:
   leancode_contracts_generator:
     path: ..
   leancode_pipe: ^2.0.0
+
 dev_dependencies:
-  leancode_lint: ^16.0.0
+  build_runner: ^2.7.1
+  json_serializable: ^6.11.1
+  leancode_lint: ^17.0.0
