@@ -1,4 +1,4 @@
-// Helpers from the source_helpers package, to avoid depending on it
+// Helpers from the source_helper package, to avoid depending on it
 // (and thus depending on `build` transitively)
 
 // Copyright 2021 Google LLC
