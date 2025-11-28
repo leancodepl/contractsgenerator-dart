@@ -1,5 +1,4 @@
 import 'package:code_builder/code_builder.dart';
-import 'package:leancode_contracts_generator/src/statements/utils/full_name_field.dart';
 
 import 'statement_handler.dart';
 
@@ -33,8 +32,6 @@ class DtoHandler extends StatementHandler {
       if (typeDescriptor.genericParameters.isNotEmpty) {
         b.methods.removeWhere((m) => m.name == 'toJson');
       }
-
-      b.fields.add(fullNameField(statement));
     });
   }
 
