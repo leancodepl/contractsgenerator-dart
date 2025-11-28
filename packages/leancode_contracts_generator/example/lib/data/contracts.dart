@@ -12,11 +12,13 @@ class Command_ with EquatableMixin implements Command {
   factory Command_.fromJson(Map<String, dynamic> json) =>
       _$Command_FromJson(json);
 
+  static const fullName$ = 'A.Command';
+
   List<Object?> get props => [];
 
   Map<String, dynamic> toJson() => _$Command_ToJson(this);
 
-  String getFullName() => 'A.Command';
+  String getFullName() => fullName$;
 }
 
 class CommandErrorCodes {}
@@ -28,13 +30,15 @@ class Query_ with EquatableMixin implements Query<int> {
 
   factory Query_.fromJson(Map<String, dynamic> json) => _$Query_FromJson(json);
 
+  static const fullName$ = 'B.Query';
+
   List<Object?> get props => [];
 
   Map<String, dynamic> toJson() => _$Query_ToJson(this);
 
   int resultFactory(dynamic decodedJson) => decodedJson as int;
 
-  String getFullName() => 'B.Query';
+  String getFullName() => fullName$;
 }
 
 @ContractsSerializable()
@@ -57,6 +61,8 @@ class Topic_ with EquatableMixin implements Topic<TopicNotification> {
 
   factory Topic_.fromJson(Map<String, dynamic> json) => _$Topic_FromJson(json);
 
+  static const fullName$ = 'C.Topic';
+
   List<Object?> get props => [];
 
   Map<String, dynamic> toJson() => _$Topic_ToJson(this);
@@ -72,7 +78,7 @@ class Topic_ with EquatableMixin implements Topic<TopicNotification> {
 
   Topic_ fromJson(Map<String, dynamic> json) => Topic_.fromJson(json);
 
-  String getFullName() => 'C.Topic';
+  String getFullName() => fullName$;
 }
 
 sealed class TopicNotification {}
