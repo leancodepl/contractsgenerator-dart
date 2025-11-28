@@ -1,4 +1,5 @@
 import 'package:code_builder/code_builder.dart';
+import 'package:leancode_contracts_generator/src/statements/utils/full_name_field.dart';
 
 import '../json_converters/json_converters.dart';
 import 'result_factory/internal_result_factory_handler.dart';
@@ -25,9 +26,10 @@ class OperationHandler extends StatementHandler {
   Spec build(Statement statement) {
     return createBase(statement, requiredParameters: true).rebuild(
       (b) => b
+        ..fields.add(fullNameField(statement))
         ..methods.addAll([
           resultFactoryCreator.create(statement.operation.returnType),
-          getFullNameMethod(statement),
+          getFullNameMethod,
         ]),
     );
   }

@@ -1,13 +1,10 @@
 import 'package:code_builder/code_builder.dart';
+import 'package:leancode_contracts_generator/src/statements/utils/full_name_field.dart';
 
-import '../statement_handler.dart';
-
-Method getFullNameMethod(Statement statement) {
-  return Method(
-    (b) => b
-      ..name = 'getFullName'
-      ..lambda = true
-      ..returns = refer('String')
-      ..body = literalString(statement.name).code,
-  );
-}
+final getFullNameMethod = Method(
+  (b) => b
+    ..name = 'getFullName'
+    ..lambda = true
+    ..returns = refer('String')
+    ..body = const Code(fullNameFieldName),
+);

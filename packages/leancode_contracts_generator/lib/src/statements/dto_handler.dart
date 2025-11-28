@@ -1,4 +1,5 @@
 import 'package:code_builder/code_builder.dart';
+import 'package:leancode_contracts_generator/src/statements/utils/full_name_field.dart';
 
 import 'statement_handler.dart';
 
@@ -34,13 +35,7 @@ class DtoHandler extends StatementHandler {
       }
 
       b.fields.add(
-        Field(
-          (f) => f
-            ..name = r'fullName$'
-            ..static = true
-            ..modifier = FieldModifier.constant
-            ..assignment = literalString(statement.name).code,
-        ),
+        fullNameField(statement),
       );
     });
   }

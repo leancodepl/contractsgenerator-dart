@@ -1,4 +1,5 @@
 import 'package:code_builder/code_builder.dart';
+import 'package:leancode_contracts_generator/src/statements/utils/full_name_field.dart';
 import 'package:leancode_contracts_generator/src/types/known_type_handler.dart';
 
 import '../json_converters/json_converters.dart';
@@ -42,6 +43,7 @@ class TopicHandler extends StatementHandler {
                   '${KnownTypeHandler.toDartType(KnownType.Topic)}<$notificationTypeName>',
                 ),
               )
+              ..fields.add(fullNameField(statement))
               ..methods.addAll([
                 _castNotification(statement.topic, notificationTypeName),
                 Method(
@@ -58,7 +60,7 @@ class TopicHandler extends StatementHandler {
                     ])
                     ..body = Code('${base.name}.fromJson(json)'),
                 ),
-                getFullNameMethod(statement),
+                getFullNameMethod,
               ]),
           ),
           Class(
