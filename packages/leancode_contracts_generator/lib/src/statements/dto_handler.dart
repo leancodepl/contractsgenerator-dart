@@ -34,9 +34,7 @@ class DtoHandler extends StatementHandler {
         b.methods.removeWhere((m) => m.name == 'toJson');
       }
 
-      b.fields.add(
-        fullNameField(statement),
-      );
+      b.fields.add(fullNameField(statement));
     });
   }
 
