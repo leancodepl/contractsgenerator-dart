@@ -23,7 +23,7 @@ class CommandHandler extends StatementHandler {
           createBase(
             statement,
             requiredParameters: true,
-          ).rebuild((b) => b..methods.add(getFullNameMethod(statement))),
+          ).rebuild((b) => b..methods.add(getFullNameMethod)),
           errorCreator.create(
             statement.command.errorCodes,
             db.resolveName(statement.name),

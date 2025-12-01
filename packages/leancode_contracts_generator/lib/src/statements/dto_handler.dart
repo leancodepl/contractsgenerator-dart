@@ -32,16 +32,6 @@ class DtoHandler extends StatementHandler {
       if (typeDescriptor.genericParameters.isNotEmpty) {
         b.methods.removeWhere((m) => m.name == 'toJson');
       }
-
-      b.fields.add(
-        Field(
-          (f) => f
-            ..name = r'fullName$'
-            ..static = true
-            ..modifier = FieldModifier.constant
-            ..assignment = literalString(statement.name).code,
-        ),
-      );
     });
   }
 

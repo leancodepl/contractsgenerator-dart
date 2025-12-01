@@ -58,7 +58,7 @@ class TopicHandler extends StatementHandler {
                     ])
                     ..body = Code('${base.name}.fromJson(json)'),
                 ),
-                getFullNameMethod(statement),
+                getFullNameMethod,
               ]),
           ),
           Class(

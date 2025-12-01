@@ -27,7 +27,7 @@ class OperationHandler extends StatementHandler {
       (b) => b
         ..methods.addAll([
           resultFactoryCreator.create(statement.operation.returnType),
-          getFullNameMethod(statement),
+          getFullNameMethod,
         ]),
     );
   }

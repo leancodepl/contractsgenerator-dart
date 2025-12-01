@@ -61,6 +61,13 @@ abstract class StatementHandler {
         ..fields.addAll([
           ...typeDescriptor.constants.map(_createConstant),
           ...properties.map(_createField),
+          Field(
+            (f) => f
+              ..name = fullNameFieldName
+              ..static = true
+              ..modifier = FieldModifier.constant
+              ..assignment = literalString(statement.name).code,
+          ),
         ])
         ..constructors.addAll([
           Constructor((b) => b..optionalParameters.addAll(parameters)),
@@ -202,6 +209,8 @@ abstract class StatementHandler {
         );
   }
 }
+
+const fullNameFieldName = r'fullName$';
 
 class _GenericFactory {
   const _GenericFactory(this.paramName);

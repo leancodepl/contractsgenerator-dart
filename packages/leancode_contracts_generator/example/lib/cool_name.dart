@@ -12,6 +12,9 @@ class Auth with EquatableMixin {
 
   factory Auth.fromJson(Map<String, dynamic> json) => _$AuthFromJson(json);
 
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Auth';
+
   List<Object?> get props => [];
 
   Map<String, dynamic> toJson() => _$AuthToJson(this);
@@ -27,6 +30,9 @@ class KnownClaims with EquatableMixin {
   static const String userId = 'sub';
 
   static const String role = 'role';
+
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Auth.KnownClaims';
 
   List<Object?> get props => [];
 
@@ -45,6 +51,9 @@ class Roles with EquatableMixin {
 
   static const String system = 'system';
 
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Auth.Roles';
+
   List<Object?> get props => [];
 
   Map<String, dynamic> toJson() => _$RolesToJson(this);
@@ -60,7 +69,8 @@ abstract class PaginatedQuery<TResult>
 
   final int pageSize;
 
-  List<Object?> get props => [pageNumber, pageSize];
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.PaginatedQuery';
 }
 
 /// This one is in XML.
@@ -78,6 +88,9 @@ class PaginatedResult<TResult> with EquatableMixin {
 
   final int totalCount;
 
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.PaginatedResult';
+
   List<Object?> get props => [items, totalCount];
 }
 
@@ -89,6 +102,9 @@ class ISomethingRelated with EquatableMixin {
       _$ISomethingRelatedFromJson(json);
 
   final String somethingId;
+
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Security.ISomethingRelated';
 
   List<Object?> get props => [somethingId];
 
@@ -103,6 +119,9 @@ class WhenHasSomethingAccess with EquatableMixin {
 
   factory WhenHasSomethingAccess.fromJson(Map<String, dynamic> json) =>
       _$WhenHasSomethingAccessFromJson(json);
+
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Security.WhenHasSomethingAccess';
 
   List<Object?> get props => [];
 
@@ -121,6 +140,9 @@ class AllUsers with EquatableMixin implements PaginatedQuery<UserInfoDTO> {
 
   final int pageSize;
 
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Users.AllUsers';
+
   List<Object?> get props => [pageNumber, pageSize];
 
   Map<String, dynamic> toJson() => _$AllUsersToJson(this);
@@ -131,8 +153,7 @@ class AllUsers with EquatableMixin implements PaginatedQuery<UserInfoDTO> {
         (e) => _$UserInfoDTOFromJson(e as Map<String, dynamic>),
       );
 
-  String getFullName() =>
-      'LeanCode.ContractsGeneratorV2.ExampleContracts.Users.AllUsers';
+  String getFullName() => fullName$;
 }
 
 /// LeanCode.Contracts.Security.AuthorizeWhenHasAnyOfAttribute('admin')
@@ -163,6 +184,9 @@ class EditUser with EquatableMixin implements Command, ISomethingRelated {
 
   final UserInfoDTO userInfo;
 
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Users.EditUser';
+
   List<Object?> get props => [
     somethingId,
     userId,
@@ -174,8 +198,7 @@ class EditUser with EquatableMixin implements Command, ISomethingRelated {
 
   Map<String, dynamic> toJson() => _$EditUserToJson(this);
 
-  String getFullName() =>
-      'LeanCode.ContractsGeneratorV2.ExampleContracts.Users.EditUser';
+  String getFullName() => fullName$;
 }
 
 class EditUserErrorCodes {
@@ -210,6 +233,9 @@ class UserById with EquatableMixin implements Query<UserInfoDTO?> {
   factory UserById.fromJson(Map<String, dynamic> json) =>
       _$UserByIdFromJson(json);
 
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Users.UserById';
+
   List<Object?> get props => [];
 
   Map<String, dynamic> toJson() => _$UserByIdToJson(this);
@@ -218,8 +244,7 @@ class UserById with EquatableMixin implements Query<UserInfoDTO?> {
       ? null
       : _$UserInfoDTOFromJson(decodedJson as Map<String, dynamic>);
 
-  String getFullName() =>
-      'LeanCode.ContractsGeneratorV2.ExampleContracts.Users.UserById';
+  String getFullName() => fullName$;
 }
 
 @Deprecated('Use something else instead')
@@ -244,6 +269,9 @@ class UserInfoDTO with EquatableMixin {
 
   final String emailAddress;
 
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Users.UserInfoDTO';
+
   List<Object?> get props => [firstname, surname, username, emailAddress];
 
   Map<String, dynamic> toJson() => _$UserInfoDTOToJson(this);
@@ -257,12 +285,14 @@ class UserSomething with EquatableMixin implements Query<int?> {
   factory UserSomething.fromJson(Map<String, dynamic> json) =>
       _$UserSomethingFromJson(json);
 
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Users.UserSomething';
+
   List<Object?> get props => [];
 
   Map<String, dynamic> toJson() => _$UserSomethingToJson(this);
 
   int? resultFactory(dynamic decodedJson) => decodedJson as int?;
 
-  String getFullName() =>
-      'LeanCode.ContractsGeneratorV2.ExampleContracts.Users.UserSomething';
+  String getFullName() => fullName$;
 }

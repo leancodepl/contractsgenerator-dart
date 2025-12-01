@@ -27,7 +27,7 @@ class QueryHandler extends StatementHandler {
       (b) => b
         ..methods.addAll([
           resultFactoryCreator.create(statement.query.returnType),
-          getFullNameMethod(statement),
+          getFullNameMethod,
         ]),
     );
   }
