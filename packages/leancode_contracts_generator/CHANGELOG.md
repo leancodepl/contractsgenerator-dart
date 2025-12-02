@@ -1,3 +1,7 @@
+# 0.17.1
+
+- Include fully qualified names in Query/Command/Topic/Operation classes
+
 # 0.17.0
 
 - **BREAKING**: Bump Dart SDK to 3.8.0
