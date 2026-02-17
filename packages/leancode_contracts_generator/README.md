@@ -1,3 +1,7 @@
+<a href="https://leancode.co/?utm_source=github.com&utm_medium=referral&utm_campaign=leancode-contracts-generator" align="center">
+  <img alt="leancode_contracts_generator" src="https://github.com/user-attachments/assets/e38ebf4b-3fac-4b63-9408-bf55f49a3432" />
+</a>
+
 # leancode_contracts_generator
 
 [![](https://img.shields.io/pub/v/leancode_contracts_generator.svg?logo=dart)](https://pub.dev/packages/leancode_contracts_generator)
