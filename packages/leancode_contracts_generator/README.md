@@ -1,5 +1,5 @@
 <a href="https://leancode.co/?utm_source=github.com&utm_medium=referral&utm_campaign=leancode-contracts-generator" align="center">
-  <img alt="leancode_contracts_generator" src="https://raw.githubusercontent.com/leancodepl/contractsgenerator-dart/refs/heads/main/packages/leancode_contracts_generator/docs/imgs/banner.png" />
+  <img alt="leancode_contracts_generator" src="https://raw.githubusercontent.com/leancodepl/contractsgenerator-dart/refs/heads/main/packages/leancode_contracts_generator/doc/imgs/banner.png" />
 </a>
 
 # leancode_contracts_generator
