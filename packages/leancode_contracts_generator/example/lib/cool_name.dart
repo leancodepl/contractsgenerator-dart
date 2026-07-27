@@ -7,7 +7,7 @@ part 'cool_name.g.dart';
 // :)
 
 @ContractsSerializable()
-class Auth with EquatableMixin {
+class Auth with Equatable {
   Auth();
 
   factory Auth.fromJson(Map<String, dynamic> json) => _$AuthFromJson(json);
@@ -21,7 +21,7 @@ class Auth with EquatableMixin {
 }
 
 @ContractsSerializable()
-class KnownClaims with EquatableMixin {
+class KnownClaims with Equatable {
   KnownClaims();
 
   factory KnownClaims.fromJson(Map<String, dynamic> json) =>
@@ -40,7 +40,7 @@ class KnownClaims with EquatableMixin {
 }
 
 @ContractsSerializable()
-class Roles with EquatableMixin {
+class Roles with Equatable {
   Roles();
 
   factory Roles.fromJson(Map<String, dynamic> json) => _$RolesFromJson(json);
@@ -61,7 +61,7 @@ class Roles with EquatableMixin {
 
 /// This is a class-level comment.
 abstract class PaginatedQuery<TResult>
-    with EquatableMixin
+    with Equatable
     implements Query<PaginatedResult<TResult>> {
   PaginatedQuery({required this.pageNumber, required this.pageSize});
 
@@ -75,7 +75,7 @@ abstract class PaginatedQuery<TResult>
 
 /// This one is in XML.
 @ContractsSerializable(genericArgumentFactories: true)
-class PaginatedResult<TResult> with EquatableMixin {
+class PaginatedResult<TResult> with Equatable {
   PaginatedResult({required this.items, required this.totalCount});
 
   factory PaginatedResult.fromJson(
@@ -95,7 +95,7 @@ class PaginatedResult<TResult> with EquatableMixin {
 }
 
 @ContractsSerializable()
-class ISomethingRelated with EquatableMixin {
+class ISomethingRelated with Equatable {
   ISomethingRelated({required this.somethingId});
 
   factory ISomethingRelated.fromJson(Map<String, dynamic> json) =>
@@ -114,7 +114,7 @@ class ISomethingRelated with EquatableMixin {
 /// System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('?', 'SA1302', Justification: 'Convention for authorizers.')
 /// System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('?', 'IDE1006', Justification: 'Convention for authorizers.')
 @ContractsSerializable()
-class WhenHasSomethingAccess with EquatableMixin {
+class WhenHasSomethingAccess with Equatable {
   WhenHasSomethingAccess();
 
   factory WhenHasSomethingAccess.fromJson(Map<String, dynamic> json) =>
@@ -130,7 +130,7 @@ class WhenHasSomethingAccess with EquatableMixin {
 
 /// LeanCode.Contracts.Security.AuthorizeWhenHasAnyOfAttribute('admin')
 @ContractsSerializable()
-class AllUsers with EquatableMixin implements PaginatedQuery<UserInfoDTO> {
+class AllUsers with Equatable implements PaginatedQuery<UserInfoDTO> {
   AllUsers({required this.pageNumber, required this.pageSize});
 
   factory AllUsers.fromJson(Map<String, dynamic> json) =>
@@ -159,7 +159,7 @@ class AllUsers with EquatableMixin implements PaginatedQuery<UserInfoDTO> {
 /// LeanCode.Contracts.Security.AuthorizeWhenHasAnyOfAttribute('admin')
 /// LeanCode.ContractsGeneratorV2.ExampleContracts.Security.AuthorizeWhenHasSomethingAccessAttribute()
 @ContractsSerializable()
-class EditUser with EquatableMixin implements Command, ISomethingRelated {
+class EditUser with Equatable implements Command, ISomethingRelated {
   EditUser({
     required this.somethingId,
     required this.userId,
@@ -227,7 +227,7 @@ class EditUserErrorCodes {
 
 /// LeanCode.Contracts.Security.AuthorizeWhenHasAnyOfAttribute('admin')
 @ContractsSerializable()
-class UserById with EquatableMixin implements Query<UserInfoDTO?> {
+class UserById with Equatable implements Query<UserInfoDTO?> {
   UserById();
 
   factory UserById.fromJson(Map<String, dynamic> json) =>
@@ -249,7 +249,7 @@ class UserById with EquatableMixin implements Query<UserInfoDTO?> {
 
 @Deprecated('Use something else instead')
 @ContractsSerializable()
-class UserInfoDTO with EquatableMixin {
+class UserInfoDTO with Equatable {
   UserInfoDTO({
     required this.firstname,
     required this.surname,
@@ -279,7 +279,7 @@ class UserInfoDTO with EquatableMixin {
 
 /// LeanCode.Contracts.Security.AuthorizeWhenHasAnyOfAttribute('admin')
 @ContractsSerializable()
-class UserSomething with EquatableMixin implements Query<int?> {
+class UserSomething with Equatable implements Query<int?> {
   UserSomething();
 
   factory UserSomething.fromJson(Map<String, dynamic> json) =>

@@ -1,3 +1,7 @@
+# 0.9.0
+
+- **BREAKING**: change the `package:equatable` constraint to `"^2.1.0"`, which deprecates `EquatableMixin` in favor of using `Equatable` as a mixin
+
 # 0.8.0
 
 - **BREAKING**: change the `pacakge:cqrs` constraint to `">=9.0.0 <11.0.0"`

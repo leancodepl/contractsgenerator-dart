@@ -159,7 +159,7 @@ abstract class StatementHandler {
         ..implements.addAll(
           db.getImplementingNotifications(statement.name).map(refer),
         )
-        ..mixins.add(refer('EquatableMixin'));
+        ..mixins.add(refer('Equatable'));
     });
   }
 

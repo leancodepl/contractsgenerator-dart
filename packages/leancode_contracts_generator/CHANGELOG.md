@@ -1,3 +1,7 @@
+# 0.18.0
+
+- **BREAKING**: Generate `with Equatable` instead of the deprecated `with EquatableMixin`. Requires `package:leancode_contracts` v0.9.0 (`package:equatable` v2.1.0)
+
 # 0.17.1
 
 - Include fully qualified names in Query/Command/Topic/Operation classes as a static `fullName$` field
