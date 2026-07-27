@@ -6,7 +6,7 @@ part 'contracts.g.dart';
 
 /// LeanCode.Contracts.Security.AllowUnauthorizedAttribute()
 @ContractsSerializable()
-class Command_ with EquatableMixin implements Command {
+class Command_ with Equatable implements Command {
   Command_();
 
   factory Command_.fromJson(Map<String, dynamic> json) =>
@@ -25,7 +25,7 @@ class CommandErrorCodes {}
 
 /// LeanCode.Contracts.Security.AllowUnauthorizedAttribute()
 @ContractsSerializable()
-class Query_ with EquatableMixin implements Query<int> {
+class Query_ with Equatable implements Query<int> {
   Query_();
 
   factory Query_.fromJson(Map<String, dynamic> json) => _$Query_FromJson(json);
@@ -42,7 +42,7 @@ class Query_ with EquatableMixin implements Query<int> {
 }
 
 @ContractsSerializable()
-class Notification with EquatableMixin implements TopicNotification {
+class Notification with Equatable implements TopicNotification {
   Notification();
 
   factory Notification.fromJson(Map<String, dynamic> json) =>
@@ -56,7 +56,7 @@ class Notification with EquatableMixin implements TopicNotification {
 }
 
 @ContractsSerializable()
-class Topic_ with EquatableMixin implements Topic<TopicNotification> {
+class Topic_ with Equatable implements Topic<TopicNotification> {
   Topic_();
 
   factory Topic_.fromJson(Map<String, dynamic> json) => _$Topic_FromJson(json);
