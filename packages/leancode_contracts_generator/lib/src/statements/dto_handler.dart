@@ -39,6 +39,7 @@ class DtoHandler extends StatementHandler {
 
   /// A `toJson` override for a DTO extending a generic DTO, or `null` otherwise.
   Method? _inheritedToJson(Statement statement) {
+    // the base we must override is a generated (included) generic DTO; skip others.
     final base = statement.dto.typeDescriptor.extends_1.firstWhereOrNull((e) {
       if (!e.hasInternal() || !db.shouldInclude(e.internal.name)) {
         return false;
@@ -58,6 +59,7 @@ class DtoHandler extends StatementHandler {
       (g) => g.name,
     );
 
+    // child type params the base already threads through — no extra factory needed for these.
     final baseVars = {
       for (final arg in base.internal.arguments)
         if (arg.hasGeneric()) arg.generic.name,
