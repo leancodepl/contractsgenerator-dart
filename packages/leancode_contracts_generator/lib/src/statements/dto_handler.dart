@@ -44,10 +44,11 @@ class DtoHandler extends StatementHandler {
       if (!e.hasInternal() || !db.shouldInclude(e.internal.name)) {
         return false;
       }
-      final s = db.find(e.internal.name);
-      return s != null &&
-          s.hasDto() &&
-          s.dto.typeDescriptor.genericParameters.isNotEmpty;
+      return switch (db.find(e.internal.name)) {
+        final s? =>
+          s.hasDto() && s.dto.typeDescriptor.genericParameters.isNotEmpty,
+        _ => false,
+      };
     });
     if (base == null) {
       return null;
@@ -58,22 +59,27 @@ class DtoHandler extends StatementHandler {
       (g) => g.name,
     );
 
+    // child type params consumed by the base
+    final covered = {
+      for (final arg in base.internal.arguments)
+        if (arg.hasGeneric()) arg.generic.name,
+    };
+
     // All factories are optional (an optional positional validly overrides a
     // required one), base type-arg factories first so slots line up with the base.
     final params = <Parameter>[];
-    final covered = <String>{};
     for (final arg in base.internal.arguments) {
-      final symbol = typeCreator.create(arg).symbol!;
-      if (arg.hasGeneric()) {
-        covered.add(arg.generic.name);
-      }
+      final paramName = switch (arg.whichType()) {
+        TypeRef_Type.generic => 'toJson${arg.generic.name}',
+        _ => 'toJsonArg${params.length}',
+      };
       params.add(
         Parameter(
           (p) => p
-            ..name = arg.hasGeneric()
-                ? 'toJson${arg.generic.name}'
-                : 'toJsonArg${params.length}'
-            ..type = refer('Object? Function($symbol)?'),
+            ..name = paramName
+            ..type = refer(
+              'Object? Function(${typeCreator.create(arg).symbol})?',
+            ),
         ),
       );
     }
