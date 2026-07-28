@@ -121,8 +121,63 @@ void main() {
       });
     }
   });
+
+  // Regression for https://github.com/leancodepl/contractsgenerator-dart/issues/95:
+  // generic DTOs and their subclasses must not just compile — the whole graph
+  // has to survive jsonEncode and round-trip back to an equal value.
+  test('generic DTOs round-trip via jsonEncode', () async {
+    await ContractsGenerator(
+      ContractsGeneratorConfig(
+        input: GeneratorScript.path(['example/ExampleContracts/**']),
+        output: Directory(libDir),
+        extra: '// :)',
+        include: RegExp('.*'),
+      ),
+    ).writeAll();
+
+    Directory(binDir).createSync(recursive: true);
+    File(mainPath).writeAsStringSync(_roundTripMain);
+
+    final build = await Process.run('dart', [
+      'run',
+      'build_runner',
+      'build',
+    ], workingDirectory: projDir);
+    expect(build.exitCode, 0, reason: build.stderr.toString());
+
+    final run = await Process.run('dart', ['run'], workingDirectory: projDir);
+    expect(run.exitCode, 0, reason: '${run.stdout}${run.stderr}');
+  });
 }
 
 extension on Directory {
   Iterable<File> listFiles() => listSync().whereType<File>();
 }
+
+// Builds the #95 fixtures — a generic DTO as a concrete field, a concrete
+// subclass and a generic subclass — encodes and decodes them, and throws
+// (→ failing test) if the value doesn't survive the trip.
+const _roundTripMain = '''
+import 'dart:convert';
+
+import 'package:integration_test_project/contracts.dart';
+
+void main() {
+  final response = SearchResponse(
+    page: PaginatedResult<User>(items: [User(id: '1', name: 'a')], totalCount: 1),
+    allUsers: AllUsersResult(items: [User(id: '2', name: 'b')], totalCount: 1),
+    children: ChildResult<User>(
+      items: [User(id: '3', name: 'c')],
+      totalCount: 1,
+      extras: [User(id: '4', name: 'd')],
+    ),
+  );
+
+  final decoded = SearchResponse.fromJson(
+    jsonDecode(jsonEncode(response)) as Map<String, dynamic>,
+  );
+  if (decoded != response) {
+    throw StateError('round-trip changed the value');
+  }
+}
+''';

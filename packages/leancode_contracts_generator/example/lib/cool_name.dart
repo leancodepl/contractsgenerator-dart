@@ -92,6 +92,102 @@ class PaginatedResult<TResult> with Equatable {
       'LeanCode.ContractsGeneratorV2.ExampleContracts.PaginatedResult';
 
   List<Object?> get props => [items, totalCount];
+
+  Map<String, dynamic> toJson(Object? Function(TResult) toJsonTResult) =>
+      _$PaginatedResultToJson(this, toJsonTResult);
+}
+
+@ContractsSerializable()
+class AllUsersResult with Equatable implements PaginatedResult<User> {
+  AllUsersResult({required this.items, required this.totalCount});
+
+  factory AllUsersResult.fromJson(Map<String, dynamic> json) =>
+      _$AllUsersResultFromJson(json);
+
+  /// And this is a property comment.
+  final List<User> items;
+
+  final int totalCount;
+
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Pagination.AllUsersResult';
+
+  List<Object?> get props => [items, totalCount];
+
+  Map<String, dynamic> toJson([Object? Function(User)? _]) =>
+      _$AllUsersResultToJson(this);
+}
+
+@ContractsSerializable(genericArgumentFactories: true)
+class ChildResult<T> with Equatable implements PaginatedResult<T> {
+  ChildResult({
+    required this.items,
+    required this.totalCount,
+    required this.extras,
+  });
+
+  factory ChildResult.fromJson(
+    Map<String, dynamic> json,
+    T Function(Object?) fromJsonT,
+  ) => _$ChildResultFromJson(json, fromJsonT);
+
+  /// And this is a property comment.
+  final List<T> items;
+
+  final int totalCount;
+
+  final List<T> extras;
+
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Pagination.ChildResult';
+
+  List<Object?> get props => [items, totalCount, extras];
+
+  Map<String, dynamic> toJson([Object? Function(T)? toJsonT]) =>
+      _$ChildResultToJson(this, toJsonT ?? ((v) => v));
+}
+
+@ContractsSerializable()
+class SearchResponse with Equatable {
+  SearchResponse({
+    required this.page,
+    required this.allUsers,
+    required this.children,
+  });
+
+  factory SearchResponse.fromJson(Map<String, dynamic> json) =>
+      _$SearchResponseFromJson(json);
+
+  final PaginatedResult<User> page;
+
+  final AllUsersResult allUsers;
+
+  final ChildResult<User> children;
+
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Pagination.SearchResponse';
+
+  List<Object?> get props => [page, allUsers, children];
+
+  Map<String, dynamic> toJson() => _$SearchResponseToJson(this);
+}
+
+@ContractsSerializable()
+class User with Equatable {
+  User({required this.id, required this.name});
+
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+
+  final String id;
+
+  final String name;
+
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Pagination.User';
+
+  List<Object?> get props => [id, name];
+
+  Map<String, dynamic> toJson() => _$UserToJson(this);
 }
 
 @ContractsSerializable()
