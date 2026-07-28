@@ -38,28 +38,68 @@ class DtoHandler extends StatementHandler {
   }
 
   /// A `toJson` override for a DTO extending a generic DTO, or `null` otherwise.
+  ///
+  /// A generic DTO's generated `toJson` takes one `Object? Function(T)` factory
+  /// per type parameter; extending it forces an override-compatible `toJson`, so
+  /// the factories can't be dropped. Here they're all *optional* (a concrete
+  /// subclass stays callable as `toJson()`), ordered by the base's type
+  /// arguments for override compatibility ([_toJsonFactoryParameters]) but
+  /// forwarded to `_$ChildToJson` in the child's order ([_toJsonForwardedArguments]).
+  ///
+  /// e.g. `ChildResult<T> extends PaginatedResult<T>` gets
+  /// `toJson([Object? Function(T)? toJsonT]) =>`
+  /// `    _$ChildResultToJson(this, toJsonT ?? ((v) => v))`.
   Method? _inheritedToJson(Statement statement) {
-    // the base we must override is a generated (included) generic DTO; skip others.
-    final base = statement.dto.typeDescriptor.extends_1.firstWhereOrNull((e) {
+    if (_extendedGenericBase(statement) case final base?) {
+      final name = renameType(db.resolveName(statement.name));
+      final childParams = statement.dto.typeDescriptor.genericParameters
+          .map((g) => g.name)
+          .toList();
+
+      return Method(
+        (m) => m
+          ..name = 'toJson'
+          ..lambda = true
+          ..returns = refer('Map<String, dynamic>')
+          ..optionalParameters.addAll(
+            _toJsonFactoryParameters(base, childParams),
+          )
+          ..body = Code(
+            '_\$${name}ToJson(${_toJsonForwardedArguments(childParams).join(', ')})',
+          ),
+      );
+    }
+
+    return null;
+  }
+
+  /// The generic DTO this one extends (at most one — a C# base class), whose
+  /// `toJson` the override has to stay compatible with, or `null` if there's none.
+  TypeRef? _extendedGenericBase(Statement statement) {
+    return statement.dto.typeDescriptor.extends_1.firstWhereOrNull((e) {
+      // Only a type we generate can be the base whose `toJson` we override, and
+      // dropping the ones config excludes keeps us in sync with `createBase`,
+      // which extends only included bases. The guard also makes reading
+      // `e.internal.name` below safe (a non-internal ref has no name).
       if (!e.hasInternal() || !db.shouldInclude(e.internal.name)) {
         return false;
       }
-      return switch (db.find(e.internal.name)) {
-        final s? =>
-          s.hasDto() && s.dto.typeDescriptor.genericParameters.isNotEmpty,
-        _ => false,
-      };
+      final resolved = db.find(e.internal.name);
+      return resolved != null &&
+          resolved.hasDto() &&
+          resolved.dto.typeDescriptor.genericParameters.isNotEmpty;
     });
-    if (base == null) {
-      return null;
-    }
+  }
 
-    final name = renameType(db.resolveName(statement.name));
-    final childParams = statement.dto.typeDescriptor.genericParameters.map(
-      (g) => g.name,
-    );
-
-    // child type params the base already threads through — no extra factory needed for these.
+  /// Optional `Object? Function(T)?` factory parameters, in the base's
+  /// type-argument order then one per child param the base doesn't cover.
+  /// A factory bound to a child type variable is named `toJson<var>` so
+  /// [_toJsonForwardedArguments] can forward it; one for a *concrete* base
+  /// argument is unused, so it's named `_` (a wildcard) to make that explicit.
+  List<Parameter> _toJsonFactoryParameters(
+    TypeRef base,
+    List<String> childParams,
+  ) {
     final baseVars = {
       for (final arg in base.internal.arguments)
         if (arg.hasGeneric()) arg.generic.name,
@@ -71,34 +111,25 @@ class DtoHandler extends StatementHandler {
         ..type = refer('Object? Function($on)?'),
     );
 
-    // One optional factory per base type argument (base order keeps the override
-    // slot-compatible) then one per uncovered child type parameter. Generic args
-    // are named after their variable so the `toJson<param>` forwards below resolve.
-    final params = [
-      for (final (i, arg) in base.internal.arguments.indexed)
+    return [
+      for (final arg in base.internal.arguments)
         optionalFactory(
           typeCreator.create(arg).symbol!,
-          arg.hasGeneric() ? 'toJson${arg.generic.name}' : 'toJsonArg$i',
+          arg.hasGeneric() ? 'toJson${arg.generic.name}' : '_',
         ),
       for (final param in childParams.where((p) => !baseVars.contains(p)))
         optionalFactory(param, 'toJson$param'),
     ];
+  }
 
-    // _$XToJson takes the child factories in declaration order; omitted optionals
-    // fall back to identity.
-    final args = [
+  /// Arguments forwarded to the generated `_$ChildToJson`, in the child's
+  /// type-parameter declaration order (what json_serializable expects). An
+  /// omitted optional factory falls back to the identity function.
+  List<String> _toJsonForwardedArguments(List<String> childParams) {
+    return [
       'this',
       for (final param in childParams) 'toJson$param ?? ((v) => v)',
     ];
-
-    return Method(
-      (m) => m
-        ..name = 'toJson'
-        ..lambda = true
-        ..returns = refer('Map<String, dynamic>')
-        ..optionalParameters.addAll(params)
-        ..body = Code('_\$${name}ToJson(${args.join(', ')})'),
-    );
   }
 
   @override
