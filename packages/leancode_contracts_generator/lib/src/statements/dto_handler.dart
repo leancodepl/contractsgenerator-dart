@@ -58,42 +58,32 @@ class DtoHandler extends StatementHandler {
       (g) => g.name,
     );
 
-    // child type params consumed by the base
-    final covered = {
+    final baseVars = {
       for (final arg in base.internal.arguments)
         if (arg.hasGeneric()) arg.generic.name,
     };
 
-    // All factories are optional (an optional positional validly overrides a
-    // required one), base type-arg factories first so slots line up with the base.
-    final params = <Parameter>[];
-    for (final arg in base.internal.arguments) {
-      final paramName = switch (arg.whichType()) {
-        TypeRef_Type.generic => 'toJson${arg.generic.name}',
-        _ => 'toJsonArg${params.length}',
-      };
-      params.add(
-        Parameter(
-          (p) => p
-            ..name = paramName
-            ..type = refer(
-              'Object? Function(${typeCreator.create(arg).symbol})?',
-            ),
-        ),
-      );
-    }
-    for (final param in childParams.where((n) => !covered.contains(n))) {
-      params.add(
-        Parameter(
-          (p) => p
-            ..name = 'toJson$param'
-            ..type = refer('Object? Function($param)?'),
-        ),
-      );
-    }
+    Parameter optionalFactory(String on, String named) => Parameter(
+      (p) => p
+        ..name = named
+        ..type = refer('Object? Function($on)?'),
+    );
 
-    // _$XToJson wants factories in child type-param order; omitted ones default
-    // to identity.
+    // One optional factory per base type argument (base order keeps the override
+    // slot-compatible) then one per uncovered child type parameter. Generic args
+    // are named after their variable so the `toJson<param>` forwards below resolve.
+    final params = [
+      for (final (i, arg) in base.internal.arguments.indexed)
+        optionalFactory(
+          typeCreator.create(arg).symbol!,
+          arg.hasGeneric() ? 'toJson${arg.generic.name}' : 'toJsonArg$i',
+        ),
+      for (final param in childParams.where((p) => !baseVars.contains(p)))
+        optionalFactory(param, 'toJson$param'),
+    ];
+
+    // _$XToJson takes the child factories in declaration order; omitted optionals
+    // fall back to identity.
     final args = [
       'this',
       for (final param in childParams) 'toJson$param ?? ((v) => v)',
