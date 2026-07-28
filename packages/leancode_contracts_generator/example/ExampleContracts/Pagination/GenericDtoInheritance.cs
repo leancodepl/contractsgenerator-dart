@@ -7,10 +7,6 @@ namespace LeanCode.ContractsGeneratorV2.ExampleContracts.Pagination
     //   * a concrete DTO extending a generic DTO (`AllUsersResult`),
     //   * a generic DTO extending a generic DTO (`ChildResult<T>`).
     //
-    // Regression for https://github.com/leancodepl/contractsgenerator-dart/issues/95:
-    // the generator used to strip `toJson` from every generic DTO, so `build_runner`
-    // failed with "Could not generate `toJson` code" for a concretely-typed field.
-    //
     // `PaginatedResult<TResult>` is defined in ../PaginatedQuery.cs and reused here.
     public class User
     {

@@ -122,7 +122,6 @@ void main() {
     }
   });
 
-  // Regression for https://github.com/leancodepl/contractsgenerator-dart/issues/95:
   // generic DTOs and their subclasses must not just compile — the whole graph
   // has to survive jsonEncode and round-trip back to an equal value.
   test('generic DTOs round-trip via jsonEncode', () async {
@@ -154,7 +153,7 @@ extension on Directory {
   Iterable<File> listFiles() => listSync().whereType<File>();
 }
 
-// Builds the #95 fixtures — a generic DTO as a concrete field, a concrete
+// Builds the fixtures — a generic DTO as a concrete field, a concrete
 // subclass and a generic subclass — encodes and decodes them, and throws
 // (→ failing test) if the value doesn't survive the trip.
 const _roundTripMain = '''

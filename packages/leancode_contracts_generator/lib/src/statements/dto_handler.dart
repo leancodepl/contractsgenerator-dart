@@ -28,7 +28,7 @@ class DtoHandler extends StatementHandler {
         return;
       }
 
-      // a subclass of a generic DTO needs a toJson that overrides the base's (#95)
+      // a subclass of a generic DTO needs a toJson that overrides the base's
       if (_inheritedToJson(statement) case final toJson?) {
         b.methods
           ..removeWhere((m) => m.name == 'toJson')
