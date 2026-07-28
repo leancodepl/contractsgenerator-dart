@@ -130,7 +130,10 @@ abstract class StatementHandler {
         ..annotations.addAll([
           CodeExpression(
             Code(
-              'ContractsSerializable(${genericFactories.isEmpty ? '' : 'genericArgumentFactories: true'})',
+              // `explicitToJson` makes json_serializable serialize nested DTO
+              // fields (and inherited concrete-DTO fields) via `.toJson()` so the
+              // resulting map is self-contained rather than holding live objects.
+              'ContractsSerializable(explicitToJson: true${genericFactories.isEmpty ? '' : ', genericArgumentFactories: true'})',
             ),
           ),
         ])
@@ -263,6 +266,12 @@ abstract class StatementHandler {
 
   /// Whether [type] is, or transitively contains, a generic DTO subclass whose
   /// generated `toJson` does not thread the generic-argument factories.
+  ///
+  /// Only generic subclasses (those with type parameters to thread) qualify:
+  /// json_serializable calls their zero-arg-callable `toJson` override without
+  /// factories, so the type-parameter values stay live even with
+  /// `explicitToJson`. Everything else (plain DTOs, direct generics, concrete
+  /// subclasses) is already self-contained via `explicitToJson`.
   bool _needsSelfContainedToJson(TypeRef type) {
     if (type.hasKnown()) {
       return type.known.arguments.any(_needsSelfContainedToJson);
@@ -271,6 +280,7 @@ abstract class StatementHandler {
       final statement = db.find(type.internal.name);
       if (statement != null &&
           statement.hasDto() &&
+          statement.dto.typeDescriptor.genericParameters.isNotEmpty &&
           genericDtoBaseOf(statement) != null) {
         return true;
       }
@@ -312,7 +322,9 @@ abstract class StatementHandler {
       if (statement != null && statement.hasDto()) {
         final call = _toJsonInvocation(type, statement, expr, depth);
         if (type.nullable) {
-          return '$expr == null ? null : ${_toJsonInvocation(type, statement, '$expr!', depth)}';
+          // [expr] is always a (promotable) local -- the helper parameter or a
+          // lambda parameter -- so a null check promotes it without a `!`.
+          return '$expr == null ? null : $call';
         }
         return call;
       }

@@ -67,5 +67,12 @@ namespace LeanCode.ContractsGeneratorV2.ExampleContracts.Pagination
     {
         public List<GenericSub<Leaf>> Entries { get; set; }
         public GenericSub<Leaf> Single { get; set; }
+        // plain non-generic nested DTO
+        public Leaf DirectLeaf { get; set; }
+        // direct plain-generic fields (DTO type argument)
+        public GenericBase<Leaf> DirectBase { get; set; }
+        public List<GenericBase<Leaf>> DirectBases { get; set; }
+        // generic with a primitive type argument (factory must degrade to identity)
+        public GenericBase<int> Counts { get; set; }
     }
 }
