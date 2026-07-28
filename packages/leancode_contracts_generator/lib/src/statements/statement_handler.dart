@@ -122,6 +122,7 @@ abstract class StatementHandler {
                   ),
               ]),
           ),
+          ...properties.map(_createToJsonHelper).whereType<Method>(),
         ])
         ..types.addAll(
           typeDescriptor.genericParameters.map((t) => refer(t.name)),
@@ -181,12 +182,23 @@ abstract class StatementHandler {
 
     final needsExplicitRename = renamed.pascal != prop.name;
 
+    // json_serializable emits a field whose type is (or contains) a generic DTO
+    // subclass without threading the generic-argument factories, so the value in
+    // the map stays a live Dart object instead of a fully serialized map. Route
+    // such fields through a generated helper so `toJson()` is self-contained.
+    final needsHelper = _needsSelfContainedToJson(prop.type);
+
+    final jsonKeyArgs = [
+      if (needsExplicitRename) 'name: ${literalString(prop.name)}',
+      if (needsHelper) 'toJson: ${_selfContainedHelperName(prop)}',
+    ];
+
     return Field(
       (b) => b
         ..type = type
         ..annotations.addAll([
-          if (needsExplicitRename)
-            CodeExpression(Code('JsonKey(name: ${literalString(prop.name)})')),
+          if (jsonKeyArgs.isNotEmpty)
+            CodeExpression(Code('JsonKey(${jsonKeyArgs.join(', ')})')),
         ])
         ..name = renamed
         ..modifier = FieldModifier.final$
@@ -195,6 +207,170 @@ abstract class StatementHandler {
           ...prop.attributes.map(attributeCreator.create),
         ]),
     );
+  }
+
+  /// A static helper method that fully serializes [prop] to a self-contained
+  /// (map/list/primitive) tree, or `null` when the default json_serializable
+  /// output is already self-contained.
+  Method? _createToJsonHelper(PropertyRef prop) {
+    if (!_needsSelfContainedToJson(prop.type)) {
+      return null;
+    }
+
+    final type = typeCreator.create(prop.type);
+
+    return Method(
+      (m) => m
+        ..name = _selfContainedHelperName(prop)
+        ..static = true
+        ..lambda = true
+        ..returns = refer('Object?')
+        ..requiredParameters.add(
+          Parameter(
+            (p) => p
+              ..name = 'v'
+              ..type = type,
+          ),
+        )
+        ..body = Code(_serializeToJson(prop.type, 'v', 0)),
+    );
+  }
+
+  String _selfContainedHelperName(PropertyRef prop) =>
+      '_\$${renameField(prop.name)}ToJson';
+
+  /// The generic DTO base that [statement] extends and which therefore carries a
+  /// `toJson` override, or `null` when there is none. Such subclasses are the
+  /// ones json_serializable emits without threading factories.
+  @protected
+  TypeRef? genericDtoBaseOf(Statement statement) {
+    final typeDescriptor = typeDescriptorOf(statement);
+    if (typeDescriptor == null) {
+      return null;
+    }
+
+    return typeDescriptor.extends_1.firstWhereOrNull((e) {
+      if (!e.hasInternal() || !db.shouldInclude(e.internal.name)) {
+        return false;
+      }
+      return switch (db.find(e.internal.name)) {
+        final s? =>
+          s.hasDto() && s.dto.typeDescriptor.genericParameters.isNotEmpty,
+        _ => false,
+      };
+    });
+  }
+
+  /// Whether [type] is, or transitively contains, a generic DTO subclass whose
+  /// generated `toJson` does not thread the generic-argument factories.
+  bool _needsSelfContainedToJson(TypeRef type) {
+    if (type.hasKnown()) {
+      return type.known.arguments.any(_needsSelfContainedToJson);
+    }
+    if (type.hasInternal()) {
+      final statement = db.find(type.internal.name);
+      if (statement != null &&
+          statement.hasDto() &&
+          genericDtoBaseOf(statement) != null) {
+        return true;
+      }
+      return type.internal.arguments.any(_needsSelfContainedToJson);
+    }
+    return false;
+  }
+
+  /// Builds an expression that serializes [expr] (of type [type]) into a tree of
+  /// maps/lists/primitives, threading the real generic-argument factories all the
+  /// way down. Types that json_serializable already serializes correctly are left
+  /// untouched (the returned expression equals [expr]).
+  String _serializeToJson(TypeRef type, String expr, int depth) {
+    if (type.hasKnown() && type.known.type == KnownType.Array) {
+      final element = type.known.arguments.first;
+      final item = 'e$depth';
+      final serialized = _serializeToJson(element, item, depth + 1);
+      if (serialized == item) {
+        return expr;
+      }
+      final access = type.nullable ? '$expr?' : expr;
+      return '$access.map(($item) => $serialized).toList()';
+    }
+
+    if (type.hasKnown() && type.known.type == KnownType.Map) {
+      final value = type.known.arguments.last;
+      final val = 'e$depth';
+      final serialized = _serializeToJson(value, val, depth + 1);
+      if (serialized == val) {
+        return expr;
+      }
+      final key = 'k$depth';
+      final access = type.nullable ? '$expr?' : expr;
+      return '$access.map(($key, $val) => MapEntry($key, $serialized))';
+    }
+
+    if (type.hasInternal()) {
+      final statement = db.find(type.internal.name);
+      if (statement != null && statement.hasDto()) {
+        final call = _toJsonInvocation(type, statement, expr, depth);
+        if (type.nullable) {
+          return '$expr == null ? null : ${_toJsonInvocation(type, statement, '$expr!', depth)}';
+        }
+        return call;
+      }
+    }
+
+    // Primitives, enums and generic parameters are serialized by
+    // json_serializable's own factory threading; leave them untouched.
+    return expr;
+  }
+
+  /// A `receiver.toJson(...)` invocation whose factory arguments serialize the
+  /// concrete type arguments of [type], matching the parameter order of the
+  /// generated `toJson` (including the leading unused base-argument slots of a
+  /// subclass override).
+  String _toJsonInvocation(
+    TypeRef type,
+    Statement statement,
+    String receiver,
+    int depth,
+  ) {
+    final typeDescriptor = statement.dto.typeDescriptor;
+    final params = typeDescriptor.genericParameters.map((g) => g.name).toList();
+    final concreteArgs = type.internal.arguments;
+
+    String factoryFor(TypeRef arg) {
+      final param = 'p$depth';
+      return '($param) => ${_serializeToJson(arg, param, depth + 1)}';
+    }
+
+    TypeRef concreteOf(String paramName) =>
+        concreteArgs[params.indexOf(paramName)];
+
+    final args = <String>[];
+    final base = genericDtoBaseOf(statement);
+    if (base != null) {
+      final baseVars = {
+        for (final arg in base.internal.arguments)
+          if (arg.hasGeneric()) arg.generic.name,
+      };
+      for (final arg in base.internal.arguments) {
+        if (arg.hasGeneric()) {
+          args.add(factoryFor(concreteOf(arg.generic.name)));
+        } else {
+          args.add('null');
+        }
+      }
+      for (final param in params.where((p) => !baseVars.contains(p))) {
+        args.add(factoryFor(concreteOf(param)));
+      }
+    } else {
+      for (final param in params) {
+        args.add(factoryFor(concreteOf(param)));
+      }
+    }
+
+    return args.isEmpty
+        ? '$receiver.toJson()'
+        : '$receiver.toJson(${args.join(', ')})';
   }
 
   Field _createConstant(ConstantRef prop) {

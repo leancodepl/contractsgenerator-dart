@@ -1,5 +1,4 @@
 import 'package:code_builder/code_builder.dart';
-import 'package:collection/collection.dart';
 
 import '../utils/rename_type.dart';
 import 'statement_handler.dart';
@@ -50,7 +49,7 @@ class DtoHandler extends StatementHandler {
   /// `toJson([Object? Function(T)? toJsonT]) =>`
   /// `    _$ChildResultToJson(this, toJsonT ?? ((v) => v))`.
   Method? _inheritedToJson(Statement statement) {
-    if (_extendedGenericBase(statement) case final base?) {
+    if (genericDtoBaseOf(statement) case final base?) {
       final name = renameType(db.resolveName(statement.name));
       final childParams = statement.dto.typeDescriptor.genericParameters
           .map((g) => g.name)
@@ -71,24 +70,6 @@ class DtoHandler extends StatementHandler {
     }
 
     return null;
-  }
-
-  /// The generic DTO this one extends (at most one — a C# base class), whose
-  /// `toJson` the override has to stay compatible with, or `null` if there's none.
-  TypeRef? _extendedGenericBase(Statement statement) {
-    return statement.dto.typeDescriptor.extends_1.firstWhereOrNull((e) {
-      // Only a type we generate can be the base whose `toJson` we override, and
-      // dropping the ones config excludes keeps us in sync with `createBase`,
-      // which extends only included bases. The guard also makes reading
-      // `e.internal.name` below safe (a non-internal ref has no name).
-      if (!e.hasInternal() || !db.shouldInclude(e.internal.name)) {
-        return false;
-      }
-      final resolved = db.find(e.internal.name);
-      return resolved != null &&
-          resolved.hasDto() &&
-          resolved.dto.typeDescriptor.genericParameters.isNotEmpty;
-    });
   }
 
   /// Optional `Object? Function(T)?` factory parameters, in the base's
