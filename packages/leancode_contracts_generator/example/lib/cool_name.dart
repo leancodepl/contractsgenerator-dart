@@ -114,7 +114,7 @@ class AllUsersResult with Equatable implements PaginatedResult<User> {
 
   List<Object?> get props => [items, totalCount];
 
-  Map<String, dynamic> toJson([Object? Function(User)? _]) =>
+  Map<String, dynamic> toJson([Object? Function(Never)? _]) =>
       _$AllUsersResultToJson(this);
 }
 
@@ -148,6 +148,312 @@ class ChildResult<T> with Equatable implements PaginatedResult<T> {
 }
 
 @ContractsSerializable()
+class ClashingArityFacets
+    with Equatable
+    implements IFirstFacet<User>, IPairFacet<PaginatedResult<User>, User> {
+  ClashingArityFacets({
+    required this.first,
+    required this.left,
+    required this.right,
+  });
+
+  factory ClashingArityFacets.fromJson(Map<String, dynamic> json) =>
+      _$ClashingArityFacetsFromJson(json);
+
+  final User first;
+
+  final PaginatedResult<User> left;
+
+  final User right;
+
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Pagination.ClashingArityFacets';
+
+  List<Object?> get props => [first, left, right];
+
+  Map<String, dynamic> toJson([
+    Object? Function(Never)? _,
+    Object? Function(Never)? _,
+  ]) => _$ClashingArityFacetsToJson(this);
+}
+
+@ContractsSerializable()
+class DifferentArityFacets
+    with Equatable
+    implements IFirstFacet<User>, IPairFacet<User, PaginatedResult<User>> {
+  DifferentArityFacets({
+    required this.first,
+    required this.left,
+    required this.right,
+  });
+
+  factory DifferentArityFacets.fromJson(Map<String, dynamic> json) =>
+      _$DifferentArityFacetsFromJson(json);
+
+  final User first;
+
+  final User left;
+
+  final PaginatedResult<User> right;
+
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Pagination.DifferentArityFacets';
+
+  List<Object?> get props => [first, left, right];
+
+  Map<String, dynamic> toJson([
+    Object? Function(Never)? _,
+    Object? Function(Never)? _,
+  ]) => _$DifferentArityFacetsToJson(this);
+}
+
+@ContractsSerializable()
+class FacetQueryCombined
+    with Equatable
+    implements
+        Query<bool>,
+        IFacetQuery<User>,
+        IPairFacet<User, PaginatedResult<User>> {
+  FacetQueryCombined({
+    required this.facet,
+    required this.left,
+    required this.right,
+  });
+
+  factory FacetQueryCombined.fromJson(Map<String, dynamic> json) =>
+      _$FacetQueryCombinedFromJson(json);
+
+  final User facet;
+
+  final User left;
+
+  final PaginatedResult<User> right;
+
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Pagination.FacetQueryCombined';
+
+  List<Object?> get props => [facet, left, right];
+
+  Map<String, dynamic> toJson([
+    Object? Function(Never)? _,
+    Object? Function(Never)? _,
+  ]) => _$FacetQueryCombinedToJson(this);
+
+  bool resultFactory(dynamic decodedJson) => decodedJson as bool;
+
+  String getFullName() => fullName$;
+}
+
+@ContractsSerializable()
+class FacetQueryUser with Equatable implements Query<int?>, IFacetQuery<User> {
+  FacetQueryUser({required this.facet});
+
+  factory FacetQueryUser.fromJson(Map<String, dynamic> json) =>
+      _$FacetQueryUserFromJson(json);
+
+  final User facet;
+
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Pagination.FacetQueryUser';
+
+  List<Object?> get props => [facet];
+
+  Map<String, dynamic> toJson([Object? Function(Never)? _]) =>
+      _$FacetQueryUserToJson(this);
+
+  int? resultFactory(dynamic decodedJson) => decodedJson as int?;
+
+  String getFullName() => fullName$;
+}
+
+@ContractsSerializable(genericArgumentFactories: true)
+class ForwardedAtSecondPosition<T>
+    with Equatable
+    implements IFirstFacet<T>, IPairFacet<User, T> {
+  ForwardedAtSecondPosition({
+    required this.first,
+    required this.left,
+    required this.right,
+  });
+
+  factory ForwardedAtSecondPosition.fromJson(
+    Map<String, dynamic> json,
+    T Function(Object?) fromJsonT,
+  ) => _$ForwardedAtSecondPositionFromJson(json, fromJsonT);
+
+  final T first;
+
+  final User left;
+
+  final T right;
+
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Pagination.ForwardedAtSecondPosition';
+
+  List<Object?> get props => [first, left, right];
+
+  Map<String, dynamic> toJson([
+    Object? Function(Never)? _,
+    Object? Function(T)? toJsonT,
+  ]) => _$ForwardedAtSecondPositionToJson(this, toJsonT ?? ((v) => v));
+}
+
+@ContractsSerializable(genericArgumentFactories: true)
+class ForwardedVarWithConcreteClash<T>
+    with Equatable
+    implements IFirstFacet<T>, ISecondFacet<User> {
+  ForwardedVarWithConcreteClash({required this.first, required this.second});
+
+  factory ForwardedVarWithConcreteClash.fromJson(
+    Map<String, dynamic> json,
+    T Function(Object?) fromJsonT,
+  ) => _$ForwardedVarWithConcreteClashFromJson(json, fromJsonT);
+
+  final T first;
+
+  final User second;
+
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Pagination.ForwardedVarWithConcreteClash';
+
+  List<Object?> get props => [first, second];
+
+  Map<String, dynamic> toJson([
+    Object? Function(Never)? _,
+    Object? Function(T)? toJsonT,
+  ]) => _$ForwardedVarWithConcreteClashToJson(this, toJsonT ?? ((v) => v));
+}
+
+@ContractsSerializable(genericArgumentFactories: true)
+class IFacetQuery<TFacet> with Equatable {
+  IFacetQuery({required this.facet});
+
+  factory IFacetQuery.fromJson(
+    Map<String, dynamic> json,
+    TFacet Function(Object?) fromJsonTFacet,
+  ) => _$IFacetQueryFromJson(json, fromJsonTFacet);
+
+  final TFacet facet;
+
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Pagination.IFacetQuery';
+
+  List<Object?> get props => [facet];
+
+  Map<String, dynamic> toJson(Object? Function(TFacet) toJsonTFacet) =>
+      _$IFacetQueryToJson(this, toJsonTFacet);
+}
+
+@ContractsSerializable(genericArgumentFactories: true)
+class IFirstFacet<TFirst> with Equatable {
+  IFirstFacet({required this.first});
+
+  factory IFirstFacet.fromJson(
+    Map<String, dynamic> json,
+    TFirst Function(Object?) fromJsonTFirst,
+  ) => _$IFirstFacetFromJson(json, fromJsonTFirst);
+
+  final TFirst first;
+
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Pagination.IFirstFacet';
+
+  List<Object?> get props => [first];
+
+  Map<String, dynamic> toJson(Object? Function(TFirst) toJsonTFirst) =>
+      _$IFirstFacetToJson(this, toJsonTFirst);
+}
+
+@ContractsSerializable(genericArgumentFactories: true)
+class IPairFacet<TLeft, TRight> with Equatable {
+  IPairFacet({required this.left, required this.right});
+
+  factory IPairFacet.fromJson(
+    Map<String, dynamic> json,
+    TLeft Function(Object?) fromJsonTLeft,
+    TRight Function(Object?) fromJsonTRight,
+  ) => _$IPairFacetFromJson(json, fromJsonTLeft, fromJsonTRight);
+
+  final TLeft left;
+
+  final TRight right;
+
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Pagination.IPairFacet';
+
+  List<Object?> get props => [left, right];
+
+  Map<String, dynamic> toJson(
+    Object? Function(TLeft) toJsonTLeft,
+    Object? Function(TRight) toJsonTRight,
+  ) => _$IPairFacetToJson(this, toJsonTLeft, toJsonTRight);
+}
+
+@ContractsSerializable(genericArgumentFactories: true)
+class ISecondFacet<TSecond> with Equatable {
+  ISecondFacet({required this.second});
+
+  factory ISecondFacet.fromJson(
+    Map<String, dynamic> json,
+    TSecond Function(Object?) fromJsonTSecond,
+  ) => _$ISecondFacetFromJson(json, fromJsonTSecond);
+
+  final TSecond second;
+
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Pagination.ISecondFacet';
+
+  List<Object?> get props => [second];
+
+  Map<String, dynamic> toJson(Object? Function(TSecond) toJsonTSecond) =>
+      _$ISecondFacetToJson(this, toJsonTSecond);
+}
+
+@ContractsSerializable()
+class MixedFacets
+    with Equatable
+    implements IFirstFacet<User>, ISecondFacet<PaginatedResult<User>> {
+  MixedFacets({required this.first, required this.second});
+
+  factory MixedFacets.fromJson(Map<String, dynamic> json) =>
+      _$MixedFacetsFromJson(json);
+
+  final User first;
+
+  final PaginatedResult<User> second;
+
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Pagination.MixedFacets';
+
+  List<Object?> get props => [first, second];
+
+  Map<String, dynamic> toJson([Object? Function(Never)? _]) =>
+      _$MixedFacetsToJson(this);
+}
+
+@ContractsSerializable()
+class SameFacets
+    with Equatable
+    implements IFirstFacet<User>, ISecondFacet<User> {
+  SameFacets({required this.first, required this.second});
+
+  factory SameFacets.fromJson(Map<String, dynamic> json) =>
+      _$SameFacetsFromJson(json);
+
+  final User first;
+
+  final User second;
+
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Pagination.SameFacets';
+
+  List<Object?> get props => [first, second];
+
+  Map<String, dynamic> toJson([Object? Function(Never)? _]) =>
+      _$SameFacetsToJson(this);
+}
+
+@ContractsSerializable()
 class SearchResponse with Equatable {
   SearchResponse({
     required this.page,
@@ -172,6 +478,38 @@ class SearchResponse with Equatable {
   Map<String, dynamic> toJson() => _$SearchResponseToJson(this);
 }
 
+@ContractsSerializable(genericArgumentFactories: true)
+class TwoForwardedVars<A, B>
+    with Equatable
+    implements IFirstFacet<A>, ISecondFacet<B> {
+  TwoForwardedVars({required this.first, required this.second});
+
+  factory TwoForwardedVars.fromJson(
+    Map<String, dynamic> json,
+    A Function(Object?) fromJsonA,
+    B Function(Object?) fromJsonB,
+  ) => _$TwoForwardedVarsFromJson(json, fromJsonA, fromJsonB);
+
+  final A first;
+
+  final B second;
+
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Pagination.TwoForwardedVars';
+
+  List<Object?> get props => [first, second];
+
+  Map<String, dynamic> toJson([
+    Object? Function(Never)? _,
+    Object? Function(A)? toJsonA,
+    Object? Function(B)? toJsonB,
+  ]) => _$TwoForwardedVarsToJson(
+    this,
+    toJsonA ?? ((v) => v),
+    toJsonB ?? ((v) => v),
+  );
+}
+
 @ContractsSerializable()
 class User with Equatable {
   User({required this.id, required this.name});
@@ -188,6 +526,30 @@ class User with Equatable {
   List<Object?> get props => [id, name];
 
   Map<String, dynamic> toJson() => _$UserToJson(this);
+}
+
+@ContractsSerializable(genericArgumentFactories: true)
+class VarBoundTwice<T> with Equatable implements IPairFacet<T, T> {
+  VarBoundTwice({required this.left, required this.right});
+
+  factory VarBoundTwice.fromJson(
+    Map<String, dynamic> json,
+    T Function(Object?) fromJsonT,
+  ) => _$VarBoundTwiceFromJson(json, fromJsonT);
+
+  final T left;
+
+  final T right;
+
+  static const fullName$ =
+      'LeanCode.ContractsGeneratorV2.ExampleContracts.Pagination.VarBoundTwice';
+
+  List<Object?> get props => [left, right];
+
+  Map<String, dynamic> toJson([
+    Object? Function(T)? toJsonT,
+    Object? Function(Never)? _,
+  ]) => _$VarBoundTwiceToJson(this, toJsonT ?? ((v) => v));
 }
 
 @ContractsSerializable()
@@ -241,7 +603,8 @@ class AllUsers with Equatable implements PaginatedQuery<UserInfoDTO> {
 
   List<Object?> get props => [pageNumber, pageSize];
 
-  Map<String, dynamic> toJson() => _$AllUsersToJson(this);
+  Map<String, dynamic> toJson([Object? Function(Never)? _]) =>
+      _$AllUsersToJson(this);
 
   PaginatedResult<UserInfoDTO> resultFactory(dynamic decodedJson) =>
       _$PaginatedResultFromJson(

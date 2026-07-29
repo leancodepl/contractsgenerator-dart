@@ -122,8 +122,8 @@ void main() {
     }
   });
 
-  // generic DTOs and their subclasses must not just compile — the whole graph
-  // has to survive jsonEncode and round-trip back to an equal value.
+  // Types extending/implementing a generic base must not just compile — the
+  // whole graph has to survive jsonEncode and round-trip back to an equal value.
   test('generic DTOs round-trip via jsonEncode', () async {
     await ContractsGenerator(
       ContractsGeneratorConfig(
@@ -153,30 +153,82 @@ extension on Directory {
   Iterable<File> listFiles() => listSync().whereType<File>();
 }
 
-// Builds the fixtures — a generic DTO as a concrete field, a concrete
-// subclass and a generic subclass — encodes and decodes them, and throws
-// (→ failing test) if the value doesn't survive the trip.
-const _roundTripMain = '''
+// Builds a fixture for each shape that gets a `toJson` override — generic DTO
+// inheritance, concrete DTOs implementing several generic interfaces, a query
+// implementing one, and generic implementers that forward their type variable —
+// encodes and decodes each, and throws (→ failing test) on any that doesn't
+// survive the trip.
+const _roundTripMain = r'''
 import 'dart:convert';
 
 import 'package:integration_test_project/contracts.dart';
 
+Map<String, dynamic> _enc(Object value) =>
+    jsonDecode(jsonEncode(value)) as Map<String, dynamic>;
+
+User _user(Object? json) => User.fromJson(json as Map<String, dynamic>);
+
+void _expect(Object value, Object decoded) {
+  if (decoded != value) {
+    throw StateError('round-trip changed the value: $value != $decoded');
+  }
+}
+
 void main() {
+  final a = User(id: '1', name: 'a');
+  final b = User(id: '2', name: 'b');
+  final c = User(id: '3', name: 'c');
+  final page = PaginatedResult<User>(items: [a], totalCount: 1);
+
+  // generic DTO used as a field, a concrete subclass and a generic subclass
   final response = SearchResponse(
-    page: PaginatedResult<User>(items: [User(id: '1', name: 'a')], totalCount: 1),
-    allUsers: AllUsersResult(items: [User(id: '2', name: 'b')], totalCount: 1),
-    children: ChildResult<User>(
-      items: [User(id: '3', name: 'c')],
-      totalCount: 1,
-      extras: [User(id: '4', name: 'd')],
-    ),
+    page: page,
+    allUsers: AllUsersResult(items: [b], totalCount: 1),
+    children: ChildResult<User>(items: [c], totalCount: 1, extras: [a]),
+  );
+  _expect(response, SearchResponse.fromJson(_enc(response)));
+
+  // concrete DTOs implementing several generic interfaces (unused `Never` slots)
+  final same = SameFacets(first: a, second: b);
+  _expect(same, SameFacets.fromJson(_enc(same)));
+
+  final mixed = MixedFacets(first: a, second: page);
+  _expect(mixed, MixedFacets.fromJson(_enc(mixed)));
+
+  final differentArity = DifferentArityFacets(first: a, left: b, right: page);
+  _expect(differentArity, DifferentArityFacets.fromJson(_enc(differentArity)));
+
+  final clashingArity = ClashingArityFacets(first: a, left: page, right: b);
+  _expect(clashingArity, ClashingArityFacets.fromJson(_enc(clashingArity)));
+
+  // a query implementing a generic interface, and one combined with a 2-arity one
+  final query = FacetQueryUser(facet: a);
+  _expect(query, FacetQueryUser.fromJson(_enc(query)));
+
+  final combined = FacetQueryCombined(facet: a, left: b, right: page);
+  _expect(combined, FacetQueryCombined.fromJson(_enc(combined)));
+
+  // generic implementers forwarding their own type variable
+  final forwarded = ForwardedAtSecondPosition<User>(first: a, left: b, right: c);
+  _expect(
+    forwarded,
+    ForwardedAtSecondPosition<User>.fromJson(_enc(forwarded), _user),
   );
 
-  final decoded = SearchResponse.fromJson(
-    jsonDecode(jsonEncode(response)) as Map<String, dynamic>,
+  final concreteClash = ForwardedVarWithConcreteClash<User>(first: a, second: b);
+  _expect(
+    concreteClash,
+    ForwardedVarWithConcreteClash<User>.fromJson(_enc(concreteClash), _user),
   );
-  if (decoded != response) {
-    throw StateError('round-trip changed the value');
-  }
+
+  final twoVars = TwoForwardedVars<User, User>(first: a, second: b);
+  _expect(
+    twoVars,
+    TwoForwardedVars<User, User>.fromJson(_enc(twoVars), _user, _user),
+  );
+
+  // one variable bound at both positions of a base (forwarded once, then unused)
+  final boundTwice = VarBoundTwice<User>(left: a, right: b);
+  _expect(boundTwice, VarBoundTwice<User>.fromJson(_enc(boundTwice), _user));
 }
 ''';

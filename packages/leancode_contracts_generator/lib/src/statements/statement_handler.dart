@@ -55,7 +55,7 @@ abstract class StatementHandler {
 
     db.markAsUsingJsonSerialization();
 
-    return Class((b) {
+    final base = Class((b) {
       b
         ..name = name
         ..fields.addAll([
@@ -161,6 +161,130 @@ abstract class StatementHandler {
         )
         ..mixins.add(refer('Equatable'));
     });
+
+    // A type extending/implementing a generic base must override its `toJson`.
+    if (_inheritedToJson(statement) case final toJson?) {
+      return base.rebuild(
+        (b) => b.methods
+          ..removeWhere((m) => m.name == 'toJson')
+          ..add(toJson),
+      );
+    }
+
+    return base;
+  }
+
+  /// A `toJson` override for a type extending/implementing a generic base, or
+  /// `null` otherwise.
+  ///
+  /// A generic base's generated `toJson` takes one `Object? Function(T)` factory
+  /// per type parameter, so extending it forces an override-compatible `toJson`.
+  /// Here the factories are all *optional* (a concrete subtype stays callable as
+  /// `toJson()`), ordered for override compatibility ([_toJsonFactoryParameters])
+  /// but forwarded to `_$ChildToJson` in the child's order
+  /// ([_toJsonForwardedArguments]).
+  ///
+  /// e.g. `ChildResult<T> extends PaginatedResult<T>` gets
+  /// `toJson([Object? Function(T)? toJsonT]) =>`
+  /// `    _$ChildResultToJson(this, toJsonT ?? ((v) => v))`.
+  Method? _inheritedToJson(Statement statement) {
+    final bases = _extendedGenericBases(statement);
+    if (bases.isEmpty) {
+      return null;
+    }
+
+    final name = renameType(db.resolveName(statement.name));
+    final childParams = typeDescriptorOf(
+      statement,
+    )!.genericParameters.map((g) => g.name).toList();
+
+    return Method(
+      (m) => m
+        ..name = 'toJson'
+        ..lambda = true
+        ..returns = refer('Map<String, dynamic>')
+        ..optionalParameters.addAll(
+          _toJsonFactoryParameters(bases, childParams),
+        )
+        ..body = Code(
+          '_\$${name}ToJson(${_toJsonForwardedArguments(childParams).join(', ')})',
+        ),
+    );
+  }
+
+  /// The generic bases this statement extends/implements — a C# base class
+  /// and/or one or more generic interfaces — whose `toJson` the override has to
+  /// stay compatible with. Empty if there are none.
+  List<TypeRef> _extendedGenericBases(Statement statement) {
+    // Non-null: createBase already rejects typeless statements.
+    return typeDescriptorOf(statement)!.extends_1.where((e) {
+      // Only a type we generate can be a base whose `toJson` we override, and
+      // dropping the ones config excludes keeps us in sync with `createBase`,
+      // which extends only included bases. The guard also makes reading
+      // `e.internal.name` below safe (a non-internal ref has no name).
+      if (!e.hasInternal() || !db.shouldInclude(e.internal.name)) {
+        return false;
+      }
+      final resolved = db.find(e.internal.name);
+      return resolved != null &&
+          resolved.hasDto() &&
+          resolved.dto.typeDescriptor.genericParameters.isNotEmpty;
+    }).toList();
+  }
+
+  /// Optional factory parameters for the override: one per position of the
+  /// widest base, plus one per child type variable no position forwards.
+  ///
+  /// A position all bases bind to the same type variable forwards it as
+  /// `Object? Function(<var>)?` named `toJson<var>`, but only from its first
+  /// such position. Any other position — a disagreement, a concrete type, or a
+  /// variable forwarded earlier (as in `IPairFacet<T, T>`) — is unused:
+  /// `Object? Function(Never)?` named `_` (`Never` validly overrides any type).
+  List<Parameter> _toJsonFactoryParameters(
+    List<TypeRef> bases,
+    List<String> childParams,
+  ) {
+    Parameter optionalFactory(String? childVar) => Parameter(
+      (p) => p
+        ..name = childVar != null ? 'toJson$childVar' : '_'
+        ..type = refer('Object? Function(${childVar ?? 'Never'})?'),
+    );
+
+    final arity = bases.map((b) => b.internal.arguments.length).max;
+
+    // The variable each position agrees on, or null if the bases disagree or
+    // bind a concrete type there.
+    final agreed = [
+      for (var i = 0; i < arity; i++)
+        bases
+            .map((b) => b.internal.arguments)
+            .where((args) => i < args.length)
+            .map((args) => args[i].hasGeneric() ? args[i].generic.name : null)
+            .toSet()
+            .singleOrNull,
+    ];
+
+    // Forward each variable only from its first position, so one bound at
+    // several positions doesn't emit duplicate parameter names.
+    final forwarded = <String>{};
+    return [
+      for (final childVar in agreed)
+        optionalFactory(
+          childVar != null && forwarded.add(childVar) ? childVar : null,
+        ),
+      for (final param in childParams.whereNot(forwarded.contains))
+        optionalFactory(param),
+    ];
+  }
+
+  /// Arguments forwarded to the generated `_$ChildToJson`, in the child's
+  /// type-parameter declaration order (what json_serializable expects). An
+  /// omitted optional factory falls back to the identity function.
+  List<String> _toJsonForwardedArguments(List<String> childParams) {
+    return [
+      'this',
+      for (final param in childParams) 'toJson$param ?? ((v) => v)',
+    ];
   }
 
   Parameter _createParameter(PropertyRef prop, {required bool required}) {
