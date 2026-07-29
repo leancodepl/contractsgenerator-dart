@@ -1,3 +1,7 @@
+# 0.18.1
+
+- Fix serialization of generic DTOs used as concrete fields (#95)
+
 # 0.18.0
 
 - **BREAKING**: Generate `with Equatable` instead of the deprecated `with EquatableMixin`. Requires `package:leancode_contracts` v0.9.0 (`package:equatable` v2.1.0)
