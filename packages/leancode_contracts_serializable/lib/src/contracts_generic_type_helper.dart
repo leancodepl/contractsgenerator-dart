@@ -1,9 +1,11 @@
 import 'package:analyzer/dart/element/type.dart';
 import 'package:json_serializable/type_helper.dart';
+import 'package:source_gen/source_gen.dart';
 import 'package:source_helper/source_helper.dart';
 
-/// Serializes fields whose type is a generic contract (`PaginatedResult<T>`,
-/// `Foo<SomeEnum>`, nested generics, …).
+/// Serializes fields whose type is a generic `@JsonSerializable`/
+/// `@ContractsSerializable` contract (`PaginatedResult<T>`, `Foo<SomeEnum>`,
+/// nested generics).
 ///
 /// json_serializable only forwards factories to a type's `toJson` when it has
 /// required positional params. Contract generics have no `toJson` (dropped to
@@ -16,9 +18,18 @@ class ContractsGenericTypeHelper
     extends TypeHelper<TypeHelperContextWithConfig> {
   const ContractsGenericTypeHelper();
 
+  // Scope strictly to our generated contracts: only they carry
+  // `@ContractsSerializable` and get the `_$…ToJson`/`_$…FromJson` free
+  // functions. A user's own `@JsonSerializable` generics stay with
+  // json_serializable, untouched.
+  static const _contract = TypeChecker.typeNamedLiterally(
+    'ContractsSerializable',
+    inPackage: 'leancode_contracts',
+  );
+
   bool _isGenericContract(InterfaceType type) =>
       type.typeArguments.isNotEmpty &&
-      type.element.constructors.any((c) => c.name == 'fromJson');
+      _contract.hasAnnotationOf(type.element);
 
   @override
   Object? serialize(
