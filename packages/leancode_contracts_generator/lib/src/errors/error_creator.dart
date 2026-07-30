@@ -1,7 +1,7 @@
 import 'package:code_builder/code_builder.dart';
 
-import '../proto/contracts.pb.dart';
-import '../utils/rename_field.dart';
+import 'package:leancode_contracts_generator/src/proto/contracts.pb.dart';
+import 'package:leancode_contracts_generator/src/utils/rename_field.dart';
 
 class ErrorCreator {
   const ErrorCreator();

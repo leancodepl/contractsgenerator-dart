@@ -1,7 +1,6 @@
+import 'package:leancode_contracts_generator/src/generator_database.dart';
+import 'package:leancode_contracts_generator/src/types/type_handler.dart';
 import 'package:leancode_contracts_generator/src/utils/rename_type.dart';
-
-import '../generator_database.dart';
-import 'type_handler.dart';
 
 class InternalTypeHandler extends TypeHandler {
   const InternalTypeHandler(this.db);

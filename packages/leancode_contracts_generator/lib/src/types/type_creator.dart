@@ -1,6 +1,6 @@
 import 'package:code_builder/code_builder.dart';
 
-import 'type_handler.dart';
+import 'package:leancode_contracts_generator/src/types/type_handler.dart';
 
 class TypeCreator {
   const TypeCreator(this.handlers);

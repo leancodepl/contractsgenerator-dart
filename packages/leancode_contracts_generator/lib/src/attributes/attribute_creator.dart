@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 
-import '../proto/contracts.pb.dart';
-import '../values/value_creator.dart';
+import 'package:leancode_contracts_generator/src/proto/contracts.pb.dart';
+import 'package:leancode_contracts_generator/src/values/value_creator.dart';
 
 /// Translates attributes to a dartdoc comment,
 /// or to a dart annotation if an appropriate mapping exists

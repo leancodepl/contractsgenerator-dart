@@ -1,6 +1,6 @@
 import 'package:code_builder/code_builder.dart';
 
-import 'statement_handler.dart';
+import 'package:leancode_contracts_generator/src/statements/statement_handler.dart';
 
 class DtoHandler extends StatementHandler {
   const DtoHandler(

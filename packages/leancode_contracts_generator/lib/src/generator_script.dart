@@ -1,12 +1,12 @@
 import 'dart:io';
 
-import 'contracts_generator_exception.dart';
+import 'package:leancode_contracts_generator/src/contracts_generator_exception.dart';
 
 /// Interface to the C# protobuf generator
 class GeneratorScript {
   /// Generate for a list of projects. Passed paths need to point to a .csproj file.
   GeneratorScript.project(List<String> projects, {List<String>? options})
-    : args = ['project', '-p', ...projects, if (options != null) ...options];
+    : args = ['project', '-p', ...projects, ...?options];
 
   /// Generate for a all files in the globbed paths
   GeneratorScript.path(
@@ -20,7 +20,7 @@ class GeneratorScript {
          ...include,
          if (exclude != null && exclude.isNotEmpty) ...['-e', ...exclude],
          if (directory != null && directory.isNotEmpty) ...['-d', directory],
-         if (options != null) ...options,
+         ...?options,
        ];
 
   final List<String> args;

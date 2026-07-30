@@ -1,17 +1,16 @@
 import 'package:code_builder/code_builder.dart';
 import 'package:collection/collection.dart';
+import 'package:leancode_contracts_generator/src/attributes/attribute_creator.dart';
+import 'package:leancode_contracts_generator/src/generator_database.dart';
+import 'package:leancode_contracts_generator/src/proto/contracts.pb.dart';
+import 'package:leancode_contracts_generator/src/statements/utils/to_dartdoc.dart';
+import 'package:leancode_contracts_generator/src/statements/utils/type_descriptor_of.dart';
+import 'package:leancode_contracts_generator/src/types/type_creator.dart';
 import 'package:leancode_contracts_generator/src/utils/case_helpers.dart';
+import 'package:leancode_contracts_generator/src/utils/rename_field.dart';
 import 'package:leancode_contracts_generator/src/utils/rename_type.dart';
+import 'package:leancode_contracts_generator/src/values/value_creator.dart';
 import 'package:meta/meta.dart';
-
-import '../attributes/attribute_creator.dart';
-import '../generator_database.dart';
-import '../proto/contracts.pb.dart';
-import '../types/type_creator.dart';
-import '../utils/rename_field.dart';
-import '../values/value_creator.dart';
-import 'utils/to_dartdoc.dart';
-import 'utils/type_descriptor_of.dart';
 
 export '../proto/contracts.pb.dart';
 

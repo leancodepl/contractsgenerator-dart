@@ -4,9 +4,8 @@
 import 'dart:io';
 
 import 'package:collection/collection.dart';
+import 'package:leancode_contracts_generator/src/generator_script.dart';
 import 'package:yaml/yaml.dart';
-
-import 'generator_script.dart';
 
 class ContractsGeneratorConfig {
   ContractsGeneratorConfig({
