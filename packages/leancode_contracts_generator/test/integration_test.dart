@@ -121,6 +121,60 @@ void main() {
       });
     }
   });
+
+  // Round-trips generated generic contracts that stock json_serializable can't
+  // serialize: an enum type argument, a nested generic, and a generic whose
+  // field is itself parameterised by the type variable.
+  test('generic contract round-trips', () async {
+    await ContractsGenerator(
+      ContractsGeneratorConfig(
+        input: GeneratorScript.path(['test/roundtrip_example/contracts.cs']),
+        output: Directory(libDir),
+        extra: '// :)',
+        include: RegExp('.*'),
+      ),
+    ).writeAll();
+
+    Directory(binDir).createSync(recursive: true);
+    File(mainPath).writeAsStringSync('''
+    import 'package:integration_test_project/contracts.dart';
+
+    void main() {
+      final report = Report(
+        byPriority: Box(items: [Priority.low, Priority.high]),
+        nested: Box(items: [Box(items: [Priority.high])]),
+        plan: Week(monday: Day(value: Priority.low)),
+      );
+      if (Report.fromJson(report.toJson()) != report) {
+        throw StateError('round-trip mismatch');
+      }
+    }
+    ''');
+
+    final buildResult = await Process.run('dart', [
+      'run',
+      'build_runner',
+      'build',
+    ], workingDirectory: projDir);
+    if (buildResult.exitCode != 0) {
+      stderr
+        ..writeln('\nFailed to build generic contract serialization:')
+        ..writeln(buildResult.stderr)
+        ..writeln(File(p.join(libDir, 'contracts.dart')).readAsStringSync());
+    }
+    expect(buildResult.exitCode, 0);
+
+    final runResult = await Process.run('dart', [
+      'run',
+    ], workingDirectory: projDir);
+    if (runResult.exitCode != 0) {
+      stderr
+        ..writeln('\nRound-trip failed:')
+        ..writeln(runResult.stderr)
+        ..writeln(File(p.join(libDir, 'contracts.dart')).readAsStringSync());
+    }
+    expect(runResult.exitCode, 0);
+  });
 }
 
 extension on Directory {
