@@ -35,68 +35,6 @@ Map<String, dynamic> _$PaginatedResultToJson<TResult>(
   'TotalCount': instance.totalCount,
 };
 
-AllUsersResult _$AllUsersResultFromJson(Map<String, dynamic> json) =>
-    AllUsersResult(
-      items: (json['Items'] as List<dynamic>)
-          .map((e) => User.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      totalCount: (json['TotalCount'] as num).toInt(),
-    );
-
-Map<String, dynamic> _$AllUsersResultToJson(AllUsersResult instance) =>
-    <String, dynamic>{
-      'Items': instance.items,
-      'TotalCount': instance.totalCount,
-    };
-
-ChildResult<T> _$ChildResultFromJson<T>(
-  Map<String, dynamic> json,
-  T Function(Object? json) fromJsonT,
-) => ChildResult<T>(
-  items: (json['Items'] as List<dynamic>).map(fromJsonT).toList(),
-  totalCount: (json['TotalCount'] as num).toInt(),
-  extras: (json['Extras'] as List<dynamic>).map(fromJsonT).toList(),
-);
-
-Map<String, dynamic> _$ChildResultToJson<T>(
-  ChildResult<T> instance,
-  Object? Function(T value) toJsonT,
-) => <String, dynamic>{
-  'Items': instance.items.map(toJsonT).toList(),
-  'TotalCount': instance.totalCount,
-  'Extras': instance.extras.map(toJsonT).toList(),
-};
-
-SearchResponse _$SearchResponseFromJson(Map<String, dynamic> json) =>
-    SearchResponse(
-      page: PaginatedResult<User>.fromJson(
-        json['Page'] as Map<String, dynamic>,
-        (value) => User.fromJson(value as Map<String, dynamic>),
-      ),
-      allUsers: AllUsersResult.fromJson(
-        json['AllUsers'] as Map<String, dynamic>,
-      ),
-      children: ChildResult<User>.fromJson(
-        json['Children'] as Map<String, dynamic>,
-        (value) => User.fromJson(value as Map<String, dynamic>),
-      ),
-    );
-
-Map<String, dynamic> _$SearchResponseToJson(SearchResponse instance) =>
-    <String, dynamic>{
-      'Page': instance.page.toJson((value) => value),
-      'AllUsers': instance.allUsers,
-      'Children': instance.children,
-    };
-
-User _$UserFromJson(Map<String, dynamic> json) =>
-    User(id: json['Id'] as String, name: json['Name'] as String);
-
-Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
-  'Id': instance.id,
-  'Name': instance.name,
-};
-
 ISomethingRelated _$ISomethingRelatedFromJson(Map<String, dynamic> json) =>
     ISomethingRelated(somethingId: json['SomethingId'] as String);
 
