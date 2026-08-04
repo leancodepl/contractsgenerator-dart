@@ -17,3 +17,9 @@ dev_dependencies:
   # Applies the @ContractsSerializable builder during `build_runner build`.
   leancode_contracts_generator:
     path: ../..
+
+# leancode_contracts_generator depends on leancode_contracts by version; keep
+# every reference resolved to the in-repo package during local dev/tests.
+dependency_overrides:
+  leancode_contracts:
+    path: ../../../leancode_contracts
