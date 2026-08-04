@@ -3,7 +3,7 @@
 part of 'cool_name.dart';
 
 // **************************************************************************
-// JsonSerializableGenerator
+// ContractsSerializableGenerator
 // **************************************************************************
 
 Auth _$AuthFromJson(Map<String, dynamic> json) => Auth();

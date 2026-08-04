@@ -3,7 +3,7 @@
 part of 'contracts.dart';
 
 // **************************************************************************
-// JsonSerializableGenerator
+// ContractsSerializableGenerator
 // **************************************************************************
 
 Command_ _$Command_FromJson(Map<String, dynamic> json) => Command_();
