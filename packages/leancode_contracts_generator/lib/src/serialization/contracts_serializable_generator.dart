@@ -11,10 +11,9 @@ class ContractsSerializableGenerator
     extends GeneratorForAnnotation<ContractsSerializable> {
   ContractsSerializableGenerator() : super(inPackage: 'leancode_contracts');
 
-  final JsonSerializableGenerator _inner =
-      JsonSerializableGenerator.withDefaultHelpers(const [
-        ContractsGenericTypeHelper(),
-      ]);
+  final _inner = JsonSerializableGenerator.withDefaultHelpers(const [
+    ContractsGenericTypeHelper(),
+  ]);
 
   @override
   Iterable<String> generateForAnnotatedElement(
