@@ -9,13 +9,12 @@ import 'package:source_gen/source_gen.dart';
 /// coexist with stock `@JsonSerializable`.
 class ContractsSerializableGenerator
     extends GeneratorForAnnotation<ContractsSerializable> {
-  ContractsSerializableGenerator()
-    : _inner = JsonSerializableGenerator.withDefaultHelpers(const [
-        ContractsGenericTypeHelper(),
-      ]),
-      super(inPackage: 'leancode_contracts');
+  ContractsSerializableGenerator() : super(inPackage: 'leancode_contracts');
 
-  final JsonSerializableGenerator _inner;
+  final JsonSerializableGenerator _inner =
+      JsonSerializableGenerator.withDefaultHelpers(const [
+        ContractsGenericTypeHelper(),
+      ]);
 
   @override
   Iterable<String> generateForAnnotatedElement(
