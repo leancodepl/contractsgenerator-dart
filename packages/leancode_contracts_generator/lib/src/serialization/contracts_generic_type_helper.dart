@@ -50,20 +50,20 @@ class ContractsGenericTypeHelper
     Object? Function(DartType type, String expression) convertArgument,
     String Function(InterfaceType type) receiver,
   ) {
-    if (targetType case final InterfaceType type
-        when type.typeArguments.isNotEmpty &&
-            _contract.hasAnnotationOf(type.element)) {
+    if (targetType is InterfaceType &&
+        targetType.typeArguments.isNotEmpty &&
+        _contract.hasAnnotationOf(targetType.element)) {
       // convertArgument is null when the argument is already JSON (e.g. a
       // primitive) and needs no transformation, so fall back to identity.
-      final factories = type.typeArguments
+      final factories = targetType.typeArguments
           .map(
             (argument) =>
                 '($_value) => ${convertArgument(argument, _value) ?? _value}',
           )
           .join(', ');
       final invocation =
-          '_\$${type.element.name}$suffix(${receiver(type)}, $factories)';
-      return type.isNullableType
+          '_\$${targetType.element.name}$suffix(${receiver(targetType)}, $factories)';
+      return targetType.isNullableType
           ? '$expression == null ? null : $invocation'
           : invocation;
     }
