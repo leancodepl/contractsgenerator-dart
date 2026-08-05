@@ -1,7 +1,6 @@
 import 'package:code_builder/code_builder.dart';
-
-import '../../types/type_creator.dart';
-import 'result_factory_handler.dart';
+import 'package:leancode_contracts_generator/src/statements/result_factory/result_factory_handler.dart';
+import 'package:leancode_contracts_generator/src/types/type_creator.dart';
 
 class ResultFactoryCreator {
   const ResultFactoryCreator(this.handlers, this.typeCreator);

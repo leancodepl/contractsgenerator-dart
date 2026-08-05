@@ -1,13 +1,12 @@
 import 'dart:collection';
 
 import 'package:collection/collection.dart';
+import 'package:leancode_contracts_generator/src/contracts_generator_config.dart';
+import 'package:leancode_contracts_generator/src/contracts_generator_exception.dart';
+import 'package:leancode_contracts_generator/src/statements/utils/type_descriptor_of.dart';
+import 'package:leancode_contracts_generator/src/types/type_handler.dart';
+import 'package:leancode_contracts_generator/src/types/utils/known_type_kind.dart';
 import 'package:meta/meta.dart';
-
-import 'contracts_generator_config.dart';
-import 'contracts_generator_exception.dart';
-import 'statements/utils/type_descriptor_of.dart';
-import 'types/type_handler.dart';
-import 'types/utils/known_type_kind.dart';
 
 class GeneratorDatabase {
   @visibleForTesting

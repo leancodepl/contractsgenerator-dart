@@ -1,4 +1,4 @@
-import '../type_handler.dart';
+import 'package:leancode_contracts_generator/src/types/type_handler.dart';
 
 enum KnownTypeKind {
   /// those that can be handled by a simple `as` cast

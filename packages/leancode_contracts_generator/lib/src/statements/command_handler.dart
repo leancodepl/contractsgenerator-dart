@@ -1,8 +1,8 @@
 import 'package:code_builder/code_builder.dart';
 
-import '../errors/error_creator.dart';
-import 'statement_handler.dart';
-import 'utils/get_full_name_method.dart';
+import 'package:leancode_contracts_generator/src/errors/error_creator.dart';
+import 'package:leancode_contracts_generator/src/statements/statement_handler.dart';
+import 'package:leancode_contracts_generator/src/statements/utils/get_full_name_method.dart';
 
 class CommandHandler extends StatementHandler {
   const CommandHandler(

@@ -1,4 +1,4 @@
-import '../statement_handler.dart';
+import 'package:leancode_contracts_generator/src/statements/statement_handler.dart';
 
 /// Returns the TypeDescriptor of the statement if it is not an Enum
 TypeDescriptor? typeDescriptorOf(Statement statement) {

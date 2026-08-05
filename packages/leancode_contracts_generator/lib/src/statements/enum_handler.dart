@@ -1,9 +1,9 @@
 import 'package:code_builder/code_builder.dart';
+import 'package:leancode_contracts_generator/src/statements/statement_handler.dart'
+    hide EnumValue;
+import 'package:leancode_contracts_generator/src/statements/utils/to_dartdoc.dart';
+import 'package:leancode_contracts_generator/src/utils/rename_field.dart';
 import 'package:leancode_contracts_generator/src/utils/rename_type.dart';
-
-import '../utils/rename_field.dart';
-import 'statement_handler.dart' hide EnumValue;
-import 'utils/to_dartdoc.dart';
 
 class EnumHandler extends StatementHandler {
   const EnumHandler(

@@ -1,5 +1,5 @@
-import '../proto/contracts.pb.dart';
-import 'utils/nullable_suffix.dart';
+import 'package:leancode_contracts_generator/src/proto/contracts.pb.dart';
+import 'package:leancode_contracts_generator/src/types/utils/nullable_suffix.dart';
 
 export '../proto/contracts.pb.dart';
 

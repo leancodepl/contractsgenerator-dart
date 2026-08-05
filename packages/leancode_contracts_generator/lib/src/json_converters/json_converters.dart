@@ -1,4 +1,4 @@
-import '../types/type_handler.dart';
+import 'package:leancode_contracts_generator/src/types/type_handler.dart';
 
 class JsonConverters {
   String? getConverter(TypeRef typeRef) {

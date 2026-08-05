@@ -1,9 +1,8 @@
+import 'package:leancode_contracts_generator/src/generator_database.dart';
+import 'package:leancode_contracts_generator/src/statements/result_factory/result_factory_handler.dart';
+import 'package:leancode_contracts_generator/src/statements/result_factory/utils/if_nullable_prefix.dart';
+import 'package:leancode_contracts_generator/src/utils/rename_field.dart';
 import 'package:leancode_contracts_generator/src/utils/rename_type.dart';
-
-import '../../generator_database.dart';
-import '../../utils/rename_field.dart';
-import 'result_factory_handler.dart';
-import 'utils/if_nullable_prefix.dart';
 
 class InternalResultFactoryHandler extends ResultFactoryHandler {
   const InternalResultFactoryHandler(this.db);

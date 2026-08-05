@@ -2,26 +2,25 @@ import 'dart:io';
 
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
+import 'package:leancode_contracts_generator/src/attributes/attribute_creator.dart';
+import 'package:leancode_contracts_generator/src/contracts_generator_config.dart';
+import 'package:leancode_contracts_generator/src/errors/error_creator.dart';
+import 'package:leancode_contracts_generator/src/generator_database.dart';
+import 'package:leancode_contracts_generator/src/json_converters/json_converters.dart';
+import 'package:leancode_contracts_generator/src/statements/command_handler.dart';
+import 'package:leancode_contracts_generator/src/statements/dto_handler.dart';
+import 'package:leancode_contracts_generator/src/statements/enum_handler.dart';
 import 'package:leancode_contracts_generator/src/statements/operation_handler.dart';
+import 'package:leancode_contracts_generator/src/statements/query_handler.dart';
+import 'package:leancode_contracts_generator/src/statements/statement_creator.dart';
 import 'package:leancode_contracts_generator/src/statements/topic_handler.dart';
+import 'package:leancode_contracts_generator/src/types/generic_type_handler.dart';
+import 'package:leancode_contracts_generator/src/types/internal_type_handler.dart';
+import 'package:leancode_contracts_generator/src/types/known_type_handler.dart';
+import 'package:leancode_contracts_generator/src/types/type_creator.dart';
 import 'package:leancode_contracts_generator/src/utils/verbose_log.dart';
+import 'package:leancode_contracts_generator/src/values/value_creator.dart';
 import 'package:path/path.dart' as p;
-
-import 'attributes/attribute_creator.dart';
-import 'contracts_generator_config.dart';
-import 'errors/error_creator.dart';
-import 'generator_database.dart';
-import 'json_converters/json_converters.dart';
-import 'statements/command_handler.dart';
-import 'statements/dto_handler.dart';
-import 'statements/enum_handler.dart';
-import 'statements/query_handler.dart';
-import 'statements/statement_creator.dart';
-import 'types/generic_type_handler.dart';
-import 'types/internal_type_handler.dart';
-import 'types/known_type_handler.dart';
-import 'types/type_creator.dart';
-import 'values/value_creator.dart';
 
 class ContractsGenerator {
   const ContractsGenerator(this.config, {this.verbose = false});

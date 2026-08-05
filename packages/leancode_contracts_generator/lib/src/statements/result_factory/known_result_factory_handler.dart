@@ -1,8 +1,8 @@
-import '../../json_converters/json_converters.dart';
-import '../../types/known_type_handler.dart';
-import '../../types/utils/nullable_suffix.dart';
-import 'result_factory_handler.dart';
-import 'utils/if_nullable_prefix.dart';
+import 'package:leancode_contracts_generator/src/json_converters/json_converters.dart';
+import 'package:leancode_contracts_generator/src/statements/result_factory/result_factory_handler.dart';
+import 'package:leancode_contracts_generator/src/statements/result_factory/utils/if_nullable_prefix.dart';
+import 'package:leancode_contracts_generator/src/types/known_type_handler.dart';
+import 'package:leancode_contracts_generator/src/types/utils/nullable_suffix.dart';
 
 class KnownResultFactoryHandler extends ResultFactoryHandler {
   const KnownResultFactoryHandler(this.jsonConverters);

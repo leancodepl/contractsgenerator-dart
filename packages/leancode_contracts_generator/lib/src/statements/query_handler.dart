@@ -1,11 +1,11 @@
 import 'package:code_builder/code_builder.dart';
 
-import '../json_converters/json_converters.dart';
-import 'result_factory/internal_result_factory_handler.dart';
-import 'result_factory/known_result_factory_handler.dart';
-import 'result_factory/result_factory_creator.dart';
-import 'statement_handler.dart';
-import 'utils/get_full_name_method.dart';
+import 'package:leancode_contracts_generator/src/json_converters/json_converters.dart';
+import 'package:leancode_contracts_generator/src/statements/result_factory/internal_result_factory_handler.dart';
+import 'package:leancode_contracts_generator/src/statements/result_factory/known_result_factory_handler.dart';
+import 'package:leancode_contracts_generator/src/statements/result_factory/result_factory_creator.dart';
+import 'package:leancode_contracts_generator/src/statements/statement_handler.dart';
+import 'package:leancode_contracts_generator/src/statements/utils/get_full_name_method.dart';
 
 class QueryHandler extends StatementHandler {
   QueryHandler(
