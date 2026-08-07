@@ -1,3 +1,9 @@
+# 0.19.0
+
+- **BREAKING**: Bump Dart SDK to 3.9.0
+- **BREAKING**: Generate serialization with an own builder instead of relying on `json_serializable` to pick up `@ContractsSerializable`. Requires `package:leancode_contracts` v0.10.0
+- Serialize generic DTOs used as concrete fields in the builder (#95), replacing the 0.18.1 fix, which silently broke generics with enums and types implementing multiple generic interfaces
+
 # 0.18.1
 
 - Fix serialization of generic DTOs used as concrete fields (#95)
