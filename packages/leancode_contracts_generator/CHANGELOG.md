@@ -1,3 +1,7 @@
+# 0.19.1
+
+- Generate `const` constructors for DTOs, queries, commands, operations and topics (#110)
+
 # 0.19.0
 
 - **BREAKING**: Bump Dart SDK to 3.9.0

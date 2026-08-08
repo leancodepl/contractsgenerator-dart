@@ -7,7 +7,7 @@ part 'contracts.g.dart';
 /// LeanCode.Contracts.Security.AllowUnauthorizedAttribute()
 @ContractsSerializable()
 class Command_ with Equatable implements Command {
-  Command_();
+  const Command_();
 
   factory Command_.fromJson(Map<String, dynamic> json) =>
       _$Command_FromJson(json);
@@ -26,7 +26,7 @@ class CommandErrorCodes {}
 /// LeanCode.Contracts.Security.AllowUnauthorizedAttribute()
 @ContractsSerializable()
 class Query_ with Equatable implements Query<int> {
-  Query_();
+  const Query_();
 
   factory Query_.fromJson(Map<String, dynamic> json) => _$Query_FromJson(json);
 
@@ -43,7 +43,7 @@ class Query_ with Equatable implements Query<int> {
 
 @ContractsSerializable()
 class Notification with Equatable implements TopicNotification {
-  Notification();
+  const Notification();
 
   factory Notification.fromJson(Map<String, dynamic> json) =>
       _$NotificationFromJson(json);
@@ -57,7 +57,7 @@ class Notification with Equatable implements TopicNotification {
 
 @ContractsSerializable()
 class Topic_ with Equatable implements Topic<TopicNotification> {
-  Topic_();
+  const Topic_();
 
   factory Topic_.fromJson(Map<String, dynamic> json) => _$Topic_FromJson(json);
 
