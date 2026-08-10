@@ -8,7 +8,7 @@ part 'cool_name.g.dart';
 
 @ContractsSerializable()
 class Auth with Equatable {
-  Auth();
+  const Auth();
 
   factory Auth.fromJson(Map<String, dynamic> json) => _$AuthFromJson(json);
 
@@ -22,7 +22,7 @@ class Auth with Equatable {
 
 @ContractsSerializable()
 class KnownClaims with Equatable {
-  KnownClaims();
+  const KnownClaims();
 
   factory KnownClaims.fromJson(Map<String, dynamic> json) =>
       _$KnownClaimsFromJson(json);
@@ -41,7 +41,7 @@ class KnownClaims with Equatable {
 
 @ContractsSerializable()
 class Roles with Equatable {
-  Roles();
+  const Roles();
 
   factory Roles.fromJson(Map<String, dynamic> json) => _$RolesFromJson(json);
 
@@ -63,7 +63,7 @@ class Roles with Equatable {
 abstract class PaginatedQuery<TResult>
     with Equatable
     implements Query<PaginatedResult<TResult>> {
-  PaginatedQuery({required this.pageNumber, required this.pageSize});
+  const PaginatedQuery({required this.pageNumber, required this.pageSize});
 
   final int pageNumber;
 
@@ -76,7 +76,7 @@ abstract class PaginatedQuery<TResult>
 /// This one is in XML.
 @ContractsSerializable(genericArgumentFactories: true)
 class PaginatedResult<TResult> with Equatable {
-  PaginatedResult({required this.items, required this.totalCount});
+  const PaginatedResult({required this.items, required this.totalCount});
 
   factory PaginatedResult.fromJson(
     Map<String, dynamic> json,
@@ -96,7 +96,7 @@ class PaginatedResult<TResult> with Equatable {
 
 @ContractsSerializable()
 class ISomethingRelated with Equatable {
-  ISomethingRelated({required this.somethingId});
+  const ISomethingRelated({required this.somethingId});
 
   factory ISomethingRelated.fromJson(Map<String, dynamic> json) =>
       _$ISomethingRelatedFromJson(json);
@@ -115,7 +115,7 @@ class ISomethingRelated with Equatable {
 /// System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('?', 'IDE1006', Justification: 'Convention for authorizers.')
 @ContractsSerializable()
 class WhenHasSomethingAccess with Equatable {
-  WhenHasSomethingAccess();
+  const WhenHasSomethingAccess();
 
   factory WhenHasSomethingAccess.fromJson(Map<String, dynamic> json) =>
       _$WhenHasSomethingAccessFromJson(json);
@@ -131,7 +131,7 @@ class WhenHasSomethingAccess with Equatable {
 /// LeanCode.Contracts.Security.AuthorizeWhenHasAnyOfAttribute('admin')
 @ContractsSerializable()
 class AllUsers with Equatable implements PaginatedQuery<UserInfoDTO> {
-  AllUsers({required this.pageNumber, required this.pageSize});
+  const AllUsers({required this.pageNumber, required this.pageSize});
 
   factory AllUsers.fromJson(Map<String, dynamic> json) =>
       _$AllUsersFromJson(json);
@@ -160,7 +160,7 @@ class AllUsers with Equatable implements PaginatedQuery<UserInfoDTO> {
 /// LeanCode.ContractsGeneratorV2.ExampleContracts.Security.AuthorizeWhenHasSomethingAccessAttribute()
 @ContractsSerializable()
 class EditUser with Equatable implements Command, ISomethingRelated {
-  EditUser({
+  const EditUser({
     required this.somethingId,
     required this.userId,
     required this.list,
@@ -228,7 +228,7 @@ class EditUserErrorCodes {
 /// LeanCode.Contracts.Security.AuthorizeWhenHasAnyOfAttribute('admin')
 @ContractsSerializable()
 class UserById with Equatable implements Query<UserInfoDTO?> {
-  UserById();
+  const UserById();
 
   factory UserById.fromJson(Map<String, dynamic> json) =>
       _$UserByIdFromJson(json);
@@ -250,7 +250,7 @@ class UserById with Equatable implements Query<UserInfoDTO?> {
 @Deprecated('Use something else instead')
 @ContractsSerializable()
 class UserInfoDTO with Equatable {
-  UserInfoDTO({
+  const UserInfoDTO({
     required this.firstname,
     required this.surname,
     required this.username,
@@ -280,7 +280,7 @@ class UserInfoDTO with Equatable {
 /// LeanCode.Contracts.Security.AuthorizeWhenHasAnyOfAttribute('admin')
 @ContractsSerializable()
 class UserSomething with Equatable implements Query<int?> {
-  UserSomething();
+  const UserSomething();
 
   factory UserSomething.fromJson(Map<String, dynamic> json) =>
       _$UserSomethingFromJson(json);

@@ -69,7 +69,11 @@ abstract class StatementHandler {
           ),
         ])
         ..constructors.addAll([
-          Constructor((b) => b..optionalParameters.addAll(parameters)),
+          Constructor(
+            (b) => b
+              ..constant = true
+              ..optionalParameters.addAll(parameters),
+          ),
           Constructor(
             (b) => b
               ..factory = true
